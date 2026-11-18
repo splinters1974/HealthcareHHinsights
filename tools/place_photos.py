@@ -1,5 +1,5 @@
 """
-Healthcare photos (from the Healthcare HH Insights Google Drive folder, Nov 2026).
+Healthcare photos (from the Hospital Energy Insights Google Drive folder, Nov 2026).
 
     python3 tools/place_photos.py /path/to/drive-folder
 

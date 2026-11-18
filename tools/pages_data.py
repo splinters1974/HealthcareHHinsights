@@ -48,7 +48,7 @@ def ask_and_load(this=''):
 
 
 def not_connected(name):
-    return (f'<div class="note"><strong>Checked {long_date(CHECKED)}.</strong> Healthcare HH Insights isn\'t connected with {name}. '
+    return (f'<div class="note"><strong>Checked {long_date(CHECKED)}.</strong> Hospital Energy Insights isn\'t connected with {name}. '
             f'This page summarises what {name} says on its own website. Portals and processes change, so follow the source links '
             'to check the current details. If something here is out of date, <a href="contact.html">let us know</a>.</div>')
 

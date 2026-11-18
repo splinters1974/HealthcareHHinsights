@@ -106,7 +106,7 @@ export class Report {
     this.opts = opts;
     this.doc = new jsPDF({ orientation: opts.orientation, unit: 'mm', format: 'a4' });
     this.doc.setProperties({ title: opts.title, creator: `${COMPANY} Data Analyser`,
-      ...(IS_HHI ? { author: 'Healthcare HH Insights (healthcarehhinsights.co.uk)', subject: `${ATTRIBUTION}. ${LICENCE_NOTE}`, keywords: 'Healthcare HH Insights' } : {}) });
+      ...(IS_HHI ? { author: 'Hospital Energy Insights (hospitalenergyinsights.co.uk)', subject: `${ATTRIBUTION}. ${LICENCE_NOTE}`, keywords: 'Hospital Energy Insights' } : {}) });
     addFonts(this.doc);
     this.doc.setFont(FONT, 'normal');
     const pw = this.doc.internal.pageSize.getWidth();

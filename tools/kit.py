@@ -7,7 +7,7 @@ import json
 from dataclasses import dataclass, field
 from html import escape
 
-NAME = 'Healthcare HH Insights'
+NAME = 'Hospital Energy Insights'
 YEAR = 2026
 # Each page's own dates (first published, last changed) live in
 # tools/page_dates.json. build_pages.py keeps them current: a page whose
@@ -29,9 +29,9 @@ def long_date(iso):
     return f'{d.day} {d:%B %Y}'
 # The site's public address, no trailing slash. Every page's canonical and
 # share links, robots.txt and sitemap.xml are built from it, so moving to a
-# custom domain (for example https://healthcarehhinsights.co.uk) is this one change plus
+# custom domain (for example https://hospitalenergyinsights.co.uk) is this one change plus
 # a rebuild. Empty disables canonical links and the sitemap.
-SITE_URL = 'https://healthcarehhinsights.co.uk'  # TO CONFIRM: buy the domain, then keep or change this
+SITE_URL = 'https://hospitalenergyinsights.co.uk'  # Available on GoDaddy, 18 Nov 2026: buy .co.uk and .uk before launch
 
 # Run by Kinetic Energy Consulting, as with the UK Solar Calculator and Half Hourly Insights.
 OPERATOR = 'Kinetic Energy Consulting'
@@ -39,7 +39,7 @@ OPERATOR_URL = 'https://www.kinetic-energy.co.uk'
 CONTACT_NAME = 'Paul Johnston'
 # Where calculator and customer-edition leads are emailed (EmailJS). Shown in the page code, so a named person's own address, not anyone else's.
 LEAD_EMAIL = 'pjohnston663@gmail.com'
-CONTACT_EMAIL = 'enquiries@kinetic-energy.co.uk'
+CONTACT_EMAIL = 'enquiries@hospitalenergy.co.uk'  # needs hospitalenergy.co.uk bought and a mailbox or forward set up
 # The solar calculator is part of this site (solar-calculator.html), fed by the analyser.
 SOLAR_URL = 'solar-calculator.html'
 SOLAR_SITE = 'https://uksolarcalculator.co.uk/'
@@ -116,6 +116,7 @@ ORG = {
 WEBSITE = {
     '@type': 'WebSite', '@id': '#website', 'name': NAME, 'inLanguage': 'en-GB',
     'description': 'Free half-hourly electricity analysis, solar sizing and decarbonisation guides for UK healthcare estates',
+    'image': url('images/brand/hei-logo.png'),
     'publisher': {'@id': ORG_ID},
 }
 APP = {
@@ -375,7 +376,7 @@ def layout(page):
 <nav class="site-nav" id="siteNav" aria-label="Main">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="{NAME} home">
-      <picture><source type="image/webp" srcset="images/brand/hhhi-logo.webp"><img src="images/brand/hhhi-logo.png" width="470" height="132" alt=""></picture>
+      <picture><source type="image/webp" srcset="images/brand/hei-logo.webp"><img src="images/brand/hei-logo.png" width="456" height="132" alt=""></picture>
     </a>
     <ul class="nav-links" id="navLinks">
       {links}
@@ -393,7 +394,7 @@ def layout(page):
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hhhi-logo-white.webp"><img src="images/brand/hhhi-logo-white.png" width="470" height="132" alt="{NAME}" loading="lazy"></picture></div>
+        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hei-logo-white.webp"><img src="images/brand/hei-logo-white.png" width="456" height="132" alt="{NAME}" loading="lazy"></picture></div>
         <p class="footer-desc">Free half-hourly electricity analysis, solar sizing and decarbonisation guides for NHS and independent healthcare estates across England, Scotland and Wales, run by {OPERATOR}. The analysis runs in your browser, so your meter data never leaves your computer.</p>
         <div class="footer-contact-item">Email: <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></div>
       </div>

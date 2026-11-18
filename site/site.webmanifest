@@ -1,6 +1,6 @@
 {
-  "name": "Healthcare HH Insights",
-  "short_name": "Healthcare HHI",
+  "name": "Hospital Energy Insights",
+  "short_name": "Hospital Energy",
   "start_url": "./",
   "display": "browser",
   "background_color": "#FFFFFF",

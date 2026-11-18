@@ -2,12 +2,12 @@
  "404.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "965cf819670855bb"
+  "fingerprint": "56f951654d9b0055"
  },
  "about.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "d28b930157c9606f"
+  "fingerprint": "6b15bf768da4adf7"
  },
  "acute-hospitals.html": {
   "published": "2026-11-18",
@@ -37,12 +37,12 @@
  "contact.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "fa3cb845e20a177c"
+  "fingerprint": "9c0c8d288f58a204"
  },
  "decarbonisation-funding.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "445f0b8ce5aa8f41"
+  "fingerprint": "2e7408c4bcec14e4"
  },
  "electricity-benchmarks.html": {
   "published": "2026-11-18",
@@ -67,7 +67,7 @@
  "faq.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "628b9199fe2449ab"
+  "fingerprint": "3a2d9860c93b502d"
  },
  "get-your-data.html": {
   "published": "2026-11-18",
@@ -87,27 +87,27 @@
  "half-hourly-data-british-gas.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "6d60a825cd44cc65"
+  "fingerprint": "bb87d2c04299780a"
  },
  "half-hourly-data-edf.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "310c483cd2531e53"
+  "fingerprint": "51644594f6052813"
  },
  "half-hourly-data-eon-next.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "5d67addbe32671cf"
+  "fingerprint": "777414665c24bc8d"
  },
  "half-hourly-data-npower-business-solutions.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "549e2cf1f2dd8c00"
+  "fingerprint": "2b97f1534883eb4f"
  },
  "half-hourly-data-totalenergies.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "f487fa27a206eba7"
+  "fingerprint": "4e161d25396bd66b"
  },
  "half-hourly-settlement.html": {
   "published": "2026-11-18",
@@ -122,12 +122,12 @@
  "healthcare-estates-decarbonisation.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "2ac0767ad2ce0e1f"
+  "fingerprint": "0dab83f19ee70cee"
  },
  "heat-decarbonisation.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "2d6a36066950a5e2"
+  "fingerprint": "39c4cebf7429afde"
  },
  "hospital-electrical-capacity.html": {
   "published": "2026-11-18",
@@ -142,17 +142,17 @@
  "how-it-works.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "23f1415365676f5c"
+  "fingerprint": "32631a68b826a9f6"
  },
  "index.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "080278de8228aa37"
+  "fingerprint": "bbfe1f305e86a17a"
  },
  "moving-away-from-chp.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "cadb5d511342086f"
+  "fingerprint": "cb599bcb72442e9b"
  },
  "mpan-profile-class.html": {
   "published": "2026-11-18",
@@ -162,7 +162,7 @@
  "nhs-net-zero-targets.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "cefa6985e5a3623a"
+  "fingerprint": "4a57610b245173c4"
  },
  "non-energy-charges.html": {
   "published": "2026-11-18",
@@ -182,12 +182,12 @@
  "paying-for-solar.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "659d88acc37f0ea4"
+  "fingerprint": "f080a120d2d79d89"
  },
  "privacy.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "20b55c7f119601f0"
+  "fingerprint": "e2b1de0ebe23830c"
  },
  "private-hospitals.html": {
   "published": "2026-11-18",
@@ -212,22 +212,22 @@
  "sectors.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "ba174e6cc4e16637"
+  "fingerprint": "abee3a5390bbae88"
  },
  "solar-calculator-method.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "ef8a1c4facb527c1"
+  "fingerprint": "b79480cbb89c8c76"
  },
  "solar-cost.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "214a0af170a9c23e"
+  "fingerprint": "5ae7f4804745ec8e"
  },
  "solar-generation.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "fceb400ef682513a"
+  "fingerprint": "780c87a97e3f47e0"
  },
  "solar-on-healthcare-estates.html": {
   "published": "2026-11-18",
@@ -237,17 +237,17 @@
  "solar-payback.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "7042d5697fd1019f"
+  "fingerprint": "e50db6edcb5b61d8"
  },
  "solar-planning-and-grid.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "230a628f89544fd6"
+  "fingerprint": "2c01e256e119e17b"
  },
  "solar.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "6c02235e2f8e1d68"
+  "fingerprint": "968c6d4ba1d71ee5"
  },
  "supply-capacity.html": {
   "published": "2026-11-18",
@@ -257,11 +257,11 @@
  "terms.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "ab731c08a36b4011"
+  "fingerprint": "5c56bbdadcb975c8"
  },
  "thanks.html": {
   "published": "2026-11-18",
   "modified": "2026-11-18",
-  "fingerprint": "b8496de8da2bee5e"
+  "fingerprint": "c327fad833248371"
  }
 }

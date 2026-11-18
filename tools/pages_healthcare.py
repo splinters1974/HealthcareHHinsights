@@ -29,7 +29,7 @@ def srcs(items):
             + ''.join(f'<li><a href="{u}" rel="noopener">{t}</a></li>' for t, u in items) + '</ol></div>')
 
 
-NOT_NHS = ('<div class="note"><strong>Independent guidance.</strong> Healthcare HH Insights is not part of, or endorsed by, the NHS, '
+NOT_NHS = ('<div class="note"><strong>Independent guidance.</strong> Hospital Energy Insights is not part of, or endorsed by, the NHS, '
            'NHS England, the Scottish Government or the Welsh Government. We summarise their published policy and link to it. '
            'Always check the source and your own organisation\'s policies before relying on it.</div>')
 

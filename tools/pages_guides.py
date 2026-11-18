@@ -465,7 +465,7 @@ SETTINGS_CARDS = [(f, s, lead) for f, s, _, lead, *_ in SECTOR_DATA] + [
 ]
 
 PAGES.append(Page(
-  'sectors.html', 'Healthcare settings: what to look for in your data | Healthcare HH Insights',
+  'sectors.html', 'Healthcare settings: what to look for in your data | Hospital Energy Insights',
   'What half-hourly electricity data shows in acute hospitals, community and mental health sites, health centres and clinics, ambulance stations and private hospitals.',
   page_hero('Healthcare settings', 'What to look for in your setting', 'Each part of a healthcare estate uses electricity differently. Choose yours to see what normal looks like, what to check first and how to set it up in the analyser.',
             crumbs=[HOME, SECTORS], image='sectors') +

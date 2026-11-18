@@ -3,18 +3,18 @@
 [build]
   publish = "site"
 
-# One address for the site: healthcarehhinsights.co.uk (to confirm). The www
+# One address for the site: hospitalenergyinsights.co.uk (to confirm). The www
 # address sends visitors and search engines there with a permanent redirect.
 # Merge only once the domain loads over https, or the site goes dark.
 [[redirects]]
-  from = "https://www.healthcarehhinsights.co.uk/*"
-  to = "https://healthcarehhinsights.co.uk/:splat"
+  from = "https://www.hospitalenergyinsights.co.uk/*"
+  to = "https://hospitalenergyinsights.co.uk/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://www.healthcarehhinsights.co.uk/*"
-  to = "https://healthcarehhinsights.co.uk/:splat"
+  from = "http://www.hospitalenergyinsights.co.uk/*"
+  to = "https://hospitalenergyinsights.co.uk/:splat"
   status = 301
   force = true
 
