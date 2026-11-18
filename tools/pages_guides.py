@@ -426,8 +426,8 @@ SECTOR_DATA = [
 
 SECTOR_PHOTOS = {
     'acute-hospitals.html': ('estate-hospital', 'Illustration of a hospital estate with clinical buildings, a multi-storey car park, plant compounds and a substation'),
-    'community-and-mental-health.html': ('solar-ground-campus', 'A low-rise healthcare campus with ground-mounted solar panels beside the buildings'),
-    'health-centres-and-clinics.html': ('solar-carport-depot', 'Solar car park canopies beside a low-rise building'),
+    'community-and-mental-health.html': ('hc-efficient-ward', 'A bright hospital ward corridor with a nurse, a porter and a wall-mounted building systems display'),
+    'health-centres-and-clinics.html': ('hc-private-hospital-carport', 'A healthcare building with solar panels on the roof and a solar car park canopy'),
     'ambulance-stations-and-fleet.html': ('solar-carport-depot', 'A depot with solar car park canopies over parked vehicles'),
 }
 

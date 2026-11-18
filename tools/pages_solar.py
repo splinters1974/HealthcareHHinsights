@@ -132,7 +132,7 @@ MAIN = f'''{updated_line()}
 <tr><td>Evening use on sunny days</td><td>The most a battery could shift from midday to evening.</td><td>Day profile</td></tr>
 <tr><td>Out-of-hours waste</td><td>Fix it first. Cutting waste lowers the demand solar has to match, so size the system on the building you'll have afterwards.</td><td><a href="out-of-hours-electricity.html">Out-of-hours use</a></td></tr>
 </tbody></table></div>
-{photo('solar-canopy-hospital', 'Solar canopies over a hospital car park at dusk, beside a fenced energy compound with battery units', 'After sunset, solar stops. Your evening demand on sunny days is the most a battery could ever move.')}
+{photo('hc-battery-ev-charging', 'Two engineers beside a battery storage unit and electric vehicle chargers at a hospital car park', 'After sunset, solar stops. Your evening demand on sunny days is the most a battery could ever move.')}
 
 <h2 id="example">A worked example: the sample office</h2>
 <p>Our <a href="example-office-analysis.html">example office</a> uses about {USE:,} kWh a year and is quiet on Sundays and busy only on some Saturdays. Here is what the analyser estimates at three system sizes, at UK average output (905 kWh per kWp). Values are for the first year at 25p/kWh for solar used on site and 5p/kWh for export, before price rises and panel ageing. "Covers" is the share of the site's electricity solar would supply. "Value" uses the measured share used on site; "At 80%" is the same system if you had guessed 80%.</p>
@@ -164,7 +164,7 @@ MAIN = f'''{updated_line()}
 
 <h2 id="limits">What this can and cannot tell you</h2>
 <p>The analyser's estimate uses a typical UK solar day, scaled to your region's annual output and to the UK's actual seasonal pattern. It doesn't know about cloudy weeks, shading, the direction your roof faces or what you'll change in future, so treat it as a planning figure, not a guarantee. The calculator's results are estimates, not a quotation. A site survey, a structural check and a network operator's offer come before any firm price.{ref(1,3)}</p>
-{photo('solar-site-team', 'Two engineers on a plant room roof looking across an energy centre and a factory roof covered in solar panels', 'An estimate tells you whether to take the next step. A survey and a network offer tell you the real cost.')}
+{photo('hc-rooftop-solar-install', 'Two installers checking solar panels on a hospital roof', 'An estimate tells you whether to take the next step. A survey and a network offer tell you the real cost.')}
 {faq_section(FAQS)}
 {sources(SRC)}'''
 

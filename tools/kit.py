@@ -240,6 +240,11 @@ PHOTO_SIZES = {
     'contact-photo': (1200, 900),
     'solar-carport-depot': (1600, 900), 'solar-canopy-hospital': (1600, 900), 'solar-ground-campus': (1600, 900),
     'solar-site-team': (1600, 900),
+    # Healthcare photos from tools/place_photos.py (illustrations of made-up sites)
+    'hc-public-hospital-solar': (1448, 1086), 'hc-private-hospital-carport': (1448, 1086), 'hc-heat-pump-plant-room': (1448, 1086),
+    'hc-efficient-ward': (1448, 1086), 'hc-energy-control-room': (1448, 1086), 'hc-rooftop-solar-install': (1448, 1086),
+    'hc-battery-ev-charging': (1448, 1086), 'hc-strategy-meeting': (1448, 1086), 'hc-thermal-survey': (1448, 1086),
+    'hc-private-hospital-dusk': (1448, 1086),
 }
 
 

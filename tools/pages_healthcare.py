@@ -244,6 +244,7 @@ PAGES.append(guide_page(
 </ul>
 
 <h2 id="ready">Being ready when money appears</h2>
+{photo('hc-strategy-meeting', 'An estates, finance and clinical team reviewing a hospital decarbonisation roadmap and site plans', 'Funding rounds reward trusts that can show their data, plans and surveys straight away.')}
 <p>Recent rounds have rewarded trusts that could move quickly. What helps most:</p>
 <ol>
 <li>A current heat decarbonisation plan, with each site's plant and replacement dates.</li>
@@ -274,12 +275,13 @@ PAGES.append(guide_page(
   f'''
 <p class="answer">Hospital heat is usually decarbonised in stages: cut demand, lower the temperatures the heating system runs at, add heat pumps for the base of the heat load, recover waste heat from cooling and ventilation, and keep existing boilers for peaks and resilience until they can be retired. Steam and hot water need separate solutions. Every stage adds electrical load, so check headroom early.</p>
 {NOT_NHS}
-{photo('plant-outside', 'Two engineers in high-visibility jackets beside air handling units and outdoor plant at a large building')}
+{photo('hc-heat-pump-plant-room', 'Two engineers with tablets in a hospital plant room beside an air source heat pump and a building management screen', 'Heat pumps work best at low flow temperatures, so controls and the heating system matter as much as the plant.')}
 
 <h2 id="plan">Start with a heat decarbonisation plan</h2>
 <p>A heat decarbonisation plan sets out how an organisation will replace fossil fuel heating with low carbon alternatives, building by building. Salix's guidance for public sector plans asks for a whole building approach, and includes a section on whether the electricity supply can support a switch to electric heating.{ref(n(K,'hdp'))} A plan written now, while there is less grant money about, is still the document funders, boards and contractors ask for first.</p>
 
 <h2 id="temperatures">Flow temperatures decide almost everything</h2>
+{photo('hc-thermal-survey', 'A surveyor in a hard hat reading a thermal image of a hospital building on a tablet', 'A thermal survey shows where heat is escaping, so the worst buildings can be improved before heat pumps are sized.')}
 <p>Many hospital heating systems were designed for boilers running at around 80°C. Heat pumps are most efficient at much lower temperatures, so the questions are how far you can lower the flow temperature, and what has to change to do it. Common steps are:</p>
 <ul>
 <li>balancing the system and fixing controls, so it is not overheating some areas to reach others</li>
@@ -355,6 +357,7 @@ PAGES.append(guide_page(
 </ol>
 
 <h2 id="capacity">The capacity surprise</h2>
+{photo('hc-heat-pump-plant-room', 'Two engineers with tablets in a hospital plant room beside an air source heat pump and a building management screen', 'Replacing CHP heat with heat pumps moves the load onto the electricity supply.')}
 <p>While a CHP engine runs, the site's main meter only records what the CHP does not supply. So the half-hourly data you get from your supplier understates the site's real electrical demand by the engine's output. When the engine is off for maintenance, trips, or is removed, grid import jumps by that amount. If a 1 MW engine stops, the site needs about 1 MW more from the grid, roughly 1,050 kVA at a power factor of 0.95.</p>
 <p>To see this in your own data:</p>
 <ul>
@@ -410,6 +413,7 @@ PAGES.append(guide_page(
 <p>These are illustrations. Your designer will size the real loads, and smart charging and controls can reduce what is needed at the peak.</p>
 
 <h2 id="options">If the headroom isn't there</h2>
+{photo('hc-battery-ev-charging', 'Two engineers beside a battery storage unit and electric vehicle chargers at a hospital car park', 'Batteries and smart charging can keep new loads within the agreed capacity.')}
 <ul>
 <li><strong>Cut the peak first.</strong> Controls, chiller sequencing and ventilation schedules often take tens of kilowatts off the busiest half hours. See <a href="hospital-energy-efficiency.html">energy efficiency</a>.</li>
 <li><strong>Generate on site.</strong> Solar reduces daytime import, but it does little on winter evenings when heat pump demand is high. Batteries can move energy into those hours.</li>
@@ -440,7 +444,7 @@ PAGES.append(guide_page(
   'Solar PV for hospitals and healthcare estates: why 24/7 sites use most of their solar, roofs, car park canopies and ground mounts, helipads and plant, grid connection, funding and sizing from half-hourly data.',
   f'''
 <p class="answer">Solar suits hospitals because demand never stops, so a well-sized system's output is almost all used on site, saving the full unit price. Clinics and admin buildings closed at weekends use less of it. The way to size a system is to measure your own share used on site from half-hourly data, then model the roof, car parks and land in the <a href="solar-calculator.html">solar calculator</a>.</p>
-{photo('solar-canopy-hospital', 'A hospital at dusk with solar car park canopies and an energy compound in the foreground')}
+{photo('hc-rooftop-solar-install', 'Two installers checking solar panels on a hospital roof')}
 
 <h2 id="why">Why it suits healthcare</h2>
 <ul>
@@ -455,6 +459,7 @@ PAGES.append(guide_page(
 <p>Rather than guess, measure it. Load the site's half-hourly data into the <a href="analyser/">analyser</a>, open its Solar tab and press <strong>Size solar for this site</strong>. The calculator opens with your share used at each system size, so the payback is based on your own profile. See <a href="solar.html">sizing solar from half-hourly data</a>.</p>
 
 <h2 id="where">Where it goes on a hospital site</h2>
+{photo('hc-private-hospital-carport', 'A private hospital entrance with solar panels on the roof and a solar car park canopy', 'Roofs and car park canopies together: the canopy costs more per kWp, but uses space that is otherwise only parking.')}
 <ul>
 <li><strong>Roofs.</strong> Hospital roofs carry plant, flues, access routes and sometimes helipads, so the usable share can be lower than on a warehouse. Structural checks are needed on older buildings.</li>
 <li><strong>Car park canopies.</strong> More expensive per kWp because of the steelwork, but they use space that is otherwise only parking, give shade and shelter, and sit well with EV charging. See <a href="solar-cost.html">what solar costs</a>.</li>
@@ -488,7 +493,7 @@ PAGES.append(guide_page(
   'Practical energy efficiency for hospitals and healthcare sites: theatre ventilation setback, BMS schedules, LED lighting, steam and pipework, chillers and plant rooms, and how to prove the savings with half-hourly data.',
   f'''
 <p class="answer">The cheapest carbon to remove on a hospital estate is usually energy wasted by plant running when it isn't needed: theatre ventilation overnight, air handling in empty outpatient areas, lights on 24 hours, and heat lost from steam and hot water pipework. Fix controls and schedules first, then lighting and insulation, then larger plant. Every kilowatt saved also makes the heat pumps and connection upgrades you need later smaller.</p>
-{photo('switchroom-tablet', 'Three people in a switch room looking at data on a tablet beside open electrical panels', 'Half-hourly data shows when energy is used. A walk round shows why.')}
+{photo('hc-efficient-ward', 'A bright hospital ward corridor with a nurse, a porter and a wall-mounted building systems display', 'Wards run around the clock; the offices, outpatients and corridors around them often do not need to.')}
 
 <h2 id="theatres">Theatre ventilation</h2>
 <p>Operating theatres need high air change rates when in use, and many systems run that way around the clock. HTM 03-01 already allows theatre ventilation to be switched off or set back when theatres are not in use, but NHS England says this is not widely implemented. Its Estates Technical Bulletin 2026/1, published in July 2026, sets out how to do it safely, and should be read alongside HTM 03-01.{ref(n(K,'netb'))} Any change needs your ventilation authorising engineer and infection prevention team involved.</p>
@@ -511,6 +516,7 @@ PAGES.append(guide_page(
 <p>A hospital's base load, the demand it never drops below, is mostly essential. But it also hides chillers short-cycling, plant left on after a refurbishment, and equipment nobody owns. A step up in base load after works is a common sign. The analyser flags lasting changes and unusual days. See <a href="base-load.html">base load</a>.</p>
 
 <h2 id="prove">Proving it worked</h2>
+{photo('hc-energy-control-room', 'An estates team in an energy monitoring room, with screens showing campus energy use, carbon and building performance', 'Half-hourly data shows when energy is used. A walk round shows why.')}
 <p>Change one thing at a time where you can, and compare matched weeks before and after with the analyser's before-and-after view. Measured savings are what boards, funders and Green Plan reports want. See <a href="proving-savings.html">proving a saving worked</a>.</p>
 ''' + sources_for(*K),
   [('theatres', 'Theatre ventilation'), ('controls', 'Controls and schedules'), ('lighting', 'Lighting'), ('heat', 'Steam and pipework'), ('base', 'Base load'), ('prove', 'Proving it worked')],
@@ -552,6 +558,7 @@ PAGES.append(guide_page(
 <p>Enter each site's floor area in the <a href="analyser/">analyser</a> to see electricity per square metre alongside the half-hourly detail.</p>
 
 <h2 id="hh">What half-hourly data adds</h2>
+{photo('hc-energy-control-room', 'An estates team in an energy monitoring room, with screens showing campus energy use, carbon and building performance')}
 <p>An annual return tells you a site used, say, 6 GWh of electricity. Half-hourly data shows that 2 GWh of it was base load, that the peak is creeping towards the supply limit, that a ward block's ventilation stopped turning down at night after a refurbishment, and how much of a solar system's output the site would use. That is the evidence that turns a benchmark into a project.</p>
 ''' + sources_for(*K),
   [('eric', 'ERIC in England'), ('efpms', 'EFPMS in Wales'), ('scotland', 'Scotland'), ('compare', 'Comparing fairly'), ('hh', 'What half-hourly data adds')],
@@ -589,6 +596,7 @@ PAGES.append(guide_page(
 <p>The Independent Healthcare Providers Network has set a sector-wide ambition for independent providers to reach net zero by 2035, five years ahead of the NHS's 2040 target for its direct emissions.{ref(n(K,'ihpn'))}</p>
 
 <h2 id="projects">What projects look like</h2>
+{photo('hc-private-hospital-dusk', 'A private hospital at dusk with rooftop solar, a solar car park canopy and electric vehicle chargers')}
 <ul>
 <li><strong>Solar.</strong> Private hospitals run around the clock, so they use most of a well-sized system's output. Power purchase agreements avoid capital; buying outright gives the best lifetime return and may qualify for capital allowances. See <a href="paying-for-solar.html">paying for solar</a> and the <a href="solar-calculator.html">solar calculator</a>.</li>
 <li><strong>Heat.</strong> The same heat pump, flow temperature and hot water questions as NHS sites. See <a href="heat-decarbonisation.html">heat decarbonisation</a>.</li>
