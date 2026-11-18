@@ -1,4 +1,4 @@
-# Healthcare HH Insights
+# Hospital Energy Insights
 
 Free half-hourly electricity analysis, solar sizing and decarbonisation guides
 for NHS and independent healthcare estates in England, Scotland and Wales.
@@ -54,9 +54,10 @@ by the NHS. These are set at the top of `tools/kit.py`.
 
 ## Before going live
 
-- **Domain:** `SITE_URL` in `tools/kit.py` is set to `https://healthcarehhinsights.co.uk`. Buy it (or change it) and rebuild, then submit the sitemap in Google Search Console and Bing Webmaster Tools.
+- **Domain:** `SITE_URL` in `tools/kit.py` is set to `https://hospitalenergyinsights.co.uk`. Buy it (or change it) and rebuild, then submit the sitemap in Google Search Console and Bing Webmaster Tools.
 - **Netlify:** create a site from this repo (publish directory `site`), attach the domain, then merge the redirects in `netlify.toml`.
 - **Google Maps key:** the calculator's map mode uses the UK Solar Calculator's Maps API key. Add the new domain to that key's allowed referrers in Google Cloud, or the map will not load.
-- **Enquiry form:** the contact form posts to the Half Hourly Insights Formspree form (`FORM_ENDPOINT` in `tools/pages_core.py`). Create a separate form if you want these enquiries kept apart.
+- **Email shown:** `enquiries@hospitalenergy.co.uk` (`CONTACT_EMAIL` in `tools/kit.py`). Buy hospitalenergy.co.uk and set up the mailbox or a forward before launch.
+- **Enquiry form:** posts to a Formspree form (`FORM_ENDPOINT` in `tools/pages_core.py`), currently the Half Hourly Insights one. Create a Formspree form for this site that delivers to the owner's inbox, and put its ID in `FORM_ENDPOINT`. The delivery address lives in Formspree, so it never appears in the page code.
 - **Leads:** calculator report requests and customer-edition details are emailed through EmailJS to `LEAD_EMAIL` in `tools/kit.py` (and `analyser/src/local/editionLead.ts`).
 - **Images:** add photos to `site/images/heroes/` and `site/images/photos/` (see `tools/make_heroes.py`). Keep NHS logos out of every image.

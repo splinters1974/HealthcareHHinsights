@@ -56,7 +56,7 @@ function withNotice(rows: (string | number)[][]): (string | number)[][] {
 
 function brandWorkbook(wb: XLSX.WorkBook, title: string) {
   if (!IS_HHI) return;
-  wb.Props = { Title: title, Author: 'Healthcare HH Insights', Company: 'Healthcare HH Insights (healthcarehhinsights.co.uk)', Comments: `${ATTRIBUTION}. ${LICENCE_NOTE}` };
+  wb.Props = { Title: title, Author: 'Hospital Energy Insights', Company: 'Hospital Energy Insights (hospitalenergyinsights.co.uk)', Comments: `${ATTRIBUTION}. ${LICENCE_NOTE}` };
 }
 
 function addSheet(wb: XLSX.WorkBook, used: Set<string>, name: string, rows: (string | number)[][], widths?: number[]) {
@@ -273,7 +273,7 @@ export function buildWorkbook(sites: ExportSite[], opts: WorkbookOptions): Array
     addSheet(wb, used, s.settings.name, rows);
   }
 
-  brandWorkbook(wb, 'Healthcare HH Insights export');
+  brandWorkbook(wb, 'Hospital Energy Insights export');
   return XLSX.write(wb, { type: 'array', bookType: 'xlsx' }) as ArrayBuffer;
 }
 
@@ -291,6 +291,6 @@ export function buildSitesTableWorkbook(title: string, sites: TableSite[], rateP
   ws['!cols'] = SITE_COLUMNS.map((c) => ({ wch: c.key === 'site' ? 28 : c.key === 'type' || c.key === 'findings' ? 22 : 14 }));
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, 'Sites');
-  brandWorkbook(wb, 'Healthcare HH Insights export');
+  brandWorkbook(wb, 'Hospital Energy Insights export');
   return XLSX.write(wb, { type: 'array', bookType: 'xlsx' }) as ArrayBuffer;
 }

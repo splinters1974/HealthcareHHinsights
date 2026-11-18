@@ -10,7 +10,7 @@ from kit import (UPDATED_MARK, CONTACT_EMAIL, CONTACT_NAME, OPERATOR, OPERATOR_U
                  cta, photo, faq_section, guide, page_hero, related, updated_line, GUIDE_PDF, guide_download, sources)
 from pages_data import GOV_OFFER, SUPPLIERS
 
-FORM_ENDPOINT = 'https://formspree.io/f/xeagedqj'  # Healthcare HH Insights enquiries form in Formspree
+FORM_ENDPOINT = 'https://formspree.io/f/xeagedqj'  # The Half Hourly Insights Formspree form for now. Where submissions go is set in Formspree, not here, so no personal address is in the page code. Replace with this site's own form ID.
 
 HOME = ('Home', 'index.html')
 GUIDES = ('Guides', 'guides.html')
@@ -23,7 +23,7 @@ def _card(f, title, text, more='Read the guide'):
     return link_card(f, title, text, more)
 
 
-PAGES['index.html'] = ('Half-hourly electricity analysis and solar for healthcare estates | Healthcare HH Insights',
+PAGES['index.html'] = ('Half-hourly electricity analysis and solar for healthcare estates | Hospital Energy Insights',
   'Free tools for NHS trusts, health boards and private hospitals: analyse half-hourly electricity data, check headroom for heat pumps, size solar from your own profile, and plan decarbonisation.',
   f"""<div class="hero-wrap">
 <div class="hero-media" aria-hidden="true"><picture><img src="images/photos/hc-public-hospital-solar.jpg" srcset="images/photos/hc-public-hospital-solar-800.jpg 800w, images/photos/hc-public-hospital-solar.jpg 1448w" sizes="100vw" width="1448" height="1086" alt="" fetchpriority="high"></picture></div>
@@ -142,7 +142,7 @@ PAGES['index.html'] = ('Half-hourly electricity analysis and solar for healthcar
 """)
 
 # ── HOW IT WORKS ────────────────────────────────────────────────────────
-PAGES['how-it-works.html'] = ('How it works | Healthcare HH Insights',
+PAGES['how-it-works.html'] = ('How it works | Hospital Energy Insights',
   'What the analyser does with your half-hourly data: how it reads files, checks quality, sets the base load, prices use while closed and builds findings.',
   page_hero('How it works', 'What the analyser does with your data',
             'A step-by-step explanation, from reading your file to the figures in the report. In the analyser, each finding also has a "show calculation and evidence" link with the full working.',
@@ -245,7 +245,7 @@ PAGES['get-your-data.html'] = ('How to get your half-hourly electricity data',
 FAQ = [
   ('Using the analyser', [
     ('Who is it for?', 'Estates, facilities, energy and sustainability teams in NHS trusts, health boards, integrated care boards, ambulance trusts and independent hospitals across England, Scotland and Wales. It works for any building with a half-hourly meter, but the settings, guides and examples are written for healthcare.'),
-    ('Is this an NHS tool?', 'No. Healthcare HH Insights is independent and is not part of, or endorsed by, the NHS. It is run by Kinetic Energy Consulting. Our guides summarise and link to NHS, Scottish Government and Welsh Government policy.'),
+    ('Is this an NHS tool?', 'No. Hospital Energy Insights is independent and is not part of, or endorsed by, the NHS. It is run by Kinetic Energy Consulting. Our guides summarise and link to NHS, Scottish Government and Welsh Government policy.'),
     ('Will it work for a 24-hour hospital?', 'Yes. Use the hospital preset, which has no closed hours. The analysis then focuses on base load, day and night use, peaks against capacity and lasting changes. Give clinics and offices on the site their real opening hours.'),
     ('Is it really free?', "Yes. There's no charge, no account and no limit on the number of sites. If you'd like help acting on the results you can contact us, but there's no obligation."),
     ('Do I need to install anything?', "No. It runs in Chrome or Edge on a recent computer. It isn't designed for phones, because the charts need a larger screen."),
@@ -269,11 +269,11 @@ FAQ = [
     ('Can it tell me which equipment is wasting energy?', 'No. Data from the main meter shows when electricity is used, but not what is using it. The findings tell you when and where to look, and a visit to the building finds the cause.'),
   ]),
 ]
-PAGES['faq.html'] = ('Questions and answers | Healthcare HH Insights',
+PAGES['faq.html'] = ('Questions and answers | Hospital Energy Insights',
   'Common questions about the free half-hourly analyser and solar calculator for healthcare estates: who it is for, privacy and IG, 24-hour sites, solar, and what the results mean.',
   page_hero('FAQ', 'Questions and answers', 'If your question isn\'t answered here, <a href="contact.html">ask us</a>.', image='faq') +
   '<section class="section"><div class="section-inner" style="max-width:820px">'
-  '<p class="answer">Healthcare HH Insights is a free half-hourly electricity analyser and solar calculator for NHS and independent healthcare estates across the UK, with guides to decarbonising the estate. '
+  '<p class="answer">Hospital Energy Insights is a free half-hourly electricity analyser and solar calculator for NHS and independent healthcare estates across the UK, with guides to decarbonising the estate. '
   'The analyser runs in your web browser, so your meter files are never uploaded. You need one Excel or CSV file per meter, ideally covering 12 months.</p>' +
   ''.join(f'<h2 class="faq-group">{g}</h2><div class="faq">' + ''.join(
       f'<details><summary>{q}</summary><div class="faq-a"><p>{a}</p></div></details>' for q, a in items) + '</div>'
@@ -281,7 +281,7 @@ PAGES['faq.html'] = ('Questions and answers | Healthcare HH Insights',
   '</div></section>' + cta('Still have a question?', 'Try the analyser with the example file, or get in touch.'))
 
 # ── CONTACT ─────────────────────────────────────────────────────────────
-PAGES['contact.html'] = ('Contact | Healthcare HH Insights',
+PAGES['contact.html'] = ('Contact | Hospital Energy Insights',
   'Talk to an energy expert about your half-hourly results, heat pump headroom, solar on your estate, funding or reducing waste across your sites.',
   page_hero('Contact', 'Talk to an expert',
             "The analyser and calculator show you where to look. If you'd like help turning the findings into projects, tell us about your estate and we'll be in touch. There's no obligation.",
@@ -303,8 +303,8 @@ PAGES['contact.html'] = ('Contact | Healthcare HH Insights',
   </dl>
 </div>
 <form class="form" id="enquiry" method="POST" action="{FORM_ENDPOINT}">
-  <input type="hidden" name="_subject" value="New Healthcare HH Insights enquiry">
-  <input type="hidden" name="site" value="Healthcare HH Insights">
+  <input type="hidden" name="_subject" value="New Hospital Energy Insights enquiry">
+  <input type="hidden" name="site" value="Hospital Energy Insights">
   <input type="hidden" name="from_page" id="fromPage" value="">
   <p class="hp"><label>Leave this empty <input name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
   <div class="form-row">
@@ -348,14 +348,14 @@ document.getElementById('enquiry').addEventListener('submit', async (e) => {{
 }});
 </script>''')
 
-PAGES['thanks.html'] = ('Thank you | Healthcare HH Insights', 'Your enquiry has been sent.',
+PAGES['thanks.html'] = ('Thank you | Hospital Energy Insights', 'Your enquiry has been sent.',
   page_hero('Contact', 'Thank you', 'Your enquiry has been sent. We\'ll reply by email, usually within one working day.',
             '\n    <a href="analyser/" class="btn btn-gold btn-lg">Back to the analyser</a>'),
   '  <meta name="robots" content="noindex">\n')
 
 # ── PRIVACY ─────────────────────────────────────────────────────────────
-PAGES['privacy.html'] = ('Privacy | Healthcare HH Insights',
-  'How Healthcare HH Insights handles your data: meter files never leave your computer, and enquiry details are only used to reply.',
+PAGES['privacy.html'] = ('Privacy | Hospital Energy Insights',
+  'How Hospital Energy Insights handles your data: meter files never leave your computer, and enquiry details are only used to reply.',
   page_hero('Privacy', 'Privacy notice', 'In short, your meter data never leaves your computer. If you contact us, we only use your details to reply.') +
   guide(f'''
 <h2 id="analyser">The analyser</h2>
@@ -377,7 +377,7 @@ PAGES['privacy.html'] = ('Privacy | Healthcare HH Insights',
 <p>We keep enquiry details only for as long as we need them to deal with your enquiry and any follow-up you ask for. We then delete them, from our email and from Formspree, unless we have to keep them for a legal reason. You can ask us to delete them sooner at any time.</p>
 
 <h2 id="cookies">Cookies and tracking</h2>
-<p>This site sets no cookies and runs no advertising or tracking scripts. Every download from the analyser (PDFs, spreadsheets, chart images and customer editions) is marked "Made with Healthcare HH Insights", but that is printed in the file; it does not track you. Fonts are served from this site rather than a third party.</p>
+<p>This site sets no cookies and runs no advertising or tracking scripts. Every download from the analyser (PDFs, spreadsheets, chart images and customer editions) is marked "Made with Hospital Energy Insights", but that is printed in the file; it does not track you. Fonts are served from this site rather than a third party.</p>
 
 <h2 id="rights">Your rights</h2>
 <p>You can ask what we hold about you, and ask us to correct or delete it, by emailing <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>. You can also complain to the Information Commissioner's Office (ico.org.uk).</p>
@@ -385,15 +385,15 @@ PAGES['privacy.html'] = ('Privacy | Healthcare HH Insights',
 
 # ── TERMS OF USE ────────────────────────────────────────────────────────
 # Plain-English terms. Have them reviewed by a solicitor before relying on them.
-PAGES['terms.html'] = ('Terms of use | Healthcare HH Insights',
-  'Healthcare HH Insights is free for your own organisation. Using it to produce reports, dashboards or advice for clients needs a licence.',
+PAGES['terms.html'] = ('Terms of use | Hospital Energy Insights',
+  'Hospital Energy Insights is free for your own organisation. Using it to produce reports, dashboards or advice for clients needs a licence.',
   page_hero('Terms', 'Terms of use', 'Free for your own organisation. If you use it to produce work for clients, you need a licence.') +
   guide(f'''
 <p class="byline">Last updated {UPDATED_MARK}</p>
-<p class="answer">You can use Healthcare HH Insights free of charge to analyse your own organisation's electricity data. If you use it to produce reports, dashboards or advice for other organisations, as part of paid work or to win it, you need a licence from us.</p>
+<p class="answer">You can use Hospital Energy Insights free of charge to analyse your own organisation's electricity data. If you use it to produce reports, dashboards or advice for other organisations, as part of paid work or to win it, you need a licence from us.</p>
 
 <h2 id="who">Who we are</h2>
-<p>Healthcare HH Insights (healthcarehhinsights.co.uk) is run by {OPERATOR}. See <a href="about.html">about us</a>. These terms apply to the website, the analyser and everything you download from it.</p>
+<p>Hospital Energy Insights (hospitalenergyinsights.co.uk) is run by {OPERATOR}. See <a href="about.html">about us</a>. These terms apply to the website, the analyser and everything you download from it.</p>
 
 <h2 id="free">Free use</h2>
 <p>Any organisation can use the analyser, the guides and the downloads free for its own sites and buildings. That includes energy and estates managers, finance teams and facilities staff analysing their own organisation's data, and sharing the reports, spreadsheets and customer editions within their organisation and with its own board, landlord or auditors.</p>
@@ -402,7 +402,7 @@ PAGES['terms.html'] = ('Terms of use | Healthcare HH Insights',
 <p>If you are a consultant, broker, supplier, installer or anyone else using the analyser to produce reports, dashboards, customer editions or advice for another organisation, as part of paid work or to win it, you need a licence. That includes handing a customer edition or a PDF from the analyser to a client. <a href="contact.html">Contact us</a> about a licence.</p>
 
 <h2 id="attribution">Keep our name on what you download</h2>
-<p>Every PDF page, spreadsheet, chart image and customer edition made with the analyser is marked "Made with Healthcare HH Insights" with this website's address. Do not remove, hide or change that marking, or present the output as made by another tool, unless your licence allows it.</p>
+<p>Every PDF page, spreadsheet, chart image and customer edition made with the analyser is marked "Made with Hospital Energy Insights" with this website's address. Do not remove, hide or change that marking, or present the output as made by another tool, unless your licence allows it.</p>
 
 <h2 id="copying">Copying the site</h2>
 <p>Do not copy the analyser or this website, in whole or in part, to offer a similar service, and do not resell access to it.</p>
@@ -485,7 +485,7 @@ PAGES['sample-report.html'] = ('Sample half-hourly electricity report for an off
 <p>For the full method, figure by figure, read the <a href="example-office-analysis.html">worked example</a>. To understand your own figures, see <a href="how-it-works.html">how the analyser works</a>.</p>
 </div></section>''' + cta('Ready to see your own results?', 'Load your half-hourly meter file. It takes about a minute and your data stays on your computer.'))
 
-PAGES['404.html'] = ('Page not found | Healthcare HH Insights', 'This page does not exist.',
+PAGES['404.html'] = ('Page not found | Hospital Energy Insights', 'This page does not exist.',
   page_hero('404', 'Page not found', 'That page doesn\'t exist. Try the home page or open the analyser.',
             '\n    <a href="index.html" class="btn btn-gold btn-lg">Home</a>'),
   '  <meta name="robots" content="noindex">\n')
@@ -495,13 +495,13 @@ PAGES['404.html'] = ('Page not found | Healthcare HH Insights', 'This page does 
 
 
 # ── ABOUT ───────────────────────────────────────────────────────────────
-PAGES['about.html'] = ('About Healthcare HH Insights and Paul Johnston',
-  'Who runs Healthcare HH Insights, the experience behind it, why the analyser and solar calculator are free, and how we write and check our guides.',
-  page_hero('About', 'About Healthcare HH Insights',
-            f'Healthcare HH Insights is run by {OPERATOR}. Here is who we are, why the analyser is free, and how we keep the guides accurate.',
+PAGES['about.html'] = ('About Hospital Energy Insights and Paul Johnston',
+  'Who runs Hospital Energy Insights, the experience behind it, why the analyser and solar calculator are free, and how we write and check our guides.',
+  page_hero('About', 'About Hospital Energy Insights',
+            f'Hospital Energy Insights is run by {OPERATOR}. Here is who we are, why the analyser is free, and how we keep the guides accurate.',
             crumbs=[HOME, ('About', 'about.html')]) +
   f'''<section class="section"><div class="section-inner about">
-<p class="answer">Healthcare HH Insights is a free half-hourly analyser, solar calculator and set of guides for NHS and independent healthcare estates. It is run by {OPERATOR}, whose Managing Director is Paul Johnston, and brings together the team's Half Hourly Insights analyser and UK Solar Calculator in one journey built for estates teams. It is independent, and not part of or endorsed by the NHS.</p>
+<p class="answer">Hospital Energy Insights is a free half-hourly analyser, solar calculator and set of guides for NHS and independent healthcare estates. It is run by {OPERATOR}, whose Managing Director is Paul Johnston, and brings together the team's Half Hourly Insights analyser and UK Solar Calculator in one journey built for estates teams. It is independent, and not part of or endorsed by the NHS.</p>
 
 <div class="about-person" id="paul-johnston">
   <img src="images/people/paul-johnston.jpg" width="480" height="600" alt="Paul Johnston, Managing Director of {OPERATOR}" loading="lazy">
@@ -510,7 +510,7 @@ PAGES['about.html'] = ('About Healthcare HH Insights and Paul Johnston',
     <p class="about-role">Managing Director, {OPERATOR}</p>
     <p>Paul has spent his career in the UK energy market. He has worked for some of the largest energy suppliers in the country and with private-equity-backed start-ups building new energy businesses.</p>
     <p>Working at that scale showed him how much useful information the industry collects about how businesses use electricity, and how little of it reaches the people who could act on it. Working with start-ups showed him how much can change when that information is put in front of the right person in a form they can use.</p>
-    <p>Healthcare estates are where that gap matters most: buildings that never close, fixed net zero dates and grid connections that take years to change. He set up Healthcare HH Insights to put the evidence in front of the estates teams who have to act on it, and writes and reviews the guides on this site.</p>
+    <p>Healthcare estates are where that gap matters most: buildings that never close, fixed net zero dates and grid connections that take years to change. He set up Hospital Energy Insights to put the evidence in front of the estates teams who have to act on it, and writes and reviews the guides on this site.</p>
     <p><a href="contact.html">Contact Paul</a></p>
   </div>
 </div>
