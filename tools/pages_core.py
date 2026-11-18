@@ -26,7 +26,7 @@ def _card(f, title, text, more='Read the guide'):
 PAGES['index.html'] = ('Half-hourly electricity analysis and solar for healthcare estates | Healthcare HH Insights',
   'Free tools for NHS trusts, health boards and private hospitals: analyse half-hourly electricity data, check headroom for heat pumps, size solar from your own profile, and plan decarbonisation.',
   f"""<div class="hero-wrap">
-<div class="hero-media" aria-hidden="true"><picture><img src="images/photos/solar-canopy-hospital.jpg" srcset="images/photos/solar-canopy-hospital-800.jpg 800w, images/photos/solar-canopy-hospital.jpg 1600w" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high"></picture></div>
+<div class="hero-media" aria-hidden="true"><picture><img src="images/photos/hc-public-hospital-solar.jpg" srcset="images/photos/hc-public-hospital-solar-800.jpg 800w, images/photos/hc-public-hospital-solar.jpg 1448w" sizes="100vw" width="1448" height="1086" alt="" fetchpriority="high"></picture></div>
 <section class="hero" aria-labelledby="hero-h">
   <div class="hero-copy">
     <p class="hero-audience">For NHS trusts, health boards and independent hospitals in England, Scotland and Wales</p>
@@ -114,7 +114,7 @@ PAGES['index.html'] = ('Half-hourly electricity analysis and solar for healthcar
       </ul>
       <p style="margin-top:24px"><a href="sectors.html" class="btn btn-outline">What to look for in your setting</a></p>
     </div>
-    <div>{photo('estate-hospital', 'Illustration of a hospital estate with solar on the roofs and car park canopies, plant compounds, battery storage and a substation')}</div>
+    <div>{photo('hc-strategy-meeting', 'An estates, finance and clinical team reviewing a hospital decarbonisation roadmap and site plans')}</div>
   </div>
 </section>
 
@@ -149,7 +149,7 @@ PAGES['how-it-works.html'] = ('How it works | Healthcare HH Insights',
             crumbs=[HOME, ('How it works', 'how-it-works.html')], image='how-it-works') +
   guide(updated_line() + '''
 <p class="answer">The analyser checks every half-hourly reading, works out how much electricity the site uses when it's open and when it's closed, and prices the difference at your rates. It tells you where to look. Someone who knows the building then decides what to change.</p>
-''' + photo('switchroom-tablet', 'Three people in a switch room looking at data on a tablet beside open electrical panels', 'The findings tell you where to look. A walk round the building tells you why.') + guide_download('Want the practical steps?') + '''
+''' + photo('hc-energy-control-room', 'An estates team in an energy monitoring room, with screens showing campus energy use, carbon and building performance', 'The findings tell you where to look. A walk round the building tells you why.') + guide_download('Want the practical steps?') + '''
 
 <h2 id="files">1. Reading your files</h2>
 <p>Load one file for each meter, as Excel (.xlsx or .xls) or CSV. Three layouts work:</p>

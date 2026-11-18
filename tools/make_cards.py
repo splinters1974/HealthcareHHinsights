@@ -27,27 +27,11 @@ CARDS = {
     'non-energy-charges': 'Non-energy charges explained',
     'electricity-prices-ten-years': 'Ten years of electricity prices',
     'non-energy-costs-outlook': 'Where non-energy costs are heading',
-    'solar': 'Size solar from your half-hourly data',
-    # Healthcare pages
-    'healthcare-estates-decarbonisation': 'Decarbonising healthcare estates',
-    'nhs-net-zero-targets': 'Net zero targets across the UK',
-    'decarbonisation-funding': 'Funding healthcare decarbonisation',
-    'heat-decarbonisation': 'Heat decarbonisation for hospitals',
-    'moving-away-from-chp': 'Moving away from gas CHP',
-    'hospital-electrical-capacity': 'Electrical capacity for electrification',
-    'solar-on-healthcare-estates': 'Solar on healthcare estates',
-    'hospital-energy-efficiency': 'Energy efficiency in hospitals',
-    'estates-returns-and-benchmarking': 'ERIC, EFPMS and benchmarking',
-    'private-hospitals': 'Private and independent hospitals',
-    'acute-hospitals': 'Acute hospitals',
-    'community-and-mental-health': 'Community and mental health sites',
-    'health-centres-and-clinics': 'Health centres and clinics',
-    'ambulance-stations-and-fleet': 'Ambulance stations and fleet',
+    # Healthcare pages (most now use photo cards from tools/place_photos.py)
     'solar-calculator-method': 'How the solar calculator works',
     'solar-cost': 'What solar costs',
     'solar-payback': 'Solar payback',
     'solar-generation': 'How much solar generates',
-    'solar-planning-and-grid': 'Solar planning and grid connection',
     'paying-for-solar': 'Paying for solar',
 }
 
