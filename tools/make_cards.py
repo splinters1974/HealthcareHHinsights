@@ -1,0 +1,105 @@
+"""
+Typographic guide cards for pages that don't have designed artwork yet, in the
+healthcare palette: navy panel, white title, aqua
+rule. A stylised day of half-hourly demand fills the space a photo would.
+
+    python3 tools/make_cards.py
+
+Writes site/images/guides/<page>.jpg (1200 x 630) and <page>-600.jpg. To use
+designed artwork instead, replace those two files and remove the page here.
+Needs Pillow and the DejaVu Sans Bold font.
+"""
+import math
+import os
+import random
+
+from PIL import Image, ImageDraw, ImageFont
+
+CARDS = {
+    'half-hourly-data-british-gas': 'Half-hourly data from British Gas Business',
+    'half-hourly-data-edf': 'Half-hourly data from EDF',
+    'half-hourly-data-eon-next': 'Half-hourly data from E.ON Next',
+    'half-hourly-data-npower-business-solutions': 'Half-hourly data from npower Business Solutions',
+    'half-hourly-data-totalenergies': 'Half-hourly data from TotalEnergies',
+    'mpan-profile-class': 'Reading your MPAN',
+    'electricity-benchmarks': 'Electricity benchmarks by sector',
+    'business-electricity-price': "What's in a non-domestic electricity price",
+    'non-energy-charges': 'Non-energy charges explained',
+    'electricity-prices-ten-years': 'Ten years of electricity prices',
+    'non-energy-costs-outlook': 'Where non-energy costs are heading',
+    'solar': 'Size solar from your half-hourly data',
+    # Healthcare pages
+    'healthcare-estates-decarbonisation': 'Decarbonising healthcare estates',
+    'nhs-net-zero-targets': 'Net zero targets across the UK',
+    'decarbonisation-funding': 'Funding healthcare decarbonisation',
+    'heat-decarbonisation': 'Heat decarbonisation for hospitals',
+    'moving-away-from-chp': 'Moving away from gas CHP',
+    'hospital-electrical-capacity': 'Electrical capacity for electrification',
+    'solar-on-healthcare-estates': 'Solar on healthcare estates',
+    'hospital-energy-efficiency': 'Energy efficiency in hospitals',
+    'estates-returns-and-benchmarking': 'ERIC, EFPMS and benchmarking',
+    'private-hospitals': 'Private and independent hospitals',
+    'acute-hospitals': 'Acute hospitals',
+    'community-and-mental-health': 'Community and mental health sites',
+    'health-centres-and-clinics': 'Health centres and clinics',
+    'ambulance-stations-and-fleet': 'Ambulance stations and fleet',
+    'solar-calculator-method': 'How the solar calculator works',
+    'solar-cost': 'What solar costs',
+    'solar-payback': 'Solar payback',
+    'solar-generation': 'How much solar generates',
+    'solar-planning-and-grid': 'Solar planning and grid connection',
+    'paying-for-solar': 'Paying for solar',
+}
+
+# Healthcare palette: deep navy panel, white title, aqua rule; bars in navy-blue and clinical blue.
+TEAL, LIME, WHITE = (11, 46, 79), (95, 211, 198), (255, 255, 255)
+BAR, BAR_HI = (24, 70, 112), (10, 102, 183)
+FONT = '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
+OUT = os.path.join(os.path.dirname(__file__), '..', 'site', 'images', 'guides')
+W, H = 1200, 630
+
+
+def wrap(draw, text, font, width):
+    lines, line = [], ''
+    for word in text.split():
+        trial = f'{line} {word}'.strip()
+        if draw.textlength(trial, font=font) <= width:
+            line = trial
+        else:
+            lines.append(line)
+            line = word
+    return lines + [line]
+
+
+def card(name, title):
+    rnd = random.Random(name)            # same picture every time for the same page
+    im = Image.new('RGB', (W, H), TEAL)
+    d = ImageDraw.Draw(im)
+    # A day of demand: low overnight, a working-day block, a few late spikes.
+    base, top = 470, 190
+    for i in range(48):
+        h = 0.18 + (0.62 if 15 <= i < 37 else 0) * (0.85 + 0.15 * math.sin(i / 3)) + rnd.random() * 0.08
+        x = 60 + i * 23
+        y = base + 120 - int(h * (base - top + 120))
+        d.rectangle([x, y, x + 15, base + 120], fill=BAR_HI if 15 <= i < 37 else BAR)
+    d.rectangle([0, 0, W, 330], fill=TEAL)  # keep the title area clear
+    size = 64
+    font = ImageFont.truetype(FONT, size)
+    lines = wrap(d, title, font, 1000)
+    while len(lines) > 3:
+        size -= 6
+        font = ImageFont.truetype(FONT, size)
+        lines = wrap(d, title, font, 1000)
+    y = 70
+    for line in lines:
+        d.text((64, y), line, font=font, fill=WHITE)
+        y += int(size * 1.2)
+    d.rectangle([64, y + 18, 264, y + 28], fill=LIME)
+    im.save(os.path.join(OUT, f'{name}.jpg'), quality=85, optimize=True, progressive=True)
+    im.resize((600, 315), Image.LANCZOS).save(os.path.join(OUT, f'{name}-600.jpg'), quality=82, optimize=True, progressive=True)
+
+
+if __name__ == '__main__':
+    for name, title in CARDS.items():
+        card(name, title)
+    print(f'wrote {len(CARDS)} cards')

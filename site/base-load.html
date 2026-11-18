@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base load electricity: what it is and how to cut it</title>
+  <meta name="description" content="What base load electricity is, how to measure it from half-hourly data, what makes it up, and how to reduce it. Each kilowatt running all year is 8,760 kWh.">
+  <link rel="canonical" href="https://healthcarehhinsights.co.uk/base-load">
+  <meta property="og:url" content="https://healthcarehhinsights.co.uk/base-load">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Base load electricity: what it is and how to cut it">
+  <meta property="og:description" content="What base load electricity is, how to measure it from half-hourly data, what makes it up, and how to reduce it. Each kilowatt running all year is 8,760 kWh.">
+  <meta property="og:image" content="https://healthcarehhinsights.co.uk/images/guides/base-load.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Healthcare HH Insights">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="images/brand/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/brand/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0B2E4F">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v=63119adc">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://www.kinetic-energy.co.uk/#organization",
+   "name": "Kinetic Energy Consulting",
+   "url": "https://www.kinetic-energy.co.uk",
+   "email": "enquiries@kinetic-energy.co.uk",
+   "logo": "https://healthcarehhinsights.co.uk/images/kec-logo.svg",
+   "areaServed": {
+    "@type": "Country",
+    "name": "United Kingdom"
+   },
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "email": "enquiries@kinetic-energy.co.uk",
+    "areaServed": "GB"
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://healthcarehhinsights.co.uk/#website",
+   "name": "Healthcare HH Insights",
+   "inLanguage": "en-GB",
+   "description": "Free half-hourly electricity analysis, solar sizing and decarbonisation guides for UK healthcare estates",
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://healthcarehhinsights.co.uk/"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://healthcarehhinsights.co.uk/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://healthcarehhinsights.co.uk/guides"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Base load: what never switches off",
+     "item": "https://healthcarehhinsights.co.uk/base-load"
+    }
+   ]
+  },
+  {
+   "@type": "Person",
+   "@id": "https://healthcarehhinsights.co.uk/about#paul-johnston",
+   "name": "Paul Johnston",
+   "jobTitle": "Managing Director",
+   "worksFor": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://healthcarehhinsights.co.uk/about",
+   "image": "https://healthcarehhinsights.co.uk/images/people/paul-johnston.jpg"
+  },
+  {
+   "@type": "Article",
+   "headline": "Base load electricity: what it is and how to cut it",
+   "description": "What base load electricity is, how to measure it from half-hourly data, what makes it up, and how to reduce it. Each kilowatt running all year is 8,760 kWh.",
+   "image": "https://healthcarehhinsights.co.uk/images/guides/base-load.jpg",
+   "inLanguage": "en-GB",
+   "datePublished": "2026-11-18",
+   "dateModified": "2026-11-18",
+   "author": {
+    "@id": "https://healthcarehhinsights.co.uk/about#paul-johnston"
+   },
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "isPartOf": {
+    "@id": "https://healthcarehhinsights.co.uk/#website"
+   },
+   "mainEntityOfPage": "https://healthcarehhinsights.co.uk/base-load"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is a typical base load?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It depends on the building. An acute hospital's base load is high because wards, theatres, imaging and ventilation run all the time; a health centre's is mostly IT, vaccine fridges and security. Compare each site with its own history, and with similar buildings in your estate."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why is my base load higher at weekends than overnight on weekdays?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It shouldn't be. If it is, something is switching on at weekends, such as frost protection on the heating, a scheduled process or a booking. Check the weekend pattern on the heatmap."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How much does 1 kW of base load cost?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It runs 8,760 hours a year, so it uses 8,760 kWh. At 25p/kWh that's about £2,190 a year. Multiply 8,760 by your own rate to check."
+     }
+    }
+   ]
+  }
+ ]
+}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="site-nav" id="siteNav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="./" class="nav-logo" aria-label="Healthcare HH Insights home">
+      <picture><source type="image/webp" srcset="images/brand/hhhi-logo.webp"><img src="images/brand/hhhi-logo.png" width="470" height="132" alt=""></picture>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./">Home</a></li><li><a href="how-it-works">How it works</a></li><li><a href="healthcare-estates-decarbonisation">Decarbonisation</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="guides" class="active" aria-current="page">Guides</a></li><li><a href="sectors">Settings</a></li><li><a href="contact">Contact</a></li>
+      <li><a href="analyser/" class="nav-cta">Upload HH data</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<main id="main">
+<section class="page-hero page-hero-photo">
+  <div class="hero-media" aria-hidden="true"><picture><source type="image/webp" srcset="images/heroes/base-load-900.webp 900w, images/heroes/base-load.webp 1600w" sizes="100vw"><img src="images/heroes/base-load.jpg" srcset="images/heroes/base-load-900.jpg 900w, images/heroes/base-load.jpg 1600w" sizes="100vw" width="1600" height="800" alt="" fetchpriority="high"></picture></div>
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <a href="guides">Guides</a> <span aria-hidden="true">/</span> <span aria-current="page">Base load: what never switches off</span></nav>
+    <span class="page-hero-kicker">Guide</span>
+    <h1 class="page-hero-title">Base load: what never switches off</h1>
+    <p class="page-hero-lead">Every building has a level of electricity use it never drops below. Because that use continues every hour of the year, even small reductions add up.</p>
+  </div>
+</section><div class="guide">
+  <article class="guide-main prose">
+<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-18">18 November 2026</time></p>
+<p class="answer">Base load is the minimum electricity a building uses at all times, overnight and at weekends as well as during the day. Each kilowatt of base load runs for 8,760 hours a year. That's 8,760 kWh, or about £2,190 at 25p/kWh. You can measure it from half-hourly data, find out what makes it up, and switch off anything that doesn't need to run.</p>
+
+<h2 id="measure">How to measure it</h2>
+<p>The analyser takes every valid half-hourly reading, converts it to kW (the kWh reading divided by half an hour) and finds the level that demand stays above 95% of the time. This is called the 5th percentile, and it's what the analyser uses as the base load.</p>
+<p>It doesn't use the single lowest reading, because one meter fault or power cut could set it and make the base load look lower than it really is. The analyser shows the lowest half hour alongside so you can compare.</p>
+
+<h2 id="what">What makes it up</h2>
+<ul><li>IT: servers, network equipment and phone systems</li><li>Clinical equipment on standby, imaging cooling and medical gas plant</li><li>Refrigeration: vaccine and pharmacy fridges, kitchen fridges, freezers, vending machines and water coolers</li><li>Pumps and fans that run continuously</li><li>Water heaters and boilers kept on standby</li><li>Security systems, fire alarms and emergency lighting</li><li>Equipment left on standby, or left running by mistake</li></ul>
+
+<h2 id="reduce">How to reduce it</h2>
+<ol><li><strong>Walk round the building at night or at a weekend</strong> and note everything that's switched on. It's often a surprise.</li><li><strong>Sort what you find</strong> into must run, could run less, and shouldn't be on.</li><li><strong>Fix the easy ones first</strong>, such as timers on water heaters and vending machines, switch-off routines and combining servers.</li><li><strong>Check the base load every month.</strong> A step up usually means new equipment has been installed or something has been left on. The analyser flags lasting changes like this.</li></ol>
+
+<h2 id="solar">Base load and solar</h2>
+<p>Base load runs through the day as well as the night, so it is the part of your demand that solar panels can supply most reliably. The analyser's Solar tab estimates how much of a solar system's output your site would use itself at different sizes, from your own half-hourly readings, and can pass that figure to the <a href="solar-calculator">solar calculator</a> on this site, to work out costs and payback. The <a href="solar">solar page</a> explains how.</p>
+
+<h2 id="worth">Working out the saving</h2>
+<p>Because base load runs every hour of the year, savings are easy to estimate: multiply the kilowatts you remove by 8,760 hours and by your unit rate. At 25p/kWh, 1 kW is worth about £2,190 a year, and switching off a 0.5 kW water heater that was left on all the time saves about £1,100.</p>
+<h2 id="questions">Questions people ask</h2>
+<div class="faq"><details><summary>What is a typical base load?</summary><div class="faq-a"><p>It depends on the building. An acute hospital's base load is high because wards, theatres, imaging and ventilation run all the time; a health centre's is mostly IT, vaccine fridges and security. Compare each site with its own history, and with similar buildings in your estate.</p></div></details><details><summary>Why is my base load higher at weekends than overnight on weekdays?</summary><div class="faq-a"><p>It shouldn't be. If it is, something is switching on at weekends, such as frost protection on the heating, a scheduled process or a booking. Check the weekend pattern on the heatmap.</p></div></details><details><summary>How much does 1 kW of base load cost?</summary><div class="faq-a"><p>It runs 8,760 hours a year, so it uses 8,760 kWh. At 25p/kWh that's about £2,190 a year. Multiply 8,760 by your own rate to check.</p></div></details></div><h2 id="next">Read next</h2>
+<div class="link-grid"><a class="link-card has-thumb" href="out-of-hours-electricity"><div class="card-thumb"><img src="images/guides/out-of-hours-electricity.jpg" srcset="images/guides/out-of-hours-electricity-600.jpg 600w, images/guides/out-of-hours-electricity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Out-of-hours use</h3><p>Use above the base load while the building is closed.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="supply-capacity"><div class="card-thumb"><img src="images/guides/supply-capacity.jpg" srcset="images/guides/supply-capacity-600.jpg 600w, images/guides/supply-capacity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Supply capacity</h3><p>The other end of the scale: your busiest half hours.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="example-office-analysis"><div class="card-thumb"><img src="images/guides/example-office-analysis.jpg" srcset="images/guides/example-office-analysis-600.jpg 600w, images/guides/example-office-analysis.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Worked example</h3><p>Base load in one office, with figures.</p><span class="more">Read the guide</span></a></div>
+  </article>
+  <aside class="guide-side">
+    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#measure">How to measure it</a></li><li><a href="#what">What makes it up</a></li><li><a href="#reduce">How to reduce it</a></li><li><a href="#solar">Base load and solar</a></li><li><a href="#worth">Working out the saving</a></li><li><a href="#questions">Questions people ask</a></li></ol></nav>
+    <div class="side-cta"><strong>Try it on your own data</strong><p>It's free, there's no sign-up, and your file stays on your computer.</p><a href="analyser/" class="btn">Open the analyser</a></div>
+  </aside>
+</div><section class="cta-strip">
+  <div class="cta-strip-inner">
+    <h2 class="cta-strip-title">Try it on your own data</h2>
+    <div class="cta-strip-btns">
+      <a href="analyser/" class="btn btn-gold btn-lg">Upload HH data</a>
+      <a href="contact" class="btn btn-outline-white btn-lg">Talk to an expert</a>
+    </div>
+    <p class="cta-strip-lead">It's free, there's no sign-up, and your file stays on your computer.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hhhi-logo-white.webp"><img src="images/brand/hhhi-logo-white.png" width="470" height="132" alt="Healthcare HH Insights" loading="lazy"></picture></div>
+        <p class="footer-desc">Free half-hourly electricity analysis, solar sizing and decarbonisation guides for NHS and independent healthcare estates across England, Scotland and Wales, run by Kinetic Energy Consulting. The analysis runs in your browser, so your meter data never leaves your computer.</p>
+        <div class="footer-contact-item">Email: <a href="mailto:enquiries@kinetic-energy.co.uk">enquiries@kinetic-energy.co.uk</a></div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Tools</div>
+        <ul><li><a href="analyser/">Analyse half-hourly data</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="how-it-works">How the analyser works</a></li><li><a href="solar-calculator-method">How the solar calculator works</a></li><li><a href="sample-report">Sample report</a></li><li><a href="downloads/half-hourly-insights-user-guide.pdf" download>User guide (PDF)</a></li><li><a href="faq">FAQ</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Decarbonisation</div>
+        <ul><li><a href="healthcare-estates-decarbonisation">The estates challenge</a></li><li><a href="nhs-net-zero-targets">Net zero targets</a></li><li><a href="decarbonisation-funding">Funding routes</a></li><li><a href="heat-decarbonisation">Heat decarbonisation</a></li><li><a href="moving-away-from-chp">Moving away from CHP</a></li><li><a href="hospital-electrical-capacity">Electrical capacity</a></li><li><a href="solar-on-healthcare-estates">Solar on healthcare estates</a></li><li><a href="hospital-energy-efficiency">Energy efficiency</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">About</div>
+        <ul><li><a href="about">About us</a></li><li><a href="contact">Contact</a></li><li><a href="guides">All guides</a></li><li><a href="glossary">Glossary</a></li><li><a href="privacy">Privacy</a></li><li><a href="terms">Terms of use</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Kinetic Energy Consulting</div>
+      <div class="footer-disclaimer">All analyser and calculator results are estimates based on the data you load and do not guarantee savings. Our guides are general information and are not financial, tax, legal or clinical engineering advice. Not affiliated with or endorsed by the NHS.</div>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('navToggle').addEventListener('click', function (e) {
+    var open = document.getElementById('siteNav').classList.toggle('nav-mobile-open');
+    e.currentTarget.setAttribute('aria-expanded', open ? 'true' : 'false');
+    e.currentTarget.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>
+</body>
+</html>

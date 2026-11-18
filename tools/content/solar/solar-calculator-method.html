@@ -1,0 +1,96 @@
+<p class="answer">The calculator works out how many panels fit on the area you give it, how much electricity they will generate at your postcode, and what that electricity is worth to you over 25 years, either buying the system outright or through a Power Purchase Agreement (PPA).</p>
+    <div class="prose">
+
+<h2 id="area">1. How much solar fits</h2>
+<p>You can measure your site in two ways. <span class="lead-in">On the map</span>, you search your address, let the calculator find your roof outline from satellite imagery, or draw outlines around each roof, car park or piece of land. Each area gets its own type: pitched roof, flat roof, ground mount or carport. <span class="lead-in">By dimensions</span>, you enter the length and width of each building.</p>
+<p>Not all of an area can take panels. Edges need clearance, roofs have rooflights, plant and drainage, and flat-roof panels tilted towards the sun need gaps between rows. The calculator assumes:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Area type</th><th class="num">Share usable</th></tr></thead>
+<tbody>
+<tr><td>Pitched roof</td><td class="num">80%</td></tr>
+<tr><td>Flat roof</td><td class="num">80%</td></tr>
+<tr><td>Ground mount</td><td class="num">90%</td></tr>
+<tr><td>Carport</td><td class="num">85%</td></tr>
+</tbody></table></div>
+<p>It then fills the usable area with 510W panels of about 2.57 m² each. Projects under 50 kWp (roughly 350 m² of roof) are outside the calculator's range, as smaller systems are usually better served by domestic-style quotes.</p>
+
+<h2 id="sunshine">2. How much it generates where you are</h2>
+<p>Generation comes from the sunshine data in SAP 10.3, the government's Standard Assessment Procedure, which splits the UK into 21 regions and maps every postcode district to one of them. Enter a postcode and the calculator picks your region automatically. Without one, it uses the region you choose, or the UK average.</p>
+<p>The figures below are annual generation per kWp of panels, for an east-west layout tilted at 10 degrees, after normal system losses. This is a sensible middle case for commercial roofs. A south-facing pitched roof or a ground-mounted array tilted towards the sun will usually do better, and shading will make things worse.</p>
+<p>When you click a building in map mode, the calculator reads the direction and pitch of each face of a pitched roof and adjusts the yield using the same SAP 10.3 equations. A south-facing 30-degree roof yields about 14% more than the figures below, and an east- or west-facing one about 4% less. North-facing faces are left out, as an installer would leave them, so a gable roof facing north and south is modelled with panels on its south side only. Flat roofs, ground mounts, carports and outlines you draw yourself use the figures below.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>SAP region</th><th>Example postcode areas</th><th class="num">kWh per kWp a year</th></tr></thead>
+<tbody>
+<tr><td>UK average</td><td>Used when no postcode is given</td><td class="num">905</td></tr>
+<tr><td>Thames</td><td>AL, CR, E, EC, EN, GU</td><td class="num">969</td></tr>
+<tr><td>South East England</td><td>BN, BR, CT, DA, ME, TN</td><td class="num">1,029</td></tr>
+<tr><td>Southern England</td><td>BH, DT, PO, SO, GU11 to GU12, GU14</td><td class="num">1,053</td></tr>
+<tr><td>South West England</td><td>EX, PL, TQ, TR</td><td class="num">1,043</td></tr>
+<tr><td>Severn Wales and Severn England</td><td>BA, BS, CF, GL, NP, SA</td><td class="num">1,003</td></tr>
+<tr><td>Midlands</td><td>B, CV, DE, DY, HR, LE</td><td class="num">931</td></tr>
+<tr><td>West Pennines</td><td>BB, BL, CH, CW, FY, L</td><td class="num">895</td></tr>
+<tr><td>North West England and South West Scotland</td><td>CA, DG, LA7 to LA23</td><td class="num">908</td></tr>
+<tr><td>Borders</td><td>NE, SR, TD, DH4 to DH5, EH43 to EH46, TD12</td><td class="num">887</td></tr>
+<tr><td>North East England</td><td>DH, DL, HG, TS, YO, BD23 to BD24</td><td class="num">902</td></tr>
+<tr><td>East Pennines</td><td>BD, DN, HD, HU, HX, LN</td><td class="num">905</td></tr>
+<tr><td>East Anglia</td><td>CB, CM, CO, IG, IP, NR</td><td class="num">990</td></tr>
+<tr><td>Wales</td><td>LD, LL23 to LL27, LL30 to LL78, NP8, SA14 to SA20, SA31 to SA48</td><td class="num">968</td></tr>
+<tr><td>West Scotland</td><td>FK, G, KA, ML, PA, PH49</td><td class="num">851</td></tr>
+<tr><td>East Scotland</td><td>DD, EH, KY, PH</td><td class="num">857</td></tr>
+<tr><td>North East Scotland</td><td>AB, IV30 to IV32, IV36, PH26</td><td class="num">832</td></tr>
+<tr><td>Highland</td><td>IV, KW, PH19 to PH25, PH30 to PH44</td><td class="num">806</td></tr>
+<tr><td>Western Isles</td><td>HS</td><td class="num">856</td></tr>
+<tr><td>Orkney</td><td>KW15 to KW17</td><td class="num">828</td></tr>
+<tr><td>Shetland</td><td>ZE</td><td class="num">780</td></tr>
+<tr><td>Northern Ireland</td><td>BT</td><td class="num">888</td></tr>
+</tbody></table></div>
+<p>Panels lose a little output as they age. The calculator takes off 1% in the first year and 0.4% a year after that, in line with typical manufacturer performance warranties.</p>
+
+<h2 id="value">3. What the electricity is worth to you</h2>
+<p>Solar is worth most when you use it yourself, because every kWh you use is a kWh you do not buy from the grid at your full unit price. Solar you cannot use is exported and earns far less.</p>
+<ul>
+<li><strong>Solar used on site</strong> is valued at the unit price you enter, rising 3% a year.</li>
+<li><strong>Solar exported</strong> is valued at a flat 5p per kWh. Export rates vary by supplier and are not guaranteed.</li>
+<li><strong>The share used on site</strong> defaults to 80%, which suits most sites busy through the working week. You can change it. Warehouses, farms and sites closed at weekends are often 40 to 70%.</li>
+</ul>
+<p>As an example, at a 25p unit price, a kWh used on site saves 25p while an exported kWh earns 5p. That five-fold gap is why the share used on site matters more than almost any other input.</p>
+<p>If you add a battery, the calculator sizes it to store the solar you would otherwise export and assumes a 10-year working life. The stored energy is valued at your unit price, less the export income it replaces.</p>
+
+<h2 id="costs">4. What it costs</h2>
+<figure class="figure"><img src="images/photos/inverter-check-860.jpg" width="860" height="480" alt="An engineer checks an inverter on a solar array with a thermal imaging camera" loading="lazy" decoding="async"><figcaption>Inverters are the part most likely to need replacing during a system's life, so the calculator allows for it.</figcaption></figure>
+<p>Installed costs are based on current UK market benchmarks per kWp for each area type, covering panels, inverters, mounting, electrical work and commissioning. Carports cost the most because of the steelwork and foundations, and pitched roofs the least. We review these benchmarks regularly against real project pricing.</p>
+<p>The model also includes a one-off allowance in year 13 for replacing inverters, which typically carry a 10 to 12-year warranty.</p>
+<p>If you buy the system, you also pay to run it, so running costs come off your savings every year: maintenance at about &pound;10 per kWp, &pound;850 for monitoring and an annual inspection, and insurance at 0.2% of the installed cost, all rising 3% a year. On a PPA the funder pays these during the contract, and they pass to you if the system transfers to you at the end. Scaffolding, surveys and any grid reinforcement are not included, because they vary too much from site to site to estimate without a visit.</p>
+
+<h2 id="funding">5. Buying outright or a PPA</h2>
+<p><span class="lead-in">Buying outright.</span> You pay the installed cost and keep all the savings and export income. The calculator shows your payback year, return on investment and net benefit over 25 years.</p>
+<p><span class="lead-in">Power Purchase Agreement.</span> A funder pays for, owns and maintains the system, and you buy the electricity it generates at an agreed rate, usually below your grid price. The calculator uses indicative rates that depend on your region, system size and contract length (10 to 25 years), rising 2.5% a year. During the contract the funder keeps any export income. When the contract ends, the system normally transfers to you, and from then on the electricity is free.</p>
+<p>Read more about each route, including tax treatment, in our <a href="paying-for-solar.html">guide to funding solar</a>.</p>
+
+<h2 id="carbon">6. Carbon</h2>
+<p>Carbon savings use a factor of 0.196 kg of CO₂ for every kWh of grid electricity your solar replaces. The grid is getting cleaner each year, so savings in later years are likely to be lower than this flat figure suggests.</p>
+
+<h2 id="term">7. Why 25 years</h2>
+<p>All figures run for 25 years to keep the view prudent and to match the longest common PPA term. A well looked-after system will keep generating well beyond 25 years, and panel performance warranties often run to 25 or 30 years, so the real lifetime value is usually higher than the calculator shows.</p>
+
+<h2 id="limits">8. What the calculator does not do</h2>
+<p>The calculator gives a fast, honest first estimate. It is not a design or a quotation. It does not model:</p>
+<ul>
+<li>shading from nearby buildings, trees or rooftop plant</li>
+<li>whether your roof structure can take the load, or how long the roof has left</li>
+<li>grid connection costs, export limits or network reinforcement (see <a href="solar-planning-and-grid.html">planning and grid connection</a>)</li>
+<li>VAT, capital allowances or other tax effects</li>
+<li>your actual half-hourly electricity use, which decides your real self-consumption</li>
+</ul>
+<p>A site survey and a review of your half-hourly meter data turn the estimate into a firm proposal.</p>
+<h2 id="faqs">Common questions</h2>
+<div class="faq">
+<details><summary>How accurate is the calculator?</summary><div class="faq-a"><p>It is a first estimate, not a design. Generation uses published regional sunshine data for a typical layout, so a south-facing roof may do better and a shaded one worse. Savings depend most on the share of solar you use on site and your unit price, so check those two inputs carefully. A site survey and your half-hourly meter data turn it into a firm figure.</p></div></details>
+<details><summary>Where does the sunshine data come from?</summary><div class="faq-a"><p>From SAP 10.3, the Standard Assessment Procedure used across UK building regulations. It gives monthly sunshine for 21 UK regions and maps postcode districts to them.</p></div></details>
+<details><summary>Why does my postcode matter?</summary><div class="faq-a"><p>Annual generation varies by about a third across the UK, from around 780 kWh per kWp in Shetland to over 1,050 in Southern England on the same layout. Using your postcode puts you in the right SAP region.</p></div></details>
+<details><summary>Does the calculator include VAT?</summary><div class="faq-a"><p>No. All costs are shown before VAT. Commercial installations are charged VAT at the standard 20%, which VAT-registered organisations can normally recover.</p></div></details>
+<details><summary>Can I see the cost rates and PPA rates behind the results?</summary><div class="faq-a"><p>The calculator shows your total installed cost and your indicative PPA rate. The underlying benchmarks are reviewed regularly and are not published, because real prices depend on site, scale and timing. A survey gives you a firm price.</p></div></details>
+</div>
+    </div>
+    <div class="sources"><h2>Sources</h2><ol><li><a href="https://www.gov.uk/guidance/standard-assessment-procedure" rel="noopener">GOV.UK: Standard Assessment Procedure (current version SAP 10.3)</a></li>
+<li><a href="https://bregroup.com/expertise/energy/sap/sap10" rel="noopener">BRE: SAP 10.3 specification, Appendix U (solar radiation data)</a></li></ol></div>
