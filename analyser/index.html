@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/brand/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../images/brand/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/brand/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Half-hourly electricity analyser for hospitals and healthcare sites | Healthcare HH Insights</title>
+    <meta name="description" content="Free half-hourly electricity analyser for NHS trusts, health boards and private hospitals. Load your meter data to see base load, day and night use, peaks against agreed supply capacity, headroom for heat pumps and how much solar each site would use. Runs in your browser; nothing is uploaded." />
+    <script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "Healthcare HH Insights analyser",
+ "applicationCategory": "BusinessApplication", "operatingSystem": "Any (runs in Chrome or Edge)",
+ "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"},
+ "description": "Analyses half-hourly electricity meter data from UK hospitals and healthcare sites in the browser: base load, day and night use, peaks against agreed supply capacity, headroom for heat pumps and EV charging, solar self-consumption, unusual days, savings scenarios, PDF and Excel reports. Meter data is never uploaded.",
+ "provider": {"@type": "Organization", "name": "Kinetic Energy Consulting", "url": "https://www.kinetic-energy.co.uk"}}
+    </script>
+  </head>
+  <body>
+    <!-- Shown until the app starts (and to crawlers that do not run scripts). -->
+    <div id="root">
+      <main style="font-family: system-ui, sans-serif; max-width: 720px; margin: 48px auto; padding: 0 16px; color: #0b2e4f">
+        <h1>Half-hourly electricity analyser</h1>
+        <p>Load one Excel or CSV file of half-hourly readings per meter, ideally 12 months for each site on your estate. The analyser checks the data, then shows base load, day and night use, out-of-hours use in clinics and admin buildings, peaks against your agreed supply capacity, headroom for heat pumps, how much solar each site would use, and unusual days, with PDF and Excel reports.</p>
+        <p>It runs entirely in your browser: your meter data is never uploaded. It needs JavaScript and a recent desktop browser such as Chrome or Edge.</p>
+        <p><a href="../">Healthcare HH Insights home</a> · <a href="../how-it-works.html">How it works</a> · <a href="../get-your-data.html">Getting your data</a> · <a href="../solar-calculator.html">Solar calculator</a></p>
+      </main>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

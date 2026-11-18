@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moving away from gas CHP in hospitals: carbon, cost and electrical capacity</title>
+  <meta name="description" content="Why gas CHP no longer saves carbon against grid electricity in most hospitals, how the 2026 carbon factors change the comparison, NHS Wales policy, options for existing engines and the effect on grid import and capacity.">
+  <link rel="canonical" href="https://healthcarehhinsights.co.uk/moving-away-from-chp">
+  <meta property="og:url" content="https://healthcarehhinsights.co.uk/moving-away-from-chp">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Moving away from gas CHP in hospitals: carbon, cost and electrical capacity">
+  <meta property="og:description" content="Why gas CHP no longer saves carbon against grid electricity in most hospitals, how the 2026 carbon factors change the comparison, NHS Wales policy, options for existing engines and the effect on grid import and capacity.">
+  <meta property="og:image" content="https://healthcarehhinsights.co.uk/images/guides/moving-away-from-chp.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Healthcare HH Insights">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="images/brand/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/brand/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0B2E4F">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v=63119adc">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://www.kinetic-energy.co.uk/#organization",
+   "name": "Kinetic Energy Consulting",
+   "url": "https://www.kinetic-energy.co.uk",
+   "email": "enquiries@kinetic-energy.co.uk",
+   "logo": "https://healthcarehhinsights.co.uk/images/kec-logo.svg",
+   "areaServed": {
+    "@type": "Country",
+    "name": "United Kingdom"
+   },
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "email": "enquiries@kinetic-energy.co.uk",
+    "areaServed": "GB"
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://healthcarehhinsights.co.uk/#website",
+   "name": "Healthcare HH Insights",
+   "inLanguage": "en-GB",
+   "description": "Free half-hourly electricity analysis, solar sizing and decarbonisation guides for UK healthcare estates",
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://healthcarehhinsights.co.uk/"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://healthcarehhinsights.co.uk/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://healthcarehhinsights.co.uk/guides"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Moving away from CHP",
+     "item": "https://healthcarehhinsights.co.uk/moving-away-from-chp"
+    }
+   ]
+  },
+  {
+   "@type": "Person",
+   "@id": "https://healthcarehhinsights.co.uk/about#paul-johnston",
+   "name": "Paul Johnston",
+   "jobTitle": "Managing Director",
+   "worksFor": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://healthcarehhinsights.co.uk/about",
+   "image": "https://healthcarehhinsights.co.uk/images/people/paul-johnston.jpg"
+  },
+  {
+   "@type": "Article",
+   "headline": "Moving away from gas CHP in hospitals: carbon, cost and electrical capacity",
+   "description": "Why gas CHP no longer saves carbon against grid electricity in most hospitals, how the 2026 carbon factors change the comparison, NHS Wales policy, options for existing engines and the effect on grid import and capacity.",
+   "image": "https://healthcarehhinsights.co.uk/images/guides/moving-away-from-chp.jpg",
+   "inLanguage": "en-GB",
+   "datePublished": "2026-11-18",
+   "dateModified": "2026-11-18",
+   "author": {
+    "@id": "https://healthcarehhinsights.co.uk/about#paul-johnston"
+   },
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "isPartOf": {
+    "@id": "https://healthcarehhinsights.co.uk/#website"
+   },
+   "mainEntityOfPage": "https://healthcarehhinsights.co.uk/moving-away-from-chp"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Does gas CHP still save carbon?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "In most cases, no, when measured with the UK government's average grid factor. At 2026 factors a typical gas engine emits about a third more than buying grid electricity and making the heat in a boiler. It can still save money, depending on gas and electricity prices."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should we replace our CHP engine when it wears out?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not by default. Price a heat pump and heat recovery scheme at the same time. In Wales, policy prefers decommissioning to major refurbishment and plans to end fossil CHP by 2035."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does grid import rise when CHP stops?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The main meter only sees what the CHP does not supply. When the engine stops, the site draws its full output from the grid instead, so peaks rise and headroom shrinks."
+     }
+    }
+   ]
+  }
+ ]
+}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="site-nav" id="siteNav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="./" class="nav-logo" aria-label="Healthcare HH Insights home">
+      <picture><source type="image/webp" srcset="images/brand/hhhi-logo.webp"><img src="images/brand/hhhi-logo.png" width="470" height="132" alt=""></picture>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./">Home</a></li><li><a href="how-it-works">How it works</a></li><li><a href="healthcare-estates-decarbonisation">Decarbonisation</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="guides" class="active" aria-current="page">Guides</a></li><li><a href="sectors">Settings</a></li><li><a href="contact">Contact</a></li>
+      <li><a href="analyser/" class="nav-cta">Upload HH data</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<main id="main">
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <a href="guides">Guides</a> <span aria-hidden="true">/</span> <span aria-current="page">Moving away from CHP</span></nav>
+    <span class="page-hero-kicker">Guide</span>
+    <h1 class="page-hero-title">Moving away from gas CHP</h1>
+    <p class="page-hero-lead">Gas CHP was a sound carbon choice for many hospitals ten years ago. As the grid has cleaned up, the sums have changed. Here is why, what to do with the engines you have, and the electrical surprise waiting when one stops.</p>
+  </div>
+</section><div class="guide">
+  <article class="guide-main prose">
+<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-18">18 November 2026</time></p>
+<p class="answer">Gas combined heat and power (CHP) saves carbon only when the grid electricity it replaces is more carbon-intensive than burning the extra gas. With the UK grid factor at about 0.13 kg CO₂e per kWh for 2026 reporting, a typical gas CHP engine now emits more than buying electricity from the grid and making the heat in a boiler.<sup><a href="#sources">1</a></sup> It can still cut costs when gas is cheap relative to electricity, and it adds resilience, but it does not lead to net zero. When a CHP engine stops, the site's grid import rises by its full electrical output, which is often the first capacity problem a trust meets.</p>
+<div class="note"><strong>Independent guidance.</strong> Healthcare HH Insights is not part of, or endorsed by, the NHS, NHS England, the Scottish Government or the Welsh Government. We summarise their published policy and link to it. Always check the source and your own organisation's policies before relying on it.</div>
+
+<h2 id="carbon">Why the carbon case has changed</h2>
+<p>Here is a simple comparison, per kWh of gas burned in an engine with typical efficiencies. It is illustrative: your engine's own efficiencies, and how much of its heat you use, will change the answer.</p>
+<div class="table-wrap"><table><thead><tr><th>Assumption or result</th><th class="num">Value</th></tr></thead><tbody>
+<tr><td>Natural gas, kg CO₂e per kWh (gross calorific value), 2026 factors</td><td class="num">0.182</td></tr>
+<tr><td>Grid electricity, kg CO₂e per kWh, 2026 factors</td><td class="num">0.131</td></tr>
+<tr><td>CHP electrical efficiency / heat efficiency (assumed)</td><td class="num">35% / 45%</td></tr>
+<tr><td>Boiler efficiency for the alternative (assumed)</td><td class="num">90%</td></tr>
+<tr><td><strong>CHP:</strong> 1 kWh of gas gives 0.35 kWh of electricity and 0.45 kWh of heat</td><td class="num">0.182 kg</td></tr>
+<tr><td><strong>Grid plus boiler:</strong> 0.35 kWh from the grid, 0.5 kWh of gas for the heat</td><td class="num">0.137 kg</td></tr>
+<tr><td><strong>Heat pump instead of boiler:</strong> 0.35 kWh from the grid, plus 0.18 kWh to make 0.45 kWh of heat at an efficiency of 2.5</td><td class="num">0.069 kg</td></tr>
+</tbody></table></div>
+<p>On these assumptions, the CHP route emits about a third more than grid electricity and a boiler, and more than twice as much as grid electricity and a heat pump. Factors are from the UK government's 2026 conversion factors.<sup><a href="#sources">1</a></sup> With the 2025 grid factor of 0.177, the CHP route was still about a fifth worse. Ten years ago, when the grid factor was far higher, CHP came out ahead, which is why so many were installed.</p>
+<p>Some engineers argue that CHP displaces the gas power stations at the margin of the grid rather than the average mix, which flatters CHP. That debate is real, but NHS carbon reporting uses the average, location-based factors, so that is what your Green Plan figures will show.</p>
+
+<h2 id="policy">What the policies say</h2>
+<p>NHS Wales has the clearest position: no further fossil-fuelled CHP will be installed, existing CHP should be maintained at maximum efficiency until life expired, decommissioning is preferred over major refurbishment such as an engine replacement, and all fossil CHP is to be decommissioned by 2035. Renewable CHP is still supported.<sup><a href="#sources">2</a></sup> In England, the 2040 net zero target for direct emissions leaves no room for gas CHP in the long run, because the gas it burns is a direct emission.<sup><a href="#sources">5</a></sup></p>
+
+<h2 id="options">Options for the engine you have</h2>
+<ol>
+<li><strong>Run it well to the end of its life.</strong> If it is reliable and its heat is fully used, keep it running efficiently while the replacement is planned.</li>
+<li><strong>Do not re-engine by default.</strong> A major overhaul can lock in another decade of gas. Price the alternatives at the same time.</li>
+<li><strong>Change how it runs.</strong> Running only when electricity prices are high, and heat is needed, can keep the cost benefit while cutting run hours.</li>
+<li><strong>Plan its replacement.</strong> Heat pumps for the base heat load, heat recovery from cooling, and boilers for peaks, as at Bridlington Hospital, where the CHP was decommissioned and a 600 kW air source heat pump system installed.<sup><a href="#sources">3</a></sup></li>
+<li><strong>Think about resilience separately.</strong> CHP is sometimes counted on for resilience. Standby generators, batteries and supply arrangements may do that job better once the engine goes.</li>
+</ol>
+
+<h2 id="capacity">The capacity surprise</h2>
+<p>While a CHP engine runs, the site's main meter only records what the CHP does not supply. So the half-hourly data you get from your supplier understates the site's real electrical demand by the engine's output. When the engine is off for maintenance, trips, or is removed, grid import jumps by that amount. If a 1 MW engine stops, the site needs about 1 MW more from the grid, roughly 1,050 kVA at a power factor of 0.95.</p>
+<p>To see this in your own data:</p>
+<ul>
+<li>Load the main import meter into the <a href="analyser/">analyser</a> and look at the heatmap. Engine outages show as bands of higher import.</li>
+<li>If you have the CHP generation meter's data, load it as a separate meter and add the two together to see the site's true demand.</li>
+<li>Run the headroom check against the agreed supply capacity with the engine's output as a test load. If the answer is negative, removing the CHP needs a connection upgrade or a matching cut in demand.</li>
+</ul>
+<p>Welsh estates already report CHP units as part of their EFPMS return, so the data on engine sizes and run hours often exists.<sup><a href="#sources">4</a></sup></p>
+<div class="sources"><h2 id="sources">Sources</h2><p class="help">Checked 18 November 2026.</p><ol><li><a href="https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2026" rel="noopener">Department for Energy Security and Net Zero: Greenhouse gas reporting, conversion factors 2026</a></li><li><a href="https://www.gov.wales/nhs-wales-decarbonisation-strategic-delivery-plan-2025-2030-buildings-and-land-html" rel="noopener">Welsh Government: NHS Wales decarbonisation strategic delivery plan 2025 to 2030, Part 6: buildings and land</a></li><li><a href="https://renewableenergyinstaller.co.uk/?p=39506" rel="noopener">Renewable Energy Installer: Bridlington Hospital heat pump and solar project</a></li><li><a href="https://nwssp.nhs.wales/ourservices/specialist-estates-services/specialist-estates-services-documents/ses-miscellaneous-documents/efpms-25-26-data-definitions-pdf/" rel="noopener">NWSSP Specialist Estates Services: EFPMS data definitions and completion notes 2025/26</a></li><li><a href="https://www.england.nhs.uk/greenernhs/a-net-zero-nhs/" rel="noopener">NHS England: Delivering a net zero NHS</a></li></ol></div><h2 id="questions">Questions people ask</h2>
+<div class="faq"><details><summary>Does gas CHP still save carbon?</summary><div class="faq-a"><p>In most cases, no, when measured with the UK government's average grid factor. At 2026 factors a typical gas engine emits about a third more than buying grid electricity and making the heat in a boiler. It can still save money, depending on gas and electricity prices.</p></div></details><details><summary>Should we replace our CHP engine when it wears out?</summary><div class="faq-a"><p>Not by default. Price a heat pump and heat recovery scheme at the same time. In Wales, policy prefers decommissioning to major refurbishment and plans to end fossil CHP by 2035.</p></div></details><details><summary>Why does grid import rise when CHP stops?</summary><div class="faq-a"><p>The main meter only sees what the CHP does not supply. When the engine stops, the site draws its full output from the grid instead, so peaks rise and headroom shrinks.</p></div></details></div><h2 id="next">Read next</h2>
+<div class="link-grid"><a class="link-card has-thumb" href="hospital-electrical-capacity"><div class="card-thumb"><img src="images/guides/hospital-electrical-capacity.jpg" srcset="images/guides/hospital-electrical-capacity-600.jpg 600w, images/guides/hospital-electrical-capacity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Electrical capacity</h3><p>How to test headroom with your data.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="heat-decarbonisation"><div class="card-thumb"><img src="images/guides/heat-decarbonisation.jpg" srcset="images/guides/heat-decarbonisation-600.jpg 600w, images/guides/heat-decarbonisation.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Heat decarbonisation</h3><p>What replaces the CHP heat.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="nhs-net-zero-targets"><div class="card-thumb"><img src="images/guides/nhs-net-zero-targets.jpg" srcset="images/guides/nhs-net-zero-targets-600.jpg 600w, images/guides/nhs-net-zero-targets.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Net zero targets</h3><p>Including NHS Wales and CHP.</p><span class="more">Read the guide</span></a></div>
+  </article>
+  <aside class="guide-side">
+    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#carbon">Why the carbon case has changed</a></li><li><a href="#policy">What the policies say</a></li><li><a href="#options">Options for the engine you have</a></li><li><a href="#capacity">The capacity surprise</a></li><li><a href="#questions">Questions people ask</a></li></ol></nav>
+    <div class="side-cta"><strong>Try it on your own data</strong><p>It's free, there's no sign-up, and your file stays on your computer.</p><a href="analyser/" class="btn">Open the analyser</a></div>
+  </aside>
+</div><section class="cta-strip">
+  <div class="cta-strip-inner">
+    <h2 class="cta-strip-title">Try it on your own data</h2>
+    <div class="cta-strip-btns">
+      <a href="analyser/" class="btn btn-gold btn-lg">Upload HH data</a>
+      <a href="contact" class="btn btn-outline-white btn-lg">Talk to an expert</a>
+    </div>
+    <p class="cta-strip-lead">It's free, there's no sign-up, and your file stays on your computer.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hhhi-logo-white.webp"><img src="images/brand/hhhi-logo-white.png" width="470" height="132" alt="Healthcare HH Insights" loading="lazy"></picture></div>
+        <p class="footer-desc">Free half-hourly electricity analysis, solar sizing and decarbonisation guides for NHS and independent healthcare estates across England, Scotland and Wales, run by Kinetic Energy Consulting. The analysis runs in your browser, so your meter data never leaves your computer.</p>
+        <div class="footer-contact-item">Email: <a href="mailto:enquiries@kinetic-energy.co.uk">enquiries@kinetic-energy.co.uk</a></div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Tools</div>
+        <ul><li><a href="analyser/">Analyse half-hourly data</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="how-it-works">How the analyser works</a></li><li><a href="solar-calculator-method">How the solar calculator works</a></li><li><a href="sample-report">Sample report</a></li><li><a href="downloads/half-hourly-insights-user-guide.pdf" download>User guide (PDF)</a></li><li><a href="faq">FAQ</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Decarbonisation</div>
+        <ul><li><a href="healthcare-estates-decarbonisation">The estates challenge</a></li><li><a href="nhs-net-zero-targets">Net zero targets</a></li><li><a href="decarbonisation-funding">Funding routes</a></li><li><a href="heat-decarbonisation">Heat decarbonisation</a></li><li><a href="moving-away-from-chp">Moving away from CHP</a></li><li><a href="hospital-electrical-capacity">Electrical capacity</a></li><li><a href="solar-on-healthcare-estates">Solar on healthcare estates</a></li><li><a href="hospital-energy-efficiency">Energy efficiency</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">About</div>
+        <ul><li><a href="about">About us</a></li><li><a href="contact">Contact</a></li><li><a href="guides">All guides</a></li><li><a href="glossary">Glossary</a></li><li><a href="privacy">Privacy</a></li><li><a href="terms">Terms of use</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Kinetic Energy Consulting</div>
+      <div class="footer-disclaimer">All analyser and calculator results are estimates based on the data you load and do not guarantee savings. Our guides are general information and are not financial, tax, legal or clinical engineering advice. Not affiliated with or endorsed by the NHS.</div>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('navToggle').addEventListener('click', function (e) {
+    var open = document.getElementById('siteNav').classList.toggle('nav-mobile-open');
+    e.currentTarget.setAttribute('aria-expanded', open ? 'true' : 'false');
+    e.currentTarget.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>
+</body>
+</html>

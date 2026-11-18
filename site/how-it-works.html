@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How it works | Healthcare HH Insights</title>
+  <meta name="description" content="What the analyser does with your half-hourly data: how it reads files, checks quality, sets the base load, prices use while closed and builds findings.">
+  <link rel="canonical" href="https://healthcarehhinsights.co.uk/how-it-works">
+  <meta property="og:url" content="https://healthcarehhinsights.co.uk/how-it-works">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="How it works | Healthcare HH Insights">
+  <meta property="og:description" content="What the analyser does with your half-hourly data: how it reads files, checks quality, sets the base load, prices use while closed and builds findings.">
+  <meta property="og:image" content="https://healthcarehhinsights.co.uk/images/guides/how-it-works.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Healthcare HH Insights">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="images/brand/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/brand/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0B2E4F">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v=63119adc">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://www.kinetic-energy.co.uk/#organization",
+   "name": "Kinetic Energy Consulting",
+   "url": "https://www.kinetic-energy.co.uk",
+   "email": "enquiries@kinetic-energy.co.uk",
+   "logo": "https://healthcarehhinsights.co.uk/images/kec-logo.svg",
+   "areaServed": {
+    "@type": "Country",
+    "name": "United Kingdom"
+   },
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "email": "enquiries@kinetic-energy.co.uk",
+    "areaServed": "GB"
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://healthcarehhinsights.co.uk/#website",
+   "name": "Healthcare HH Insights",
+   "inLanguage": "en-GB",
+   "description": "Free half-hourly electricity analysis, solar sizing and decarbonisation guides for UK healthcare estates",
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://healthcarehhinsights.co.uk/"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://healthcarehhinsights.co.uk/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "How it works",
+     "item": "https://healthcarehhinsights.co.uk/how-it-works"
+    }
+   ]
+  },
+  {
+   "@type": "Person",
+   "@id": "https://healthcarehhinsights.co.uk/about#paul-johnston",
+   "name": "Paul Johnston",
+   "jobTitle": "Managing Director",
+   "worksFor": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://healthcarehhinsights.co.uk/about",
+   "image": "https://healthcarehhinsights.co.uk/images/people/paul-johnston.jpg"
+  },
+  {
+   "@type": "Article",
+   "headline": "How it works",
+   "description": "What the analyser does with your half-hourly data: how it reads files, checks quality, sets the base load, prices use while closed and builds findings.",
+   "image": "https://healthcarehhinsights.co.uk/images/guides/how-it-works.jpg",
+   "inLanguage": "en-GB",
+   "datePublished": "2026-11-18",
+   "dateModified": "2026-11-18",
+   "author": {
+    "@id": "https://healthcarehhinsights.co.uk/about#paul-johnston"
+   },
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "isPartOf": {
+    "@id": "https://healthcarehhinsights.co.uk/#website"
+   },
+   "mainEntityOfPage": "https://healthcarehhinsights.co.uk/how-it-works"
+  }
+ ]
+}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="site-nav" id="siteNav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="./" class="nav-logo" aria-label="Healthcare HH Insights home">
+      <picture><source type="image/webp" srcset="images/brand/hhhi-logo.webp"><img src="images/brand/hhhi-logo.png" width="470" height="132" alt=""></picture>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./">Home</a></li><li><a href="how-it-works" class="active" aria-current="page">How it works</a></li><li><a href="healthcare-estates-decarbonisation">Decarbonisation</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="guides">Guides</a></li><li><a href="sectors">Settings</a></li><li><a href="contact">Contact</a></li>
+      <li><a href="analyser/" class="nav-cta">Upload HH data</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<main id="main">
+<section class="page-hero page-hero-photo">
+  <div class="hero-media" aria-hidden="true"><picture><source type="image/webp" srcset="images/heroes/how-it-works-900.webp 900w, images/heroes/how-it-works.webp 1600w" sizes="100vw"><img src="images/heroes/how-it-works.jpg" srcset="images/heroes/how-it-works-900.jpg 900w, images/heroes/how-it-works.jpg 1600w" sizes="100vw" width="1600" height="800" alt="" fetchpriority="high"></picture></div>
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">How it works</span></nav>
+    <span class="page-hero-kicker">How it works</span>
+    <h1 class="page-hero-title">What the analyser does with your data</h1>
+    <p class="page-hero-lead">A step-by-step explanation, from reading your file to the figures in the report. In the analyser, each finding also has a "show calculation and evidence" link with the full working.</p>
+  </div>
+</section><div class="guide">
+  <article class="guide-main prose">
+<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-18">18 November 2026</time></p>
+<p class="answer">The analyser checks every half-hourly reading, works out how much electricity the site uses when it's open and when it's closed, and prices the difference at your rates. It tells you where to look. Someone who knows the building then decides what to change.</p>
+<figure class="figure"><img src="images/photos/switchroom-tablet.jpg" srcset="images/photos/switchroom-tablet-800.jpg 800w, images/photos/switchroom-tablet.jpg 1448w" sizes="(max-width: 860px) 100vw, 860px" width="1448" height="1086" alt="Three people in a switch room looking at data on a tablet beside open electrical panels" loading="lazy"><figcaption>The findings tell you where to look. A walk round the building tells you why.</figcaption></figure><div class="note"><strong>Want the practical steps?</strong> <a href="downloads/half-hourly-insights-user-guide.pdf" download>Download the user guide</a> (PDF, 13 pages). It walks you through loading your data, setting opening hours, reading the results and sharing them.</div>
+
+<h2 id="files">1. Reading your files</h2>
+<p>Load one file for each meter, as Excel (.xlsx or .xls) or CSV. Three layouts work:</p>
+<ul><li><strong>Day per row:</strong> a date, then 48 half-hourly readings. This is the most common supplier format.</li><li><strong>Day per column:</strong> the same, turned on its side.</li><li><strong>Timestamped:</strong> one reading per row, with its date and time.</li></ul>
+<p>The analyser shows how it read each file: which column held the dates, whether readings were in kWh or kW, and anything it ignored. If a file covers more than a year, the last 12 months are analysed by default. You can choose a different period, and long-term trends still use the whole file.</p>
+
+<h2 id="checks">2. Checking the data</h2>
+<p>Before showing any figures, the analyser looks for problems that would make them wrong:</p>
+<ul><li>missing readings, which are left out rather than counted as zero</li><li>days of zero readings, which usually point to a meter or data fault</li><li>days when the clocks change, and duplicate rows, which it holds back for you to decide on</li><li>single readings far above the usual peak</li></ul>
+<p>Each site is rated Good, Check or Poor. You can exclude readings you know are wrong and record why, and the reason is saved with the analysis.</p>
+
+<h2 id="calendar">3. Opening hours</h2>
+<p>The figures for use while closed depend on knowing when each building should be open. Every site starts on the hospital preset, open around the clock with a low-activity window from 01:00 to 05:00, marked as unconfirmed until you check it. Choose the clinic or admin preset for buildings that keep set hours. You can set hours for all sites at once or one at a time, including closures, bank holidays and overnight shifts. Findings based on unconfirmed hours get a lower confidence rating.</p>
+
+<h2 id="base">4. Base load and use while closed</h2>
+<p><strong>Base load</strong> is the level of demand a site rarely drops below. The analyser measures it as the 5th percentile of all valid half-hourly readings, which means demand is higher than this 95% of the time. It's the equipment that never switches off, such as servers, fridges and anything on standby.</p>
+<p><strong>Closed-hours excess</strong> is the electricity used while the site is closed, over and above the base load. Sites are ranked by this figure because it's often the cheapest use to reduce, usually by changing timers, controls and building management settings rather than buying new equipment.</p>
+
+<h2 id="costs">5. Costs and annual figures</h2>
+<p>Costs use the unit rates you enter, either one flat rate or different rates for different times of day. They leave out standing charges, capacity charges and other fixed costs. They show what a pattern costs you now and are not a promise of savings.</p>
+<p>Annual figures are scaled up from the valid readings. With less than about 11 months of good data they're marked as indicative, and with less than six months they aren't shown.</p>
+
+<h2 id="findings">6. Findings</h2>
+<p>Each finding has two separate ratings. <strong>Impact</strong> shows how much it matters, based on cost and share of total use. <strong>Confidence</strong> shows how reliable the evidence is, based on data quality and whether the opening hours are confirmed. A finding with high impact and low confidence is worth checking before you quote it.</p>
+
+<h2 id="capacity">7. Capacity and headroom</h2>
+<p>Enter your agreed supply capacity (in kVA, from your bill or connection agreement) and an assumed power factor. The analyser compares every half hour with it and works out how much extra constant load the site could take before reaching the limit, such as heat pumps, EV chargers or the output of a CHP engine you plan to switch off. Treat this as an early check, because only your network operator can confirm it. See <a href="hospital-electrical-capacity">electrical capacity for electrification</a>.</p>
+
+<h2 id="solar">8. Solar</h2>
+<p>Each site's Solar tab estimates how much of a solar system's output the site would use itself at a range of sizes, from its own half-hourly readings and a typical UK solar day scaled to your region. <strong>Size solar for this site</strong> opens the <a href="solar-calculator">solar calculator</a> with those figures, so you can map roofs and car parks and see cost, savings and payback. Only a summary is passed, never the readings. See <a href="solar">sizing solar from half-hourly data</a>.</p>
+
+<h2 id="limits">What it can't tell you</h2>
+<ul><li>Data from the main meter shows when electricity is used, but not which equipment is using it. Findings are things to check on site.</li><li>The main meter only records what the site imports. If a CHP engine or solar runs on site, true demand is higher; load the generation meter as a separate file to see it.</li><li>Figures are not adjusted for weather or changes in occupancy.</li><li>Carbon figures use a single conversion factor for the year, which you enter.</li></ul>
+<h2 id="next">Read next</h2>
+<div class="link-grid"><a class="link-card has-thumb" href="example-office-analysis"><div class="card-thumb"><img src="images/guides/example-office-analysis.jpg" srcset="images/guides/example-office-analysis-600.jpg 600w, images/guides/example-office-analysis.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Worked example</h3><p>The method applied to one office, step by step.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="out-of-hours-electricity"><div class="card-thumb"><img src="images/guides/out-of-hours-electricity.jpg" srcset="images/guides/out-of-hours-electricity-600.jpg 600w, images/guides/out-of-hours-electricity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Out-of-hours use</h3><p>Finding and reducing use while the building is closed.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="base-load"><div class="card-thumb"><img src="images/guides/base-load.jpg" srcset="images/guides/base-load-600.jpg 600w, images/guides/base-load.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Base load</h3><p>What always runs, and why it matters.</p><span class="more">Read the guide</span></a></div>
+  </article>
+  <aside class="guide-side">
+    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol>
+      <li><a href="#files">Reading your files</a></li><li><a href="#checks">Checking the data</a></li><li><a href="#calendar">Opening hours</a></li><li><a href="#base">Base load and use while closed</a></li><li><a href="#costs">Costs and annual figures</a></li><li><a href="#findings">Findings</a></li><li><a href="#capacity">Capacity and headroom</a></li><li><a href="#solar">Solar</a></li><li><a href="#limits">What it can't tell you</a></li></ol></nav>
+    <div class="side-cta"><strong>Try it on your own data</strong><p>It's free, there's no sign-up, and your file stays on your computer.</p><a href="analyser/" class="btn">Open the analyser</a></div>
+  </aside>
+</div><section class="cta-strip">
+  <div class="cta-strip-inner">
+    <h2 class="cta-strip-title">Try it on your own data</h2>
+    <div class="cta-strip-btns">
+      <a href="analyser/" class="btn btn-gold btn-lg">Upload HH data</a>
+      <a href="contact" class="btn btn-outline-white btn-lg">Talk to an expert</a>
+    </div>
+    <p class="cta-strip-lead">It's free, there's no sign-up, and nothing is uploaded.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hhhi-logo-white.webp"><img src="images/brand/hhhi-logo-white.png" width="470" height="132" alt="Healthcare HH Insights" loading="lazy"></picture></div>
+        <p class="footer-desc">Free half-hourly electricity analysis, solar sizing and decarbonisation guides for NHS and independent healthcare estates across England, Scotland and Wales, run by Kinetic Energy Consulting. The analysis runs in your browser, so your meter data never leaves your computer.</p>
+        <div class="footer-contact-item">Email: <a href="mailto:enquiries@kinetic-energy.co.uk">enquiries@kinetic-energy.co.uk</a></div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Tools</div>
+        <ul><li><a href="analyser/">Analyse half-hourly data</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="how-it-works">How the analyser works</a></li><li><a href="solar-calculator-method">How the solar calculator works</a></li><li><a href="sample-report">Sample report</a></li><li><a href="downloads/half-hourly-insights-user-guide.pdf" download>User guide (PDF)</a></li><li><a href="faq">FAQ</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Decarbonisation</div>
+        <ul><li><a href="healthcare-estates-decarbonisation">The estates challenge</a></li><li><a href="nhs-net-zero-targets">Net zero targets</a></li><li><a href="decarbonisation-funding">Funding routes</a></li><li><a href="heat-decarbonisation">Heat decarbonisation</a></li><li><a href="moving-away-from-chp">Moving away from CHP</a></li><li><a href="hospital-electrical-capacity">Electrical capacity</a></li><li><a href="solar-on-healthcare-estates">Solar on healthcare estates</a></li><li><a href="hospital-energy-efficiency">Energy efficiency</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">About</div>
+        <ul><li><a href="about">About us</a></li><li><a href="contact">Contact</a></li><li><a href="guides">All guides</a></li><li><a href="glossary">Glossary</a></li><li><a href="privacy">Privacy</a></li><li><a href="terms">Terms of use</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Kinetic Energy Consulting</div>
+      <div class="footer-disclaimer">All analyser and calculator results are estimates based on the data you load and do not guarantee savings. Our guides are general information and are not financial, tax, legal or clinical engineering advice. Not affiliated with or endorsed by the NHS.</div>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('navToggle').addEventListener('click', function (e) {
+    var open = document.getElementById('siteNav').classList.toggle('nav-mobile-open');
+    e.currentTarget.setAttribute('aria-expanded', open ? 'true' : 'false');
+    e.currentTarget.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>
+</body>
+</html>

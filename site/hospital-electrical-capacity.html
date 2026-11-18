@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electrical capacity for hospital electrification: heat pumps, EV charging and CHP</title>
+  <meta name="description" content="How to check whether a hospital or healthcare site has the electrical capacity for heat pumps, EV charging and CHP removal, using half-hourly data, agreed supply capacity in kVA and a winter headroom check.">
+  <link rel="canonical" href="https://healthcarehhinsights.co.uk/hospital-electrical-capacity">
+  <meta property="og:url" content="https://healthcarehhinsights.co.uk/hospital-electrical-capacity">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Electrical capacity for hospital electrification: heat pumps, EV charging and CHP">
+  <meta property="og:description" content="How to check whether a hospital or healthcare site has the electrical capacity for heat pumps, EV charging and CHP removal, using half-hourly data, agreed supply capacity in kVA and a winter headroom check.">
+  <meta property="og:image" content="https://healthcarehhinsights.co.uk/images/guides/hospital-electrical-capacity.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Healthcare HH Insights">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="images/brand/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/brand/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0B2E4F">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v=63119adc">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://www.kinetic-energy.co.uk/#organization",
+   "name": "Kinetic Energy Consulting",
+   "url": "https://www.kinetic-energy.co.uk",
+   "email": "enquiries@kinetic-energy.co.uk",
+   "logo": "https://healthcarehhinsights.co.uk/images/kec-logo.svg",
+   "areaServed": {
+    "@type": "Country",
+    "name": "United Kingdom"
+   },
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "email": "enquiries@kinetic-energy.co.uk",
+    "areaServed": "GB"
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://healthcarehhinsights.co.uk/#website",
+   "name": "Healthcare HH Insights",
+   "inLanguage": "en-GB",
+   "description": "Free half-hourly electricity analysis, solar sizing and decarbonisation guides for UK healthcare estates",
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://healthcarehhinsights.co.uk/"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://healthcarehhinsights.co.uk/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://healthcarehhinsights.co.uk/guides"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Electrical capacity",
+     "item": "https://healthcarehhinsights.co.uk/hospital-electrical-capacity"
+    }
+   ]
+  },
+  {
+   "@type": "Person",
+   "@id": "https://healthcarehhinsights.co.uk/about#paul-johnston",
+   "name": "Paul Johnston",
+   "jobTitle": "Managing Director",
+   "worksFor": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://healthcarehhinsights.co.uk/about",
+   "image": "https://healthcarehhinsights.co.uk/images/people/paul-johnston.jpg"
+  },
+  {
+   "@type": "Article",
+   "headline": "Electrical capacity for hospital electrification: heat pumps, EV charging and CHP",
+   "description": "How to check whether a hospital or healthcare site has the electrical capacity for heat pumps, EV charging and CHP removal, using half-hourly data, agreed supply capacity in kVA and a winter headroom check.",
+   "image": "https://healthcarehhinsights.co.uk/images/guides/hospital-electrical-capacity.jpg",
+   "inLanguage": "en-GB",
+   "datePublished": "2026-11-18",
+   "dateModified": "2026-11-18",
+   "author": {
+    "@id": "https://healthcarehhinsights.co.uk/about#paul-johnston"
+   },
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "isPartOf": {
+    "@id": "https://healthcarehhinsights.co.uk/#website"
+   },
+   "mainEntityOfPage": "https://healthcarehhinsights.co.uk/hospital-electrical-capacity"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What is agreed supply capacity?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The maximum your site may draw from the electricity network, in kVA, set in your connection agreement and shown on many bills. Going over it can bring charges and puts the supply at risk."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why check headroom in winter?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Heat pumps draw the most electricity in the coldest weeks. A site whose peak is in summer, from cooling, can still run out of capacity once heat is electrified."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does my half-hourly data include the CHP?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The main meter records what the site draws from the grid, which is what the CHP does not supply. Add the CHP generation meter's data to see true demand."
+     }
+    }
+   ]
+  }
+ ]
+}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="site-nav" id="siteNav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="./" class="nav-logo" aria-label="Healthcare HH Insights home">
+      <picture><source type="image/webp" srcset="images/brand/hhhi-logo.webp"><img src="images/brand/hhhi-logo.png" width="470" height="132" alt=""></picture>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./">Home</a></li><li><a href="how-it-works">How it works</a></li><li><a href="healthcare-estates-decarbonisation">Decarbonisation</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="guides" class="active" aria-current="page">Guides</a></li><li><a href="sectors">Settings</a></li><li><a href="contact">Contact</a></li>
+      <li><a href="analyser/" class="nav-cta">Upload HH data</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<main id="main">
+<section class="page-hero page-hero-photo">
+  <div class="hero-media" aria-hidden="true"><picture><source type="image/webp" srcset="images/heroes/hospital-electrical-capacity-900.webp 900w, images/heroes/hospital-electrical-capacity.webp 1600w" sizes="100vw"><img src="images/heroes/hospital-electrical-capacity.jpg" srcset="images/heroes/hospital-electrical-capacity-900.jpg 900w, images/heroes/hospital-electrical-capacity.jpg 1600w" sizes="100vw" width="1600" height="1200" alt="" fetchpriority="high"></picture></div>
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <a href="guides">Guides</a> <span aria-hidden="true">/</span> <span aria-current="page">Electrical capacity</span></nav>
+    <span class="page-hero-kicker">Guide</span>
+    <h1 class="page-hero-title">Electrical capacity for electrification</h1>
+    <p class="page-hero-lead">Heat pumps, EV charging and the end of CHP all need more electricity at the same time of year. Half-hourly data shows how much room each site really has, before anyone draws a scheme.</p>
+  </div>
+</section><div class="guide">
+  <article class="guide-main prose">
+<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-18">18 November 2026</time></p>
+<p class="answer">Your agreed supply capacity, in kVA, is the most your site may draw from the network. Compare it with your busiest half hours, converted from kW to kVA, and the gap is your headroom. Check it in winter, when heat pumps add the most load, and with any CHP switched off. If the headroom is smaller than the new load, you need to cut demand elsewhere, add on-site generation or storage, or apply to your network operator for more capacity, which can take a long time.</p>
+
+<h2 id="find">Find the numbers</h2>
+<ul>
+<li><strong>Agreed supply capacity (kVA)</strong> is on your electricity bill or in your connection agreement. Large hospitals may have several supplies, each with its own capacity.</li>
+<li><strong>Half-hourly data</strong> for each supply, for at least 12 months, so the winter peaks are in it. See <a href="get-your-data">getting your data</a>.</li>
+<li><strong>Power factor.</strong> Your bill may show reactive power charges. If you don't know your power factor, 0.95 is a common working assumption.</li>
+</ul>
+
+<h2 id="check">Run the check</h2>
+<ol>
+<li>Load each supply's file into the <a href="analyser/">analyser</a> and enter its agreed capacity and power factor on the Capacity tab.</li>
+<li>Look at the busiest half hours and the months they fall in. On some hospital sites the electrical peak is in summer, from cooling, but heat pumps will create a new winter peak.</li>
+<li>Enter the new load as a test load, for example the electrical input of a heat pump scheme or the output of a CHP engine you plan to remove, and keep a safety margin, such as 10%.</li>
+<li>Download the PDF. It gives your capital planning group and your network operator the same evidence.</li>
+</ol>
+
+<h2 id="sizing">Rough sizes of new loads</h2>
+<div class="table-wrap"><table><thead><tr><th>New load</th><th>Rough electrical demand</th></tr></thead><tbody>
+<tr><td>Heat pumps delivering 1 MW of heat on a cold day, efficiency 2.5</td><td>About 400 kW (420 kVA at 0.95)</td></tr>
+<tr><td>Removing a 1 MW gas CHP engine</td><td>About 1 MW more import (1,050 kVA at 0.95)</td></tr>
+<tr><td>Ten 7 kW staff car chargers running together</td><td>70 kW</td></tr>
+<tr><td>Two 50 kW rapid chargers for fleet vehicles</td><td>100 kW</td></tr>
+</tbody></table></div>
+<p>These are illustrations. Your designer will size the real loads, and smart charging and controls can reduce what is needed at the peak.</p>
+
+<h2 id="options">If the headroom isn't there</h2>
+<ul>
+<li><strong>Cut the peak first.</strong> Controls, chiller sequencing and ventilation schedules often take tens of kilowatts off the busiest half hours. See <a href="hospital-energy-efficiency">energy efficiency</a>.</li>
+<li><strong>Generate on site.</strong> Solar reduces daytime import, but it does little on winter evenings when heat pump demand is high. Batteries can move energy into those hours.</li>
+<li><strong>Manage new loads.</strong> Smart EV charging and heat pump controls can stay within a limit, using thermal storage to shift heat.</li>
+<li><strong>Apply early.</strong> Connection upgrades can take years. The Salix guidance on heat decarbonisation plans asks for the electricity loading capacity to support a switch to electric heating, so an early application belongs in the plan.<sup><a href="#sources">1</a></sup></li>
+</ul>
+
+<h2 id="resilience">Resilience</h2>
+<p>Hospitals keep standby generators and resilient supply arrangements for essential services. Moving heat to electricity means heat now depends on those arrangements too. Make sure the electrical resilience design, usually under HTM 06-01 in England, is reviewed alongside any heat pump scheme, and that new buildings meet the NHS Net Zero Building Standard.<sup><a href="#sources">2</a></sup></p>
+<div class="sources"><h2 id="sources">Sources</h2><p class="help">Checked 18 November 2026.</p><ol><li><a href="https://www.salixfinance.co.uk/sites/default/files/2023-03/Heat%20Decarbonisation%20Plan%20Guidance%20Phase%204%20LCSF.pdf" rel="noopener">Salix Finance: Guidance on the preparation of heat decarbonisation plans (Phase 4 Low Carbon Skills Fund)</a></li><li><a href="https://www.england.nhs.uk/estates/nhs-net-zero-building-standard/" rel="noopener">NHS England: NHS Net Zero Building Standard</a></li></ol></div><h2 id="questions">Questions people ask</h2>
+<div class="faq"><details><summary>What is agreed supply capacity?</summary><div class="faq-a"><p>The maximum your site may draw from the electricity network, in kVA, set in your connection agreement and shown on many bills. Going over it can bring charges and puts the supply at risk.</p></div></details><details><summary>Why check headroom in winter?</summary><div class="faq-a"><p>Heat pumps draw the most electricity in the coldest weeks. A site whose peak is in summer, from cooling, can still run out of capacity once heat is electrified.</p></div></details><details><summary>Does my half-hourly data include the CHP?</summary><div class="faq-a"><p>No. The main meter records what the site draws from the grid, which is what the CHP does not supply. Add the CHP generation meter's data to see true demand.</p></div></details></div><h2 id="next">Read next</h2>
+<div class="link-grid"><a class="link-card has-thumb" href="supply-capacity"><div class="card-thumb"><img src="images/guides/supply-capacity.jpg" srcset="images/guides/supply-capacity-600.jpg 600w, images/guides/supply-capacity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Supply capacity and kVA</h3><p>The basics of capacity and power factor.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="moving-away-from-chp"><div class="card-thumb"><img src="images/guides/moving-away-from-chp.jpg" srcset="images/guides/moving-away-from-chp-600.jpg 600w, images/guides/moving-away-from-chp.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Moving away from CHP</h3><p>The capacity effect of removing an engine.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="heat-decarbonisation"><div class="card-thumb"><img src="images/guides/heat-decarbonisation.jpg" srcset="images/guides/heat-decarbonisation-600.jpg 600w, images/guides/heat-decarbonisation.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Heat decarbonisation</h3><p>Sizing the heat pumps.</p><span class="more">Read the guide</span></a></div>
+  </article>
+  <aside class="guide-side">
+    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#find">Find the numbers</a></li><li><a href="#check">Run the check</a></li><li><a href="#sizing">Rough sizes of new loads</a></li><li><a href="#options">If the headroom isn't there</a></li><li><a href="#resilience">Resilience</a></li><li><a href="#questions">Questions people ask</a></li></ol></nav>
+    <div class="side-cta"><strong>Try it on your own data</strong><p>It's free, there's no sign-up, and your file stays on your computer.</p><a href="analyser/" class="btn">Open the analyser</a></div>
+  </aside>
+</div><section class="cta-strip">
+  <div class="cta-strip-inner">
+    <h2 class="cta-strip-title">Try it on your own data</h2>
+    <div class="cta-strip-btns">
+      <a href="analyser/" class="btn btn-gold btn-lg">Upload HH data</a>
+      <a href="contact" class="btn btn-outline-white btn-lg">Talk to an expert</a>
+    </div>
+    <p class="cta-strip-lead">It's free, there's no sign-up, and your file stays on your computer.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hhhi-logo-white.webp"><img src="images/brand/hhhi-logo-white.png" width="470" height="132" alt="Healthcare HH Insights" loading="lazy"></picture></div>
+        <p class="footer-desc">Free half-hourly electricity analysis, solar sizing and decarbonisation guides for NHS and independent healthcare estates across England, Scotland and Wales, run by Kinetic Energy Consulting. The analysis runs in your browser, so your meter data never leaves your computer.</p>
+        <div class="footer-contact-item">Email: <a href="mailto:enquiries@kinetic-energy.co.uk">enquiries@kinetic-energy.co.uk</a></div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Tools</div>
+        <ul><li><a href="analyser/">Analyse half-hourly data</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="how-it-works">How the analyser works</a></li><li><a href="solar-calculator-method">How the solar calculator works</a></li><li><a href="sample-report">Sample report</a></li><li><a href="downloads/half-hourly-insights-user-guide.pdf" download>User guide (PDF)</a></li><li><a href="faq">FAQ</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Decarbonisation</div>
+        <ul><li><a href="healthcare-estates-decarbonisation">The estates challenge</a></li><li><a href="nhs-net-zero-targets">Net zero targets</a></li><li><a href="decarbonisation-funding">Funding routes</a></li><li><a href="heat-decarbonisation">Heat decarbonisation</a></li><li><a href="moving-away-from-chp">Moving away from CHP</a></li><li><a href="hospital-electrical-capacity">Electrical capacity</a></li><li><a href="solar-on-healthcare-estates">Solar on healthcare estates</a></li><li><a href="hospital-energy-efficiency">Energy efficiency</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">About</div>
+        <ul><li><a href="about">About us</a></li><li><a href="contact">Contact</a></li><li><a href="guides">All guides</a></li><li><a href="glossary">Glossary</a></li><li><a href="privacy">Privacy</a></li><li><a href="terms">Terms of use</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Kinetic Energy Consulting</div>
+      <div class="footer-disclaimer">All analyser and calculator results are estimates based on the data you load and do not guarantee savings. Our guides are general information and are not financial, tax, legal or clinical engineering advice. Not affiliated with or endorsed by the NHS.</div>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('navToggle').addEventListener('click', function (e) {
+    var open = document.getElementById('siteNav').classList.toggle('nav-mobile-open');
+    e.currentTarget.setAttribute('aria-expanded', open ? 'true' : 'false');
+    e.currentTarget.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>
+</body>
+</html>
