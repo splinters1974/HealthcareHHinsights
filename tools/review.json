@@ -1,0 +1,126 @@
+{
+ "about.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "acute-hospitals.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "ambulance-stations-and-fleet.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "base-load.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "community-and-mental-health.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "decarbonisation-funding.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "estates-returns-and-benchmarking.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "example-hospital-analysis.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "faq.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "get-your-data.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "glossary.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "health-centres-and-clinics.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "healthcare-estates-decarbonisation.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "heat-decarbonisation.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "hospital-electrical-capacity.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "hospital-energy-efficiency.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "how-it-works.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "moving-away-from-chp.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "nhs-estates-energy-facts.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "nhs-net-zero-targets.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "out-of-hours-electricity.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "paying-for-solar.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "private-hospitals.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "proving-savings.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "reading-a-heatmap.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "sample-report.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "solar-on-healthcare-estates.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "solar-payback.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "solar-planning-and-grid.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 6
+ },
+ "solar.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ },
+ "supply-capacity.html": {
+  "last_reviewed": "2026-11-22",
+  "every_months": 12
+ }
+}

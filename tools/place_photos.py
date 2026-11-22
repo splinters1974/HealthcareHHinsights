@@ -32,7 +32,7 @@ PAGES = {
     'solar-on-healthcare-estates': ('06', 0.5), 'solar-planning-and-grid': ('06', 0.7),
     'hospital-electrical-capacity': ('07', 0.4), 'ambulance-stations-and-fleet': ('07', 0.75),
     'healthcare-estates-decarbonisation': ('08', 0.5), 'decarbonisation-funding': ('10', 0.55), 'guides': ('06', 0.5),
-    'health-centres-and-clinics': ('09', 0.6), 'example-hospital-analysis': ('05', 0.62),
+    'health-centres-and-clinics': ('09', 0.6), 'example-hospital-analysis': ('05', 0.62), 'nhs-estates-energy-facts': ('08', 0.3),
 }
 
 

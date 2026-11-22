@@ -148,6 +148,26 @@
      }
     }
    ]
+  },
+  {
+   "@type": "Dataset",
+   "name": "Example half-hourly electricity data for a made-up community hospital",
+   "description": "A synthetic year (1 April 2024 to 31 March 2025) of half-hourly electricity import readings for an invented 60-bed community hospital, made to show the Hospital Energy Insights analyser: one row per day, 48 half-hourly kWh readings. Not real data.",
+   "url": "https://hospitalenergyinsights.co.uk/example-hospital-analysis",
+   "isAccessibleForFree": true,
+   "creator": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "temporalCoverage": "2024-04-01/2025-03-31",
+   "spatialCoverage": "United Kingdom",
+   "variableMeasured": "Electricity imported, kWh per half hour",
+   "distribution": [
+    {
+     "@type": "DataDownload",
+     "encodingFormat": "text/csv",
+     "contentUrl": "https://hospitalenergyinsights.co.uk/samples/example-hospital.csv"
+    }
+   ]
   }
  ]
 }

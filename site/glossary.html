@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Glossary of hospital energy and HH data terms</title>
-  <meta name="description" content="Plain definitions of half-hourly electricity and healthcare estates terms: base load, kVA, MPAN, CHP, COP, ERIC, HTM, PSDS and more.">
+  <meta name="description" content="Plain definitions of healthcare estates and half-hourly electricity terms: base load, kVA, MPAN, CHP, COP, ERIC, HTM, theatre setback and more.">
   <link rel="canonical" href="https://hospitalenergyinsights.co.uk/glossary">
   <meta property="og:url" content="https://hospitalenergyinsights.co.uk/glossary">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_GB">
   <meta property="og:title" content="Glossary of hospital energy and HH data terms">
-  <meta property="og:description" content="Plain definitions of half-hourly electricity and healthcare estates terms: base load, kVA, MPAN, CHP, COP, ERIC, HTM, PSDS and more.">
+  <meta property="og:description" content="Plain definitions of healthcare estates and half-hourly electricity terms: base load, kVA, MPAN, CHP, COP, ERIC, HTM, theatre setback and more.">
   <meta property="og:image" content="https://hospitalenergyinsights.co.uk/images/guides/glossary.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -96,7 +96,7 @@
   {
    "@type": "Article",
    "headline": "Glossary of hospital energy and HH data terms",
-   "description": "Plain definitions of half-hourly electricity and healthcare estates terms: base load, kVA, MPAN, CHP, COP, ERIC, HTM, PSDS and more.",
+   "description": "Plain definitions of healthcare estates and half-hourly electricity terms: base load, kVA, MPAN, CHP, COP, ERIC, HTM, theatre setback and more.",
    "image": "https://hospitalenergyinsights.co.uk/images/guides/glossary.jpg",
    "inLanguage": "en-GB",
    "datePublished": "2026-11-18",
@@ -114,57 +114,152 @@
   },
   {
    "@type": "DefinedTermSet",
-   "name": "Half-hourly electricity glossary",
+   "name": "Hospital energy and half-hourly data glossary",
    "hasDefinedTerm": [
     {
      "@type": "DefinedTerm",
+     "name": "Authorised Person (Ventilation)",
+     "description": "The person appointed in writing to manage specialised ventilation systems on a healthcare site, under HTM 03-01. Part of any project that changes theatre ventilation."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Capital departmental expenditure limit (CDEL)",
+     "description": "The cap on capital spending set for NHS organisations. Whether a solar PPA or lease counts against it depends on how the contract is accounted for."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "EFPMS",
+     "description": "The Estates and Facilities Performance Management System: NHS Wales's mandatory annual estates return, covering energy and CHP among much else."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "ERIC",
+     "description": "The Estates Returns Information Collection: the mandatory annual estates and facilities return for NHS trusts in England, including energy use and cost by site."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Essential supplies",
+     "description": "The parts of a hospital's electrical system backed by standby generators, so clinical services keep running if the grid supply fails."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Generator test",
+     "description": "The routine on-load test of a hospital's standby generators, often monthly. While it runs the site imports less from the grid, which shows as a short dip in half-hourly data."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Green Plan",
+     "description": "An NHS organisation's board-approved plan for cutting its carbon emissions and wider environmental impact, in line with the NHS net zero targets."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Health Technical Memorandum (HTM)",
+     "description": "Guidance on designing and running healthcare buildings and engineering services. The ones that matter most for energy are HTM 03-01 (specialised ventilation), HTM 04-01 (water safety) and HTM 06-01 (electrical services). Scotland and Wales publish their own versions (SHTM, WHTM)."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Heat decarbonisation plan (HDP)",
+     "description": "A building-by-building plan for replacing fossil fuel heating with low carbon heat, often needed for public sector funding bids."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "NHS Carbon Footprint",
+     "description": "The emissions the NHS in England controls directly, including energy in its buildings, with a net zero target of 2040. The Carbon Footprint Plus adds the supply chain, with a 2045 target."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "NHS Estates Technical Bulletin (NETB)",
+     "description": "Technical guidance from NHS England that supplements the HTMs. NETB 2026/1 covers energy savings from controlling theatre ventilation."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "NHS Net Zero Building Standard",
+     "description": "The NHS England standard for new buildings and major refurbishments that need HM Treasury business case approval, covering operational energy and whole-life carbon."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "PFI",
+     "description": "Private Finance Initiative. On a PFI hospital a project company built the buildings and runs services under a long contract, and often holds the energy supply and meter data. Its consent is needed for works such as solar."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Public Sector Decarbonisation Scheme (PSDS)",
+     "description": "The government grant scheme, run by Salix, that funded heat and energy projects in public buildings in England from 2020. New rounds are not being funded beyond 2027/28."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Theatre ventilation setback",
+     "description": "Reducing or switching off operating theatre ventilation when the theatre is empty, then returning to full flow before use. One of the largest energy savings available on a hospital."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Ventilation Safety Group (VSG)",
+     "description": "The multidisciplinary group in an NHS organisation that oversees specialised ventilation, including estates, infection prevention and clinical staff. The starting point for any change to theatre ventilation."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Water Safety Group",
+     "description": "The group that owns an organisation's water safety plan for legionella and other risks under HTM 04-01. Changes to hot water temperatures or circulation need its agreement."
+    },
+    {
+     "@type": "DefinedTerm",
      "name": "Agreed supply capacity",
-     "description": "The maximum demand, in kVA, an electricity connection is set up for. It appears on larger electricity bills and is also called authorised or available capacity."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Annualised figure",
-     "description": "A yearly figure scaled up from the valid readings available. It is used when the data covers less than a full year or has gaps."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Balancing Services Use of System (BSUoS)",
-     "description": "A charge that covers the National Energy System Operator's cost of balancing the electricity system. A fixed rate per MWh, set in advance for six-month periods."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Base load",
-     "description": "The level of demand a building rarely drops below: what never switches off. The analyser measures it as the 5th percentile of half-hourly demand."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Capacity Market (CM)",
-     "description": "A scheme that pays providers to keep enough reliable capacity available. Businesses pay for it according to their electricity use between 4pm and 7pm on working days from November to February."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Climate Change Levy (CCL)",
-     "description": "A tax on energy used by businesses, charged per kWh. Holders of a climate change agreement pay a reduced rate."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Closed-hours excess",
-     "description": "Electricity used while a building should be closed, above its base load. The analyser ranks sites by it."
+     "description": "The most a site's connection is contracted to draw, in kVA, shown on larger electricity bills. Also called authorised or available capacity."
     },
     {
      "@type": "DefinedTerm",
      "name": "Coefficient of performance (COP)",
-     "description": "How much heat a heat pump delivers for each unit of electricity it uses at a given moment. A COP of 3 means 3 kWh of heat for 1 kWh of electricity. The seasonal average is the SCOP."
+     "description": "Heat delivered by a heat pump per unit of electricity used. A COP of 3 means 3 kWh of heat for 1 kWh of electricity. Averaged over a season it is the SCOP."
     },
     {
      "@type": "DefinedTerm",
      "name": "Combined heat and power (CHP)",
-     "description": "An engine, usually gas-fired, that generates electricity on site and recovers its waste heat for heating and hot water. Common on hospital estates; its carbon case has weakened as the grid has cleaned up."
+     "description": "A gas engine that generates electricity on site and uses its waste heat for heating and hot water. Common on hospitals; its carbon advantage over grid electricity has largely gone."
     },
     {
      "@type": "DefinedTerm",
-     "name": "Contracts for Difference (CfD)",
-     "description": "Contracts that give low-carbon generators a fixed price. Suppliers pay a levy that rises when wholesale prices are low and falls, even to zero, when they are high."
+     "name": "Distribution network operator (DNO)",
+     "description": "The company that runs the local electricity network, agrees your supply capacity and approves generation such as solar. The first two digits of the MPAN show which one you are on."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Export limit",
+     "description": "A cap, agreed with the DNO and enforced by a control system, on how much a site's solar or batteries can send back to the network. Usually costs a 24-hour hospital little."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Firm headroom",
+     "description": "The largest constant extra load a supply could take in every half hour of the period without going over its agreed capacity less a safety margin."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "G99",
+     "description": "The engineering recommendation setting how larger generators, including most hospital solar systems and batteries, apply to the DNO to connect."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Power purchase agreement (PPA)",
+     "description": "A contract to buy electricity from a generator at an agreed rate, often from a solar system a funder owns on your site."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Self-consumption",
+     "description": "The share of a solar system's output used on site at the time it is generated rather than exported. On a 24-hour hospital it is usually high."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Annualised figure",
+     "description": "A yearly total scaled up from the valid readings, used when the data falls short of a full year or has gaps. The analyser withholds it below six months."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Base load",
+     "description": "The level a site's demand rarely falls below, measured by the analyser as the 5th percentile of half-hourly demand. On a hospital it is usually the largest part of the bill."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Closed-hours excess",
+     "description": "Electricity used while a building should be closed, above its base load. Used for clinics, health centres and offices, not 24-hour sites."
     },
     {
      "@type": "DefinedTerm",
@@ -174,167 +269,92 @@
     {
      "@type": "DefinedTerm",
      "name": "Degree days",
-     "description": "A measure of how cold (heating degree days) or warm (cooling degree days) a period was. Used to compare energy use across periods with different weather."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Distribution network operator (DNO)",
-     "description": "The company that owns and runs the local electricity network and agrees your supply capacity and any generation connection."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Distribution Use of System (DUoS)",
-     "description": "Charges for using the local distribution network, set by your network operator. They combine unit rates that vary by time band, capacity charges and fixed daily charges."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "DNO",
-     "description": "Distribution network operator. The company that runs the local electricity network and your site's connection to it. The first two digits of your MPAN show which one."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "EFPMS",
-     "description": "The Estates and Facilities Performance Management System: the mandatory annual estates and facilities return for NHS Wales, including energy and CHP."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "ERIC",
-     "description": "The Estates Returns Information Collection: the mandatory annual estates and facilities return for NHS trusts in England, including energy use and costs."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "G99",
-     "description": "The engineering recommendation that sets how most generators, including larger solar systems and batteries, apply to the network operator to connect."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Green Plan",
-     "description": "An NHS organisation's board-approved plan for reducing its carbon emissions and environmental impact, in line with the NHS net zero targets."
+     "description": "A measure of how cold or warm a period was, used to compare heating or cooling energy across periods with different weather."
     },
     {
      "@type": "DefinedTerm",
      "name": "Half-hourly (HH) data",
-     "description": "A record of the electricity used in every half hour: 48 readings a day."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Health Technical Memorandum (HTM)",
-     "description": "Guidance on the design and operation of healthcare buildings and engineering services, such as HTM 03-01 (ventilation), HTM 04-01 (water safety) and HTM 06-01 (electrical services)."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Heat decarbonisation plan (HDP)",
-     "description": "A plan for replacing fossil fuel heating with low carbon alternatives, building by building, often required for public sector funding bids."
+     "description": "The electricity a meter records in each half hour: 48 readings a day, 17,520 in a normal year."
     },
     {
      "@type": "DefinedTerm",
      "name": "Heatmap",
-     "description": "A chart of every half hour in a period, with one column per day and one row per half hour, coloured by demand. Also called a carpet plot."
+     "description": "One chart of every half hour in a period, a column per day and a row per half hour, coloured by demand. Also called a carpet plot."
     },
     {
      "@type": "DefinedTerm",
      "name": "kVA",
-     "description": "Kilovolt-ampere. A measure of apparent power, and the unit supply capacity is set in. kVA = kW ÷ power factor."
+     "description": "Kilovolt-ampere, the unit of apparent power that supply capacity is set in. kVA = kW ÷ power factor."
     },
     {
      "@type": "DefinedTerm",
      "name": "kW",
-     "description": "Kilowatt. A measure of power: the rate electricity is being used at a given moment. Divide a half-hourly reading in kWh by 0.5 to get the average kW for that half hour."
+     "description": "Kilowatt, the rate electricity is being used. A half-hourly reading in kWh divided by 0.5 gives the average kW for that half hour."
     },
     {
      "@type": "DefinedTerm",
      "name": "kWh",
-     "description": "Kilowatt-hour. A measure of energy, and what you are billed for. Using 1 kW for one hour is 1 kWh."
+     "description": "Kilowatt-hour, the unit of energy you are billed for. 1 kW for one hour is 1 kWh."
     },
     {
      "@type": "DefinedTerm",
      "name": "Load factor",
-     "description": "Average demand divided by peak demand. A low load factor means demand has short, high peaks."
+     "description": "Average demand divided by peak demand. Hospitals have high load factors because demand never falls far."
     },
     {
      "@type": "DefinedTerm",
-     "name": "Market-wide half-hourly settlement (MHHS)",
-     "description": "The move to settle every electricity meter in Great Britain using half-hourly data."
+     "name": "Low-activity window",
+     "description": "The hours the analyser treats as a 24-hour site's quietest, 01:00 to 05:00 by default, in place of closed hours."
     },
     {
      "@type": "DefinedTerm",
      "name": "MPAN",
-     "description": "Meter point administration number. The 13-digit number on the bottom line of the supply number on an electricity bill. It identifies the supply point."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "NHS Carbon Footprint",
-     "description": "The emissions the NHS in England controls directly, including energy used in its buildings. The target is net zero by 2040. The Carbon Footprint Plus adds the supply chain, with a 2045 target."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "NHS Net Zero Building Standard",
-     "description": "The NHS England standard for new buildings and major upgrades that need HM Treasury business case approval, covering energy and whole-life carbon."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Non-energy costs",
-     "description": "Everything in an electricity price apart from the wholesale energy: network charges, policy costs and taxes."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Nuclear RAB levy",
-     "description": "A levy on suppliers that funds the building of new nuclear power stations under the Regulated Asset Base model, starting with Sizewell C."
+     "description": "Meter point administration number: the 13-digit number on the bottom line of the supply number on an electricity bill."
     },
     {
      "@type": "DefinedTerm",
      "name": "Peak demand",
-     "description": "The highest half-hourly average demand in a period, usually in kW or kVA."
+     "description": "The highest half-hourly average demand in a period, in kW or kVA. On many hospitals it falls on a hot summer afternoon."
     },
     {
      "@type": "DefinedTerm",
      "name": "Power factor",
-     "description": "The ratio of real power (kW) to apparent power (kVA), between 0 and 1. Equipment such as motors lowers it."
+     "description": "The ratio of real power (kW) to apparent power (kVA), between 0 and 1. Motors and fans lower it."
     },
     {
      "@type": "DefinedTerm",
-     "name": "Power purchase agreement (PPA)",
-     "description": "A contract to buy electricity from a generator at an agreed price, often from a solar system a funder owns on your site."
+     "name": "Capacity Market (CM)",
+     "description": "A scheme paying providers to keep reliable capacity available, charged on use between 4pm and 7pm on working days from November to February."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Climate Change Levy (CCL)",
+     "description": "A tax per kWh on energy used by businesses and public bodies."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Distribution Use of System (DUoS)",
+     "description": "Charges for using the local network, set by the DNO: unit rates by time band, capacity charges and daily charges."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Market-wide half-hourly settlement (MHHS)",
+     "description": "The move to settle every electricity meter in Great Britain on half-hourly data."
+    },
+    {
+     "@type": "DefinedTerm",
+     "name": "Non-energy costs",
+     "description": "Everything in the electricity price apart from the wholesale energy: network charges, policy costs and taxes."
     },
     {
      "@type": "DefinedTerm",
      "name": "Profile class",
-     "description": "The first two digits of the top line of the supply number. 00 means the supply is settled half-hourly; 01 to 08 mean use is estimated from standard profiles."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Public Sector Decarbonisation Scheme (PSDS)",
-     "description": "The UK government grant scheme, run by Salix, that funded heat and energy projects in English public buildings from 2020. No new funding is being committed beyond awarded projects."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Red, amber and green bands",
-     "description": "The time bands most network operators use for distribution unit rates, with a different price in each. Each operator sets its own times."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Renewables Obligation (RO)",
-     "description": "A scheme requiring suppliers to present certificates for each MWh they supply, or pay a buy-out price. The cost is passed on per unit."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Settlement",
-     "description": "The process that works out how much electricity each supplier's customers used, and when, so suppliers pay the right amount for it."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Time-of-use tariff",
-     "description": "A tariff with different unit rates at different times of day, such as day and night rates."
+     "description": "The first two digits of the top line of the supply number. 00 means the supply is settled half-hourly."
     },
     {
      "@type": "DefinedTerm",
      "name": "Transmission Network Use of System (TNUoS)",
-     "description": "Charges for using the national high-voltage transmission network. For business sites, mainly a fixed charge per site per day, banded by agreed capacity or consumption."
-    },
-    {
-     "@type": "DefinedTerm",
-     "name": "Wholesale price",
-     "description": "The price suppliers pay for electricity on the wholesale market, often called the commodity cost."
+     "description": "Charges for the national high-voltage network, mainly a fixed daily charge per site for business supplies."
     }
    ]
   }
@@ -365,14 +385,14 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <a href="guides">Guides</a> <span aria-hidden="true">/</span> <span aria-current="page">Glossary</span></nav>
     <span class="page-hero-kicker">Guide</span>
     <h1 class="page-hero-title">Glossary</h1>
-    <p class="page-hero-lead">Simple definitions of the terms used in half-hourly electricity data and on this site.</p>
+    <p class="page-hero-lead">The estates, energy and data terms used on this site, in plain words.</p>
   </div>
 </section><div class="guide">
   <article class="guide-main prose">
-<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-22">22 November 2026</time></p><p class="answer">Half-hourly (HH) data is a record of the electricity a meter measures in every half hour: 48 readings a day, usually in kWh. The terms you will meet most often are kWh (energy, what you are billed for), kW (how fast electricity is being used at a given moment), base load (the demand that never switches off) and kVA (the unit your supply capacity is set in).</p><dl class="glossary"><div id="agreed-supply-capacity"><dt>Agreed supply capacity</dt><dd>The maximum demand, in kVA, an electricity connection is set up for. It appears on larger electricity bills and is also called authorised or available capacity. <a href="supply-capacity">More</a>.</dd></div><div id="annualised-figure"><dt>Annualised figure</dt><dd>A yearly figure scaled up from the valid readings available. It is used when the data covers less than a full year or has gaps.</dd></div><div id="balancing-services-use-of-system"><dt>Balancing Services Use of System (BSUoS)</dt><dd>A charge that covers the National Energy System Operator's cost of balancing the electricity system. A fixed rate per MWh, set in advance for six-month periods. <a href="non-energy-charges#bsuos">More</a>.</dd></div><div id="base-load"><dt>Base load</dt><dd>The level of demand a building rarely drops below: what never switches off. The analyser measures it as the 5th percentile of half-hourly demand. <a href="base-load">More</a>.</dd></div><div id="capacity-market"><dt>Capacity Market (CM)</dt><dd>A scheme that pays providers to keep enough reliable capacity available. Businesses pay for it according to their electricity use between 4pm and 7pm on working days from November to February. <a href="non-energy-charges#cm">More</a>.</dd></div><div id="climate-change-levy"><dt>Climate Change Levy (CCL)</dt><dd>A tax on energy used by businesses, charged per kWh. Holders of a climate change agreement pay a reduced rate. <a href="non-energy-charges#ccl">More</a>.</dd></div><div id="closed-hours-excess"><dt>Closed-hours excess</dt><dd>Electricity used while a building should be closed, above its base load. The analyser ranks sites by it. <a href="out-of-hours-electricity">More</a>.</dd></div><div id="coefficient-of-performance"><dt>Coefficient of performance (COP)</dt><dd>How much heat a heat pump delivers for each unit of electricity it uses at a given moment. A COP of 3 means 3 kWh of heat for 1 kWh of electricity. The seasonal average is the SCOP.</dd></div><div id="combined-heat-and-power"><dt>Combined heat and power (CHP)</dt><dd>An engine, usually gas-fired, that generates electricity on site and recovers its waste heat for heating and hot water. Common on hospital estates; its carbon case has weakened as the grid has cleaned up. <a href="moving-away-from-chp">More</a>.</dd></div><div id="contracts-for-difference"><dt>Contracts for Difference (CfD)</dt><dd>Contracts that give low-carbon generators a fixed price. Suppliers pay a levy that rises when wholesale prices are low and falls, even to zero, when they are high. <a href="non-energy-charges#cfd">More</a>.</dd></div><div id="coverage"><dt>Coverage</dt><dd>The share of expected half-hourly readings that are present and valid.</dd></div><div id="degree-days"><dt>Degree days</dt><dd>A measure of how cold (heating degree days) or warm (cooling degree days) a period was. Used to compare energy use across periods with different weather.</dd></div><div id="distribution-network-operator"><dt>Distribution network operator (DNO)</dt><dd>The company that owns and runs the local electricity network and agrees your supply capacity and any generation connection.</dd></div><div id="distribution-use-of-system"><dt>Distribution Use of System (DUoS)</dt><dd>Charges for using the local distribution network, set by your network operator. They combine unit rates that vary by time band, capacity charges and fixed daily charges. <a href="non-energy-charges#duos">More</a>.</dd></div><div id="dno"><dt>DNO</dt><dd>Distribution network operator. The company that runs the local electricity network and your site's connection to it. The first two digits of your MPAN show which one. <a href="mpan-profile-class#bottom">More</a>.</dd></div><div id="efpms"><dt>EFPMS</dt><dd>The Estates and Facilities Performance Management System: the mandatory annual estates and facilities return for NHS Wales, including energy and CHP. <a href="estates-returns-and-benchmarking#efpms">More</a>.</dd></div><div id="eric"><dt>ERIC</dt><dd>The Estates Returns Information Collection: the mandatory annual estates and facilities return for NHS trusts in England, including energy use and costs. <a href="estates-returns-and-benchmarking#eric">More</a>.</dd></div><div id="g99"><dt>G99</dt><dd>The engineering recommendation that sets how most generators, including larger solar systems and batteries, apply to the network operator to connect. <a href="solar-planning-and-grid">More</a>.</dd></div><div id="green-plan"><dt>Green Plan</dt><dd>An NHS organisation's board-approved plan for reducing its carbon emissions and environmental impact, in line with the NHS net zero targets.</dd></div><div id="half-hourly"><dt>Half-hourly (HH) data</dt><dd>A record of the electricity used in every half hour: 48 readings a day.</dd></div><div id="health-technical-memorandum"><dt>Health Technical Memorandum (HTM)</dt><dd>Guidance on the design and operation of healthcare buildings and engineering services, such as HTM 03-01 (ventilation), HTM 04-01 (water safety) and HTM 06-01 (electrical services).</dd></div><div id="heat-decarbonisation-plan"><dt>Heat decarbonisation plan (HDP)</dt><dd>A plan for replacing fossil fuel heating with low carbon alternatives, building by building, often required for public sector funding bids. <a href="heat-decarbonisation#plan">More</a>.</dd></div><div id="heatmap"><dt>Heatmap</dt><dd>A chart of every half hour in a period, with one column per day and one row per half hour, coloured by demand. Also called a carpet plot. <a href="reading-a-heatmap">More</a>.</dd></div><div id="kva"><dt>kVA</dt><dd>Kilovolt-ampere. A measure of apparent power, and the unit supply capacity is set in. kVA = kW ÷ power factor.</dd></div><div id="kw"><dt>kW</dt><dd>Kilowatt. A measure of power: the rate electricity is being used at a given moment. Divide a half-hourly reading in kWh by 0.5 to get the average kW for that half hour.</dd></div><div id="kwh"><dt>kWh</dt><dd>Kilowatt-hour. A measure of energy, and what you are billed for. Using 1 kW for one hour is 1 kWh.</dd></div><div id="load-factor"><dt>Load factor</dt><dd>Average demand divided by peak demand. A low load factor means demand has short, high peaks.</dd></div><div id="market-wide-half-hourly-settlement"><dt>Market-wide half-hourly settlement (MHHS)</dt><dd>The move to settle every electricity meter in Great Britain using half-hourly data. <a href="half-hourly-settlement">More</a>.</dd></div><div id="mpan"><dt>MPAN</dt><dd>Meter point administration number. The 13-digit number on the bottom line of the supply number on an electricity bill. It identifies the supply point. <a href="mpan-profile-class">More</a>.</dd></div><div id="nhs-carbon-footprint"><dt>NHS Carbon Footprint</dt><dd>The emissions the NHS in England controls directly, including energy used in its buildings. The target is net zero by 2040. The Carbon Footprint Plus adds the supply chain, with a 2045 target. <a href="nhs-net-zero-targets">More</a>.</dd></div><div id="nhs-net-zero-building-standard"><dt>NHS Net Zero Building Standard</dt><dd>The NHS England standard for new buildings and major upgrades that need HM Treasury business case approval, covering energy and whole-life carbon. <a href="nhs-net-zero-targets#england">More</a>.</dd></div><div id="non-energy-costs"><dt>Non-energy costs</dt><dd>Everything in an electricity price apart from the wholesale energy: network charges, policy costs and taxes. <a href="business-electricity-price">More</a>.</dd></div><div id="nuclear-rab-levy"><dt>Nuclear RAB levy</dt><dd>A levy on suppliers that funds the building of new nuclear power stations under the Regulated Asset Base model, starting with Sizewell C. <a href="non-energy-charges#rab">More</a>.</dd></div><div id="peak-demand"><dt>Peak demand</dt><dd>The highest half-hourly average demand in a period, usually in kW or kVA.</dd></div><div id="power-factor"><dt>Power factor</dt><dd>The ratio of real power (kW) to apparent power (kVA), between 0 and 1. Equipment such as motors lowers it.</dd></div><div id="power-purchase-agreement"><dt>Power purchase agreement (PPA)</dt><dd>A contract to buy electricity from a generator at an agreed price, often from a solar system a funder owns on your site. <a href="paying-for-solar">More</a>.</dd></div><div id="profile-class"><dt>Profile class</dt><dd>The first two digits of the top line of the supply number. 00 means the supply is settled half-hourly; 01 to 08 mean use is estimated from standard profiles. <a href="mpan-profile-class#top">More</a>.</dd></div><div id="public-sector-decarbonisation-scheme"><dt>Public Sector Decarbonisation Scheme (PSDS)</dt><dd>The UK government grant scheme, run by Salix, that funded heat and energy projects in English public buildings from 2020. No new funding is being committed beyond awarded projects. <a href="decarbonisation-funding#england">More</a>.</dd></div><div id="red-amber-and-green-bands"><dt>Red, amber and green bands</dt><dd>The time bands most network operators use for distribution unit rates, with a different price in each. Each operator sets its own times. <a href="non-energy-charges#duos">More</a>.</dd></div><div id="renewables-obligation"><dt>Renewables Obligation (RO)</dt><dd>A scheme requiring suppliers to present certificates for each MWh they supply, or pay a buy-out price. The cost is passed on per unit. <a href="non-energy-charges#ro">More</a>.</dd></div><div id="settlement"><dt>Settlement</dt><dd>The process that works out how much electricity each supplier's customers used, and when, so suppliers pay the right amount for it.</dd></div><div id="time-of-use-tariff"><dt>Time-of-use tariff</dt><dd>A tariff with different unit rates at different times of day, such as day and night rates.</dd></div><div id="transmission-network-use-of-system"><dt>Transmission Network Use of System (TNUoS)</dt><dd>Charges for using the national high-voltage transmission network. For business sites, mainly a fixed charge per site per day, banded by agreed capacity or consumption. <a href="non-energy-charges#tnuos">More</a>.</dd></div><div id="wholesale-price"><dt>Wholesale price</dt><dd>The price suppliers pay for electricity on the wholesale market, often called the commodity cost. <a href="electricity-prices-ten-years#wholesale">More</a>.</dd></div></dl>
+<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-22">22 November 2026</time></p><p class="answer">These are the terms estates teams meet when they work with half-hourly electricity data and plan decarbonisation: estates terms such as ERIC, HTM and theatre setback; heat, solar and grid terms such as COP, G99 and firm headroom; data terms such as base load, kW and kVA; and the charges on the bill.</p><h2 id="healthcare-estates">Healthcare estates</h2><dl class="glossary"><div id="authorised-person"><dt>Authorised Person (Ventilation)</dt><dd>The person appointed in writing to manage specialised ventilation systems on a healthcare site, under HTM 03-01. Part of any project that changes theatre ventilation.</dd></div><div id="capital-departmental-expenditure-limit"><dt>Capital departmental expenditure limit (CDEL)</dt><dd>The cap on capital spending set for NHS organisations. Whether a solar PPA or lease counts against it depends on how the contract is accounted for. <a href="paying-for-solar#ppa">More</a>.</dd></div><div id="efpms"><dt>EFPMS</dt><dd>The Estates and Facilities Performance Management System: NHS Wales's mandatory annual estates return, covering energy and CHP among much else. <a href="estates-returns-and-benchmarking#efpms">More</a>.</dd></div><div id="eric"><dt>ERIC</dt><dd>The Estates Returns Information Collection: the mandatory annual estates and facilities return for NHS trusts in England, including energy use and cost by site. <a href="estates-returns-and-benchmarking#eric">More</a>.</dd></div><div id="essential-supplies"><dt>Essential supplies</dt><dd>The parts of a hospital's electrical system backed by standby generators, so clinical services keep running if the grid supply fails.</dd></div><div id="generator-test"><dt>Generator test</dt><dd>The routine on-load test of a hospital's standby generators, often monthly. While it runs the site imports less from the grid, which shows as a short dip in half-hourly data.</dd></div><div id="green-plan"><dt>Green Plan</dt><dd>An NHS organisation's board-approved plan for cutting its carbon emissions and wider environmental impact, in line with the NHS net zero targets.</dd></div><div id="health-technical-memorandum"><dt>Health Technical Memorandum (HTM)</dt><dd>Guidance on designing and running healthcare buildings and engineering services. The ones that matter most for energy are HTM 03-01 (specialised ventilation), HTM 04-01 (water safety) and HTM 06-01 (electrical services). Scotland and Wales publish their own versions (SHTM, WHTM).</dd></div><div id="heat-decarbonisation-plan"><dt>Heat decarbonisation plan (HDP)</dt><dd>A building-by-building plan for replacing fossil fuel heating with low carbon heat, often needed for public sector funding bids. <a href="heat-decarbonisation#plan">More</a>.</dd></div><div id="nhs-carbon-footprint"><dt>NHS Carbon Footprint</dt><dd>The emissions the NHS in England controls directly, including energy in its buildings, with a net zero target of 2040. The Carbon Footprint Plus adds the supply chain, with a 2045 target. <a href="nhs-net-zero-targets">More</a>.</dd></div><div id="nhs-estates-technical-bulletin"><dt>NHS Estates Technical Bulletin (NETB)</dt><dd>Technical guidance from NHS England that supplements the HTMs. NETB 2026/1 covers energy savings from controlling theatre ventilation. <a href="base-load#theatres">More</a>.</dd></div><div id="nhs-net-zero-building-standard"><dt>NHS Net Zero Building Standard</dt><dd>The NHS England standard for new buildings and major refurbishments that need HM Treasury business case approval, covering operational energy and whole-life carbon. <a href="nhs-net-zero-targets#england">More</a>.</dd></div><div id="pfi"><dt>PFI</dt><dd>Private Finance Initiative. On a PFI hospital a project company built the buildings and runs services under a long contract, and often holds the energy supply and meter data. Its consent is needed for works such as solar.</dd></div><div id="public-sector-decarbonisation-scheme"><dt>Public Sector Decarbonisation Scheme (PSDS)</dt><dd>The government grant scheme, run by Salix, that funded heat and energy projects in public buildings in England from 2020. New rounds are not being funded beyond 2027/28. <a href="decarbonisation-funding#england">More</a>.</dd></div><div id="theatre-ventilation-setback"><dt>Theatre ventilation setback</dt><dd>Reducing or switching off operating theatre ventilation when the theatre is empty, then returning to full flow before use. One of the largest energy savings available on a hospital. <a href="base-load#theatres">More</a>.</dd></div><div id="ventilation-safety-group"><dt>Ventilation Safety Group (VSG)</dt><dd>The multidisciplinary group in an NHS organisation that oversees specialised ventilation, including estates, infection prevention and clinical staff. The starting point for any change to theatre ventilation.</dd></div><div id="water-safety-group"><dt>Water Safety Group</dt><dd>The group that owns an organisation's water safety plan for legionella and other risks under HTM 04-01. Changes to hot water temperatures or circulation need its agreement.</dd></div></dl><h2 id="heat-solar-and-the-grid">Heat, solar and the grid</h2><dl class="glossary"><div id="agreed-supply-capacity"><dt>Agreed supply capacity</dt><dd>The most a site's connection is contracted to draw, in kVA, shown on larger electricity bills. Also called authorised or available capacity. <a href="supply-capacity">More</a>.</dd></div><div id="coefficient-of-performance"><dt>Coefficient of performance (COP)</dt><dd>Heat delivered by a heat pump per unit of electricity used. A COP of 3 means 3 kWh of heat for 1 kWh of electricity. Averaged over a season it is the SCOP.</dd></div><div id="combined-heat-and-power"><dt>Combined heat and power (CHP)</dt><dd>A gas engine that generates electricity on site and uses its waste heat for heating and hot water. Common on hospitals; its carbon advantage over grid electricity has largely gone. <a href="moving-away-from-chp">More</a>.</dd></div><div id="distribution-network-operator"><dt>Distribution network operator (DNO)</dt><dd>The company that runs the local electricity network, agrees your supply capacity and approves generation such as solar. The first two digits of the MPAN show which one you are on. <a href="mpan-profile-class#bottom">More</a>.</dd></div><div id="export-limit"><dt>Export limit</dt><dd>A cap, agreed with the DNO and enforced by a control system, on how much a site's solar or batteries can send back to the network. Usually costs a 24-hour hospital little. <a href="solar-planning-and-grid#g99">More</a>.</dd></div><div id="firm-headroom"><dt>Firm headroom</dt><dd>The largest constant extra load a supply could take in every half hour of the period without going over its agreed capacity less a safety margin. <a href="supply-capacity#headroom">More</a>.</dd></div><div id="g99"><dt>G99</dt><dd>The engineering recommendation setting how larger generators, including most hospital solar systems and batteries, apply to the DNO to connect. <a href="solar-planning-and-grid#g99">More</a>.</dd></div><div id="power-purchase-agreement"><dt>Power purchase agreement (PPA)</dt><dd>A contract to buy electricity from a generator at an agreed rate, often from a solar system a funder owns on your site. <a href="paying-for-solar#ppa">More</a>.</dd></div><div id="self-consumption"><dt>Self-consumption</dt><dd>The share of a solar system's output used on site at the time it is generated rather than exported. On a 24-hour hospital it is usually high. <a href="solar#share">More</a>.</dd></div></dl><h2 id="reading-half-hourly-data">Reading half-hourly data</h2><dl class="glossary"><div id="annualised-figure"><dt>Annualised figure</dt><dd>A yearly total scaled up from the valid readings, used when the data falls short of a full year or has gaps. The analyser withholds it below six months.</dd></div><div id="base-load"><dt>Base load</dt><dd>The level a site's demand rarely falls below, measured by the analyser as the 5th percentile of half-hourly demand. On a hospital it is usually the largest part of the bill. <a href="base-load">More</a>.</dd></div><div id="closed-hours-excess"><dt>Closed-hours excess</dt><dd>Electricity used while a building should be closed, above its base load. Used for clinics, health centres and offices, not 24-hour sites. <a href="out-of-hours-electricity">More</a>.</dd></div><div id="coverage"><dt>Coverage</dt><dd>The share of expected half-hourly readings that are present and valid.</dd></div><div id="degree-days"><dt>Degree days</dt><dd>A measure of how cold or warm a period was, used to compare heating or cooling energy across periods with different weather.</dd></div><div id="half-hourly"><dt>Half-hourly (HH) data</dt><dd>The electricity a meter records in each half hour: 48 readings a day, 17,520 in a normal year.</dd></div><div id="heatmap"><dt>Heatmap</dt><dd>One chart of every half hour in a period, a column per day and a row per half hour, coloured by demand. Also called a carpet plot. <a href="reading-a-heatmap">More</a>.</dd></div><div id="kva"><dt>kVA</dt><dd>Kilovolt-ampere, the unit of apparent power that supply capacity is set in. kVA = kW ÷ power factor.</dd></div><div id="kw"><dt>kW</dt><dd>Kilowatt, the rate electricity is being used. A half-hourly reading in kWh divided by 0.5 gives the average kW for that half hour.</dd></div><div id="kwh"><dt>kWh</dt><dd>Kilowatt-hour, the unit of energy you are billed for. 1 kW for one hour is 1 kWh.</dd></div><div id="load-factor"><dt>Load factor</dt><dd>Average demand divided by peak demand. Hospitals have high load factors because demand never falls far.</dd></div><div id="low-activity-window"><dt>Low-activity window</dt><dd>The hours the analyser treats as a 24-hour site's quietest, 01:00 to 05:00 by default, in place of closed hours.</dd></div><div id="mpan"><dt>MPAN</dt><dd>Meter point administration number: the 13-digit number on the bottom line of the supply number on an electricity bill. <a href="mpan-profile-class">More</a>.</dd></div><div id="peak-demand"><dt>Peak demand</dt><dd>The highest half-hourly average demand in a period, in kW or kVA. On many hospitals it falls on a hot summer afternoon.</dd></div><div id="power-factor"><dt>Power factor</dt><dd>The ratio of real power (kW) to apparent power (kVA), between 0 and 1. Motors and fans lower it.</dd></div></dl><h2 id="on-the-electricity-bill">On the electricity bill</h2><dl class="glossary"><div id="capacity-market"><dt>Capacity Market (CM)</dt><dd>A scheme paying providers to keep reliable capacity available, charged on use between 4pm and 7pm on working days from November to February. <a href="non-energy-charges#cm">More</a>.</dd></div><div id="climate-change-levy"><dt>Climate Change Levy (CCL)</dt><dd>A tax per kWh on energy used by businesses and public bodies. <a href="non-energy-charges#ccl">More</a>.</dd></div><div id="distribution-use-of-system"><dt>Distribution Use of System (DUoS)</dt><dd>Charges for using the local network, set by the DNO: unit rates by time band, capacity charges and daily charges. <a href="non-energy-charges#duos">More</a>.</dd></div><div id="market-wide-half-hourly-settlement"><dt>Market-wide half-hourly settlement (MHHS)</dt><dd>The move to settle every electricity meter in Great Britain on half-hourly data. <a href="half-hourly-settlement">More</a>.</dd></div><div id="non-energy-costs"><dt>Non-energy costs</dt><dd>Everything in the electricity price apart from the wholesale energy: network charges, policy costs and taxes. <a href="non-energy-charges">More</a>.</dd></div><div id="profile-class"><dt>Profile class</dt><dd>The first two digits of the top line of the supply number. 00 means the supply is settled half-hourly. <a href="mpan-profile-class#top">More</a>.</dd></div><div id="transmission-network-use-of-system"><dt>Transmission Network Use of System (TNUoS)</dt><dd>Charges for the national high-voltage network, mainly a fixed daily charge per site for business supplies. <a href="non-energy-charges#tnuos">More</a>.</dd></div></dl>
   </article>
   <aside class="guide-side">
-
+    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#healthcare-estates">Healthcare estates</a></li><li><a href="#heat-solar-and-the-grid">Heat, solar and the grid</a></li><li><a href="#reading-half-hourly-data">Reading half-hourly data</a></li><li><a href="#on-the-electricity-bill">On the electricity bill</a></li></ol></nav>
     <div class="side-cta"><strong>Try it on your own data</strong><p>It's free, there's no sign-up, and your file stays on your computer.</p><a href="analyser/" class="btn">Open the analyser</a></div>
   </aside>
 </div><section class="cta-strip">

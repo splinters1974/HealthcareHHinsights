@@ -119,6 +119,7 @@ PAGES.append(guide_page(
   'The decarbonisation challenge for NHS and private healthcare estates in England, Scotland and Wales: targets, heat, CHP, grid capacity, funding, and where half-hourly data fits in.',
   f'''
 <p class="answer">For most hospital estates the biggest single source of carbon is heat from burning gas, in boilers and CHP. Replacing it means moving to electric heat pumps and heat networks, which needs electrical capacity, money and time. The practical order is: measure what you use and when, cut waste, check your electrical headroom, add on-site generation where it pays, then replace fossil heat as plant reaches the end of its life.</p>
+<p class="help">Looking for the numbers alone? See <a href="nhs-estates-energy-facts.html">NHS estates energy facts and figures</a>.</p>
 {NOT_NHS}
 {photo('estate-hospital', 'Illustration of a hospital estate with solar on the roofs and car park canopies, plant compounds, battery storage and a substation')}
 
@@ -615,5 +616,98 @@ PAGES.append(guide_page(
    ('hospital-energy-efficiency.html', 'Energy efficiency', 'Where the savings usually are.')],
   'Private and independent hospitals: ESOS Phase 4 (qualification 31 Dec 2026, notify by 5 Dec 2027), SECR, NHS supplier carbon reduction plans (all procurements since April 2024; 2027 standard for contracts of £5m a year or more), IHPN net zero by 2035, solar and efficiency.',
   crumbs=[HOME, SECTORS, ('Private and independent hospitals', 'private-hospitals.html')]))
+
+# ── FACTS AND FIGURES ───────────────────────────────────────────────────
+# Every figure here is already sourced on one of the guides above; this page
+# gathers them for people (and answer engines) looking for the numbers.
+# Update it whenever one of those guides changes a figure.
+K = ['eric', 'phu', 'eric24', 'nz', 'nz5', 'scot', 'scot25', 'walest', 'wales', 'nzbs', 'ghg26',
+     'psds', 'psds4', 'gbe100', 'gbe1', 'clean', 'netb', 'supp', 'crp27', 'ihpn', 'esos']
+
+
+def _row(figure, what, *keys):
+    return f'<tr><td class="num" style="white-space:nowrap"><strong>{figure}</strong></td><td>{what}{ref(*[n(K, k) for k in keys])}</td></tr>'
+
+
+def _table(label, rows):
+    return (f'<div class="table-wrap"><table aria-label="{label}"><thead><tr><th class="num">Figure</th><th>What it is</th></tr></thead><tbody>'
+            + ''.join(rows) + '</tbody></table></div>')
+
+
+PAGES.append(guide_page(
+  'nhs-estates-energy-facts.html',
+  'NHS estates energy: key facts and figures for 2026',
+  'NHS estates energy: facts and figures',
+  'The numbers estates teams, boards and suppliers ask for most, in one place: the size of the estate, net zero dates, carbon factors, funding and the biggest single savings. Each one is sourced and dated.',
+  'Key figures on NHS estates energy for 2026: estate cost and energy use, net zero dates in England, Scotland and Wales, carbon factors, funding and theatre savings.',
+  f'''
+<p class="answer">NHS trusts in England spent about £14.4 billion running their estates in 2025/26 and used around 11 billion kWh of energy.{ref(n(K, 'eric'))} The NHS in England aims for net zero by 2040 for the emissions it controls, NHS Scotland by 2040 with renewable heat in all NHS-owned buildings by 2038, and NHS Wales has interim targets of a 34% cut by 2030 and no fossil CHP after 2035.{ref(n(K, 'nz'), n(K, 'scot'), n(K, 'walest'), n(K, 'wales'))} The grid electricity carbon factor for 2026 reporting is about 0.13 kg CO₂e per kWh.{ref(n(K, 'ghg26'))}</p>
+{NOT_NHS}
+<p class="help">Figures checked {long_date(CHECKED)}. Each links to its source below; the guides linked in each section explain what the numbers mean for an estate.</p>
+
+<h2 id="estate">The size of the estate</h2>
+{_table('The size of the NHS estate', [
+  _row('£14.4bn', 'Cost of running the NHS estate in England, 2025/26 (ERIC)', 'eric'),
+  _row('~11bn kWh', 'Energy used by the NHS estate in England in a year (ERIC)', 'eric'),
+  _row('~£1.3bn', 'Estimated NHS energy bill, almost double its 2019 level', 'phu'),
+  _row('£15.9bn', 'Backlog maintenance in the English NHS estate, 2024/25', 'eric24'),
+])}
+<p>See <a href="estates-returns-and-benchmarking.html">ERIC, EFPMS and benchmarking</a>.</p>
+
+<h2 id="targets">Net zero targets</h2>
+{_table('NHS net zero targets', [
+  _row('2040', 'England: net zero for the NHS Carbon Footprint (emissions it controls), with an 80% cut by 2028 to 2032', 'nz'),
+  _row('2045', 'England: net zero for the Carbon Footprint Plus, including the supply chain', 'nz'),
+  _row('68%+', 'England: reported fall in directly controlled emissions since 1990', 'nz5'),
+  _row('2038', 'Scotland: renewable heating in all NHS-owned buildings', 'scot'),
+  _row('2040', 'Scotland: whole NHS estate net zero, or earlier', 'scot'),
+  _row('34%', 'Wales: interim emissions cut by 2030 (16% by 2025)', 'walest'),
+  _row('2035', 'Wales: all fossil-fuelled CHP decommissioned; no new fossil CHP installed', 'wales'),
+  _row('2035', 'Independent sector: IHPN ambition for providers to reach net zero', 'ihpn'),
+])}
+<p>See <a href="nhs-net-zero-targets.html">NHS net zero targets in England, Scotland and Wales</a>.</p>
+
+<h2 id="carbon">Carbon factors and CHP</h2>
+{_table('Carbon factors', [
+  _row('0.13', 'kg CO₂e per kWh of grid electricity, UK government factor for 2026 reporting (0.177 for 2025)', 'ghg26'),
+])}
+<p>At that factor, a typical gas CHP engine now emits more than buying grid electricity and making the heat in a boiler. Our worked comparison puts the CHP route about a third higher, and more than twice grid electricity with a heat pump; see <a href="moving-away-from-chp.html">moving away from gas CHP</a> for the assumptions.</p>
+
+<h2 id="funding">Funding</h2>
+{_table('Funding for NHS decarbonisation', [
+  _row('2027/28', 'Public Sector Decarbonisation Scheme: no new rounds beyond this; Phase 4 projects run to 31 March 2028', 'psds'),
+  _row('£510', 'PSDS Phase 4 cap on grant per tonne of CO₂e saved over a project\'s life', 'psds4'),
+  _row('£100m', 'Great British Energy funding for NHS trust solar and batteries (March 2025): 132 projects at 78 trusts', 'gbe100'),
+  _row('162', 'NHS sites in England with completed solar through the programme by May 2026, with £25m more for up to 40 sites', 'gbe1'),
+  _row('£74m', 'Clean energy and efficiency upgrades shared by 82 NHS trusts, eight military sites and a prison (February 2026)', 'clean'),
+])}
+<p>See <a href="decarbonisation-funding.html">funding for healthcare decarbonisation</a>.</p>
+
+<h2 id="savings">The biggest single saving</h2>
+{_table('Theatre ventilation savings', [
+  _row('132 to 286 MWh', 'Energy saved per operating theatre each year by switching off or setting back ventilation when empty', 'netb'),
+  _row('~3,300', 'Operating theatres in England', 'netb'),
+  _row('25 to 30 min', 'Active ventilation needed before a theatre is used after a long shutdown', 'netb'),
+])}
+<p>See <a href="base-load.html#theatres">theatre ventilation and base load</a> and the <a href="example-hospital-analysis.html">worked example</a>, where a failed setback costs a community hospital about £31,000 a year.</p>
+
+<h2 id="rules">Reporting and procurement rules</h2>
+{_table('Reporting and procurement', [
+  _row('10%', 'Minimum weighting for net zero and social value in NHS procurements since April 2022', 'supp'),
+  _row('April 2024', 'Carbon reduction plan required for all new NHS procurements', 'supp'),
+  _row('1 April 2027', 'Stricter carbon reduction plan standard for contracts of £5m a year or more and new frameworks', 'crp27'),
+  _row('31 Dec 2026', 'ESOS Phase 4 qualification date for large undertakings, including private hospital groups', 'esos'),
+])}
+<p>See <a href="private-hospitals.html">private and independent hospitals</a>.</p>
+''' + sources_for(*K),
+  [('estate', 'The size of the estate'), ('targets', 'Net zero targets'), ('carbon', 'Carbon factors and CHP'), ('funding', 'Funding'), ('savings', 'The biggest single saving'), ('rules', 'Reporting and procurement')],
+  [('How much energy does the NHS use?', 'NHS trusts in England used around 11 billion kWh of energy in a year, according to the Estates Returns Information Collection, and spent about £14.4 billion running their estates in 2025/26.'),
+   ('When does the NHS have to reach net zero?', 'In England, 2040 for emissions the NHS controls directly and 2045 including the supply chain. NHS Scotland aims for 2040, with renewable heat in all NHS-owned buildings by 2038. NHS Wales has interim targets of 16% by 2025 and 34% by 2030.'),
+   ('What is the grid carbon factor for 2026?', 'About 0.13 kg CO2e per kWh in the UK government conversion factors for 2026 reporting, down from 0.177 for 2025.'),
+   ('How much energy does theatre ventilation setback save?', 'NHS England estimates 132 to 286 MWh per operating theatre each year, across about 3,300 theatres in England.')],
+  [('healthcare-estates-decarbonisation.html', 'The estates challenge', 'What these numbers mean, and where to start.'),
+   ('nhs-net-zero-targets.html', 'Net zero targets', 'The targets in full.'),
+   ('example-hospital-analysis.html', 'Worked example', 'The figures on one hospital.')],
+  'Sourced key figures for NHS estates energy (checked November 2026): £14.4bn estate cost and ~11bn kWh energy (ERIC 2025/26), £15.9bn backlog, net zero 2040/2045 England, 2040 Scotland with renewable heat by 2038, Wales 34% by 2030 and no fossil CHP after 2035, grid factor 0.13 kg/kWh (2026), PSDS ending, GBE £100m NHS solar, theatre setback 132-286 MWh per theatre.'))
 
 PAGES[0].section = 'Guides'

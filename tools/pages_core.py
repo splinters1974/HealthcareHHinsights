@@ -71,6 +71,22 @@ PAGES['index.html'] = ('Half-hourly electricity analysis and solar for healthcar
   </div>
 </section>
 
+<section class="section">
+  <div class="section-inner split">
+    <div>
+      <span class="section-kicker">Worked example</span>
+      <h2 class="section-title">What a year of data showed at one community hospital</h2>
+      <p class="section-lead">We ran a year of readings from a made-up 60-bed community hospital through the analyser. It found a theatre ventilation fault, a hard limit on heat pump size, and a site that would use almost every unit of solar.</p>
+      <p style="margin-top:24px"><a href="example-hospital-analysis.html" class="btn btn-outline">Read the worked example</a> <a href="sample-report.html" style="margin-left:16px;color:var(--blue);text-decoration:underline">See the sample report</a></p>
+    </div>
+    <div class="stat-grid" style="grid-template-columns:1fr;margin:0">
+      <div><strong>£31,000</strong><span>a year from a theatre ventilation setback that stopped working</span></div>
+      <div><strong>100 kW</strong><span>heat pump fits its 400 kVA supply through winter. A 150 kW one doesn't</span></div>
+      <div><strong>99.8%</strong><span>of a 299 kWp solar system's output used on site</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="section band-mist">
   <div class="section-inner">
     <div class="head-row">
@@ -131,7 +147,7 @@ PAGES['index.html'] = ('Half-hourly electricity analysis and solar for healthcar
       {_card('solar-on-healthcare-estates.html', 'Solar on healthcare estates', 'Why 24/7 sites suit solar, and how to size it from your data.')}
     </div>
     <div class="home-more">
-      <div><h3>Decarbonisation</h3><ul><li><a href="nhs-net-zero-targets.html">Net zero targets across the UK</a></li><li><a href="decarbonisation-funding.html">Funding routes after PSDS</a></li><li><a href="heat-decarbonisation.html">Heat decarbonisation</a></li><li><a href="hospital-electrical-capacity.html">Electrical capacity</a></li><li><a href="hospital-energy-efficiency.html">Energy efficiency</a></li><li><a href="estates-returns-and-benchmarking.html">ERIC, EFPMS and benchmarking</a></li></ul></div>
+      <div><h3>Decarbonisation</h3><ul><li><a href="nhs-estates-energy-facts.html">NHS estates energy facts and figures</a></li><li><a href="nhs-net-zero-targets.html">Net zero targets across the UK</a></li><li><a href="decarbonisation-funding.html">Funding routes after PSDS</a></li><li><a href="heat-decarbonisation.html">Heat decarbonisation</a></li><li><a href="hospital-electrical-capacity.html">Electrical capacity</a></li><li><a href="hospital-energy-efficiency.html">Energy efficiency</a></li><li><a href="estates-returns-and-benchmarking.html">ERIC, EFPMS and benchmarking</a></li></ul></div>
       <div><h3>Solar</h3><ul><li><a href="solar-calculator.html">The solar calculator</a></li><li><a href="solar.html">Sizing solar from half-hourly data</a></li><li><a href="solar-calculator-method.html">How the calculator works</a></li><li><a href="solar-cost.html">What solar costs</a></li><li><a href="solar-planning-and-grid.html">Planning and grid connection</a></li><li><a href="paying-for-solar.html">Paying for solar</a></li></ul></div>
       <div><h3>Your data</h3><ul><li><a href="get-your-data.html">Getting your half-hourly data</a></li><li><a href="base-load.html">Base load</a></li><li><a href="supply-capacity.html">Supply capacity and kVA</a></li><li><a href="reading-a-heatmap.html">Reading a heatmap</a></li><li><a href="non-energy-charges.html">Non-energy charges</a></li><li><a href="glossary.html">Glossary</a></li></ul></div>
     </div>
@@ -262,42 +278,45 @@ PAGES['get-your-data.html'] = ('How NHS sites get half-hourly electricity data',
 
 # ── FAQ ─────────────────────────────────────────────────────────────────
 FAQ = [
-  ('Using the analyser', [
-    ('Who is it for?', 'Estates, facilities, energy and sustainability teams in NHS trusts, health boards, integrated care boards, ambulance trusts and independent hospitals across England, Scotland and Wales. It works for any building with a half-hourly meter, but the settings, guides and examples are written for healthcare.'),
-    ('Is this an NHS tool?', 'No. Hospital Energy Insights is independent and is not part of, or endorsed by, the NHS. It is run by Kinetic Energy Consulting. Our guides summarise and link to NHS, Scottish Government and Welsh Government policy.'),
-    ('Will it work for a 24-hour hospital?', 'Yes. Use the hospital preset, which has no closed hours. The analysis then focuses on base load, day and night use, peaks against capacity and lasting changes. Give clinics and offices on the site their real opening hours.'),
-    ('Is it really free?', "Yes. There's no charge, no account and no limit on the number of sites. If you'd like help acting on the results you can contact us, but there's no obligation."),
-    ('Do I need to install anything?', "No. It runs in Chrome or Edge on a recent computer. It isn't designed for phones, because the charts need a larger screen."),
-    ('How many sites can I load?', 'As many as your computer can handle. Each meter file becomes a site, and the analyser ranks them so you know which to look at first.'),
-    ('Is there a user guide?', f'Yes. <a href="{GUIDE_PDF}" download>Download the user guide</a> (PDF). It takes you through getting your data, loading it, setting opening hours, reading the results, downloading reports and creating customer dashboards.'),
-    ('Can I save my work?', 'Yes. Save a project file to your computer and open it again later. It contains the readings and all your settings, so store it as carefully as the original data.'),
-    ('Will our information governance team approve it?', 'The analysis runs in your browser and nothing is uploaded, so no meter data leaves your computer, and half-hourly electricity data contains no patient information. Share the <a href="privacy.html">privacy notice</a> with your IG team if they want the details.'),
-    ('How does the solar calculator get my data?', 'On a site\'s Solar tab, Size solar for this site opens the solar calculator with a summary: the site\'s annual use, the share of solar output it would use at a dozen system sizes, and the postcode if you entered one. They travel after the # in the web address, which browsers do not send to any server. The readings stay on your computer.'),
-    ('Can I share results with a client or colleague?', "Yes. You can download a PDF report for one site or your whole portfolio, export to Excel, or create a customer dashboard. That's a password-protected copy of the analyser containing only their sites."),
+  ('About the tools', [
+    ('Who is Hospital Energy Insights for?', 'Estates, facilities, energy and sustainability teams in NHS trusts, health boards, integrated care boards, ambulance trusts and independent hospital groups in England, Scotland and Wales. Capital planning and finance teams use the reports too.'),
+    ('Is it an NHS service?', 'No. It is independent, run by Kinetic Energy Consulting, and not part of or endorsed by the NHS. The guides summarise NHS England, Scottish Government and Welsh Government policy and link to the originals.'),
+    ('What does it cost?', f'Nothing. There is no fee, no account and no limit on sites. If you want help taking the results further, <a href="contact.html">get in touch</a>, but there is no obligation. A <a href="{GUIDE_PDF}" download>user guide</a> (PDF) is free too.'),
+    ('What do I need to run it?', 'Chrome or Edge on a laptop or desktop, and one half-hourly file per meter. Nothing to install. The charts need a big screen, so it is not built for phones.'),
+    ('Can I keep my work and come back to it?', 'Yes. Save a project file to your computer. It holds the readings and every setting, so store it as you would the original meter data.'),
   ]),
-  ('Your data', [
-    ('Is my data uploaded anywhere?', 'No. The analysis runs entirely in your web browser. Your meter files are read on your own computer and nothing is sent to us or anyone else. Once the page has loaded you can even disconnect from the internet and keep working. Our <a href="privacy.html">privacy notice</a> has the details.'),
-    ('What data do I need?', 'Half-hourly electricity readings for each meter, ideally covering 12 months or more. <a href="get-your-data.html">Here is how to get them.</a>'),
-    ('What if my file has gaps or errors?', 'The analyser finds them before showing any figures. Missing readings are left out rather than counted as zero, and days with zero readings or clock changes are flagged for you to decide on.'),
+  ('Hospitals and other healthcare sites', [
+    ('Does it work on a hospital that never closes?', 'Yes. New sites start on the 24/7 hospital preset, which has no closed hours and uses 01:00 to 05:00 as a low-activity window. The analysis concentrates on base load and its monthly trend, peaks against capacity, unusual days and solar. Switch health centres, outpatient blocks and offices to the clinic or office preset.'),
+    ('We have two incoming supplies. How do we load them?', 'Load one file per meter and group them into one site in the settings, so peaks are checked against capacity on their combined demand.'),
+    ('Our hospital runs a CHP engine. Can we still use it?', 'Yes, but the import meter only shows what the grid supplies while the engine runs. Load the CHP generation meter as its own file to see total demand, and look at engine-off days before assuming there is headroom. See <a href="moving-away-from-chp.html">moving away from CHP</a>.'),
+    ('Can it find a theatre ventilation setback that has stopped working?', 'Often, yes. A failed setback shows as a step up in base load by month and darker nights and weekends on the heatmap. The <a href="example-hospital-analysis.html">worked example</a> shows one.'),
+    ('Is it any use for a PFI hospital?', 'Yes, if you can get the meter data. On many PFI sites the project company or its facilities management provider holds it, so ask them. See <a href="get-your-data.html">getting half-hourly data</a>.'),
+    ('Can it help with ERIC or EFPMS returns?', 'It does not fill in the returns, but it gives you the annual electricity figure for each meter and explains the patterns behind it. See <a href="estates-returns-and-benchmarking.html">ERIC, EFPMS and benchmarking</a>.'),
   ]),
-  ('The results', [
-    ('Are the costs savings?', 'No. They show what a pattern costs now at the rates you entered. Any saving depends on what you change. The savings estimates are clearly labelled as estimates.'),
-    ('How accurate is it?', "It's as accurate as the data and opening hours you give it. Each finding shows a confidence rating and the evidence behind it, and each figure is labelled as measured or estimated."),
-    ('Can it size heat pumps?', 'Not the heat side: that needs heat data and a designer. It does answer the electrical question first, by testing a heat pump\'s electrical load against each supply\'s winter peaks and agreed capacity. See <a href="hospital-electrical-capacity.html">electrical capacity</a>.'),
-    ('Does it analyse gas?', 'Not yet. It reads electricity meter data. Gas and heat analysis is planned. Our <a href="heat-decarbonisation.html">heat decarbonisation guide</a> covers what to look at in the meantime.'),
-    ('Can it tell me which equipment is wasting energy?', 'No. Data from the main meter shows when electricity is used, but not what is using it. The findings tell you when and where to look, and a visit to the building finds the cause.'),
+  ('Data and information governance', [
+    ('Is any data uploaded?', 'No. Everything runs in your web browser and the files are read on your own computer. Nothing is sent to us or anyone else, and once the page has loaded you can work offline. The <a href="privacy.html">privacy notice</a> has the detail.'),
+    ('Will our IG team approve it?', 'Half-hourly electricity data records energy, not people, so it holds no patient information, and the files never leave your computer. Share the <a href="privacy.html">privacy notice</a> if your IG team wants to review it.'),
+    ('What happens to gaps and errors in our files?', 'The analyser checks before it reports. Missing readings are left out, never counted as zero; zero days, clock-change days and duplicates are held back for you to decide on.'),
+    ('What reaches the solar calculator?', 'Only a summary: annual use, the share of solar the site would use at a dozen sizes, and the postcode if you entered one. It travels after the # in the web address, which browsers never send to a server.'),
+  ]),
+  ('Using the results', [
+    ('Are the costs savings?', 'No. They are what a pattern costs now at your rates. A saving depends on what you change, and should be confirmed from the meter data afterwards. See <a href="proving-savings.html">proving a saving worked</a>.'),
+    ('How far can we trust a finding?', 'Each one has an impact rating and a separate confidence rating, with the evidence and calculation behind it. Confirm the calendar for each building and confidence goes up.'),
+    ('Can it size a heat pump?', 'It answers the electrical half: whether the supply can take the heat pump\'s load through the heating months. Sizing the heat side needs heat data and a designer. See <a href="supply-capacity.html">supply capacity and headroom</a>.'),
+    ('Does it analyse gas?', 'Not yet; it reads electricity data. Gas and heat analysis is planned. Meanwhile, the <a href="heat-decarbonisation.html">heat decarbonisation guide</a> covers what to look at.'),
+    ('How do we share results with the board or a funder?', 'Download a PDF or Excel report for a site or the whole estate, or create a password-protected dashboard containing only the sites you choose.'),
   ]),
 ]
 PAGES['faq.html'] = ('Questions and answers | Hospital Energy Insights',
-  'Common questions about the free half-hourly analyser and solar calculator for healthcare estates: who it is for, privacy and IG, 24-hour sites, solar, and what the results mean.',
-  page_hero('FAQ', 'Questions and answers', 'If your question isn\'t answered here, <a href="contact.html">ask us</a>.', image='faq') +
+  'Common questions from estates teams about the free analyser and solar calculator: 24/7 hospitals, CHP sites, PFI, IG and what the results mean.',
+  page_hero('FAQ', 'Questions from estates teams', 'If yours isn\'t here, <a href="contact.html">ask us</a>.', image='faq') +
   '<section class="section"><div class="section-inner" style="max-width:820px">'
-  '<p class="answer">Hospital Energy Insights is a free half-hourly electricity analyser and solar calculator for NHS and independent healthcare estates across the UK, with guides to decarbonising the estate. '
-  'The analyser runs in your web browser, so your meter files are never uploaded. You need one Excel or CSV file per meter, ideally covering 12 months.</p>' +
+  '<p class="answer">Hospital Energy Insights gives NHS and independent healthcare estates a free half-hourly electricity analyser, a solar calculator and sourced guides to decarbonisation. '
+  'You load one Excel or CSV file per meter, ideally a year of readings; the analysis happens in your browser and nothing is uploaded.</p>' +
   ''.join(f'<h2 class="faq-group">{g}</h2><div class="faq">' + ''.join(
       f'<details><summary>{q}</summary><div class="faq-a"><p>{a}</p></div></details>' for q, a in items) + '</div>'
           for g, items in FAQ) +
-  '</div></section>' + cta('Still have a question?', 'Try the analyser with the example file, or get in touch.'))
+  '</div></section>' + cta('Still have a question?', 'Try the analyser with the example hospital file, or get in touch.'))
 
 # ── CONTACT ─────────────────────────────────────────────────────────────
 PAGES['contact.html'] = ('Contact | Hospital Energy Insights',
@@ -517,38 +536,42 @@ PAGES['404.html'] = ('Page not found | Hospital Energy Insights', 'This page doe
 
 # ── ABOUT ───────────────────────────────────────────────────────────────
 PAGES['about.html'] = ('About Hospital Energy Insights and Paul Johnston',
-  'Who runs Hospital Energy Insights, the experience behind it, why the analyser and solar calculator are free, and how we write and check our guides.',
+  'Who runs Hospital Energy Insights, why the tools are free, how the guides are sourced and kept current, and how we are paid.',
   page_hero('About', 'About Hospital Energy Insights',
-            f'Hospital Energy Insights is run by {OPERATOR}. Here is who we are, why the analyser is free, and how we keep the guides accurate.',
+            f'An independent site for healthcare estates teams, run by {OPERATOR}.',
             crumbs=[HOME, ('About', 'about.html')]) +
   f'''<section class="section"><div class="section-inner about">
-<p class="answer">Hospital Energy Insights is a free half-hourly analyser, solar calculator and set of guides for NHS and independent healthcare estates. It is run by {OPERATOR}, whose Managing Director is Paul Johnston, and brings together the team's Half Hourly Insights analyser and UK Solar Calculator in one journey built for estates teams. It is independent, and not part of or endorsed by the NHS.</p>
+<p class="answer">Hospital Energy Insights gives NHS and independent healthcare estates three free things: a half-hourly electricity analyser that runs in the browser, a solar calculator fed by the measured profile, and guides to decarbonising the estate, each sourced and dated. It's run by {OPERATOR}; Paul Johnston, its Managing Director, writes and reviews the guides. It is independent and not part of, or endorsed by, the NHS.</p>
 
 <div class="about-person" id="paul-johnston">
   <img src="images/people/paul-johnston.jpg" width="480" height="600" alt="Paul Johnston, Managing Director of {OPERATOR}" loading="lazy">
   <div>
     <h2>Paul Johnston</h2>
     <p class="about-role">Managing Director, {OPERATOR}</p>
-    <p>Paul has spent his career in the UK energy market. He has worked for some of the largest energy suppliers in the country and with private-equity-backed start-ups building new energy businesses.</p>
-    <p>Working at that scale showed him how much useful information the industry collects about how businesses use electricity, and how little of it reaches the people who could act on it. Working with start-ups showed him how much can change when that information is put in front of the right person in a form they can use.</p>
-    <p>Healthcare estates are where that gap matters most: buildings that never close, fixed net zero dates and grid connections that take years to change. He set up Hospital Energy Insights to put the evidence in front of the estates teams who have to act on it, and writes and reviews the guides on this site.</p>
+    <p>Paul's career has been in the UK energy market, at some of the country's largest suppliers and with private-equity-backed start-ups building new energy businesses.</p>
+    <p>The suppliers showed him how much detail the industry already records about when and how organisations use electricity. The start-ups showed him what happens when that detail reaches someone who can act on it. Hospitals are where the gap costs most: sites that never close, net zero dates that don't move, and connections that take years to upgrade.</p>
     <p><a href="contact.html">Contact Paul</a></p>
   </div>
 </div>
 
-<h2 id="free">Why the analyser is free</h2>
-<p>Most NHS trusts and health boards already have half-hourly electricity data. Their supplier records it every half hour, and it is used for billing. It rarely reaches the estates manager, the energy manager or the capital planning group, who are the people who could use it to cut waste and plan decarbonisation.</p>
-<p>We built the analyser so anyone can load that data and, within a minute, see when their buildings use electricity, how close each supply is to its limit, and how much solar each site would use. Often the first changes cost nothing: a ventilation schedule, a BMS timer, a holiday calendar for a clinic.</p>
-<p>It is free because that is the most useful way to start. Some organisations will act on the results themselves, and that is fine. Others will want help going further, and that is the work {OPERATOR} does. There is no sign-up and no obligation. Because the analysis runs in your web browser, we never see your data unless you choose to send it to us.</p>
+<h2 id="why">Why this site exists</h2>
+<p>Estates teams are asked to decarbonise buildings they can't close, often with less capital than the plan needs and grid connections that are already near their limit. The evidence for most of those decisions is already sitting with the electricity supplier as half-hourly data, recorded for billing. It rarely reaches the estates, energy or capital planning teams who need it.</p>
+<p>So the site starts there. Load the data, see what each building is doing, check the headroom for heat pumps, measure how much solar each site would use, and take a report to the board or a funder.</p>
 
-<h2 id="how">How we write the guides</h2>
+<h2 id="paid">Why it's free, and how we're paid</h2>
+<p>The tools and guides cost nothing and need no sign-up. {OPERATOR} is paid when an organisation asks for help beyond them, for example with heat pump feasibility, solar design, funding applications or procurement. Using the site never commits you to that. Because the analysis runs in your browser, we only see your data if you choose to send it.</p>
+
+<h2 id="standards">How we keep the guides accurate</h2>
 <ul>
-<li><strong>Every figure has a source.</strong> Guides cite the primary source, such as NHS England, the Scottish and Welsh Governments, Ofgem, the UK government or the supplier concerned, with a date.</li>
-<li><strong>Examples are labelled.</strong> Our worked examples use made-up buildings and say so. Every figure in them is what the analyser actually reports.</li>
-<li><strong>Costs are not savings.</strong> We show the cost of a pattern of use, not a promised saving, and say when findings overlap.</li>
-<li><strong>Pages are dated.</strong> Each guide shows when it was last updated. Rates and prices are reviewed every April.</li>
-<li><strong>Corrections are welcome.</strong> If something is wrong or out of date, <a href="contact.html">tell us</a> and we will fix it.</li>
+<li><strong>Primary sources.</strong> Figures cite NHS England, the Scottish and Welsh Governments, Ofgem, GOV.UK or the organisation concerned, with the date we checked.</li>
+<li><strong>A review cycle.</strong> Funding and policy pages are reviewed every six months and straight away when a scheme opens or closes. Prices and rates are reviewed every April.</li>
+<li><strong>Tested examples.</strong> The worked example hospital is made up, and says so, but every figure on its page is checked against the analyser by automated tests.</li>
+<li><strong>Costs, not promises.</strong> We show what a pattern costs now, not a guaranteed saving, and say where findings overlap.</li>
+<li><strong>Corrections.</strong> If something is wrong or out of date, <a href="contact.html">tell us</a> and we'll fix it and update the date.</li>
 </ul>
+
+<h2 id="family">Related sites</h2>
+<p>The analyser started as <a href="{kit.HHI_SITE}">Half Hourly Insights</a>, a general-purpose version for any business, and the calculator as the <a href="{kit.SOLAR_SITE}">UK Solar Calculator</a> for commercial solar. This site brings both together for healthcare, with settings and guides written for estates teams.</p>
 </div></section>''' + cta('See what your data shows', "It's free, there's no sign-up, and your file stays on your computer."))
 
 
