@@ -60,7 +60,7 @@ ORG_SAME_AS = []
 _HHI = ['half-hourly-data-british-gas', 'half-hourly-data-edf', 'half-hourly-data-eon-next',
         'half-hourly-data-npower-business-solutions', 'half-hourly-data-totalenergies', 'half-hourly-settlement',
         'mpan-profile-class', 'non-energy-charges', 'non-energy-costs-outlook', 'electricity-prices-ten-years',
-        'business-electricity-price', 'sample-report', 'electricity-benchmarks']
+        'business-electricity-price', 'electricity-benchmarks']
 CANONICAL_ELSEWHERE = {f'{n}.html': f'{HHI_SITE}{n}' for n in _HHI}
 CANONICAL_ELSEWHERE.update({  # the solar calculator's own method and general solar guides
     'solar-calculator-method.html': f'{SOLAR_SITE}how-it-works.html',

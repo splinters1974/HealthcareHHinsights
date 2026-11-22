@@ -172,7 +172,7 @@ PAGES.append(guide_page(
 <p>The non-energy parts, everything except the wholesale energy, are explained one by one in <a href="non-energy-charges.html">non-energy charges explained</a>.</p>
 
 <h2 id="example">A worked example: 500 MWh a year</h2>
-<p>Take a business site using {SITE_MWH} MWh a year at low voltage, with 200 kVA of agreed supply capacity. It uses electricity the way our <a href="sample-report.html">example office</a> does, so 6.1% of its use falls between 4pm and 7pm on working days from November to February. That matters for the Capacity Market charge.</p>
+<p>Take a business site using {SITE_MWH} MWh a year at low voltage, with 200 kVA of agreed supply capacity. It uses electricity the way the <a href="https://hhinsights.co.uk/sample-report">example office on Half Hourly Insights</a> does, so 6.1% of its use falls between 4pm and 7pm on working days from November to February. That matters for the Capacity Market charge.</p>
 <p>These are the charges we can calculate from the rates published for April 2026 to March 2027:</p>
 ''' + hbar_chart([(lbl, v) for lbl, _, v in EXAMPLE], 'Non-energy charges per MWh for the example site, 2026/27', lambda v: f'£{v:.2f}/MWh') + wrap_table(
   '<table><thead><tr><th>Charge</th><th>Published rate</th><th class="num">£/MWh</th><th class="num">£ a year</th></tr></thead><tbody>'

@@ -67,6 +67,8 @@ SEO = {
                              'Check a hospital\'s agreed supply capacity against half-hourly peaks in kVA, test a heat pump or EV load, and plan for CHP removal.'),
     'paying-for-solar.html': ('Paying for solar on NHS and private hospital sites',
                               'How NHS trusts, health boards and private hospitals pay for solar: capital, grants, PPAs, leases, accounting, tax and business rates.'),
+    'sample-report.html': ('Sample hospital electricity report from HH data',
+                           'A sample report for a made-up community hospital: base load, a ventilation fault, peaks against supply capacity, heat pump headroom and solar.'),
     'example-hospital-analysis.html': ('Worked example: a year of HH data from a hospital',
                                        'A year of half-hourly data from a community hospital: base load, a ventilation fault, summer peaks, heat pump headroom and solar.'),
 }

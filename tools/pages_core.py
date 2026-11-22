@@ -437,72 +437,74 @@ PAGES['terms.html'] = ('Terms of use | Hospital Energy Insights',
 '''))
 
 # ── SAMPLE REPORT ───────────────────────────────────────────────────────
-# Figures are the office worked example (site/samples/example-office.csv) as
-# the analyser reports them. Keep the two pages in step.
-PAGES['sample-report.html'] = ('Sample half-hourly electricity report for an office',
-  'A sample half-hourly electricity report for a made-up UK office: use while closed, base load, findings and what could be saved.',
+# Figures are the community hospital worked example (site/samples/example-hospital.csv)
+# as the analyser reports them, locked in analyser/tests/website-claims.test.ts.
+# Keep this page and example-hospital-analysis.html in step.
+PAGES['sample-report.html'] = ('Sample hospital electricity report from half-hourly data',
+  'A sample report for a made-up community hospital: base load, a ventilation fault, peaks against supply capacity, heat pump headroom and solar.',
   page_hero('Sample report', 'What a report looks like',
-            'See the kind of results the analyser produces before you find your own meter data. This is a made-up office with made-up readings.',
+            'See the kind of results the analyser produces before you find your own meter data. This is a made-up community hospital with made-up readings.',
             crumbs=[HOME, ('Sample report', 'sample-report.html')]) +
-  f'''<section class="section"><div class="section-inner sample">
-<div class="note"><strong>Made-up example.</strong> The office and its meter readings are invented, so nothing here is a real customer's result. Every figure is what the analyser reports for our example file, at an illustrative 25p/kWh.</div>
+  '''<section class="section"><div class="section-inner sample">
+<div class="note"><strong>Made-up example.</strong> The hospital and its meter readings are invented, so nothing here is a real trust's result. Every figure is what the analyser reports for our example file, at an illustrative 25p/kWh and an agreed supply capacity of 400 kVA.</div>
 
-<p class="answer">This made-up office used 79,191 kWh of electricity in a year, costing about £19,798 at 25p/kWh. A third of it (33%) was used while the office was closed. Use above the base load during those closed hours costs about £2,776 a year, almost half of it on Saturdays.</p>
+<p class="answer">This made-up 60-bed community hospital used about 1.35 million kWh of electricity in a year, costing about £337,500 at 25p/kWh. Almost two thirds of it (63%) is base load, the demand that never switches off. From September that base load stepped up by about 22 kW when the theatre ventilation stopped setting back at night, which is worth roughly £31,000 a year to put right.</p>
 
 <h2 class="section-title">The year at a glance</h2>
-<p class="section-lead">A small office, open 07:00 to 19:00 on weekdays, with 363 days of valid readings.</p>
+<p class="section-lead">One half-hourly meter, open around the clock, with 363 days of valid readings (99.5% coverage).</p>
 <div class="stat-grid">
-  <div><strong>79,191 kWh</strong><span>electricity used in the year, costing about £19,798</span></div>
-  <div><strong>33%</strong><span>of it used while the office was closed</span></div>
-  <div><strong>2.6 kW</strong><span>base load: what never switches off</span></div>
-  <div><strong>£2,776</strong><span>a year spent on use while closed, above the base load</span></div>
+  <div><strong>1,350,066 kWh</strong><span>electricity a year, costing about £337,517</span></div>
+  <div><strong>96.3 kW</strong><span>base load across the year, 63% of all use</span></div>
+  <div><strong>288.6 kW</strong><span>busiest half hour, in a July hot spell</span></div>
+  <div><strong>76%</strong><span>of the 400 kVA supply used at that peak</span></div>
 </div>
 
-<figure class="figure"><img src="images/heatmap-office.png" width="2464" height="896" alt="Heatmap of the office year: a dark weekday band, pale nights, and some busy Saturdays" loading="lazy"><figcaption>Every half hour of the year on one chart: one column per day, darker for higher demand. The weekday band is clear, and some Saturdays are as busy as weekdays.</figcaption></figure>
+<figure class="figure"><img src="images/heatmap-hospital.png" width="1548" height="560" alt="Heatmap of the hospital year: a dark weekday daytime band, darker summer afternoons, monthly generator test marks, and nights that get darker from September" loading="lazy"><figcaption>Every half hour of the year on one chart: one column per day, darker for higher demand. Nights never go pale on a 24-hour site. From early September they get darker and stay that way.</figcaption></figure>
 
-<h2 class="section-title">What the analyser found</h2>
+<h2 class="section-title">What the report shows</h2>
 <div class="finding-grid">
   <article class="finding">
-    <span class="finding-tag high">High impact</span>
-    <h3>Use while closed</h3>
-    <p class="finding-value">£2,776 a year</p>
-    <p>11,035 kWh used outside opening hours, above the base load. Almost half of it (5,155 kWh) is on Saturdays; weekday evenings and nights add 3,750 kWh.</p>
-    <p><strong>What to check:</strong> whether the office is used on Saturdays, and the heating and ventilation schedules.</p>
+    <span class="finding-tag medium">Base load trend</span>
+    <h3>Base load stepped up in September</h3>
+    <p class="finding-value">About £31,000 a year</p>
+    <p>Base load by month rose from 93.2 kW in August to 117.0 kW in September and stayed above 115 kW. The heatmap shows the extra load at nights and weekends only, about 22 kW for around 5,700 hours a year.</p>
+    <p><strong>What to check:</strong> theatre and outpatient ventilation setback after the summer controls work, with the Ventilation Safety Group.</p>
   </article>
   <article class="finding">
-    <span class="finding-tag medium">Medium impact</span>
-    <h3>Bank holidays like working days</h3>
-    <p class="finding-value">7 bank holidays</p>
-    <p>Seven bank holidays, including Christmas Day, used at least 80% of a normal weekday's electricity (1,408 kWh above base load in all).</p>
-    <p><strong>What to check:</strong> whether the building controls know about bank holidays.</p>
-    <p class="finding-note">Already included in the £2,776.</p>
+    <span class="finding-tag info">Capacity</span>
+    <h3>Room for a 100 kW heat pump, not 150 kW</h3>
+    <p class="finding-value">53 kW firm headroom</p>
+    <p>July chillers set the year's peak, leaving 53 kW of constant headroom within a 10% margin. Tested over October to April only, a 100 kW heat pump fits (354 kVA of 360 usable); a 150 kW one goes over in 2,690 half hours.</p>
+    <p><strong>What to check:</strong> the agreed capacity on the bill, before any heat pump design goes further.</p>
   </article>
   <article class="finding">
-    <span class="finding-tag low">Low impact</span>
-    <h3>Early starts and late finishes</h3>
-    <p class="finding-value">£629 a year</p>
-    <p>About 1,250 kWh above base load in the two hours before opening, and the same again in the two hours after closing.</p>
-    <p><strong>What to check:</strong> timer and heating start-up settings.</p>
-    <p class="finding-note">Already included in the £2,776.</p>
+    <span class="finding-tag low">Solar</span>
+    <h3>Almost all solar would be used on site</h3>
+    <p class="finding-value">99.8% at 299 kWp</p>
+    <p>At UK average output, a 299 kWp system would generate about 268,000 kWh a year and the hospital would use 99.8% of it, covering 20% of its electricity. At 449 kWp it would still use 95%.</p>
+    <p><strong>What to check:</strong> usable roof and car park area, then open the solar calculator from the Solar tab.</p>
   </article>
 </div>
-<p>The smaller findings are parts of the £2,776, not extra to it, so don't add them up. The base load is separate: 2.6 kW running all year costs about £5,700.</p>
+<p>The base load itself is separate from these: 96.3 kW running all year is about £211,000. On a hospital, most of it has to run, but every kilowatt removed is worth about £2,190 a year.</p>
+
+<h2 class="section-title">A dip that isn't a fault</h2>
+<p>On the first Tuesday of each month, demand falls to about 30% of normal for an hour mid-morning. That's the on-load generator test, when the hospital runs on its own generators. It sets the lowest half hour of the year (53.3 kW) but doesn't drag the base load down, because the analyser uses the 5th percentile rather than the minimum.</p>
 
 <h2 class="section-title">What could actually be saved?</h2>
-<p>The figures above are what each pattern costs now. They are not a promised saving. What you save depends on what you change, and some of that closed-hours use may turn out to be needed, such as a regular Saturday team. The way to find out is to:</p>
+<p>The figures are what each pattern costs now, not a promised saving. To turn them into one:</p>
 <ol class="sample-steps">
-  <li><strong>Confirm the opening hours.</strong> If Saturdays are planned working days, much of the £2,776 is normal use.</li>
-  <li><strong>Walk round the building</strong> on a Saturday and after closing time, and note what's switched on.</li>
-  <li><strong>Change one setting at a time</strong>, such as the heating schedule or bank holiday calendar.</li>
-  <li><strong>Compare the weeks before and after</strong> with the analyser's before-and-after view. That gives you a measured saving rather than an estimate.</li>
+  <li><strong>Take the base load step to the Ventilation Safety Group</strong> and have the setback restored by the BMS contractor.</li>
+  <li><strong>Walk the site between 01:00 and 05:00</strong> with the night team and list what's running in empty areas.</li>
+  <li><strong>Change one thing at a time</strong>, so each change shows up clearly in the data.</li>
+  <li><strong>Compare matched weeks before and after</strong> with the analyser's before-and-after view, for a measured saving rather than an estimate.</li>
 </ol>
 
 <div class="sample-cta">
   <a class="btn btn-gold btn-lg" href="analyser/">Analyse my own data</a>
-  <a class="btn btn-outline btn-lg" href="samples/example-office.csv" download>Download the example file</a>
+  <a class="btn btn-outline btn-lg" href="samples/example-hospital.csv" download>Download the example file</a>
 </div>
-<p>For the same office explained figure by figure, see the <a href="{kit.HHI_SITE}example-office-analysis">office worked example</a> on our sister site, Half Hourly Insights. For a hospital, read our <a href="example-hospital-analysis.html">community hospital worked example</a>. To understand your own figures, see <a href="how-it-works.html">how the analyser works</a>.</p>
-</div></section>''' + cta('Ready to see your own results?', 'Load your half-hourly meter file. It takes about a minute and your data stays on your computer.'))
+<p>For every figure explained step by step, read the <a href="example-hospital-analysis.html">community hospital worked example</a>. To understand your own results, see <a href="how-it-works.html">how the analyser works</a>.</p>
+</div></section>''' + cta('Ready to see your own results?', 'Load your half-hourly meter files. It takes about a minute and the data stays on your computer.'))
 
 PAGES['404.html'] = ('Page not found | Hospital Energy Insights', 'This page does not exist.',
   page_hero('404', 'Page not found', 'That page doesn\'t exist. Try the home page or open the analyser.',
@@ -569,7 +571,7 @@ def core_pages():
         'privacy.html': dict(crumbs=[home, ('Privacy', 'privacy.html')]),
         'terms.html': dict(crumbs=[home, ('Terms of use', 'terms.html')]),
         'sample-report.html': dict(crumbs=[home, ('Sample report', 'sample-report.html')], section='Core pages',
-                                   summary='A sample report for a made-up office: 33% of use while closed, £2,776 a year above base load, base load 2.6 kW, findings and what could be saved.'),
+                                   summary='A sample report for a made-up community hospital: 1.35 GWh a year, 63% base load, a September base load step worth about £31,000 a year, 76% of a 400 kVA supply at peak, room for a 100 kW heat pump, and 99.8% of solar used on site at 299 kWp.'),
         '404.html': dict(noindex=True),
         'about.html': dict(crumbs=[home, ('About', 'about.html')], section='Core pages',
                            summary=f'Who runs the site ({OPERATOR}, Managing Director Paul Johnston), why the analyser is free, and how the guides are sourced and checked.'),

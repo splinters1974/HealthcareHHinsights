@@ -52,7 +52,7 @@ and rebuild. The build stops if a replacement no longer matches.
   60 characters, descriptions 120 to 160). The build warns about any page
   outside those limits.
 - **Pages copied from the sister sites** (supplier data guides, MPAN, prices,
-  non-energy charges, benchmarks, sample report, and the general solar cost,
+  non-energy charges, benchmarks, and the general solar cost,
   generation and method guides) stay for the journey, but their canonical link
   points at the original on Half Hourly Insights or the UK Solar Calculator, and
   they're left out of the sitemap and llms.txt. The list is
