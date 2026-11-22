@@ -6,9 +6,10 @@ in core_pages() at the bottom.
 Written for a general business reader, in the voice of the team that runs the
 site ("we"). Explain terms on first use; write as much as the reader needs.
 """
+import kit
 from kit import (UPDATED_MARK, CONTACT_EMAIL, CONTACT_NAME, OPERATOR, OPERATOR_URL, SOLAR_URL, APP, Page,
                  cta, photo, faq_section, guide, page_hero, related, updated_line, GUIDE_PDF, guide_download, sources)
-from pages_data import GOV_OFFER, SUPPLIERS
+from pages_data import GOV_OFFER
 
 FORM_ENDPOINT = 'https://formspree.io/f/xeagedqj'  # The Half Hourly Insights Formspree form for now. Where submissions go is set in Formspree, not here, so no personal address is in the page code. Replace with this site's own form ID.
 
@@ -142,104 +143,122 @@ PAGES['index.html'] = ('Half-hourly electricity analysis and solar for healthcar
 """)
 
 # ── HOW IT WORKS ────────────────────────────────────────────────────────
-PAGES['how-it-works.html'] = ('How it works | Hospital Energy Insights',
-  'What the analyser does with your half-hourly data: how it reads files, checks quality, sets the base load, prices use while closed and builds findings.',
+PAGES['how-it-works.html'] = ('How the hospital energy analyser works | Hospital Energy Insights',
+  'How the free analyser turns hospital and health centre half-hourly data into findings: file checks, 24/7 and clinic presets, base load, headroom and solar.',
   page_hero('How it works', 'What the analyser does with your data',
-            'A step-by-step explanation, from reading your file to the figures in the report. In the analyser, each finding also has a "show calculation and evidence" link with the full working.',
+            'From the file your supplier sends to the figures in the report, step by step. Every finding in the analyser also has a "show calculation and evidence" link with the full working.',
             crumbs=[HOME, ('How it works', 'how-it-works.html')], image='how-it-works') +
   guide(updated_line() + '''
-<p class="answer">The analyser checks every half-hourly reading, works out how much electricity the site uses when it's open and when it's closed, and prices the difference at your rates. It tells you where to look. Someone who knows the building then decides what to change.</p>
-''' + photo('hc-energy-control-room', 'An estates team in an energy monitoring room, with screens showing campus energy use, carbon and building performance', 'The findings tell you where to look. A walk round the building tells you why.') + guide_download('Want the practical steps?') + '''
+<p class="answer">You load one half-hourly file per meter. The analyser checks the readings, applies the right calendar for each building (24/7 for inpatient sites, set hours for clinics and offices), measures base load and peaks, prices the patterns at your rates, tests headroom for new load such as heat pumps, and estimates how much solar each site would use. It runs in your browser, so the meter data never leaves your computer.</p>
+''' + photo('hc-energy-control-room', 'An estates team in an energy monitoring room, with screens showing campus energy use, carbon and building performance', 'The analyser points to where and when. Someone who knows the site works out why.') + guide_download('Want the practical steps?') + '''
 
-<h2 id="files">1. Reading your files</h2>
-<p>Load one file for each meter, as Excel (.xlsx or .xls) or CSV. Three layouts work:</p>
-<ul><li><strong>Day per row:</strong> a date, then 48 half-hourly readings. This is the most common supplier format.</li><li><strong>Day per column:</strong> the same, turned on its side.</li><li><strong>Timestamped:</strong> one reading per row, with its date and time.</li></ul>
-<p>The analyser shows how it read each file: which column held the dates, whether readings were in kWh or kW, and anything it ignored. If a file covers more than a year, the last 12 months are analysed by default. You can choose a different period, and long-term trends still use the whole file.</p>
+<h2 id="files">1. Loading the meter files</h2>
+<p>Each file becomes a site. Most trusts and health boards have a file per main meter, and some have sub-meters for theatres, outpatients or an energy centre too. Excel (.xlsx, .xls) and CSV both work, in any of the three layouts suppliers and monitoring systems use: one day per row with 48 readings, one day per column, or one timestamped reading per row. The analyser shows how it read each file, including whether readings were kWh or kW and what it ignored. Files longer than a year are analysed over the last 12 months by default, while the trend charts use everything.</p>
+<p>Meters behind the same connection, such as two incomers on one hospital, can be grouped so capacity is checked against their combined demand.</p>
 
-<h2 id="checks">2. Checking the data</h2>
-<p>Before showing any figures, the analyser looks for problems that would make them wrong:</p>
-<ul><li>missing readings, which are left out rather than counted as zero</li><li>days of zero readings, which usually point to a meter or data fault</li><li>days when the clocks change, and duplicate rows, which it holds back for you to decide on</li><li>single readings far above the usual peak</li></ul>
-<p>Each site is rated Good, Check or Poor. You can exclude readings you know are wrong and record why, and the reason is saved with the analysis.</p>
+<h2 id="checks">2. Checking the readings first</h2>
+<p>Bad data makes confident-looking wrong answers, so the checks come before any figures:</p>
+<ul>
+<li>missing half hours are left out, never treated as zero</li>
+<li>whole days of zeros, and two-hour runs of exact zeros inside normal days, are flagged as likely data faults</li>
+<li>the two clock-change days and any duplicate dates are held back for you to review</li>
+<li>isolated spikes far above the normal peak are listed</li>
+</ul>
+<p>Each site gets a Good, Check or Poor rating. You can exclude readings you know are wrong, with a note of why, and the note stays with the analysis.</p>
 
-<h2 id="calendar">3. Opening hours</h2>
-<p>The figures for use while closed depend on knowing when each building should be open. Every site starts on the hospital preset, open around the clock with a low-activity window from 01:00 to 05:00, marked as unconfirmed until you check it. Choose the clinic or admin preset for buildings that keep set hours. You can set hours for all sites at once or one at a time, including closures, bank holidays and overnight shifts. Findings based on unconfirmed hours get a lower confidence rating.</p>
+<h2 id="calendar">3. The right calendar for each building</h2>
+<p>New sites start on the <strong>hospital preset</strong>: open around the clock, with 01:00 to 05:00 as a low-activity window in place of closed hours. Change health centres, outpatient buildings and offices to the <strong>clinic</strong> or <strong>office</strong> preset, then add evening clinics, Saturday sessions and closures. The calendar is marked unconfirmed until you check it, and findings that depend on it carry lower confidence until you do.</p>
 
-<h2 id="base">4. Base load and use while closed</h2>
-<p><strong>Base load</strong> is the level of demand a site rarely drops below. The analyser measures it as the 5th percentile of all valid half-hourly readings, which means demand is higher than this 95% of the time. It's the equipment that never switches off, such as servers, fridges and anything on standby.</p>
-<p><strong>Closed-hours excess</strong> is the electricity used while the site is closed, over and above the base load. Sites are ranked by this figure because it's often the cheapest use to reduce, usually by changing timers, controls and building management settings rather than buying new equipment.</p>
+<h2 id="base">4. Base load, and use while closed</h2>
+<p><strong>Base load</strong> is the 5th percentile of valid half-hourly demand: the level the site stays above 95% of the time. On a hospital that's wards, ventilation, imaging, fridges and IT; it's usually the largest part of the bill. The analyser also charts it month by month, because a step that doesn't follow the weather is often a fault, such as a theatre ventilation setback that stopped working. See <a href="base-load.html">base load on healthcare sites</a>.</p>
+<p><strong>Closed-hours excess</strong> applies to buildings that close. It's the electricity used outside opening hours above the base load, priced at your rates and split by weeknights, Saturdays, Sundays and bank holidays. Buildings are ranked by it, so the worst health centre gets looked at first. See <a href="out-of-hours-electricity.html">out-of-hours use</a>.</p>
 
 <h2 id="costs">5. Costs and annual figures</h2>
-<p>Costs use the unit rates you enter, either one flat rate or different rates for different times of day. They leave out standing charges, capacity charges and other fixed costs. They show what a pattern costs you now and are not a promise of savings.</p>
-<p>Annual figures are scaled up from the valid readings. With less than about 11 months of good data they're marked as indicative, and with less than six months they aren't shown.</p>
+<p>Costs use the unit rates you enter, flat or by time of day, and leave out standing, capacity and other fixed charges. They're what a pattern costs now, not a promised saving. Annual figures are scaled from the valid hours: marked indicative below about 11 months of good data, and withheld below six.</p>
 
-<h2 id="findings">6. Findings</h2>
-<p>Each finding has two separate ratings. <strong>Impact</strong> shows how much it matters, based on cost and share of total use. <strong>Confidence</strong> shows how reliable the evidence is, based on data quality and whether the opening hours are confirmed. A finding with high impact and low confidence is worth checking before you quote it.</p>
+<h2 id="findings">6. Findings, impact and confidence</h2>
+<p>Every finding carries two ratings. <strong>Impact</strong> reflects its cost and share of use. <strong>Confidence</strong> reflects the data quality, how many comparable days there were and whether the calendar is confirmed. High impact with low confidence means check before you quote it to the board.</p>
 
 <h2 id="capacity">7. Capacity and headroom</h2>
-<p>Enter your agreed supply capacity (in kVA, from your bill or connection agreement) and an assumed power factor. The analyser compares every half hour with it and works out how much extra constant load the site could take before reaching the limit, such as heat pumps, EV chargers or the output of a CHP engine you plan to switch off. Treat this as an early check, because only your network operator can confirm it. See <a href="hospital-electrical-capacity.html">electrical capacity for electrification</a>.</p>
+<p>Enter the agreed supply capacity in kVA from the bill and a power factor (0.95 if you don't know it). The analyser compares every half hour with it, keeps a safety margin, and reports the firm headroom: the constant extra load that fits in every half hour. You can then test a specific load, such as a 150 kW heat pump running October to April or EV chargers in the evening, and see how many half hours it would breach. It's an early screen; only the DNO can confirm capacity. See <a href="supply-capacity.html">supply capacity and headroom</a>.</p>
 
 <h2 id="solar">8. Solar</h2>
-<p>Each site's Solar tab estimates how much of a solar system's output the site would use itself at a range of sizes, from its own half-hourly readings and a typical UK solar day scaled to your region. <strong>Size solar for this site</strong> opens the <a href="solar-calculator.html">solar calculator</a> with those figures, so you can map roofs and car parks and see cost, savings and payback. Only a summary is passed, never the readings. See <a href="solar.html">sizing solar from half-hourly data</a>.</p>
+<p>The Solar tab overlays a typical UK solar day, scaled to your region, on the site's own readings to estimate how much of a system's output the site would use at a dozen sizes. <strong>Size solar for this site</strong> opens the <a href="solar-calculator.html">solar calculator</a> with that summary, so you can draw the roofs and car parks and see cost, savings and payback. The readings themselves are never passed. See <a href="solar.html">sizing solar from half-hourly data</a>.</p>
 
 <h2 id="limits">What it can't tell you</h2>
-<ul><li>Data from the main meter shows when electricity is used, but not which equipment is using it. Findings are things to check on site.</li><li>The main meter only records what the site imports. If a CHP engine or solar runs on site, true demand is higher; load the generation meter as a separate file to see it.</li><li>Figures are not adjusted for weather or changes in occupancy.</li><li>Carbon figures use a single conversion factor for the year, which you enter.</li></ul>
-''' + related([('example-office-analysis.html', 'Worked example', 'The method applied to one office, step by step.'),
-               ('out-of-hours-electricity.html', 'Out-of-hours use', 'Finding and reducing use while the building is closed.'),
-               ('base-load.html', 'Base load', 'What always runs, and why it matters.')]), '''    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol>
-      <li><a href="#files">Reading your files</a></li><li><a href="#checks">Checking the data</a></li><li><a href="#calendar">Opening hours</a></li><li><a href="#base">Base load and use while closed</a></li><li><a href="#costs">Costs and annual figures</a></li><li><a href="#findings">Findings</a></li><li><a href="#capacity">Capacity and headroom</a></li><li><a href="#solar">Solar</a></li><li><a href="#limits">What it can't tell you</a></li></ol></nav>''')
+<ul>
+<li>A main meter shows when electricity is used, not which plant uses it. Findings are things to check on site.</li>
+<li>Import meters miss what a CHP engine or solar supplies. Load the generation meter as its own file to see total demand.</li>
+<li>Gas and heat aren't analysed yet, and figures aren't weather-adjusted.</li>
+<li>Carbon uses one conversion factor for the year, which you choose.</li>
+</ul>
+''' + related([('example-hospital-analysis.html', 'Worked example', 'The method applied to one hospital, step by step.'),
+               ('base-load.html', 'Base load', 'The biggest part of most hospital bills.'),
+               ('supply-capacity.html', 'Supply capacity', 'Headroom for heat pumps and EV charging.')]), '''    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol>
+      <li><a href="#files">Loading the meter files</a></li><li><a href="#checks">Checking the readings</a></li><li><a href="#calendar">The right calendar</a></li><li><a href="#base">Base load and use while closed</a></li><li><a href="#costs">Costs and annual figures</a></li><li><a href="#findings">Findings</a></li><li><a href="#capacity">Capacity and headroom</a></li><li><a href="#solar">Solar</a></li><li><a href="#limits">What it can't tell you</a></li></ol></nav>''')
   + cta('Try it on your own data', "It's free, there's no sign-up, and nothing is uploaded."))
 
 # ── GET YOUR DATA ───────────────────────────────────────────────────────
 GET_DATA_FAQS = [
-    ('What is half-hourly electricity data?', "A record of the electricity used in each half hour of the day. That's 48 readings a day and 17,520 in a normal year. It shows when a site uses electricity as well as how much."),
-    ('How far back can I get data?', 'Ask for at least 12 months, and up to three years if your supplier has it. A full year shows seasonal patterns and means annual figures are measured rather than estimated.'),
-    ('Does it cost anything to get my data?', 'Ask your supplier. Many provide it free on request or through your online account.'),
-    ('Where do I find my MPAN?', 'On your electricity bill. It is the 13-digit supply number, usually in a box labelled S or "Supply number".'),
+    ('Who holds half-hourly data for an NHS hospital?', 'The electricity supplier, always. Often also the trust\'s energy or estates team through an automatic monitoring system, the energy broker or bureau, and on PFI sites the project company or its facilities management provider.'),
+    ('How much data should we ask for?', 'At least 12 months for every main meter, and up to three years if it exists. A full year captures both winter heating and summer cooling peaks.'),
+    ('Is there a charge?', 'Business customers with a smart or advanced meter can ask for up to 12 months of historic data free of charge. Many suppliers also offer downloads in their online portals.'),
+    ('Does the data contain patient information?', 'No. It is the electricity used by the site in each half hour, nothing more. The analyser also keeps it on your computer.'),
 ]
 
-PAGES['get-your-data.html'] = ('How to get your half-hourly electricity data',
-  'Where to find your half-hourly (HH) electricity data, who to ask, what to ask for and which file formats the analyser reads.',
-  page_hero('Guide', 'How to get your half-hourly data',
-            "Most organisations already have this data. It just isn't shown on the bill. Here's where to find it and what to ask for.",
+PAGES['get-your-data.html'] = ('How NHS sites get half-hourly electricity data',
+  'Where hospitals, health centres and NHS estates teams find half-hourly electricity data: suppliers, monitoring systems, PFI providers, what to ask for and formats.',
+  page_hero('Guide', 'Getting half-hourly data for your sites',
+            "Your trust or health board almost certainly has this data already. The trick is knowing who holds it. Here's where to look and what to ask for.",
             crumbs=[HOME, GUIDES, ('Getting your half-hourly data', 'get-your-data.html')], image='get-your-data') +
   guide(updated_line() + '''
-<p class="answer">Ask your electricity supplier for the half-hourly consumption data for each of your meters, covering at least the last 12 months, as a spreadsheet. Many suppliers also let you download it from your online account.</p>
+<p class="answer">For each main electricity meter, ask your supplier (or whoever manages your energy contract) for 12 months of half-hourly consumption in kWh, one file per meter, as Excel or CSV. If your estates team runs an energy monitoring or BMS system, it may already hold the same data and be quicker to export. On PFI hospitals, ask the project company or its facilities management provider.</p>
 
-<h2 id="who">Who has it</h2>
-<p>If your meter records half-hourly readings, your <strong>supplier</strong> receives them and can send them to you. Larger business sites have had half-hourly meters for years, and more meters are moving to <a href="half-hourly-settlement.html">half-hourly settlement</a>, so it's worth asking even for smaller premises.</p>
-<p>You may also find it in:</p>
-<ul><li><strong>Your supplier's online account</strong>, often under "consumption", "usage" or "data download"</li><li><strong>Your energy broker or energy manager</strong>, if you have one</li><li><strong>A building management or energy monitoring system</strong> that can export meter data</li><li><strong>A smart meter app or service</strong> that offers half-hourly downloads</li></ul>
+<h2 id="who">Who holds it in a healthcare organisation</h2>
+<div class="table-wrap"><table><thead><tr><th>Who</th><th>What they usually have</th></tr></thead><tbody>
+<tr><td>The electricity supplier</td><td>Settlement data for every half-hourly meter, often downloadable from a business portal</td></tr>
+<tr><td>Your energy or procurement team, or a broker or bureau</td><td>Access to the supplier portal, and often a monitoring and targeting system with every meter in it</td></tr>
+<tr><td>Estates and the BMS</td><td>Main and sub-meter data for theatres, energy centres, outpatient blocks and plant rooms</td></tr>
+<tr><td>A PFI project company or FM provider</td><td>On PFI hospitals, often the supply contract and the meter data</td></tr>
+<tr><td>Landlords such as NHS Property Services or Community Health Partnerships</td><td>Data for health centres where the landlord holds the supply</td></tr>
+</tbody></table></div>
+<p>Many NHS bodies buy electricity through public sector frameworks, so the supplier relationship may sit with a central procurement or energy team rather than estates. Start with whoever pays the bill.</p>
+
+<h2 id="which">Which meters to ask for</h2>
+<ul>
+<li><strong>Every main import meter</strong> on each hospital site, including second incomers.</li>
+<li><strong>Generation meters</strong> for any CHP engine or solar, so you can see true site demand, not just import.</li>
+<li><strong>Sub-meters</strong> for theatres, imaging, energy centres or outpatient wings, if you have them. They make findings much more specific.</li>
+<li><strong>Health centres, clinics and offices</strong> with half-hourly meters, which is where out-of-hours savings usually sit.</li>
+</ul>
+<p>The MPAN, the 13-digit supply number on the bill, identifies each meter. <a href="mpan-profile-class.html">How to read an MPAN</a>.</p>
 
 <h2 id="ask">What to ask for</h2>
-<p>A request like this works:</p>
-<div class="note"><strong>Example request</strong><br>Please send the half-hourly consumption data (kWh) for meter [MPAN], from [date] to [date], as an Excel or CSV file with one row per day and 48 half-hourly columns.</div>
-<ul><li><strong>One file per meter.</strong> Name each file after the site, because the analyser uses the file name as the site name.</li><li><strong>At least 12 months of data</strong>, so annual figures and seasonal patterns are reliable. Up to three years helps show longer-term trends.</li><li><strong>Readings in kWh for each half hour</strong> are best. Files in kW also work, and the analyser tells you which it found.</li></ul>
-<p>Your meter's MPAN (the 13-digit number on the bottom line of the supply number) is on your electricity bill. <a href="mpan-profile-class.html">How to read it</a>.</p>
-<p><a href="downloads/half-hourly-data-request.docx" download><strong>Download a letter template</strong></a> (Word). It lists what to ask for, with spaces for your MPANs and dates.</p>
+<div class="note"><strong>Example request</strong><br>Please send half-hourly consumption data (kWh) for the MPANs listed below, from [date] to [date], as one Excel or CSV file per meter, with one row per day and 48 half-hourly columns. Please name each file after the site.</div>
+<ul>
+<li><strong>One file per meter, named after the site.</strong> The analyser uses the file name as the site name.</li>
+<li><strong>Twelve months minimum</strong>; up to three years shows trends and a before-and-after for past projects.</li>
+<li><strong>kWh per half hour</strong> is best. kW works too, and the analyser says which it found.</li>
+</ul>
+<p><a href="downloads/half-hourly-data-request.docx" download><strong>Download a request letter template</strong></a> (Word), with spaces for your MPANs and dates.</p>
 
 <h2 id="right">Your right to the data</h2>
-<p>Since 1 December 2022, business customers with a smart or advanced (AMR) meter, and anyone they nominate, can ask their supplier for up to 12 months of their historic smart meter data, free of charge and in a machine-readable format. The supplier must reply within 10 working days.<sup><a href="#sources">1</a></sup></p>
+<p>Since 1 December 2022, business customers with a smart or advanced (AMR) meter, and anyone they nominate, can ask their supplier for up to 12 months of historic smart meter data free of charge, in a machine-readable format. The supplier must reply within 10 working days.<sup><a href="#sources">1</a></sup> For supplier-specific routes, see our guides to <a href="half-hourly-data-british-gas.html">British Gas</a>, <a href="half-hourly-data-edf.html">EDF</a>, <a href="half-hourly-data-eon-next.html">E.ON Next</a>, <a href="half-hourly-data-npower-business-solutions.html">npower Business Solutions</a> and <a href="half-hourly-data-totalenergies.html">TotalEnergies</a>.</p>
 
-<h2 id="suppliers">Supplier by supplier</h2>
-<p>Where to find half-hourly data with some of the larger business suppliers, from their own published guidance:</p>
-<ul>''' + ''.join(f'<li><a href="{f}">{n}</a></li>' for f, n in SUPPLIERS) + '''</ul>
+<h2 id="formats">Formats the analyser reads</h2>
+<p>Excel (.xlsx, .xls) or CSV, laid out as one day per row with 48 readings, one day per column, or one timestamped reading per row. Extra columns such as meter references are ignored. If a file can't be read, the analyser says why. To see what a good file looks like, <a href="samples/example-hospital.csv" download>download our example hospital file</a>.</p>
+''' + guide_download('Got your files?') + '''
 
-<h2 id="formats">File formats the analyser reads</h2>
-<div class="table-wrap"><table><thead><tr><th>Layout</th><th>Looks like</th></tr></thead><tbody>
-<tr><td>Day per row</td><td>Date, then 48 columns of half-hourly readings</td></tr>
-<tr><td>Day per column</td><td>Dates across the top, 48 rows of readings</td></tr>
-<tr><td>Timestamped</td><td>One row per reading, with its date and time</td></tr></tbody></table></div>
-<p>Excel (.xlsx, .xls) and CSV files both work. Extra columns, such as meter references, are ignored. If a file can't be read, the analyser explains why.</p>
-<p>Once you have the file, our <a href="guides.html">guides</a> explain what to look for. Not sure what your file should look like? <a href="samples/example-office.csv" download>Download our example file</a> and compare.</p>
-''' + guide_download('Got your file?') + '''
+<h2 id="ig">Information governance</h2>
+<p>Half-hourly electricity data records energy use, not people, so it contains no patient information. The analyser reads files on your own computer and uploads nothing. If your IG team wants the detail, share the <a href="privacy.html">privacy notice</a>.</p>
 
-<h2 id="no-data">If your supplier can't provide it</h2>
-<p>If your supplier says the meter doesn't record half-hourly readings, ask whether it can be replaced with a smart or advanced meter that does. In the meantime, check whether a building management or monitoring system on site keeps its own records. Monthly meter readings will show how use changes through the year, but they can't show the daily and overnight patterns this analyser looks for.</p>
+<h2 id="no-data">If a site has no half-hourly meter</h2>
+<p>Ask the supplier whether the meter can be replaced with a smart or advanced meter that records half-hourly. Check whether the BMS or a monitoring system logs the main meter's pulse output. Monthly readings show the seasons, but not the nights, weekends and peaks this analysis depends on.</p>
 ''' + sources([GOV_OFFER]) + faq_section(GET_DATA_FAQS) + related([
-    ('example-office-analysis.html', 'Worked example', 'What a year of data shows about one office.'),
-    ('out-of-hours-electricity.html', 'Out-of-hours use', 'The first thing to look at once you have the data.'),
-    ('how-it-works.html', 'How the analyser works', 'What it does with your file, step by step.')]), '''    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#who">Who has it</a></li><li><a href="#ask">What to ask for</a></li><li><a href="#right">Your right to the data</a></li><li><a href="#suppliers">Supplier by supplier</a></li><li><a href="#formats">File formats the analyser reads</a></li><li><a href="#no-data">If your supplier can't provide it</a></li></ol></nav>''')
-  + cta('Got your file?', 'Load it now. It takes about a minute and the data stays on your computer.'))
+    ('example-hospital-analysis.html', 'Worked example', 'What a year of data shows about one hospital.'),
+    ('how-it-works.html', 'How the analyser works', 'What it does with your files, step by step.'),
+    ('base-load.html', 'Base load', 'The first thing to look at on a 24-hour site.')]), '''    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#who">Who holds it</a></li><li><a href="#which">Which meters</a></li><li><a href="#ask">What to ask for</a></li><li><a href="#right">Your right to the data</a></li><li><a href="#formats">Formats</a></li><li><a href="#ig">Information governance</a></li><li><a href="#no-data">No half-hourly meter</a></li></ol></nav>''')
+  + cta('Got your files?', 'Load them now. It takes about a minute and the data stays on your computer.'))
 
 # ── FAQ ─────────────────────────────────────────────────────────────────
 FAQ = [
@@ -418,72 +437,74 @@ PAGES['terms.html'] = ('Terms of use | Hospital Energy Insights',
 '''))
 
 # ── SAMPLE REPORT ───────────────────────────────────────────────────────
-# Figures are the office worked example (site/samples/example-office.csv) as
-# the analyser reports them. Keep the two pages in step.
-PAGES['sample-report.html'] = ('Sample half-hourly electricity report for an office',
-  'A sample half-hourly electricity report for a made-up UK office: use while closed, base load, findings and what could be saved.',
+# Figures are the community hospital worked example (site/samples/example-hospital.csv)
+# as the analyser reports them, locked in analyser/tests/website-claims.test.ts.
+# Keep this page and example-hospital-analysis.html in step.
+PAGES['sample-report.html'] = ('Sample hospital electricity report from half-hourly data',
+  'A sample report for a made-up community hospital: base load, a ventilation fault, peaks against supply capacity, heat pump headroom and solar.',
   page_hero('Sample report', 'What a report looks like',
-            'See the kind of results the analyser produces before you find your own meter data. This is a made-up office with made-up readings.',
+            'See the kind of results the analyser produces before you find your own meter data. This is a made-up community hospital with made-up readings.',
             crumbs=[HOME, ('Sample report', 'sample-report.html')]) +
-  f'''<section class="section"><div class="section-inner sample">
-<div class="note"><strong>Made-up example.</strong> The office and its meter readings are invented, so nothing here is a real customer's result. Every figure is what the analyser reports for our example file, at an illustrative 25p/kWh.</div>
+  '''<section class="section"><div class="section-inner sample">
+<div class="note"><strong>Made-up example.</strong> The hospital and its meter readings are invented, so nothing here is a real trust's result. Every figure is what the analyser reports for our example file, at an illustrative 25p/kWh and an agreed supply capacity of 400 kVA.</div>
 
-<p class="answer">This made-up office used 79,191 kWh of electricity in a year, costing about £19,798 at 25p/kWh. A third of it (33%) was used while the office was closed. Use above the base load during those closed hours costs about £2,776 a year, almost half of it on Saturdays.</p>
+<p class="answer">This made-up 60-bed community hospital used about 1.35 million kWh of electricity in a year, costing about £337,500 at 25p/kWh. Almost two thirds of it (63%) is base load, the demand that never switches off. From September that base load stepped up by about 22 kW when the theatre ventilation stopped setting back at night, which is worth roughly £31,000 a year to put right.</p>
 
 <h2 class="section-title">The year at a glance</h2>
-<p class="section-lead">A small office, open 07:00 to 19:00 on weekdays, with 363 days of valid readings.</p>
+<p class="section-lead">One half-hourly meter, open around the clock, with 363 days of valid readings (99.5% coverage).</p>
 <div class="stat-grid">
-  <div><strong>79,191 kWh</strong><span>electricity used in the year, costing about £19,798</span></div>
-  <div><strong>33%</strong><span>of it used while the office was closed</span></div>
-  <div><strong>2.6 kW</strong><span>base load: what never switches off</span></div>
-  <div><strong>£2,776</strong><span>a year spent on use while closed, above the base load</span></div>
+  <div><strong>1,350,066 kWh</strong><span>electricity a year, costing about £337,517</span></div>
+  <div><strong>96.3 kW</strong><span>base load across the year, 63% of all use</span></div>
+  <div><strong>288.6 kW</strong><span>busiest half hour, in a July hot spell</span></div>
+  <div><strong>76%</strong><span>of the 400 kVA supply used at that peak</span></div>
 </div>
 
-<figure class="figure"><img src="images/heatmap-office.png" width="2464" height="896" alt="Heatmap of the office year: a dark weekday band, pale nights, and some busy Saturdays" loading="lazy"><figcaption>Every half hour of the year on one chart: one column per day, darker for higher demand. The weekday band is clear, and some Saturdays are as busy as weekdays.</figcaption></figure>
+<figure class="figure"><img src="images/heatmap-hospital.png" width="1548" height="560" alt="Heatmap of the hospital year: a dark weekday daytime band, darker summer afternoons, monthly generator test marks, and nights that get darker from September" loading="lazy"><figcaption>Every half hour of the year on one chart: one column per day, darker for higher demand. Nights never go pale on a 24-hour site. From early September they get darker and stay that way.</figcaption></figure>
 
-<h2 class="section-title">What the analyser found</h2>
+<h2 class="section-title">What the report shows</h2>
 <div class="finding-grid">
   <article class="finding">
-    <span class="finding-tag high">High impact</span>
-    <h3>Use while closed</h3>
-    <p class="finding-value">£2,776 a year</p>
-    <p>11,035 kWh used outside opening hours, above the base load. Almost half of it (5,155 kWh) is on Saturdays; weekday evenings and nights add 3,750 kWh.</p>
-    <p><strong>What to check:</strong> whether the office is used on Saturdays, and the heating and ventilation schedules.</p>
+    <span class="finding-tag medium">Base load trend</span>
+    <h3>Base load stepped up in September</h3>
+    <p class="finding-value">About £31,000 a year</p>
+    <p>Base load by month rose from 93.2 kW in August to 117.0 kW in September and stayed above 115 kW. The heatmap shows the extra load at nights and weekends only, about 22 kW for around 5,700 hours a year.</p>
+    <p><strong>What to check:</strong> theatre and outpatient ventilation setback after the summer controls work, with the Ventilation Safety Group.</p>
   </article>
   <article class="finding">
-    <span class="finding-tag medium">Medium impact</span>
-    <h3>Bank holidays like working days</h3>
-    <p class="finding-value">7 bank holidays</p>
-    <p>Seven bank holidays, including Christmas Day, used at least 80% of a normal weekday's electricity (1,408 kWh above base load in all).</p>
-    <p><strong>What to check:</strong> whether the building controls know about bank holidays.</p>
-    <p class="finding-note">Already included in the £2,776.</p>
+    <span class="finding-tag info">Capacity</span>
+    <h3>Room for a 100 kW heat pump, not 150 kW</h3>
+    <p class="finding-value">53 kW firm headroom</p>
+    <p>July chillers set the year's peak, leaving 53 kW of constant headroom within a 10% margin. Tested over October to April only, a 100 kW heat pump fits (354 kVA of 360 usable); a 150 kW one goes over in 2,690 half hours.</p>
+    <p><strong>What to check:</strong> the agreed capacity on the bill, before any heat pump design goes further.</p>
   </article>
   <article class="finding">
-    <span class="finding-tag low">Low impact</span>
-    <h3>Early starts and late finishes</h3>
-    <p class="finding-value">£629 a year</p>
-    <p>About 1,250 kWh above base load in the two hours before opening, and the same again in the two hours after closing.</p>
-    <p><strong>What to check:</strong> timer and heating start-up settings.</p>
-    <p class="finding-note">Already included in the £2,776.</p>
+    <span class="finding-tag low">Solar</span>
+    <h3>Almost all solar would be used on site</h3>
+    <p class="finding-value">99.8% at 299 kWp</p>
+    <p>At UK average output, a 299 kWp system would generate about 268,000 kWh a year and the hospital would use 99.8% of it, covering 20% of its electricity. At 449 kWp it would still use 95%.</p>
+    <p><strong>What to check:</strong> usable roof and car park area, then open the solar calculator from the Solar tab.</p>
   </article>
 </div>
-<p>The smaller findings are parts of the £2,776, not extra to it, so don't add them up. The base load is separate: 2.6 kW running all year costs about £5,700.</p>
+<p>The base load itself is separate from these: 96.3 kW running all year is about £211,000. On a hospital, most of it has to run, but every kilowatt removed is worth about £2,190 a year.</p>
+
+<h2 class="section-title">A dip that isn't a fault</h2>
+<p>On the first Tuesday of each month, demand falls to about 30% of normal for an hour mid-morning. That's the on-load generator test, when the hospital runs on its own generators. It sets the lowest half hour of the year (53.3 kW) but doesn't drag the base load down, because the analyser uses the 5th percentile rather than the minimum.</p>
 
 <h2 class="section-title">What could actually be saved?</h2>
-<p>The figures above are what each pattern costs now. They are not a promised saving. What you save depends on what you change, and some of that closed-hours use may turn out to be needed, such as a regular Saturday team. The way to find out is to:</p>
+<p>The figures are what each pattern costs now, not a promised saving. To turn them into one:</p>
 <ol class="sample-steps">
-  <li><strong>Confirm the opening hours.</strong> If Saturdays are planned working days, much of the £2,776 is normal use.</li>
-  <li><strong>Walk round the building</strong> on a Saturday and after closing time, and note what's switched on.</li>
-  <li><strong>Change one setting at a time</strong>, such as the heating schedule or bank holiday calendar.</li>
-  <li><strong>Compare the weeks before and after</strong> with the analyser's before-and-after view. That gives you a measured saving rather than an estimate.</li>
+  <li><strong>Take the base load step to the Ventilation Safety Group</strong> and have the setback restored by the BMS contractor.</li>
+  <li><strong>Walk the site between 01:00 and 05:00</strong> with the night team and list what's running in empty areas.</li>
+  <li><strong>Change one thing at a time</strong>, so each change shows up clearly in the data.</li>
+  <li><strong>Compare matched weeks before and after</strong> with the analyser's before-and-after view, for a measured saving rather than an estimate.</li>
 </ol>
 
 <div class="sample-cta">
   <a class="btn btn-gold btn-lg" href="analyser/">Analyse my own data</a>
-  <a class="btn btn-outline btn-lg" href="samples/example-office.csv" download>Download the example file</a>
+  <a class="btn btn-outline btn-lg" href="samples/example-hospital.csv" download>Download the example file</a>
 </div>
-<p>For the full method, figure by figure, read the <a href="example-office-analysis.html">worked example</a>. To understand your own figures, see <a href="how-it-works.html">how the analyser works</a>.</p>
-</div></section>''' + cta('Ready to see your own results?', 'Load your half-hourly meter file. It takes about a minute and your data stays on your computer.'))
+<p>For every figure explained step by step, read the <a href="example-hospital-analysis.html">community hospital worked example</a>. To understand your own results, see <a href="how-it-works.html">how the analyser works</a>.</p>
+</div></section>''' + cta('Ready to see your own results?', 'Load your half-hourly meter files. It takes about a minute and the data stays on your computer.'))
 
 PAGES['404.html'] = ('Page not found | Hospital Energy Insights', 'This page does not exist.',
   page_hero('404', 'Page not found', 'That page doesn\'t exist. Try the home page or open the analyser.',
@@ -550,7 +571,7 @@ def core_pages():
         'privacy.html': dict(crumbs=[home, ('Privacy', 'privacy.html')]),
         'terms.html': dict(crumbs=[home, ('Terms of use', 'terms.html')]),
         'sample-report.html': dict(crumbs=[home, ('Sample report', 'sample-report.html')], section='Core pages',
-                                   summary='A sample report for a made-up office: 33% of use while closed, £2,776 a year above base load, base load 2.6 kW, findings and what could be saved.'),
+                                   summary='A sample report for a made-up community hospital: 1.35 GWh a year, 63% base load, a September base load step worth about £31,000 a year, 76% of a 400 kVA supply at peak, room for a 100 kW heat pump, and 99.8% of solar used on site at 299 kWp.'),
         '404.html': dict(noindex=True),
         'about.html': dict(crumbs=[home, ('About', 'about.html')], section='Core pages',
                            summary=f'Who runs the site ({OPERATOR}, Managing Director Paul Johnston), why the analyser is free, and how the guides are sourced and checked.'),

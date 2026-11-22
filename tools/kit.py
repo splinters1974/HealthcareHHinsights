@@ -54,6 +54,26 @@ AUTHOR_PHOTO = 'images/people/paul-johnston.jpg'
 AUTHOR_SAME_AS = []
 ORG_SAME_AS = []
 
+# Pages kept here for the journey but written first for a sister site. Their
+# canonical points at the original so search engines rank one copy, and they
+# stay out of the sitemap and llms.txt.
+_HHI = ['half-hourly-data-british-gas', 'half-hourly-data-edf', 'half-hourly-data-eon-next',
+        'half-hourly-data-npower-business-solutions', 'half-hourly-data-totalenergies', 'half-hourly-settlement',
+        'mpan-profile-class', 'non-energy-charges', 'non-energy-costs-outlook', 'electricity-prices-ten-years',
+        'business-electricity-price', 'electricity-benchmarks']
+CANONICAL_ELSEWHERE = {f'{n}.html': f'{HHI_SITE}{n}' for n in _HHI}
+CANONICAL_ELSEWHERE.update({  # the solar calculator's own method and general solar guides
+    'solar-calculator-method.html': f'{SOLAR_SITE}how-it-works.html',
+    'solar-cost.html': f'{SOLAR_SITE}commercial-solar-cost.html',
+    'solar-generation.html': f'{SOLAR_SITE}commercial-solar-generation.html',
+})
+ORIGINAL_ON_HHI = set(CANONICAL_ELSEWHERE)  # every page whose original is on a sister site
+
+
+def canonical_url(file):
+    return CANONICAL_ELSEWHERE.get(file) or url(file)
+
+
 NAV = [
     ('index.html', 'Home'),
     ('how-it-works.html', 'How it works'),
@@ -163,7 +183,7 @@ def jsonld(page):
                       **({'image': url(guide_card(page.file))} if guide_card(page.file) else {}),
                       'inLanguage': 'en-GB', 'datePublished': page_dates(page.file)[0], 'dateModified': page_dates(page.file)[1],
                       'author': {'@id': PERSON_ID}, 'publisher': {'@id': ORG_ID},
-                      'isPartOf': {'@id': WEBSITE['@id']}, **({'mainEntityOfPage': url(page.file)} if SITE_URL else {})})
+                      'isPartOf': {'@id': WEBSITE['@id']}, **({'mainEntityOfPage': canonical_url(page.file)} if SITE_URL else {})})
     if page.faqs:
         graph.append({'@type': 'FAQPage', 'mainEntity': [
             {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': strip_tags(a)}}
@@ -341,7 +361,8 @@ def layout(page):
     current = NAV_PARENT.get(page.file, page.file)
     active = ' class="active" aria-current="page"'
     links = ''.join(f'<li><a href="{href}"{active if href == current else ""}>{label}</a></li>' for href, label in NAV)
-    canonical = f'  <link rel="canonical" href="{url(page.file)}">\n  <meta property="og:url" content="{url(page.file)}">\n' if SITE_URL and not page.noindex else ''
+    canonical = (f'  <link rel="canonical" href="{canonical_url(page.file)}">\n  <meta property="og:url" content="{canonical_url(page.file)}">\n'
+                 if SITE_URL and not page.noindex else '')
     robots = '  <meta name="robots" content="noindex">\n' if page.noindex else ''
     # The 404 page is served at any missing address, so anchor its relative links to the site root.
     base = '  <base href="/">\n' if page.file == '404.html' else ''

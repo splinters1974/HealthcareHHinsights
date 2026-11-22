@@ -14,7 +14,7 @@ from PIL import Image
 OUT = os.path.join(os.path.dirname(__file__), '..', 'site', 'images', 'heroes')
 NAMES = {'how-it-works', 'guides', 'sectors', 'solar', 'faq', 'contact',
          # guide pages: the name is the page's file name without .html
-         'get-your-data', 'example-office-analysis', 'example-school-analysis', 'reading-a-heatmap',
+         'get-your-data', 'example-hospital-analysis', 'reading-a-heatmap',
          'out-of-hours-electricity', 'base-load', 'supply-capacity', 'proving-savings', 'half-hourly-settlement',
          'mpan-profile-class', 'electricity-benchmarks', 'business-electricity-price', 'non-energy-charges',
          'electricity-prices-ten-years', 'non-energy-costs-outlook', 'glossary',

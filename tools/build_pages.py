@@ -23,7 +23,9 @@ from pages_prices import PAGES as PRICE_PAGES
 from pages_solar import PAGES as SOLAR_PAGES
 from pages_healthcare import PAGES as HEALTH_PAGES
 from pages_solarguides import PAGES as SOLAR_GUIDE_PAGES
+from pages_solarhealth import PAGES as SOLAR_HEALTH_PAGES
 import build_calculator
+import seo_meta
 
 SITE = Path(__file__).resolve().parent.parent / 'site'
 DATES_FILE = Path(__file__).resolve().parent / 'page_dates.json'
@@ -67,7 +69,7 @@ def llms(pages):
     out += ['## Tools', '', f'- [Analyser]({url("analyser/")}): the half-hourly analyser, in the browser.',
             f'- [Solar calculator]({url("solar-calculator.html")}): solar PV sizing, cost, payback and PPA comparison over 25 years; opens with the analyser\'s measured share of output used on site.', '']
     for section in ['Core pages', 'Guides', 'Sectors']:
-        items = [p for p in pages if p.section == section and p.summary]
+        items = [p for p in pages if p.section == section and p.summary and p.file not in kit.ORIGINAL_ON_HHI]
         if items:
             out += [f'## {section}', ''] + [f'- [{p.title.split(" | ")[0]}]({url(p.file)}): {p.summary}' for p in items] + ['']
     out += ['## Related', '', f'- [UK Solar Calculator]({kit.SOLAR_SITE}): sister site from the same team, for commercial solar PV estimates.',
@@ -102,14 +104,15 @@ def update_dates(pages):
 
 def sitemap(pages):
     rows = ''.join(f'  <url><loc>{url(p.file)}</loc><lastmod>{kit.page_dates(p.file)[1]}</lastmod></url>\n'
-                   for p in pages if not p.noindex)
+                   for p in pages if not p.noindex and p.file not in kit.ORIGINAL_ON_HHI)
     rows += f'  <url><loc>{url("solar-calculator.html")}</loc><lastmod>{max(d["modified"] for d in kit.PAGE_DATES.values())}</lastmod></url>\n'
     rows += f'  <url><loc>{url("analyser/")}</loc><lastmod>{max(d["modified"] for d in kit.PAGE_DATES.values())}</lastmod></url>\n'
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{rows}</urlset>\n'
 
 
 def main():
-    pages = core_pages() + HEALTH_PAGES + GUIDE_PAGES + SOLAR_PAGES + SOLAR_GUIDE_PAGES + DATA_PAGES + PRICE_PAGES
+    pages = core_pages() + HEALTH_PAGES + GUIDE_PAGES + SOLAR_PAGES + SOLAR_HEALTH_PAGES + SOLAR_GUIDE_PAGES + DATA_PAGES + PRICE_PAGES
+    seo_meta.apply(pages)
     update_dates(pages)
     for p in pages:
         (SITE / p.file).write_text(layout(p), encoding='utf-8')

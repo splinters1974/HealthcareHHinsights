@@ -22,22 +22,22 @@ META = json.loads((DIR / 'meta.json').read_text(encoding='utf-8'))
 NOTES = {
     'solar-calculator-method': 'This is the method behind this site\'s <a href="solar-calculator.html">solar calculator</a>. The one input that matters most for a hospital is the share of solar used on site: rather than the 80% default, measure it from your own half-hourly data in the <a href="analyser/">analyser</a> and pass it across.',
     'solar-cost': 'Hospital roofs often carry plant, flues and access routes, and car park canopies cost more per kWp because of the steelwork. Both are reflected in the per-kWp benchmarks below. Survey costs, structural work and any grid reinforcement are extra.',
-    'solar-payback': 'On a 24-hour hospital the share of output used on site is usually high, which shortens payback. On clinics and offices closed at weekends it is lower. Measure it from your half-hourly data in the <a href="analyser/">analyser</a>.',
     'solar-generation': 'Generation depends on where you are and how the panels face, not on the type of building. What changes for a hospital is how much of that generation it uses, which you can measure from half-hourly data.',
-    'solar-planning-and-grid': 'On hospital sites, also plan for glint and glare near helicopter landing sites, works around clinical areas and access routes, and how solar will behave with your standby generators during a power cut.',
-    'paying-for-solar': 'For NHS organisations, see also <a href="decarbonisation-funding.html">funding routes</a>, including Great British Energy\'s solar funding for NHS sites and the devolved schemes in Scotland and Wales.',
 }
 TITLES = {
     'solar-calculator-method': ('How the solar calculator works: method and assumptions', 'How the solar calculator works'),
     'solar-cost': ('How much does solar cost for hospitals and large sites?', 'What solar costs'),
-    'solar-payback': ('How long does solar take to pay back on a hospital or healthcare site?', 'Solar payback'),
     'solar-generation': ('How much electricity will solar panels generate?', 'How much solar generates'),
-    'solar-planning-and-grid': ('Solar planning permission and grid connection for healthcare sites', 'Planning and grid connection'),
-    'paying-for-solar': ('Paying for solar: buy, finance, lease or a PPA', 'Paying for solar'),
 }
+
+# Rewritten for healthcare in pages_solarhealth.py; the rest keep a canonical
+# link to the UK Solar Calculator original (kit.CANONICAL_ELSEWHERE).
+REWRITTEN = {'solar-payback', 'solar-planning-and-grid', 'paying-for-solar'}  # no longer in meta.json
 
 PAGES = []
 for name, m in META.items():
+    if name in REWRITTEN:
+        continue
     file = f'{name}.html'
     title, short = TITLES[name]
     art = (DIR / f'{name}.html').read_text(encoding='utf-8')

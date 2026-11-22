@@ -1,16 +1,16 @@
 """
-Solar tab: why solar suits many businesses, why the share used on site
-matters most, what half-hourly data tells you before you size a system, and
-how to take the figures to the solar calculator on this site.
+Solar sizing from half-hourly data, for hospitals and healthcare sites: why
+the share of output used on site decides the value, what HH data shows before
+sizing, a worked example, and how the analyser hands over to the calculator.
 
 Worked-example figures come from the analyser's own solar estimate
-(analyser/src/local/solarFit.ts) run on site/samples/example-office.csv at the
-UK average output (905 kWh/kWp). If that model or the sample file changes,
-re-run it and update EXAMPLE below. Values are first-year, at the UK Solar
-Calculator's default unit price (25p/kWh) and export rate (5p/kWh).
+(analyser/src/local/solarFit.ts) run on site/samples/example-hospital.csv at
+UK average output (905 kWh/kWp), locked in analyser/tests/website-claims.test.ts.
+Values are first-year, at the solar calculator's default unit price (25p/kWh)
+and export rate (5p/kWh).
 
-REVIEW EACH APRIL with the price pages: the Ofgem SEG scope, the capital
-allowance and business rates references, and the calculator's assumptions.
+REVIEW EACH APRIL: the Ofgem SEG scope, the business rates and capital
+allowance references, and the calculator's assumptions.
 """
 from kit import (NAV_PARENT, Page, photo, SOLAR_URL, guide, page_hero, faq_section, sources,
                  toc, updated_line)
@@ -30,24 +30,23 @@ def ref(*n):
 SRC = [
     ('How the solar calculator works (method and assumptions)', 'solar-calculator-method.html'),
     ('Ofgem: Smart Export Guarantee (SEG)', 'https://www.ofgem.gov.uk/environmental-and-social-schemes/smart-export-guarantee-seg'),
-    ('Solar planning permission and grid connection', 'solar-planning-and-grid.html'),
+    ('Solar planning permission and grid connection for healthcare sites', 'solar-planning-and-grid.html'),
     ('Explanatory Memorandum to SI 2022/405, business rates exemption for renewable plant',
      'https://www.legislation.gov.uk/uksi/2022/405/pdfs/uksiem_20220405_en.pdf'),
-    ('GOV.UK: Permanent full expensing for companies investing in plant and machinery',
-     'https://www.gov.uk/government/publications/capital-allowances-permanent-full-expensing/capital-allowances-permanent-full-expensing-for-companies-investing-in-plant-and-machinery'),
-    ('How long does solar take to pay back?', 'solar-payback.html'),
-    ('GOV.UK: Standard Assessment Procedure (SAP 10.3)', 'https://www.gov.uk/guidance/standard-assessment-procedure'),
+    ('Paying for solar on healthcare sites', 'paying-for-solar.html'),
     ('Department for Energy Security and Net Zero: Energy Trends section 6, renewables (table ET 6.1, solar generation by quarter)',
      'https://www.gov.uk/government/statistics/energy-trends-section-6-renewables'),
+    ('GOV.UK: Standard Assessment Procedure (SAP 10.3)', 'https://www.gov.uk/guidance/standard-assessment-procedure'),
 ]
 
-# Example office, UK average output. (kWp, generated, used on site, share used, share of the site's electricity)
+# Example community hospital, UK average output. (kWp, generated, used on site, share of the site's electricity %)
 EXAMPLE = [
-    (26.3, 23728, 20886, 88, 26),
-    (52.6, 47457, 34214, 72, 43),
-    (105.3, 95003, 43613, 46, 55),
+    (299.1, 268374, 267801, 20),
+    (448.6, 402516, 383707, 29),
+    (747.7, 670890, 506661, 38),
+    (1196.3, 1073406, 584828, 44),
 ]
-USE = 79137
+USE = 1341750  # kWh over the 363 valid days
 
 
 def gbp(x):
@@ -58,118 +57,113 @@ def value(gen, used, unit=0.25, export=0.05):
     return used * unit + (gen - used) * export
 
 
+def share(gen, used):
+    return f'{used / gen * 100:.1f}%' if used / gen > 0.995 else f'{round(used / gen * 100)}%'
+
+
 def example_rows():
     out = []
-    for kwp, gen, used, sc, cov in EXAMPLE:
-        out.append(f'<tr><td style="white-space:nowrap">{kwp:g} kWp</td><td class="num">{gen:,} kWh</td><td class="num">{sc}%</td>'
+    for kwp, gen, used, cov in EXAMPLE:
+        out.append(f'<tr><td style="white-space:nowrap">{kwp:,.0f} kWp</td><td class="num">{gen:,} kWh</td><td class="num">{share(gen, used)}</td>'
                    f'<td class="num">{cov}%</td><td class="num">{gbp(value(gen, used))}</td>'
                    f'<td class="num">{gbp(value(gen, gen * 0.8))}</td></tr>')
     return ''.join(out)
 
 
-big = EXAMPLE[2]
-OVERSTATE = value(big[1], big[1] * 0.8) - value(big[1], big[2])
-OVERSTATE_PCT = round(OVERSTATE / value(big[1], big[2]) * 100)
+def gap(row):
+    kwp, gen, used, _ = row
+    return value(gen, gen * 0.8) - value(gen, used)
+
+
+UNDER = -gap(EXAMPLE[1])
+OVER = gap(EXAMPLE[3])
+OVER_PCT = round(OVER / value(EXAMPLE[3][1], EXAMPLE[3][2]) * 100)
 
 FAQS = [
-    ('Can half-hourly data tell me what size of solar system to fit?',
-     "It tells you the most important half of the answer: how much of a system's output you would use yourself at each size. "
-     "Your roof, budget and grid connection set the other half. The analyser estimates the first; the solar calculator "
-     "works out what fits on your roof and what it would cost and save."),
-    ('Why not just fit as many panels as the roof will take?',
-     "Because solar you can't use is exported for a few pence. Past a certain size, each extra panel mostly adds export. "
-     "In our example office, doubling the system from about 53 to 105 kWp raises the share of the site's electricity "
-     "supplied by solar from 43% to 55%, while the share of the output it uses falls from 72% to 46%. A full roof can "
-     "still make sense, but only if the numbers work at the lower share used on site."),
-    ('Does solar reduce standing charges or capacity charges?',
-     "No. Standing charges are per day and capacity charges are per kVA of agreed supply capacity, so they stay the same. "
-     "Solar reduces the units you buy, and with them the charges priced per kWh. It also does little for charges linked to "
-     "winter evening peaks, because it's dark by about 4pm in midwinter. See "
-     '<a href="non-energy-charges.html">non-energy charges explained</a>.'),
-    ('Will my half-hourly data look different once solar is fitted?',
-     "Yes. Your main meter records what you import from the grid, so solar you use on site disappears from the data and "
-     "daytime demand looks lower. Size a system from data recorded before solar was fitted. Afterwards, use the analyser to "
-     "check the fall in imports against what you expected, as in <a href=\"proving-savings.html\">proving a saving worked</a>."),
-    ('Is my meter data sent to the solar calculator?',
-     "No. The button on the analyser's Solar tab passes only the site's annual use, the estimated share used on site "
-     "at a dozen system sizes and the site postcode, if you entered one. They go in the part of the web address after the #, which browsers don't send to any server. "
-     "Your readings stay on your computer."),
-    ('Should I add a battery?',
-     "Only if the numbers work. A battery stores solar you would otherwise export and uses it later, usually in the evening. "
-     "Your half-hourly data shows how much you use after sunset on sunny days, which is the most a battery could shift. "
-     "The solar calculator lets you model the system with and without one."),
+    ('Will a hospital use all the solar it generates?',
+     "Usually most of it, because wards, ventilation, imaging and fridges run through every sunny afternoon and at weekends. "
+     "In our made-up community hospital, a system of up to about 300 kWp is used almost entirely on site. Very large systems "
+     "still export at weekends and on long summer evenings, so measure it from your own data."),
+    ('Is the 80% default in the solar calculator right for a hospital?',
+     "Often it's too low for a well-sized system on a 24-hour site and too high for a very large one. Load a year of "
+     "half-hourly data into the analyser and pass the measured figure across instead."),
+    ('Should a health centre or clinic be sized differently?',
+     "Yes. A building that closes at 18:30 and at weekends exports much more of its summer output, so the share used on site "
+     "falls faster as the system gets bigger. Size it from that building's own meter, not the main hospital's."),
+    ('Does solar cut our capacity charges?',
+     "No. Capacity charges are set per kVA of agreed capacity and standing charges per day, so they don't change. Solar cuts "
+     "the units you import. It also does little for winter evening peaks, because it's dark by about 4pm in midwinter."),
+    ('Is our meter data sent to the solar calculator?',
+     "No. Only the annual use, the share used on site at a dozen sizes and the postcode, if you entered one, are passed, in the "
+     "part of the web address after the #. Browsers never send that part to a server."),
+    ('Should we add a battery?',
+     "On a 24-hour hospital there is often little surplus to store unless the array is large. Check how much the site exports "
+     "on sunny weekends in the analyser's estimate, then model the battery in the calculator."),
 ]
 
-TOC = [('why', 'Why businesses fit solar'), ('share', 'The figure that matters most'), ('data', 'What your data tells you'),
-       ('example', 'A worked example'), ('how', 'From your data to a solar estimate'), ('calculator', 'What the calculator does'),
+TOC = [('why', 'Why healthcare sites fit solar'), ('share', 'The figure that matters most'), ('data', 'What your data shows'),
+       ('example', 'A worked example'), ('how', 'From data to estimate'), ('calculator', 'What the calculator does'),
        ('limits', 'What this can and cannot tell you'), ('questions', 'Questions people ask'), ('sources', 'Sources')]
 
 MAIN = f'''{updated_line()}
-<p class="answer">Solar saves the most when you use its output yourself, because every unit you use saves your full unit price and every unit you export earns a few pence. Your half-hourly data shows how much daytime electricity your site really uses, so you can see how much of a system's output you would use at each size. The <a href="{SOLAR_URL}"><strong>solar calculator</strong></a> on this site then works out what fits on your roofs and car parks, what it costs and how soon it pays back.</p>
+<p class="answer">On a hospital, solar is worth most when it's sized to the roof, car parks and connection you have, because a 24-hour site uses nearly all of a well-sized system's output. Your half-hourly data measures that share at each system size, replacing the guess that most estimates start from. The analyser passes the measured figure to the <a href="{SOLAR_URL}"><strong>solar calculator</strong></a>, which works out what fits, what it costs and how soon it pays back.</p>
 
 <h2 id="why">Why healthcare sites fit solar</h2>
 <ul>
-<li><strong>It cuts the units you buy.</strong> Solar you use on site replaces electricity you would otherwise buy at your full unit price.{ref(1)} With non-domestic prices well above where they were ten years ago (see <a href="electricity-prices-ten-years.html">ten years of electricity prices</a>), each kWh you don't buy is worth more than it was.</li>
-<li><strong>Healthcare sites use electricity in daylight, and at weekends.</strong> Hospitals run around the clock, so they use most of a well-sized system's output. Clinics, health centres and offices are busiest in the middle of the day, when solar generates most.</li>
-<li><strong>You can be paid for what you export.</strong> Under the Smart Export Guarantee, installations of up to 5 MW in Great Britain can be paid by a supplier for electricity they export. Suppliers set their own rates.{ref(2)}</li>
-<li><strong>Rooftop solar rarely needs planning permission in England.</strong> Since December 2023, rooftop solar on non-domestic buildings has been permitted development with no capacity limit, with exceptions such as listed buildings. Most systems still need approval from the local network operator under G99.{ref(3)}</li>
-<li><strong>There is tax and rates help.</strong> Plant used to generate renewable power on site has been exempt from business rates in England since April 2022,{ref(4)} and companies can claim full expensing on qualifying plant and machinery.{ref(5)} Check how they apply to you with your adviser.</li>
-<li><strong>You don't have to buy it.</strong> Under a Power Purchase Agreement, a funder pays for and owns the system and you buy its electricity at an agreed rate.{ref(1)}</li>
+<li><strong>Demand is there when the sun is.</strong> Wards, theatres, imaging, kitchens and ventilation all run through the middle of the day, every day of the week. That's rare among building types, and it's what makes solar pay on hospitals.</li>
+<li><strong>Every unit used on site replaces a unit bought</strong> at the full import price.{ref(1)} Export earns far less: under the Smart Export Guarantee, a supplier pays for exported power from systems up to 5 MW, at a rate the supplier sets.{ref(2)}</li>
+<li><strong>Rooftops rarely need planning permission in England</strong>, though listed buildings, conservation areas and car park canopies need more care, and almost every system needs DNO approval under G99.{ref(3)}</li>
+<li><strong>On-site renewable plant is exempt from business rates in England</strong> from April 2022, which matters because NHS hospitals pay rates.{ref(4)}</li>
+<li><strong>Funding has been aimed at NHS solar.</strong> Great British Energy has funded solar on NHS sites, and power purchase agreements need no capital at all.{ref(5)}</li>
 </ul>
-{photo('solar-ground-campus', 'Ground-mounted solar panels beside an energy centre and office campus at sunset', 'Roofs are the usual place to start, but car parks and spare land can carry panels too.')}
-<p>Most UK commercial rooftop systems pay back in roughly four to eight years on the solar calculator's own worked figures.{ref(6)} Where yours falls depends mostly on one number.</p>
+{photo('hc-public-hospital-solar', 'A large public hospital with solar panels across its flat roofs and car park canopies', 'Hospital roofs carry plant and flues, so the usable area is often smaller than it looks. Car parks add space.')}
 
-<h2 id="share">The figure that matters most: how much you use yourself</h2>
-<p>At a 25p unit price, a kWh of solar you use saves 25p. A kWh you export earns about 5p, the rate the solar calculator assumes.{ref(1)} That five-fold gap means the share of output you use on site moves the savings more than almost any other input.</p>
-<p>Without data, people guess. The calculator starts at 80%, which suits sites busy through the working week.{ref(1)} But the right figure depends on the size of the system as much as the site. A small system on a busy building may use all of its output. A large one on the same building may export half, especially at weekends and on long summer evenings. Your half-hourly data replaces the guess with a measured estimate at each size.</p>
+<h2 id="share">The figure that matters most: the share you use yourself</h2>
+<p>At a 25p unit price, each kWh of solar used on site saves 25p, while each kWh exported earns about 5p, the rate the calculator assumes.{ref(1)} That five-to-one gap means the share used on site moves the result more than almost any other input.</p>
+<p>The calculator starts at 80% if you don't measure it.{ref(1)} For a 24-hour hospital that's often too cautious at the sizes most sites can fit, and too generous for very large arrays. For a health centre that closes at weekends, it can be too generous at almost any size. Half-hourly data settles it.</p>
 
-<h2 id="data">What your half-hourly data tells you before you size a system</h2>
-<div class="table-wrap"><table><thead><tr><th>What the data shows</th><th>Why it matters for solar</th><th>Where to look</th></tr></thead><tbody>
-<tr><td>Daytime demand, weekday and weekend</td><td>Sets how much output you can use at each size. Quiet weekends mean more export from a large system.</td><td>Heatmap; Solar tab</td></tr>
-<tr><td>Base load</td><td>What runs even when the building is closed. On a sunny Sunday this is all the solar you can use.</td><td><a href="base-load.html#solar">Base load and solar</a></td></tr>
-<tr><td>Summer and winter pattern</td><td>About three quarters of a year's solar output comes from April to September.{ref(8)} Summer daytime demand matters more than winter's.</td><td>Heatmap; monthly chart</td></tr>
-<tr><td>Peak demand and supply capacity</td><td>How much headroom your connection has, and what the network operator will ask about in a G99 application.</td><td><a href="supply-capacity.html#solar">Solar and your connection</a></td></tr>
-<tr><td>Evening use on sunny days</td><td>The most a battery could shift from midday to evening.</td><td>Day profile</td></tr>
-<tr><td>Out-of-hours waste</td><td>Fix it first. Cutting waste lowers the demand solar has to match, so size the system on the building you'll have afterwards.</td><td><a href="out-of-hours-electricity.html">Out-of-hours use</a></td></tr>
+<h2 id="data">What your half-hourly data shows before you size anything</h2>
+<div class="table-wrap"><table><thead><tr><th>What the data shows</th><th>Why it matters for solar</th></tr></thead><tbody>
+<tr><td>Summer daytime demand, weekdays and weekends</td><td>Sets how much output you can use. About three quarters of a year's solar output comes from April to September.{ref(6)}</td></tr>
+<tr><td>Base load</td><td>What's running on a sunny Sunday afternoon. On a hospital it's high, which is why so little is exported.</td></tr>
+<tr><td>Chiller load on hot afternoons</td><td>Cooling peaks line up with peak solar, so solar trims the year's highest import.</td></tr>
+<tr><td>CHP running hours</td><td>While a CHP engine runs, there's less import for solar to replace. Plan for the site after the engine goes.</td></tr>
+<tr><td>Peaks against agreed capacity</td><td>Background for the DNO's G99 assessment, and headroom for heat pumps later.</td></tr>
+<tr><td>Separately metered clinics and offices</td><td>These close, so they export more. Size them on their own data.</td></tr>
 </tbody></table></div>
-{photo('hc-battery-ev-charging', 'Two engineers beside a battery storage unit and electric vehicle chargers at a hospital car park', 'After sunset, solar stops. Your evening demand on sunny days is the most a battery could ever move.')}
 
-<h2 id="example">A worked example: the sample office</h2>
-<p>Our <a href="example-office-analysis.html">example office</a> uses about {USE:,} kWh a year and is quiet on Sundays and busy only on some Saturdays. Here is what the analyser estimates at three system sizes, at UK average output (905 kWh per kWp). Values are for the first year at 25p/kWh for solar used on site and 5p/kWh for export, before price rises and panel ageing. "Covers" is the share of the site's electricity solar would supply. "Value" uses the measured share used on site; "At 80%" is the same system if you had guessed 80%.</p>
+<h2 id="example">A worked example: a community hospital</h2>
+<p>Our <a href="example-hospital-analysis.html">example hospital</a> used {USE:,} kWh over the year analysed. In summer, between 10:00 and 16:00, it averages about 205 kW on weekdays and 147 kW at weekends. Here is the analyser's estimate at four system sizes, at UK average output (905 kWh per kWp). Values are first-year, at 25p/kWh for solar used on site and 5p/kWh for export. "Covers" is the share of the hospital's electricity the solar supplies. "At 80%" is the same system valued with the calculator's default guess.</p>
 <div class="table-wrap" tabindex="0" role="region" aria-label="Worked example by system size"><table><thead><tr><th>Size</th><th class="num">Output a year</th><th class="num">Used on site</th><th class="num">Covers</th><th class="num">Value</th><th class="num">At 80%</th></tr></thead><tbody>
 {example_rows()}
 </tbody></table></div>
-<p>At about 53 kWp, assuming 80% instead of the measured 72% overstates the first-year value by about {gbp(value(EXAMPLE[1][1], EXAMPLE[1][1] * 0.8) - value(EXAMPLE[1][1], EXAMPLE[1][2]))}. At 105 kWp, the measured share is 46%, and assuming 80% overstates it by about {gbp(OVERSTATE)} a year ({OVERSTATE_PCT}%). Over a 25-year system life that difference decides whether the larger system is worth it. That's the mistake half-hourly data stops you making.</p>
-<p class="note">The solar calculator models systems of 50 kWp and above, so a site this small sits at the bottom of its range. Larger sites follow the same pattern at a bigger scale.{ref(1)}</p>
+<p>Two things stand out. Up to about 450 kWp, the default guess <strong>undersells</strong> the system: at 449 kWp the measured value is about {gbp(UNDER)} a year higher than the 80% figure. By 748 kWp the guess has flipped and <strong>oversells</strong>, and at 1,196 kWp it overstates the first-year value by about {gbp(OVER)} ({OVER_PCT}%). Few community hospitals have room for 1 MW, so for most sites the measured figure makes the case stronger, not weaker.</p>
 
-<h2 id="how">From your data to a solar estimate, in three steps</h2>
+<h2 id="how">From your data to a solar estimate</h2>
 <ol>
-<li><strong>Load a year of half-hourly data</strong> into the <a href="analyser/">analyser</a>. It runs in your browser and nothing is uploaded. Need the data? See <a href="get-your-data.html">how to get your half-hourly data</a>.</li>
-<li><strong>Open the site and choose the Solar tab</strong>, next to Overview. The Overview also shows a one-line solar estimate. Add the site postcode for the sunshine in your area; it also lets the calculator find the site on its map. "Solar: how much would you use?" shows the output, the share used on site and the share of your electricity solar would supply at three sizes. Pick your region to match your location.</li>
-<li><strong>Choose "Size solar for this site".</strong> The solar calculator opens with your figures. Draw your roof on the map or enter its size, and the calculator sets the share used on site for the system that fits, then works out cost, savings and payback.</li>
+<li><strong>Load a year of half-hourly data</strong> for each main meter into the <a href="analyser/">analyser</a>. It runs in your browser. Need the files? See <a href="get-your-data.html">getting half-hourly data</a>.</li>
+<li><strong>Open the site's Solar tab.</strong> Add the postcode to set the sunshine for your area. The tab shows output, share used on site and share of the site's electricity at each size.</li>
+<li><strong>Choose "Size solar for this site".</strong> The calculator opens with your figures. Draw the roofs and car parks on the map, and it sets the share used on site for the system that fits, then works out cost, savings and payback.</li>
 </ol>
-<p>Only the site's annual use, the share used on site at a dozen sizes and the postcode, if you entered one, are passed, in the part of the web address after the #, which browsers don't send to any server. See the <a href="privacy.html">privacy notice</a>.</p>
+<p>Only the annual use, the share used on site at a dozen sizes and the postcode, if entered, are passed, after the # in the web address. See the <a href="privacy.html">privacy notice</a>.</p>
 
 <h2 id="calculator">What the solar calculator does</h2>
-<p>The <a href="{SOLAR_URL}">solar calculator</a> is part of this site. It comes from the UK Solar Calculator, built by the same team for sizing and costing commercial and public sector solar, and uses the same method and assumptions.</p>
+<p>The <a href="{SOLAR_URL}">solar calculator</a> on this site uses the same method as the UK Solar Calculator, built by the same team.</p>
 <ul>
-<li><strong>Measures your roof</strong> from satellite imagery or the dimensions you enter, for pitched and flat roofs, ground mounts and carports.{ref(1)}</li>
-<li><strong>Estimates generation at your postcode</strong> from the government's SAP 10.3 sunshine data for 21 UK regions.{ref(1,7)}</li>
-<li><strong>Prices the system</strong> from UK market benchmarks per kWp, including an inverter replacement in year 13.{ref(1)}</li>
-<li><strong>Compares buying outright with a PPA</strong>, with payback, return and net benefit over 25 years.{ref(1)}</li>
-<li><strong>Models a battery</strong> if you want one, and produces a 25-year PDF report you can share.{ref(1)}</li>
+<li><strong>Measures roofs and car parks</strong> from satellite imagery or dimensions you enter, for pitched and flat roofs, ground mounts and carports.{ref(1)}</li>
+<li><strong>Estimates generation at your postcode</strong> from the SAP 10.3 regional sunshine data.{ref(1, 7)}</li>
+<li><strong>Prices the system</strong> from UK benchmarks per kWp, including an inverter replacement in year 13.{ref(1)}</li>
+<li><strong>Compares buying with a PPA</strong> over 25 years, and models a battery if you want one.{ref(1)}</li>
 </ul>
-{photo('solar-carport-depot', 'Solar carports over electric buses at a depot, with a battery container in the foreground', 'The calculator covers pitched and flat roofs, ground mounts and carports, each costed separately.')}
-<p>It's free, and run by <a href="about.html">Kinetic Energy Consulting</a>. If you want help turning an estimate into a project, <a href="{SOLAR_CONTACT}">get in touch</a>.</p>
+{photo('hc-rooftop-solar-install', 'Two installers checking solar panels on a hospital roof', 'An estimate tells you whether to take the next step. A survey, a structural check and a DNO offer give you the real cost.')}
 
 <h2 id="limits">What this can and cannot tell you</h2>
-<p>The analyser's estimate uses a typical UK solar day, scaled to your region's annual output and to the UK's actual seasonal pattern. It doesn't know about cloudy weeks, shading, the direction your roof faces or what you'll change in future, so treat it as a planning figure, not a guarantee. The calculator's results are estimates, not a quotation. A site survey, a structural check and a network operator's offer come before any firm price.{ref(1,3)}</p>
-{photo('hc-rooftop-solar-install', 'Two installers checking solar panels on a hospital roof', 'An estimate tells you whether to take the next step. A survey and a network offer tell you the real cost.')}
+<p>The analyser's estimate uses a typical UK solar day scaled to your region and the UK's seasonal pattern. It doesn't know about cloudy weeks, shading from plant or neighbouring blocks, roof orientation, or changes you'll make, such as removing a CHP engine. Treat it as a planning figure. The calculator's results are estimates, not a quotation.{ref(1, 3)}</p>
 {faq_section(FAQS)}
 {sources(SRC)}'''
 
 SIDE = f'''{toc(TOC)}
-    <div class="side-cta"><strong>Size solar for your roof</strong><p>Postcode, roof and energy price. Results in seconds, with a 25-year report.</p><a href="{CALC}" class="btn">Open the solar calculator</a></div>'''
+    <div class="side-cta"><strong>Size solar for your site</strong><p>Postcode, roof and energy price. Results in seconds, with a 25-year report.</p><a href="{CALC}" class="btn">Open the solar calculator</a></div>'''
 
 END = f'''<section class="cta-strip">
   <div class="cta-strip-inner">
@@ -184,12 +178,12 @@ END = f'''<section class="cta-strip">
 
 
 PAGES = [Page(
-    FILE, 'Solar sizing from half-hourly data | Hospital Energy Insights',
-    'Use your half-hourly electricity data to see how much solar a hospital or healthcare site would use, then size the system and payback in the solar calculator.',
-    page_hero('Solar', 'Size solar from how your site really uses electricity',
-              "Your half-hourly data shows how much of a solar system's output you'd use yourself. That's the number that decides whether solar pays.",
+    FILE, 'Hospital solar sizing from half-hourly data | Hospital Energy Insights',
+    'How much solar would a hospital use? Measure it from half-hourly data, with a worked community hospital example, then size and cost it in the solar calculator.',
+    page_hero('Solar', 'Size hospital solar from how the site really runs',
+              "A 24-hour site uses most of what solar generates. Your half-hourly data shows exactly how much, at every system size.",
               crumbs=CRUMBS, image='solar')
     + guide(MAIN, SIDE).replace('<div class="side-cta"><strong>Try it on your own data</strong>', '<div class="side-cta"><strong>Measure it from your data</strong>', 1)
     + END,
     crumbs=CRUMBS, faqs=FAQS, article=True, section='Core pages',
-    summary='How half-hourly data shows how much solar a site would use, and how the analyser passes that to the solar calculator to size the system.')]
+    summary='Sizing solar for hospitals from half-hourly data: why share used on site decides value, a worked community hospital example (99.8% used at 299 kWp, 54% at 1,196 kWp), and how the analyser passes the figure to the solar calculator.')]

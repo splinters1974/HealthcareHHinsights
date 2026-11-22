@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How it works | Hospital Energy Insights</title>
-  <meta name="description" content="What the analyser does with your half-hourly data: how it reads files, checks quality, sets the base load, prices use while closed and builds findings.">
+  <title>How the hospital energy analyser works</title>
+  <meta name="description" content="How the free analyser turns hospital and clinic half-hourly data into findings: data checks, 24/7 presets, base load, headroom and solar.">
   <link rel="canonical" href="https://hospitalenergyinsights.co.uk/how-it-works">
   <meta property="og:url" content="https://hospitalenergyinsights.co.uk/how-it-works">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_GB">
-  <meta property="og:title" content="How it works | Hospital Energy Insights">
-  <meta property="og:description" content="What the analyser does with your half-hourly data: how it reads files, checks quality, sets the base load, prices use while closed and builds findings.">
+  <meta property="og:title" content="How the hospital energy analyser works">
+  <meta property="og:description" content="How the free analyser turns hospital and clinic half-hourly data into findings: data checks, 24/7 presets, base load, headroom and solar.">
   <meta property="og:image" content="https://hospitalenergyinsights.co.uk/images/guides/how-it-works.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -24,7 +24,7 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#0B2E4F">
   <link rel="preload" href="fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/site.css?v=63119adc">
+  <link rel="stylesheet" href="css/site.css?v=5601e201">
   <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -89,12 +89,12 @@
   },
   {
    "@type": "Article",
-   "headline": "How it works",
-   "description": "What the analyser does with your half-hourly data: how it reads files, checks quality, sets the base load, prices use while closed and builds findings.",
+   "headline": "How the hospital energy analyser works",
+   "description": "How the free analyser turns hospital and clinic half-hourly data into findings: data checks, 24/7 presets, base load, headroom and solar.",
    "image": "https://hospitalenergyinsights.co.uk/images/guides/how-it-works.jpg",
    "inLanguage": "en-GB",
    "datePublished": "2026-11-18",
-   "dateModified": "2026-11-18",
+   "dateModified": "2026-11-22",
    "author": {
     "@id": "https://hospitalenergyinsights.co.uk/about#paul-johnston"
    },
@@ -133,52 +133,60 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">How it works</span></nav>
     <span class="page-hero-kicker">How it works</span>
     <h1 class="page-hero-title">What the analyser does with your data</h1>
-    <p class="page-hero-lead">A step-by-step explanation, from reading your file to the figures in the report. In the analyser, each finding also has a "show calculation and evidence" link with the full working.</p>
+    <p class="page-hero-lead">From the file your supplier sends to the figures in the report, step by step. Every finding in the analyser also has a "show calculation and evidence" link with the full working.</p>
   </div>
 </section><div class="guide">
   <article class="guide-main prose">
-<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-18">18 November 2026</time></p>
-<p class="answer">The analyser checks every half-hourly reading, works out how much electricity the site uses when it's open and when it's closed, and prices the difference at your rates. It tells you where to look. Someone who knows the building then decides what to change.</p>
-<figure class="figure"><img src="images/photos/hc-energy-control-room.jpg" srcset="images/photos/hc-energy-control-room-800.jpg 800w, images/photos/hc-energy-control-room.jpg 1448w" sizes="(max-width: 860px) 100vw, 860px" width="1448" height="1086" alt="An estates team in an energy monitoring room, with screens showing campus energy use, carbon and building performance" loading="lazy"><figcaption>The findings tell you where to look. A walk round the building tells you why.</figcaption></figure><div class="note"><strong>Want the practical steps?</strong> <a href="downloads/half-hourly-insights-user-guide.pdf" download>Download the user guide</a> (PDF, 13 pages). It walks you through loading your data, setting opening hours, reading the results and sharing them.</div>
+<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-22">22 November 2026</time></p>
+<p class="answer">You load one half-hourly file per meter. The analyser checks the readings, applies the right calendar for each building (24/7 for inpatient sites, set hours for clinics and offices), measures base load and peaks, prices the patterns at your rates, tests headroom for new load such as heat pumps, and estimates how much solar each site would use. It runs in your browser, so the meter data never leaves your computer.</p>
+<figure class="figure"><img src="images/photos/hc-energy-control-room.jpg" srcset="images/photos/hc-energy-control-room-800.jpg 800w, images/photos/hc-energy-control-room.jpg 1448w" sizes="(max-width: 860px) 100vw, 860px" width="1448" height="1086" alt="An estates team in an energy monitoring room, with screens showing campus energy use, carbon and building performance" loading="lazy"><figcaption>The analyser points to where and when. Someone who knows the site works out why.</figcaption></figure><div class="note"><strong>Want the practical steps?</strong> <a href="downloads/half-hourly-insights-user-guide.pdf" download>Download the user guide</a> (PDF, 13 pages). It walks you through loading your data, setting opening hours, reading the results and sharing them.</div>
 
-<h2 id="files">1. Reading your files</h2>
-<p>Load one file for each meter, as Excel (.xlsx or .xls) or CSV. Three layouts work:</p>
-<ul><li><strong>Day per row:</strong> a date, then 48 half-hourly readings. This is the most common supplier format.</li><li><strong>Day per column:</strong> the same, turned on its side.</li><li><strong>Timestamped:</strong> one reading per row, with its date and time.</li></ul>
-<p>The analyser shows how it read each file: which column held the dates, whether readings were in kWh or kW, and anything it ignored. If a file covers more than a year, the last 12 months are analysed by default. You can choose a different period, and long-term trends still use the whole file.</p>
+<h2 id="files">1. Loading the meter files</h2>
+<p>Each file becomes a site. Most trusts and health boards have a file per main meter, and some have sub-meters for theatres, outpatients or an energy centre too. Excel (.xlsx, .xls) and CSV both work, in any of the three layouts suppliers and monitoring systems use: one day per row with 48 readings, one day per column, or one timestamped reading per row. The analyser shows how it read each file, including whether readings were kWh or kW and what it ignored. Files longer than a year are analysed over the last 12 months by default, while the trend charts use everything.</p>
+<p>Meters behind the same connection, such as two incomers on one hospital, can be grouped so capacity is checked against their combined demand.</p>
 
-<h2 id="checks">2. Checking the data</h2>
-<p>Before showing any figures, the analyser looks for problems that would make them wrong:</p>
-<ul><li>missing readings, which are left out rather than counted as zero</li><li>days of zero readings, which usually point to a meter or data fault</li><li>days when the clocks change, and duplicate rows, which it holds back for you to decide on</li><li>single readings far above the usual peak</li></ul>
-<p>Each site is rated Good, Check or Poor. You can exclude readings you know are wrong and record why, and the reason is saved with the analysis.</p>
+<h2 id="checks">2. Checking the readings first</h2>
+<p>Bad data makes confident-looking wrong answers, so the checks come before any figures:</p>
+<ul>
+<li>missing half hours are left out, never treated as zero</li>
+<li>whole days of zeros, and two-hour runs of exact zeros inside normal days, are flagged as likely data faults</li>
+<li>the two clock-change days and any duplicate dates are held back for you to review</li>
+<li>isolated spikes far above the normal peak are listed</li>
+</ul>
+<p>Each site gets a Good, Check or Poor rating. You can exclude readings you know are wrong, with a note of why, and the note stays with the analysis.</p>
 
-<h2 id="calendar">3. Opening hours</h2>
-<p>The figures for use while closed depend on knowing when each building should be open. Every site starts on the hospital preset, open around the clock with a low-activity window from 01:00 to 05:00, marked as unconfirmed until you check it. Choose the clinic or admin preset for buildings that keep set hours. You can set hours for all sites at once or one at a time, including closures, bank holidays and overnight shifts. Findings based on unconfirmed hours get a lower confidence rating.</p>
+<h2 id="calendar">3. The right calendar for each building</h2>
+<p>New sites start on the <strong>hospital preset</strong>: open around the clock, with 01:00 to 05:00 as a low-activity window in place of closed hours. Change health centres, outpatient buildings and offices to the <strong>clinic</strong> or <strong>office</strong> preset, then add evening clinics, Saturday sessions and closures. The calendar is marked unconfirmed until you check it, and findings that depend on it carry lower confidence until you do.</p>
 
-<h2 id="base">4. Base load and use while closed</h2>
-<p><strong>Base load</strong> is the level of demand a site rarely drops below. The analyser measures it as the 5th percentile of all valid half-hourly readings, which means demand is higher than this 95% of the time. It's the equipment that never switches off, such as servers, fridges and anything on standby.</p>
-<p><strong>Closed-hours excess</strong> is the electricity used while the site is closed, over and above the base load. Sites are ranked by this figure because it's often the cheapest use to reduce, usually by changing timers, controls and building management settings rather than buying new equipment.</p>
+<h2 id="base">4. Base load, and use while closed</h2>
+<p><strong>Base load</strong> is the 5th percentile of valid half-hourly demand: the level the site stays above 95% of the time. On a hospital that's wards, ventilation, imaging, fridges and IT; it's usually the largest part of the bill. The analyser also charts it month by month, because a step that doesn't follow the weather is often a fault, such as a theatre ventilation setback that stopped working. See <a href="base-load">base load on healthcare sites</a>.</p>
+<p><strong>Closed-hours excess</strong> applies to buildings that close. It's the electricity used outside opening hours above the base load, priced at your rates and split by weeknights, Saturdays, Sundays and bank holidays. Buildings are ranked by it, so the worst health centre gets looked at first. See <a href="out-of-hours-electricity">out-of-hours use</a>.</p>
 
 <h2 id="costs">5. Costs and annual figures</h2>
-<p>Costs use the unit rates you enter, either one flat rate or different rates for different times of day. They leave out standing charges, capacity charges and other fixed costs. They show what a pattern costs you now and are not a promise of savings.</p>
-<p>Annual figures are scaled up from the valid readings. With less than about 11 months of good data they're marked as indicative, and with less than six months they aren't shown.</p>
+<p>Costs use the unit rates you enter, flat or by time of day, and leave out standing, capacity and other fixed charges. They're what a pattern costs now, not a promised saving. Annual figures are scaled from the valid hours: marked indicative below about 11 months of good data, and withheld below six.</p>
 
-<h2 id="findings">6. Findings</h2>
-<p>Each finding has two separate ratings. <strong>Impact</strong> shows how much it matters, based on cost and share of total use. <strong>Confidence</strong> shows how reliable the evidence is, based on data quality and whether the opening hours are confirmed. A finding with high impact and low confidence is worth checking before you quote it.</p>
+<h2 id="findings">6. Findings, impact and confidence</h2>
+<p>Every finding carries two ratings. <strong>Impact</strong> reflects its cost and share of use. <strong>Confidence</strong> reflects the data quality, how many comparable days there were and whether the calendar is confirmed. High impact with low confidence means check before you quote it to the board.</p>
 
 <h2 id="capacity">7. Capacity and headroom</h2>
-<p>Enter your agreed supply capacity (in kVA, from your bill or connection agreement) and an assumed power factor. The analyser compares every half hour with it and works out how much extra constant load the site could take before reaching the limit, such as heat pumps, EV chargers or the output of a CHP engine you plan to switch off. Treat this as an early check, because only your network operator can confirm it. See <a href="hospital-electrical-capacity">electrical capacity for electrification</a>.</p>
+<p>Enter the agreed supply capacity in kVA from the bill and a power factor (0.95 if you don't know it). The analyser compares every half hour with it, keeps a safety margin, and reports the firm headroom: the constant extra load that fits in every half hour. You can then test a specific load, such as a 150 kW heat pump running October to April or EV chargers in the evening, and see how many half hours it would breach. It's an early screen; only the DNO can confirm capacity. See <a href="supply-capacity">supply capacity and headroom</a>.</p>
 
 <h2 id="solar">8. Solar</h2>
-<p>Each site's Solar tab estimates how much of a solar system's output the site would use itself at a range of sizes, from its own half-hourly readings and a typical UK solar day scaled to your region. <strong>Size solar for this site</strong> opens the <a href="solar-calculator">solar calculator</a> with those figures, so you can map roofs and car parks and see cost, savings and payback. Only a summary is passed, never the readings. See <a href="solar">sizing solar from half-hourly data</a>.</p>
+<p>The Solar tab overlays a typical UK solar day, scaled to your region, on the site's own readings to estimate how much of a system's output the site would use at a dozen sizes. <strong>Size solar for this site</strong> opens the <a href="solar-calculator">solar calculator</a> with that summary, so you can draw the roofs and car parks and see cost, savings and payback. The readings themselves are never passed. See <a href="solar">sizing solar from half-hourly data</a>.</p>
 
 <h2 id="limits">What it can't tell you</h2>
-<ul><li>Data from the main meter shows when electricity is used, but not which equipment is using it. Findings are things to check on site.</li><li>The main meter only records what the site imports. If a CHP engine or solar runs on site, true demand is higher; load the generation meter as a separate file to see it.</li><li>Figures are not adjusted for weather or changes in occupancy.</li><li>Carbon figures use a single conversion factor for the year, which you enter.</li></ul>
+<ul>
+<li>A main meter shows when electricity is used, not which plant uses it. Findings are things to check on site.</li>
+<li>Import meters miss what a CHP engine or solar supplies. Load the generation meter as its own file to see total demand.</li>
+<li>Gas and heat aren't analysed yet, and figures aren't weather-adjusted.</li>
+<li>Carbon uses one conversion factor for the year, which you choose.</li>
+</ul>
 <h2 id="next">Read next</h2>
-<div class="link-grid"><a class="link-card has-thumb" href="example-office-analysis"><div class="card-thumb"><img src="images/guides/example-office-analysis.jpg" srcset="images/guides/example-office-analysis-600.jpg 600w, images/guides/example-office-analysis.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Worked example</h3><p>The method applied to one office, step by step.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="out-of-hours-electricity"><div class="card-thumb"><img src="images/guides/out-of-hours-electricity.jpg" srcset="images/guides/out-of-hours-electricity-600.jpg 600w, images/guides/out-of-hours-electricity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Out-of-hours use</h3><p>Finding and reducing use while the building is closed.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="base-load"><div class="card-thumb"><img src="images/guides/base-load.jpg" srcset="images/guides/base-load-600.jpg 600w, images/guides/base-load.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Base load</h3><p>What always runs, and why it matters.</p><span class="more">Read the guide</span></a></div>
+<div class="link-grid"><a class="link-card has-thumb" href="example-hospital-analysis"><div class="card-thumb"><img src="images/guides/example-hospital-analysis.jpg" srcset="images/guides/example-hospital-analysis-600.jpg 600w, images/guides/example-hospital-analysis.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Worked example</h3><p>The method applied to one hospital, step by step.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="base-load"><div class="card-thumb"><img src="images/guides/base-load.jpg" srcset="images/guides/base-load-600.jpg 600w, images/guides/base-load.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Base load</h3><p>The biggest part of most hospital bills.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="supply-capacity"><div class="card-thumb"><img src="images/guides/supply-capacity.jpg" srcset="images/guides/supply-capacity-600.jpg 600w, images/guides/supply-capacity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Supply capacity</h3><p>Headroom for heat pumps and EV charging.</p><span class="more">Read the guide</span></a></div>
   </article>
   <aside class="guide-side">
     <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol>
-      <li><a href="#files">Reading your files</a></li><li><a href="#checks">Checking the data</a></li><li><a href="#calendar">Opening hours</a></li><li><a href="#base">Base load and use while closed</a></li><li><a href="#costs">Costs and annual figures</a></li><li><a href="#findings">Findings</a></li><li><a href="#capacity">Capacity and headroom</a></li><li><a href="#solar">Solar</a></li><li><a href="#limits">What it can't tell you</a></li></ol></nav>
+      <li><a href="#files">Loading the meter files</a></li><li><a href="#checks">Checking the readings</a></li><li><a href="#calendar">The right calendar</a></li><li><a href="#base">Base load and use while closed</a></li><li><a href="#costs">Costs and annual figures</a></li><li><a href="#findings">Findings</a></li><li><a href="#capacity">Capacity and headroom</a></li><li><a href="#solar">Solar</a></li><li><a href="#limits">What it can't tell you</a></li></ol></nav>
     <div class="side-cta"><strong>Try it on your own data</strong><p>It's free, there's no sign-up, and your file stays on your computer.</p><a href="analyser/" class="btn">Open the analyser</a></div>
   </aside>
 </div><section class="cta-strip">

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worked example: a year of HH data from a hospital</title>
+  <meta name="description" content="A year of half-hourly data from a community hospital: base load, a ventilation fault, summer peaks, heat pump headroom and solar.">
+  <link rel="canonical" href="https://hospitalenergyinsights.co.uk/example-hospital-analysis">
+  <meta property="og:url" content="https://hospitalenergyinsights.co.uk/example-hospital-analysis">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Worked example: a year of HH data from a hospital">
+  <meta property="og:description" content="A year of half-hourly data from a community hospital: base load, a ventilation fault, summer peaks, heat pump headroom and solar.">
+  <meta property="og:image" content="https://hospitalenergyinsights.co.uk/images/guides/example-hospital-analysis.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Hospital Energy Insights">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/brand/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="images/brand/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/brand/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/brand/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0B2E4F">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css?v=5601e201">
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Organization",
+   "@id": "https://www.kinetic-energy.co.uk/#organization",
+   "name": "Kinetic Energy Consulting",
+   "url": "https://www.kinetic-energy.co.uk",
+   "email": "enquiries@hospitalenergy.co.uk",
+   "logo": "https://hospitalenergyinsights.co.uk/images/kec-logo.svg",
+   "areaServed": {
+    "@type": "Country",
+    "name": "United Kingdom"
+   },
+   "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "email": "enquiries@hospitalenergy.co.uk",
+    "areaServed": "GB"
+   }
+  },
+  {
+   "@type": "WebSite",
+   "@id": "https://hospitalenergyinsights.co.uk/#website",
+   "name": "Hospital Energy Insights",
+   "inLanguage": "en-GB",
+   "description": "Free half-hourly electricity analysis, solar sizing and decarbonisation guides for UK healthcare estates",
+   "image": "https://hospitalenergyinsights.co.uk/images/brand/hei-logo.png",
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://hospitalenergyinsights.co.uk/"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://hospitalenergyinsights.co.uk/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Guides",
+     "item": "https://hospitalenergyinsights.co.uk/guides"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Worked example",
+     "item": "https://hospitalenergyinsights.co.uk/example-hospital-analysis"
+    }
+   ]
+  },
+  {
+   "@type": "Person",
+   "@id": "https://hospitalenergyinsights.co.uk/about#paul-johnston",
+   "name": "Paul Johnston",
+   "jobTitle": "Managing Director",
+   "worksFor": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "url": "https://hospitalenergyinsights.co.uk/about",
+   "image": "https://hospitalenergyinsights.co.uk/images/people/paul-johnston.jpg"
+  },
+  {
+   "@type": "Article",
+   "headline": "Worked example: a year of HH data from a hospital",
+   "description": "A year of half-hourly data from a community hospital: base load, a ventilation fault, summer peaks, heat pump headroom and solar.",
+   "image": "https://hospitalenergyinsights.co.uk/images/guides/example-hospital-analysis.jpg",
+   "inLanguage": "en-GB",
+   "datePublished": "2026-11-22",
+   "dateModified": "2026-11-22",
+   "author": {
+    "@id": "https://hospitalenergyinsights.co.uk/about#paul-johnston"
+   },
+   "publisher": {
+    "@id": "https://www.kinetic-energy.co.uk/#organization"
+   },
+   "isPartOf": {
+    "@id": "https://hospitalenergyinsights.co.uk/#website"
+   },
+   "mainEntityOfPage": "https://hospitalenergyinsights.co.uk/example-hospital-analysis"
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is this real data?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. We made up the hospital and its readings so we could show the method without using anyone's real data. Every figure is what the analyser reports for the example file."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why is there no out-of-hours figure?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Because a hospital with inpatients never closes. The 24/7 preset has no closed hours. Use the base load, its monthly trend and the low-activity window from 01:00 to 05:00 instead."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can I run the same checks on my own hospital?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Ask your supplier for a year of half-hourly data for each main meter, load it into the analyser and enter your agreed supply capacity. It runs in your browser and nothing is uploaded."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Are these figures savings?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. They're what each pattern costs now at 25p/kWh. A saving depends on what you change, and should be confirmed from the meter data afterwards."
+     }
+    }
+   ]
+  }
+ ]
+}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="site-nav" id="siteNav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="./" class="nav-logo" aria-label="Hospital Energy Insights home">
+      <picture><source type="image/webp" srcset="images/brand/hei-logo.webp"><img src="images/brand/hei-logo.png" width="456" height="132" alt=""></picture>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="./">Home</a></li><li><a href="how-it-works">How it works</a></li><li><a href="healthcare-estates-decarbonisation">Decarbonisation</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="guides" class="active" aria-current="page">Guides</a></li><li><a href="sectors">Settings</a></li><li><a href="contact">Contact</a></li>
+      <li><a href="analyser/" class="nav-cta">Upload HH data</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<main id="main">
+<section class="page-hero page-hero-photo">
+  <div class="hero-media" aria-hidden="true"><picture><source type="image/webp" srcset="images/heroes/example-hospital-analysis-900.webp 900w, images/heroes/example-hospital-analysis.webp 1448w" sizes="100vw"><img src="images/heroes/example-hospital-analysis.jpg" srcset="images/heroes/example-hospital-analysis-900.jpg 900w, images/heroes/example-hospital-analysis.jpg 1448w" sizes="100vw" width="1448" height="608" alt="" fetchpriority="high"></picture></div>
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <a href="guides">Guides</a> <span aria-hidden="true">/</span> <span aria-current="page">Worked example</span></nav>
+    <span class="page-hero-kicker">Guide</span>
+    <h1 class="page-hero-title">Worked example: a community hospital, one year</h1>
+    <p class="page-hero-lead">We ran a year of half-hourly electricity data from a 60-bed community hospital through the analyser. The hospital and its readings are made up, but every figure below is what the analyser reports for that file.</p>
+  </div>
+</section><div class="guide">
+  <article class="guide-main prose">
+<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-22">22 November 2026</time></p>
+<p class="answer">This hospital spends about £211,000 a year on load that never switches off, and from September that load jumped by about 22 kW when the theatre ventilation stopped setting back at night. Fixing it is worth roughly £31,000 a year. The supply has room for a 100 kW heat pump through the winter but not a 150 kW one, and the site would use almost every unit from a solar system of up to about 300 kWp.</p>
+
+<div class="note"><strong>Made-up data.</strong> We invented this hospital so we could show the method without using anyone's real data. <a href="samples/example-hospital.csv" download>Download the file</a> and load it into the <a href="analyser/">analyser</a> to follow along. It opens on the 24/7 hospital preset, which is right for this site. Enter 400 kVA as the agreed supply capacity to match the figures below.</div>
+
+<h2 id="site">The site</h2>
+<p>A community hospital with 60 inpatient beds, an outpatients wing and two day-surgery theatres, on one half-hourly meter. Wards, kitchens, IT and ventilation run around the clock. Outpatients and theatres run 08:00 to 18:00 on weekdays. Chillers add load on summer afternoons. The standby generators are tested on load for an hour on the first Tuesday of each month, which takes the site off the grid while they run.</p>
+
+<h2 id="headline">The headline figures</h2>
+<div class="table-wrap"><table><thead><tr><th>Measure</th><th class="num">Value</th><th>What it means</th></tr></thead><tbody>
+<tr><td>Electricity a year</td><td class="num">1,350,066 kWh</td><td>Scaled from 363 days of valid readings (99.5% coverage). The two clock-change days are held back.</td></tr>
+<tr><td>Energy cost a year</td><td class="num">£337,517</td><td>At a flat 25p/kWh, before standing and capacity charges</td></tr>
+<tr><td>Base load</td><td class="num">96.3 kW</td><td>The level demand rarely falls below across the whole year</td></tr>
+<tr><td>Share that is base load</td><td class="num">63%</td><td>About £211,000 a year of continuous load</td></tr>
+<tr><td>Busiest half hour</td><td class="num">288.6 kW</td><td>16 July 2024 at 16:30, in a hot spell</td></tr>
+<tr><td>Against supply capacity</td><td class="num">76%</td><td>About 304 kVA of a 400 kVA agreed capacity</td></tr>
+</tbody></table></div>
+<p>A hospital never closes, so there is no "out-of-hours" figure here. The 24/7 preset uses 01:00 to 05:00 as a low-activity window instead. On a site like this, the questions that matter are what's in the base load, whether it's moving, and how much room is left on the connection for heat pumps.</p>
+
+<h2 id="base">Finding 1: base load jumped in September and stayed up</h2>
+<p>The yearly base load of 96.3 kW hides a change. The base load by month chart shows it:</p>
+<div class="table-wrap"><table><thead><tr><th>Month</th><th class="num">Base load</th><th>Month</th><th class="num">Base load</th></tr></thead><tbody>
+<tr><td>Apr 2024</td><td class="num">99.8 kW</td><td>Oct 2024</td><td class="num">121.3 kW</td></tr>
+<tr><td>May 2024</td><td class="num">96.0 kW</td><td>Nov 2024</td><td class="num">125.1 kW</td></tr>
+<tr><td>Jun 2024</td><td class="num">93.1 kW</td><td>Dec 2024</td><td class="num">128.1 kW</td></tr>
+<tr><td>Jul 2024</td><td class="num">91.9 kW</td><td>Jan 2025</td><td class="num">129.4 kW</td></tr>
+<tr><td>Aug 2024</td><td class="num">93.2 kW</td><td>Feb 2025</td><td class="num">128.2 kW</td></tr>
+<tr><td>Sep 2024</td><td class="num">117.0 kW</td><td>Mar 2025</td><td class="num">124.9 kW</td></tr>
+</tbody></table></div>
+<p>Between August and September the base load rose by about 24 kW. The weather barely changes between those two months, so this isn't heating. Some of the later rise is seasonal, but a step that size in one month points to something that started running and didn't stop.</p>
+<p>The heatmap shows where: from 2 September, nights and weekends are darker (higher demand), while weekday daytime looks the same as before. In our made-up story, a controls upgrade over the summer left the theatre air handling units at full flow overnight and at weekends instead of setting back when the theatres are empty. HTM 03-01 treats switching off or setting back theatre ventilation when it isn't needed as the most energy-efficient policy, and NHS England's July 2026 estates bulletin on theatre energy puts the saving at 132 to 286 MWh per theatre a year, provided pressure cascades and temperatures are kept within limits.<sup><a href="https://www.england.nhs.uk/wp-content/uploads/2026/07/PRN02301-netb-2026-1-energy-savings-in-theatres-v1.1.pdf">1</a></sup></p>
+<p>The extra is about 22 kW for around 5,700 hours a year, which is roughly 125,000 kWh, or about £31,000 a year at 25p/kWh if it's left running. It doesn't show up as an unusual day, because each day only moves a little. That's why the monthly base load chart is worth checking on every hospital site.</p>
+
+<h2 id="generator">Finding 2: a short monthly dip that isn't a fault</h2>
+<p>On the first Tuesday of each month, demand drops to about 30% of normal between 10:00 and 11:00. That's the generator test: the site runs on its own generators and imports little from the grid. It sets the lowest half hour of the year (53.3 kW), but it's too short to drag the base load figure down, because base load is the 5th percentile across the year, not the minimum. If you see the same pattern in your data, check it against the generator test log before treating it as missing data.</p>
+
+<h2 id="capacity">Finding 3: summer sets the peak, winter sets the heat pump limit</h2>
+<p>The five busiest half hours all fell in the hot week of 15 to 19 July, when the chillers were working hardest. The peak of 288.6 kW is about 304 kVA at an assumed power factor of 0.95, which is 76% of the 400 kVA agreed capacity. Holding back a 10% margin leaves 360 kVA usable.</p>
+<p>The largest constant load that fits in every half hour of the year is about 53 kW. But a heat pump runs mainly from October to April, when there's no cooling load, so the analyser's headroom test lets you check a load in the heating months only:</p>
+<ul>
+<li><strong>A 100 kW heat pump, running around the clock from October to April, fits.</strong> The highest half hour with it added is about 354 kVA against 360 kVA usable. That's tight, with no room for anything else.</li>
+<li><strong>A 150 kW heat pump doesn't fit.</strong> It would go over the usable capacity in 2,690 half hours on 154 days, by up to 46 kVA, mostly on winter weekday evenings. That needs a capacity increase from the network operator, a smaller heat pump, or controls that hold it back at peak times.</li>
+</ul>
+<p>This is the check to run before you plan to replace gas boilers or a CHP engine with heat pumps. See <a href="hospital-electrical-capacity">electrical capacity on hospital sites</a> and <a href="moving-away-from-chp">moving away from CHP</a>.</p>
+
+<h2 id="solar">Finding 4: it would use almost every unit of solar</h2>
+<p>Between 10:00 and 16:00 in summer, the site averages about 205 kW on weekdays and 147 kW at weekends. That's a lot of daytime demand to soak up solar. At UK average output (905 kWh per kWp a year), the analyser estimates:</p>
+<div class="table-wrap"><table><thead><tr><th>System size</th><th class="num">Output a year</th><th class="num">Used on site</th><th class="num">Share of site's use</th></tr></thead><tbody>
+<tr><td>299 kWp</td><td class="num">268,374 kWh</td><td class="num">99.8%</td><td class="num">20%</td></tr>
+<tr><td>449 kWp</td><td class="num">402,516 kWh</td><td class="num">95%</td><td class="num">29%</td></tr>
+<tr><td>748 kWp</td><td class="num">670,890 kWh</td><td class="num">76%</td><td class="num">38%</td></tr>
+<tr><td>1,196 kWp</td><td class="num">1,073,406 kWh</td><td class="num">54%</td><td class="num">44%</td></tr>
+</tbody></table></div>
+<p>Up to about 300 kWp, the site would use all of it. Most community hospitals don't have that much suitable roof, so for a site like this the limit is space and the grid connection, not demand. Car park canopies are often the way to add more. See <a href="solar-on-healthcare-estates">solar on healthcare estates</a>, then open the <a href="solar-calculator">solar calculator</a> from the analyser's Solar tab to cost a system.</p>
+
+<h2 id="next-steps">What we'd do next</h2>
+<ol>
+<li><strong>Take it to the Ventilation Safety Group.</strong> The NHS England bulletin makes the trust's Ventilation Safety Group the starting point for any change to theatre ventilation, with the Authorised Person (Ventilation) on the project team. Then have the BMS contractor restore the setback. Then load the next three months of data to confirm the base load has dropped back (see <a href="proving-savings">proving a saving worked</a>).</li>
+<li><strong>Look for other continuous load.</strong> Even at 96 kW, base load is 63% of the bill. Walk the site at 02:00 with the night team: lighting in empty areas, pumps without variable speed drives, and plant left in hand. See <a href="base-load">base load on healthcare sites</a>.</li>
+<li><strong>Confirm the agreed capacity</strong> on the bill before planning any heat pump, and get the 150 kW option priced with and without a capacity increase.</li>
+<li><strong>Size solar to the roof and car parks you have.</strong> On this profile, almost all of it would be used on site.</li>
+</ol>
+<h2 id="questions">Questions people ask</h2>
+<div class="faq"><details><summary>Is this real data?</summary><div class="faq-a"><p>No. We made up the hospital and its readings so we could show the method without using anyone's real data. Every figure is what the analyser reports for the example file.</p></div></details><details><summary>Why is there no out-of-hours figure?</summary><div class="faq-a"><p>Because a hospital with inpatients never closes. The 24/7 preset has no closed hours. Use the base load, its monthly trend and the low-activity window from 01:00 to 05:00 instead.</p></div></details><details><summary>Can I run the same checks on my own hospital?</summary><div class="faq-a"><p>Yes. Ask your supplier for a year of half-hourly data for each main meter, load it into the analyser and enter your agreed supply capacity. It runs in your browser and nothing is uploaded.</p></div></details><details><summary>Are these figures savings?</summary><div class="faq-a"><p>No. They're what each pattern costs now at 25p/kWh. A saving depends on what you change, and should be confirmed from the meter data afterwards.</p></div></details></div><h2 id="next">Read next</h2>
+<div class="link-grid"><a class="link-card has-thumb" href="base-load"><div class="card-thumb"><img src="images/guides/base-load.jpg" srcset="images/guides/base-load-600.jpg 600w, images/guides/base-load.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Base load</h3><p>What runs around the clock on a healthcare site, and how to cut it.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="hospital-electrical-capacity"><div class="card-thumb"><img src="images/guides/hospital-electrical-capacity.jpg" srcset="images/guides/hospital-electrical-capacity-600.jpg 600w, images/guides/hospital-electrical-capacity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Electrical capacity</h3><p>Headroom for heat pumps and EV charging.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="get-your-data"><div class="card-thumb"><img src="images/guides/get-your-data.jpg" srcset="images/guides/get-your-data-600.jpg 600w, images/guides/get-your-data.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Get your own data</h3><p>What to ask your supplier for.</p><span class="more">Read the guide</span></a></div>
+  </article>
+  <aside class="guide-side">
+    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#site">The site</a></li><li><a href="#headline">The headline figures</a></li><li><a href="#base">Base load jumped in September</a></li><li><a href="#generator">A monthly dip, not a fault</a></li><li><a href="#capacity">Peaks and heat pump headroom</a></li><li><a href="#solar">How much solar it would use</a></li><li><a href="#next-steps">What we'd do next</a></li><li><a href="#questions">Questions people ask</a></li></ol></nav>
+    <div class="side-cta"><strong>Try it on your own data</strong><p>It's free, there's no sign-up, and your file stays on your computer.</p><a href="analyser/" class="btn">Open the analyser</a></div>
+  </aside>
+</div><section class="cta-strip">
+  <div class="cta-strip-inner">
+    <h2 class="cta-strip-title">Try it on your own data</h2>
+    <div class="cta-strip-btns">
+      <a href="analyser/" class="btn btn-gold btn-lg">Upload HH data</a>
+      <a href="contact" class="btn btn-outline-white btn-lg">Talk to an expert</a>
+    </div>
+    <p class="cta-strip-lead">It's free, there's no sign-up, and your file stays on your computer.</p>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hei-logo-white.webp"><img src="images/brand/hei-logo-white.png" width="456" height="132" alt="Hospital Energy Insights" loading="lazy"></picture></div>
+        <p class="footer-desc">Free half-hourly electricity analysis, solar sizing and decarbonisation guides for NHS and independent healthcare estates across England, Scotland and Wales, run by Kinetic Energy Consulting. The analysis runs in your browser, so your meter data never leaves your computer.</p>
+        <div class="footer-contact-item">Email: <a href="mailto:enquiries@hospitalenergy.co.uk">enquiries@hospitalenergy.co.uk</a></div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Tools</div>
+        <ul><li><a href="analyser/">Analyse half-hourly data</a></li><li><a href="solar-calculator">Solar calculator</a></li><li><a href="how-it-works">How the analyser works</a></li><li><a href="solar-calculator-method">How the solar calculator works</a></li><li><a href="sample-report">Sample report</a></li><li><a href="downloads/half-hourly-insights-user-guide.pdf" download>User guide (PDF)</a></li><li><a href="faq">FAQ</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Decarbonisation</div>
+        <ul><li><a href="healthcare-estates-decarbonisation">The estates challenge</a></li><li><a href="nhs-net-zero-targets">Net zero targets</a></li><li><a href="decarbonisation-funding">Funding routes</a></li><li><a href="heat-decarbonisation">Heat decarbonisation</a></li><li><a href="moving-away-from-chp">Moving away from CHP</a></li><li><a href="hospital-electrical-capacity">Electrical capacity</a></li><li><a href="solar-on-healthcare-estates">Solar on healthcare estates</a></li><li><a href="hospital-energy-efficiency">Energy efficiency</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">About</div>
+        <ul><li><a href="about">About us</a></li><li><a href="contact">Contact</a></li><li><a href="guides">All guides</a></li><li><a href="glossary">Glossary</a></li><li><a href="privacy">Privacy</a></li><li><a href="terms">Terms of use</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; 2026 Kinetic Energy Consulting</div>
+      <div class="footer-disclaimer">All analyser and calculator results are estimates based on the data you load and do not guarantee savings. Our guides are general information and are not financial, tax, legal or clinical engineering advice. Not affiliated with or endorsed by the NHS.</div>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('navToggle').addEventListener('click', function (e) {
+    var open = document.getElementById('siteNav').classList.toggle('nav-mobile-open');
+    e.currentTarget.setAttribute('aria-expanded', open ? 'true' : 'false');
+    e.currentTarget.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>
+</body>
+</html>

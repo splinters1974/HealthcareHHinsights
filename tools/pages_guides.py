@@ -7,8 +7,8 @@ Written for a general business reader: plain words, terms explained on first
 use, as long as it needs to be and no longer. "Closed-hours excess" is the
 analyser's figure; "out-of-hours use" is the general idea.
 
-Figures in the worked examples come from the analyser run on
-site/samples/example-office.csv (made-up data).
+Figures in the worked example come from the analyser run on
+site/samples/example-hospital.csv (made-up data).
 Re-check them if those files or the engine change.
 """
 import re
@@ -20,6 +20,12 @@ HOME = ('Home', 'index.html')
 GUIDES = ('Guides', 'guides.html')
 SECTORS = ('Healthcare settings', 'sectors.html')
 SOLAR = f'<a href="{SOLAR_URL}">solar calculator</a>'
+S_NETB = ('NHS England: NHS Estates Technical Bulletin 2026/1, generating energy efficiency savings through controlling theatre ventilation (July 2026)',
+          'https://www.england.nhs.uk/wp-content/uploads/2026/07/PRN02301-netb-2026-1-energy-savings-in-theatres-v1.1.pdf')
+
+
+def ref(*n):
+    return f'<sup><a href="#sources">{",".join(str(x) for x in n)}</a></sup>'
 
 
 def guide_page(file, title, h1, lead, description, main, toc_items, faqs, next_links, summary, crumbs=None):
@@ -35,249 +41,373 @@ def guide_page(file, title, h1, lead, description, main, toc_items, faqs, next_l
 PAGES = []
 
 # ── WORKED EXAMPLE ──────────────────────────────────────────────────────
+# Figures: the analyser run on site/samples/example-hospital.csv (made up) with
+# the 24/7 hospital preset, 25p/kWh, 400 kVA agreed capacity, power factor 0.95
+# and a 10% margin. Locked in analyser/tests/website-claims.test.ts.
 PAGES.append(guide_page(
-  'example-office-analysis.html',
-  'Worked example: a year of half-hourly data for an admin building',
-  'Worked example: an admin building, one year',
-  'Most healthcare estates include offices, headquarters and training buildings that keep set hours. We ran a year of half-hourly data from a small office building through the analyser. The building and its data are made up, but every figure below is exactly what the analyser reports.',
-  'One office, one year of half-hourly data: use while closed, base load, peaks against supply capacity, and what to do next.',
+  'example-hospital-analysis.html',
+  'Worked example: a year of HH data from a community hospital',
+  'Worked example: a community hospital, one year',
+  'We ran a year of half-hourly electricity data from a 60-bed community hospital through the analyser. The hospital and its readings are made up, but every figure below is what the analyser reports for that file.',
+  'A year of half-hourly data from a community hospital: base load, a ventilation fault, summer peaks, heat pump headroom and how much solar it would use.',
   f'''
-<p class="answer">This office used a third of its electricity (33%) while the building was closed. Leaving aside what always has to run, that closed-hours use costs about £2,800 a year at 25p/kWh, and almost half of it happens on Saturdays.</p>
+<p class="answer">This hospital spends about £211,000 a year on load that never switches off, and from September that load jumped by about 22 kW when the theatre ventilation stopped setting back at night. Fixing it is worth roughly £31,000 a year. The supply has room for a 100 kW heat pump through the winter but not a 150 kW one, and the site would use almost every unit from a solar system of up to about 300 kWp.</p>
 
-<div class="note"><strong>Made-up data.</strong> We invented this office so we could show the method without using anyone's real data. <a href="samples/example-office.csv" download>Download the file</a> and load it into the <a href="analyser/">analyser</a> to follow along. New sites start on the 24-hour hospital preset, so choose <strong>Admin, offices and HQ</strong> as the building type first.</div>
+<div class="note"><strong>Made-up data.</strong> We invented this hospital so we could show the method without using anyone's real data. <a href="samples/example-hospital.csv" download>Download the file</a> and load it into the <a href="analyser/">analyser</a> to follow along. It opens on the 24/7 hospital preset, which is right for this site. Enter 400 kVA as the agreed supply capacity to match the figures below.</div>
+
+<h2 id="site">The site</h2>
+<p>A community hospital with 60 inpatient beds, an outpatients wing and two day-surgery theatres, on one half-hourly meter. Wards, kitchens, IT and ventilation run around the clock. Outpatients and theatres run 08:00 to 18:00 on weekdays. Chillers add load on summer afternoons. The standby generators are tested on load for an hour on the first Tuesday of each month, which takes the site off the grid while they run.</p>
 
 <h2 id="headline">The headline figures</h2>
 <div class="table-wrap"><table><thead><tr><th>Measure</th><th class="num">Value</th><th>What it means</th></tr></thead><tbody>
-<tr><td>Electricity a year</td><td class="num">79,191 kWh</td><td>Scaled up from 363 days of valid readings (99.5% coverage)</td></tr>
-<tr><td>Energy cost a year</td><td class="num">£19,798</td><td>At a flat rate of 25p/kWh, before standing and capacity charges</td></tr>
-<tr><td>Base load</td><td class="num">2.6 kW</td><td>The level demand rarely drops below</td></tr>
-<tr><td>Busiest half hour</td><td class="num">25.5 kW</td><td>28 January 2025, midday</td></tr>
-<tr><td>Use while closed</td><td class="num">33%</td><td>Using the default office hours, 07:00 to 19:00 on weekdays</td></tr>
-<tr><td>Closed-hours excess</td><td class="num">£2,776</td><td>Electricity used while closed, above the base load, at 25p/kWh</td></tr>
+<tr><td>Electricity a year</td><td class="num">1,350,066 kWh</td><td>Scaled from 363 days of valid readings (99.5% coverage). The two clock-change days are held back.</td></tr>
+<tr><td>Energy cost a year</td><td class="num">£337,517</td><td>At a flat 25p/kWh, before standing and capacity charges</td></tr>
+<tr><td>Base load</td><td class="num">96.3 kW</td><td>The level demand rarely falls below across the whole year</td></tr>
+<tr><td>Share that is base load</td><td class="num">63%</td><td>About £211,000 a year of continuous load</td></tr>
+<tr><td>Busiest half hour</td><td class="num">288.6 kW</td><td>16 July 2024 at 16:30, in a hot spell</td></tr>
+<tr><td>Against supply capacity</td><td class="num">76%</td><td>About 304 kVA of a 400 kVA agreed capacity</td></tr>
 </tbody></table></div>
+<p>A hospital never closes, so there is no "out-of-hours" figure here. The 24/7 preset uses 01:00 to 05:00 as a low-activity window instead. On a site like this, the questions that matter are what's in the base load, whether it's moving, and how much room is left on the connection for heat pumps.</p>
 
-<h2 id="split">Where the electricity goes</h2>
-<p>The analyser splits each half hour's use at the base load. The three parts add up to the total:</p>
-<ul><li><strong>Base load, 29%</strong> (22,606 kWh). What runs around the clock, whether anyone is in or not.</li><li><strong>Use above base load while open, 57%</strong> (45,062 kWh). The building in normal use: lights, heating, computers and kitchens during the working day.</li><li><strong>Closed-hours excess, 14%</strong> (11,035 kWh). Use above base load while the building should be closed. This is the place to start, because it usually costs little to fix.</li></ul>
+<h2 id="base">Finding 1: base load jumped in September and stayed up</h2>
+<p>The yearly base load of 96.3 kW hides a change. The base load by month chart shows it:</p>
+<div class="table-wrap"><table><thead><tr><th>Month</th><th class="num">Base load</th><th>Month</th><th class="num">Base load</th></tr></thead><tbody>
+<tr><td>Apr 2024</td><td class="num">99.8 kW</td><td>Oct 2024</td><td class="num">121.3 kW</td></tr>
+<tr><td>May 2024</td><td class="num">96.0 kW</td><td>Nov 2024</td><td class="num">125.1 kW</td></tr>
+<tr><td>Jun 2024</td><td class="num">93.1 kW</td><td>Dec 2024</td><td class="num">128.1 kW</td></tr>
+<tr><td>Jul 2024</td><td class="num">91.9 kW</td><td>Jan 2025</td><td class="num">129.4 kW</td></tr>
+<tr><td>Aug 2024</td><td class="num">93.2 kW</td><td>Feb 2025</td><td class="num">128.2 kW</td></tr>
+<tr><td>Sep 2024</td><td class="num">117.0 kW</td><td>Mar 2025</td><td class="num">124.9 kW</td></tr>
+</tbody></table></div>
+<p>Between August and September the base load rose by about 24 kW. The weather barely changes between those two months, so this isn't heating. Some of the later rise is seasonal, but a step that size in one month points to something that started running and didn't stop.</p>
+<p>The heatmap shows where: from 2 September, nights and weekends are darker (higher demand), while weekday daytime looks the same as before. In our made-up story, a controls upgrade over the summer left the theatre air handling units at full flow overnight and at weekends instead of setting back when the theatres are empty. HTM 03-01 treats switching off or setting back theatre ventilation when it isn't needed as the most energy-efficient policy, and NHS England's July 2026 estates bulletin on theatre energy puts the saving at 132 to 286 MWh per theatre a year, provided pressure cascades and temperatures are kept within limits.<sup><a href="https://www.england.nhs.uk/wp-content/uploads/2026/07/PRN02301-netb-2026-1-energy-savings-in-theatres-v1.1.pdf">1</a></sup></p>
+<p>The extra is about 22 kW for around 5,700 hours a year, which is roughly 125,000 kWh, or about £31,000 a year at 25p/kWh if it's left running. It doesn't show up as an unusual day, because each day only moves a little. That's why the monthly base load chart is worth checking on every hospital site.</p>
 
-<h2 id="findings">What the analyser found</h2>
-<h3>1. Use while closed: £2,776 a year (high impact)</h3>
-<p>Breaking this down by type of day is the most useful step, because each type usually has a different cause:</p>
-<div class="table-wrap"><table><thead><tr><th>When</th><th class="num">Above base load</th></tr></thead><tbody>
-<tr><td>Saturdays</td><td class="num">5,155 kWh</td></tr><tr><td>Weekday evenings and nights</td><td class="num">3,750 kWh</td></tr>
-<tr><td>Bank holidays</td><td class="num">1,408 kWh</td></tr><tr><td>Sundays</td><td class="num">722 kWh</td></tr></tbody></table></div>
-<p>Saturdays account for almost half. Sundays are quiet, so this isn't heating or ventilation running all weekend. The building is being used on some Saturdays. If that's planned, add Saturdays to the calendar and the figure falls. If it isn't, a Saturday booking or a few staff may be running the whole building.</p>
+<h2 id="generator">Finding 2: a short monthly dip that isn't a fault</h2>
+<p>On the first Tuesday of each month, demand drops to about 30% of normal between 10:00 and 11:00. That's the generator test: the site runs on its own generators and imports little from the grid. It sets the lowest half hour of the year (53.3 kW), but it's too short to drag the base load figure down, because base load is the 5th percentile across the year, not the minimum. If you see the same pattern in your data, check it against the generator test log before treating it as missing data.</p>
 
-<h3>2. Seven bank holidays look like working days (medium impact)</h3>
-<p>On seven bank holidays, including Christmas Day and Boxing Day, the office used at least 80% of a normal weekday's electricity. If the office was closed, the heating and ventilation schedules probably don't include bank holidays, which is very common. If it was open, the calendar needs updating.</p>
+<h2 id="capacity">Finding 3: summer sets the peak, winter sets the heat pump limit</h2>
+<p>The five busiest half hours all fell in the hot week of 15 to 19 July, when the chillers were working hardest. The peak of 288.6 kW is about 304 kVA at an assumed power factor of 0.95, which is 76% of the 400 kVA agreed capacity. Holding back a 10% margin leaves 360 kVA usable.</p>
+<p>The largest constant load that fits in every half hour of the year is about 53 kW. But a heat pump runs mainly from October to April, when there's no cooling load, so the analyser's headroom test lets you check a load in the heating months only:</p>
+<ul>
+<li><strong>A 100 kW heat pump, running around the clock from October to April, fits.</strong> The highest half hour with it added is about 354 kVA against 360 kVA usable. That's tight, with no room for anything else.</li>
+<li><strong>A 150 kW heat pump doesn't fit.</strong> It would go over the usable capacity in 2,690 half hours on 154 days, by up to 46 kVA, mostly on winter weekday evenings. That needs a capacity increase from the network operator, a smaller heat pump, or controls that hold it back at peak times.</li>
+</ul>
+<p>This is the check to run before you plan to replace gas boilers or a CHP engine with heat pumps. See <a href="hospital-electrical-capacity.html">electrical capacity on hospital sites</a> and <a href="moving-away-from-chp.html">moving away from CHP</a>.</p>
 
-<h3>3. Early starts and late finishes: £629 a year (low impact)</h3>
-<p>Demand rises before opening and stays high after closing. That's about 1,250 kWh a year above base load in the two hours before opening, and the same again in the two hours after closing. Timers and heating start-up settings are the usual cause, and they're quick to adjust.</p>
-
-<h2 id="capacity">Supply capacity</h2>
-<p>Assuming an agreed supply capacity of 40 kVA and a power factor of 0.95, the busiest half hour reaches 27 kVA, which is 67% of capacity. Keeping a 10% safety margin, the site could take about 9 kW of extra constant load. That's enough for modest EV charging, such as one 7 kW charger, but nowhere near enough for a heat pump to heat the whole building. See <a href="supply-capacity.html">supply capacity and kVA</a>.</p>
+<h2 id="solar">Finding 4: it would use almost every unit of solar</h2>
+<p>Between 10:00 and 16:00 in summer, the site averages about 205 kW on weekdays and 147 kW at weekends. That's a lot of daytime demand to soak up solar. At UK average output (905 kWh per kWp a year), the analyser estimates:</p>
+<div class="table-wrap"><table><thead><tr><th>System size</th><th class="num">Output a year</th><th class="num">Used on site</th><th class="num">Share of site's use</th></tr></thead><tbody>
+<tr><td>299 kWp</td><td class="num">268,374 kWh</td><td class="num">99.8%</td><td class="num">20%</td></tr>
+<tr><td>449 kWp</td><td class="num">402,516 kWh</td><td class="num">95%</td><td class="num">29%</td></tr>
+<tr><td>748 kWp</td><td class="num">670,890 kWh</td><td class="num">76%</td><td class="num">38%</td></tr>
+<tr><td>1,196 kWp</td><td class="num">1,073,406 kWh</td><td class="num">54%</td><td class="num">44%</td></tr>
+</tbody></table></div>
+<p>Up to about 300 kWp, the site would use all of it. Most community hospitals don't have that much suitable roof, so for a site like this the limit is space and the grid connection, not demand. Car park canopies are often the way to add more. See <a href="solar-on-healthcare-estates.html">solar on healthcare estates</a>, then open the {SOLAR} from the analyser's Solar tab to cost a system.</p>
 
 <h2 id="next-steps">What we'd do next</h2>
-<ol><li><strong>Confirm the opening hours</strong>, including Saturdays. Every closed-hours figure depends on them.</li><li><strong>Check the heating and ventilation schedules</strong> for bank holidays and start times.</li><li><strong>Walk round the building on a Saturday</strong> to see what's switched on and who is using it.</li><li><strong>Look at the base load.</strong> 2.6 kW running all year is about 22,800 kWh, roughly £5,700 at 25p/kWh. See <a href="base-load.html">how to reduce it</a>.</li></ol>
-<p>57% of this office's electricity is used during the working day, which is when solar panels generate. The {SOLAR} estimates what a roof system would save, and the <a href="solar.html">solar page</a> shows how to size one from this data.</p>
+<ol>
+<li><strong>Take it to the Ventilation Safety Group.</strong> The NHS England bulletin makes the trust's Ventilation Safety Group the starting point for any change to theatre ventilation, with the Authorised Person (Ventilation) on the project team. Then have the BMS contractor restore the setback. Then load the next three months of data to confirm the base load has dropped back (see <a href="proving-savings.html">proving a saving worked</a>).</li>
+<li><strong>Look for other continuous load.</strong> Even at 96 kW, base load is 63% of the bill. Walk the site at 02:00 with the night team: lighting in empty areas, pumps without variable speed drives, and plant left in hand. See <a href="base-load.html">base load on healthcare sites</a>.</li>
+<li><strong>Confirm the agreed capacity</strong> on the bill before planning any heat pump, and get the 150 kW option priced with and without a capacity increase.</li>
+<li><strong>Size solar to the roof and car parks you have.</strong> On this profile, almost all of it would be used on site.</li>
+</ol>
 ''',
-  [('headline', 'The headline figures'), ('split', 'Where the electricity goes'), ('findings', 'What the analyser found'), ('capacity', 'Supply capacity'), ('next-steps', "What we'd do next")],
-  [('Is this real data?', "No. We made up the office and its readings so we could show the method without using anyone's real data. Every figure is what the analyser reports for the example file."),
-   ('How long does an analysis like this take?', 'Loading a year of data takes about a minute. Confirming the opening hours and reading the findings takes longer, and matters more.'),
-   ('Are these figures savings?', "No. They're what each pattern costs now at 25p/kWh. Any saving depends on what you change.")],
-  [('out-of-hours-electricity.html', 'Out-of-hours use', 'How to find and reduce use while the building is closed.'),
-   ('base-load.html', 'Base load', 'What always runs, and why it adds up.'),
+  [('site', 'The site'), ('headline', 'The headline figures'), ('base', 'Base load jumped in September'), ('generator', 'A monthly dip, not a fault'),
+   ('capacity', 'Peaks and heat pump headroom'), ('solar', 'How much solar it would use'), ('next-steps', "What we'd do next")],
+  [('Is this real data?', "No. We made up the hospital and its readings so we could show the method without using anyone's real data. Every figure is what the analyser reports for the example file."),
+   ('Why is there no out-of-hours figure?', 'Because a hospital with inpatients never closes. The 24/7 preset has no closed hours. Use the base load, its monthly trend and the low-activity window from 01:00 to 05:00 instead.'),
+   ('Can I run the same checks on my own hospital?', 'Yes. Ask your supplier for a year of half-hourly data for each main meter, load it into the analyser and enter your agreed supply capacity. It runs in your browser and nothing is uploaded.'),
+   ('Are these figures savings?', "No. They're what each pattern costs now at 25p/kWh. A saving depends on what you change, and should be confirmed from the meter data afterwards.")],
+  [('base-load.html', 'Base load', 'What runs around the clock on a healthcare site, and how to cut it.'),
+   ('hospital-electrical-capacity.html', 'Electrical capacity', 'Headroom for heat pumps and EV charging.'),
    ('get-your-data.html', 'Get your own data', 'What to ask your supplier for.')],
-  'A small office run through the analyser: 33% of use while closed, £2,776 a year above base load, almost half on Saturdays; base load 2.6 kW; 67% of a 40 kVA supply.',
-  crumbs=[HOME, GUIDES, ('Worked example', 'example-office-analysis.html')]))
+  'A made-up community hospital run through the analyser: 1.35 GWh a year, 63% base load, a 22 kW ventilation setback fault from September worth about £31,000 a year, a 100 kW heat pump fits a 400 kVA supply but 150 kW does not, and it would use almost all output from up to about 300 kWp of solar.',
+  crumbs=[HOME, GUIDES, ('Worked example', 'example-hospital-analysis.html')]))
 
 # ── OUT-OF-HOURS ────────────────────────────────────────────────────────
 PAGES.append(guide_page(
   'out-of-hours-electricity.html',
-  'Out-of-hours electricity use: how to find and cut it',
-  'Out-of-hours electricity use',
-  'Electricity used while a building should be closed is often the cheapest kind to cut. This guide explains how to find it in half-hourly data, what usually causes it, and who to involve in fixing it.',
-  'How to find out-of-hours electricity use in half-hourly data, what usually causes it, and how to reduce it by changing timers and controls.',
-  '''
-<p class="answer">Out-of-hours use is electricity used while a building should be closed. On a healthcare estate that means clinics, outpatient departments, health centres, offices, education centres and restaurants, not the 24-hour inpatient supply. To find it, compare each half hour with the opening hours and take away what always has to run (the base load). What's left is the closed-hours excess. It's usually the cheapest use to cut, because the fix is often a change to a timer or control setting.</p>
+  'Out-of-hours electricity in clinics and health centres',
+  'Out-of-hours use in clinics and support buildings',
+  'Wards never close, but most of a healthcare estate does. Health centres, outpatient wings, offices and training centres often run plant all night because nobody changed the schedule.',
+  'How to find electricity used while clinics, health centres, outpatients and estates offices are closed, what causes it on healthcare sites, and how to fix it safely.',
+  f'''
+<p class="answer">Out-of-hours use is electricity a building uses while it's closed, above what has to run all the time. On a healthcare estate, look for it in health centres, outpatient wings, clinics, estates offices, education centres and restaurants, not on the 24-hour inpatient supply. The fix is usually a schedule change in the building management system (BMS). Check any change to ventilation or hot water with the right safety group first.</p>
 
-<h2 id="what">What counts as out-of-hours</h2>
-<p>Any half hour outside opening hours counts: evenings, nights, weekends, bank holidays and closure periods. Some of this use is unavoidable. Servers, fridges, security systems and emergency lighting have to run all the time, and together they make up the <a href="base-load.html">base load</a>.</p>
-<p>The figure to focus on is the <strong>excess</strong>, meaning use while closed above the base load. The analyser calls this the closed-hours excess and ranks sites by it, so you can see which buildings to look at first.</p>
+<h2 id="where">Where to look on a healthcare estate</h2>
+<p>A hospital's main meter can't show out-of-hours use, because wards, theatres on call and emergency departments never close. The places that do close are where the savings hide:</p>
+<ul>
+<li><strong>Health centres and GP-led community buildings</strong>, usually open 08:00 to 18:30 on weekdays, with some evening and Saturday sessions.</li>
+<li><strong>Outpatient departments and day units</strong>, if they're on their own meter or sub-meter.</li>
+<li><strong>Estates, finance and HQ offices</strong>, often in older buildings with old controls.</li>
+<li><strong>Education and training centres</strong>, which empty out in the evening and over holidays.</li>
+<li><strong>Community bases and clinics</strong> used on a few days a week.</li>
+</ul>
+<p>In the analyser, set each of these to the <strong>Clinic / outpatients / health centre</strong> preset (08:00 to 18:30 on weekdays) or the office preset. Leave inpatient sites on the 24/7 preset.</p>
 
-<h2 id="find">How to find it</h2>
-<ol><li><strong>Set the opening hours accurately.</strong> Every figure depends on them, so include bank holidays, closure weeks and any regular evening or weekend use.</li><li><strong>Look at the heatmap.</strong> It shows every half hour of the year on one chart. Opening hours appear as a dark band, and anything dark outside that band is out-of-hours use.</li><li><strong>Break it down by type of day.</strong> Weeknights, Saturdays, Sundays and bank holidays usually have different causes.</li><li><strong>Check the start and end of the day.</strong> If demand rises an hour or two before opening, or stays high after closing, timers or heating start-up settings are usually to blame.</li></ol>
+<h2 id="calendar">Get the opening hours right first</h2>
+<p>Every out-of-hours figure depends on the calendar. Healthcare buildings often have patterns an office doesn't: extended-access evening clinics, Saturday vaccination sessions, a dental or physiotherapy list one evening a week, or a shared reception that opens early for a community team. Add those as open hours before you trust the numbers. If you don't, legitimate clinics show up as waste and the real problem gets buried.</p>
 
-<h2 id="causes">What usually causes it</h2>
-<ul><li>Heating, ventilation and air conditioning running to the wrong schedule, or not set up for bank holidays</li><li>Lights left on, or on timers that no longer match how the building is used</li><li>A small evening or weekend booking that runs the whole building</li><li>Equipment left on manual override after maintenance, then forgotten</li><li>IT, catering and hot water equipment left on instead of being put on timers</li></ul>
+<h2 id="find">How to find it in half-hourly data</h2>
+<ol>
+<li><strong>Look at the heatmap.</strong> Opening hours form a dark weekday band. Dark patches outside it, at night, at weekends or over bank holidays, is what you're looking for. See <a href="reading-a-heatmap.html">how to read a heatmap</a>.</li>
+<li><strong>Read the closed-hours excess.</strong> The analyser takes the base load away from every closed half hour and prices what's left at your rate. It splits the result into weekday nights, Saturdays, Sundays and bank holidays, because each usually has a different cause.</li>
+<li><strong>Check the edges of the day.</strong> A ramp that starts two hours before the first appointment, or stays up long after the last, is usually optimum start or a fixed timer set too wide.</li>
+<li><strong>Compare similar buildings.</strong> Load several health centres at once and rank them by closed-hours excess, so the worst one gets looked at first.</li>
+</ol>
 
-<h2 id="cut">How to cut it</h2>
-<p>Most fixes are changes to settings: building management system schedules, timers, holiday calendars and switch-off routines. Start with the biggest block of use, which is often weekends or a regular evening. Then check the half-hourly data a month later to see whether it worked. The analyser's before-and-after comparison is designed for this.</p>
+<h2 id="causes">What usually causes it in healthcare buildings</h2>
+<ul>
+<li><strong>Ventilation left on 24/7.</strong> Air handling units in clinics are often scheduled to run continuously "to be safe", or share plant with an area that does need it.</li>
+<li><strong>Bank holidays missing from the BMS calendar.</strong> Christmas, Easter and the summer bank holiday look like normal clinic days.</li>
+<li><strong>Clinical kit left on.</strong> Dental compressors and suction plant, X-ray and ultrasound left on standby, and treatment-room lighting.</li>
+<li><strong>Heating and cooling fighting each other</strong> overnight, with split air-conditioning units cooling rooms the heating has warmed.</li>
+<li><strong>One evening session running the whole building</strong>, because the BMS can't zone a single clinic room.</li>
+<li><strong>Plant left in hand</strong> after maintenance and never put back to auto.</li>
+</ul>
+
+<h2 id="safely">Fixing it safely</h2>
+<p>Most fixes are BMS schedule changes, holiday calendars and timers, and they cost little. Two need care in healthcare buildings:</p>
+<ul>
+<li><strong>Ventilation in clinical rooms.</strong> Treatment rooms, minor surgery rooms and dental surgeries can have specific ventilation requirements under HTM 03-01. Agree any setback with your Ventilation Safety Group and Authorised Person (Ventilation).</li>
+<li><strong>Hot water.</strong> Calorifier and circulation temperatures are part of your water safety plan for legionella control under HTM 04-01. Don't switch off hot water or circulation pumps to save energy without the Water Safety Group.</li>
+</ul>
+<p>Vaccine and pharmacy fridges, IT, fire and security systems belong in the base load and should stay on.</p>
 
 <h2 id="who">Who to involve</h2>
-<p>Fixes usually need two people working together: someone who can change the controls, such as your facilities team or building management system contractor, and someone who knows how the building is really used, such as a site manager or caretaker. Share the heatmap and the breakdown by type of day with both. It's much easier to agree a new schedule when everyone can see exactly when the building is using electricity.</p>
+<p>You need someone who can change the controls (your estates officer or BMS contractor) and someone who knows how the building is actually used (the practice or clinic manager). Show both the heatmap and the split by type of day. Then load the next month's data and check the change worked, as set out in <a href="proving-savings.html">proving a saving worked</a>.</p>
 ''',
-  [('what', 'What counts as out-of-hours'), ('find', 'How to find it'), ('causes', 'What usually causes it'), ('cut', 'How to cut it'), ('who', 'Who to involve')],
-  [('Is all out-of-hours use waste?', 'No. Some equipment has to run all the time. The part worth investigating is the excess, meaning use while closed above the base load.'),
-   ('Why do opening hours matter so much?', "They decide which half hours count as closed. If a building is used on Saturdays but the calendar says it's closed, Saturday use shows up as out-of-hours. Confirm the hours before acting on the figures."),
-   ('How quickly can I see whether a change worked?', "Within a few weeks. Compare the same days before and after the change using the analyser's before-and-after view.")],
-  [('base-load.html', 'Base load', 'The other half of the picture: what always runs.'),
-   ('example-office-analysis.html', 'Worked example', 'Out-of-hours use in one office, with figures.'),
-   ('sectors.html', 'By healthcare setting', 'What normal looks like in hospitals, clinics and support buildings.')],
-  'What out-of-hours electricity use is, how to find it in half-hourly data (opening hours, heatmap, day types, start and end of the day), common causes, fixes and who to involve.'))
+  [('where', 'Where to look'), ('calendar', 'Get the hours right'), ('find', 'How to find it'), ('causes', 'Common causes'), ('safely', 'Fixing it safely'), ('who', 'Who to involve')],
+  [('Can I measure out-of-hours use on a hospital main meter?', 'Not directly, because an inpatient site never closes. Use the base load, its monthly trend and the 01:00 to 05:00 low-activity window instead, and sub-meter or separately meter the buildings that do close.'),
+   ('Is it safe to switch off ventilation in a health centre at night?', 'Often yes for offices, waiting areas and consulting rooms, but not for every clinical room. Check the room types against HTM 03-01 and agree changes with your Ventilation Safety Group.'),
+   ('Why do our bank holidays look like working days?', 'Usually because the BMS holiday calendar is empty or out of date. It is one of the cheapest fixes there is: enter the dates once a year.'),
+   ('How soon can I see whether a schedule change worked?', 'After four to eight weeks of new data. Compare the same types of day before and after the change in the analyser.')],
+  [('base-load.html', 'Base load', 'What has to run around the clock.'),
+   ('health-centres-and-clinics.html', 'Health centres and clinics', 'What normal looks like in buildings that close.'),
+   ('example-hospital-analysis.html', 'Worked example', 'A community hospital, finding by finding.')],
+  'Out-of-hours electricity on healthcare estates: where to look (health centres, outpatients, offices, education centres), setting clinic hours, finding it in HH data, common causes, and safe fixes under HTM 03-01 and HTM 04-01.'))
 
 # ── BASE LOAD ───────────────────────────────────────────────────────────
 PAGES.append(guide_page(
   'base-load.html',
-  'Base load electricity: what it is and how to cut it',
-  'Base load: what never switches off',
-  'Every building has a level of electricity use it never drops below. Because that use continues every hour of the year, even small reductions add up.',
-  'What base load electricity is, how to measure it from half-hourly data, what makes it up, and how to reduce it. Each kilowatt running all year is 8,760 kWh.',
-  '''
-<p class="answer">Base load is the minimum electricity a building uses at all times, overnight and at weekends as well as during the day. Each kilowatt of base load runs for 8,760 hours a year. That's 8,760 kWh, or about £2,190 at 25p/kWh. You can measure it from half-hourly data, find out what makes it up, and switch off anything that doesn't need to run.</p>
+  'Hospital base load: what never switches off and how to cut it',
+  'Base load on healthcare sites',
+  "On a 24-hour hospital, the load that never switches off is usually the biggest part of the electricity bill. It's also the part most often left unexamined.",
+  'What makes up base load on hospitals and health centres, how to measure it from half-hourly data, and safe ways to reduce it. 1 kW all year is 8,766 kWh.',
+  f'''
+<p class="answer">Base load is the level of electricity a site never drops below, day or night. On a hospital it covers wards, ventilation, imaging, fridges, IT and medical gas plant, and it is often the largest part of the bill. In our made-up <a href="example-hospital-analysis.html">community hospital</a>, it's 63%. Each kilowatt running all year is 8,766 kWh, or about £2,190 at 25p/kWh, so even small cuts add up.</p>
 
-<h2 id="measure">How to measure it</h2>
-<p>The analyser takes every valid half-hourly reading, converts it to kW (the kWh reading divided by half an hour) and finds the level that demand stays above 95% of the time. This is called the 5th percentile, and it's what the analyser uses as the base load.</p>
-<p>It doesn't use the single lowest reading, because one meter fault or power cut could set it and make the base load look lower than it really is. The analyser shows the lowest half hour alongside so you can compare.</p>
+<h2 id="measure">How the analyser measures it</h2>
+<p>The analyser converts every valid half-hourly reading to kW and takes the level demand stays above 95% of the time (the 5th percentile). It doesn't use the single lowest reading, because a generator test, a meter fault or a power cut can set that. On a hospital, the monthly generator test often sets the lowest half hour of the year, which is why the minimum is shown alongside the base load but not used for it.</p>
+<p>Two more views matter on a 24-hour site:</p>
+<ul>
+<li><strong>Base load by month.</strong> A step up that doesn't follow the weather means something started running and didn't stop. Check this chart on every hospital.</li>
+<li><strong>The low-activity window.</strong> The 24/7 preset uses 01:00 to 05:00, when wards are quiet and clinics, theatres and kitchens are shut. Demand in that window is as close to a hospital's "closed" state as you'll get.</li>
+</ul>
 
-<h2 id="what">What makes it up</h2>
-<ul><li>IT: servers, network equipment and phone systems</li><li>Clinical equipment on standby, imaging cooling and medical gas plant</li><li>Refrigeration: vaccine and pharmacy fridges, kitchen fridges, freezers, vending machines and water coolers</li><li>Pumps and fans that run continuously</li><li>Water heaters and boilers kept on standby</li><li>Security systems, fire alarms and emergency lighting</li><li>Equipment left on standby, or left running by mistake</li></ul>
+<h2 id="what">What makes up base load in healthcare</h2>
+<div class="table-wrap"><table><thead><tr><th>Load</th><th>Must it run all night?</th></tr></thead><tbody>
+<tr><td>Ward lighting, nurse call, bed-head services</td><td>Yes, though corridor and stair lighting can often be dimmed or put on sensors</td></tr>
+<tr><td>Theatre ventilation</td><td>Not when theatres are empty. Setback is an approved saving, see below</td></tr>
+<tr><td>General ventilation and air handling</td><td>Ward areas yes; offices, outpatients and restaurants usually not</td></tr>
+<tr><td>MRI cooling compressors and imaging standby</td><td>MRI cooling yes; other imaging can often go to a lower standby out of hours</td></tr>
+<tr><td>Pharmacy, pathology, blood and vaccine fridges</td><td>Yes</td></tr>
+<tr><td>Medical air and vacuum plant</td><td>Yes</td></tr>
+<tr><td>IT rooms, servers and their cooling</td><td>Yes, but consolidation and higher room set points cut it</td></tr>
+<tr><td>Heating and chilled water pumps</td><td>Often, but fixed-speed pumps at full flow rarely need to be</td></tr>
+<tr><td>Kitchen refrigeration, vending, water coolers</td><td>Fridges yes; vending lighting and coolers can go on timers</td></tr>
+<tr><td>External and car park lighting</td><td>At night, but on photocells and dimming, not timers stuck on</td></tr>
+</tbody></table></div>
 
-<h2 id="reduce">How to reduce it</h2>
-<ol><li><strong>Walk round the building at night or at a weekend</strong> and note everything that's switched on. It's often a surprise.</li><li><strong>Sort what you find</strong> into must run, could run less, and shouldn't be on.</li><li><strong>Fix the easy ones first</strong>, such as timers on water heaters and vending machines, switch-off routines and combining servers.</li><li><strong>Check the base load every month.</strong> A step up usually means new equipment has been installed or something has been left on. The analyser flags lasting changes like this.</li></ol>
+<h2 id="theatres">Theatre ventilation: the biggest single base load saving</h2>
+<p>HTM 03-01 describes switching off or setting back theatre ventilation when it isn't needed as the most energy-efficient policy. NHS England's July 2026 estates technical bulletin estimates the saving at 132 to 286 MWh per theatre each year, across about 3,300 theatres in England.{ref(1)} The bulletin makes the trust's Ventilation Safety Group the starting point, and sets conditions: pressure cascades checked, temperatures kept between 16°C and 25°C while set back, and enough time to return to full flow before use (25 to 30 minutes after a long shutdown).{ref(1)}</p>
+<p>In half-hourly data, a working setback shows as lower nights and weekends on the theatre block's meter, or on the main meter if theatres are a large share of the site. When a setback stops working, base load steps up and stays up, as it does in our <a href="example-hospital-analysis.html#base">worked example</a>.</p>
+
+<h2 id="reduce">How to cut it safely</h2>
+<ol>
+<li><strong>Walk the site between 01:00 and 05:00</strong> with the night site manager or porters. Note what's on in empty offices, outpatients, restaurants and plant rooms.</li>
+<li><strong>Sort it into three lists:</strong> must run (clinical, safety, fridges, medical gas), could run less (pumps, fans, lighting, IT cooling), and shouldn't be on.</li>
+<li><strong>Fix the "shouldn't be on" list first.</strong> BMS schedules, timers and plant left in hand cost almost nothing to put right.</li>
+<li><strong>Then the "could run less" list:</strong> theatre setback, variable speed drives on pumps and fans, LED and sensors in 24-hour corridors.</li>
+<li><strong>Check base load by month afterwards.</strong> It should step down and stay down.</li>
+</ol>
+<p>Never switch off clinical equipment, fridges, medical gas plant, fire and security systems or water safety controls to save energy.</p>
 
 <h2 id="solar">Base load and solar</h2>
-<p>Base load runs through the day as well as the night, so it is the part of your demand that solar panels can supply most reliably. The analyser's Solar tab estimates how much of a solar system's output your site would use itself at different sizes, from your own half-hourly readings, and can pass that figure to the ''' + SOLAR + ''' on this site, to work out costs and payback. The <a href="solar.html">solar page</a> explains how.</p>
+<p>A hospital's base load runs through every sunny afternoon, including weekends, so it soaks up solar output. That's why 24-hour sites usually use nearly all of what a well-sized system generates. The analyser's Solar tab estimates the share from your own readings and passes it to the {SOLAR}. See <a href="solar.html">sizing solar from half-hourly data</a>.</p>
 
 <h2 id="worth">Working out the saving</h2>
-<p>Because base load runs every hour of the year, savings are easy to estimate: multiply the kilowatts you remove by 8,760 hours and by your unit rate. At 25p/kWh, 1 kW is worth about £2,190 a year, and switching off a 0.5 kW water heater that was left on all the time saves about £1,100.</p>
+<p>Multiply the kilowatts you remove by the hours they would have run and by your unit rate. A load running all year is 8,766 hours (the average year, allowing for leap years), so 1 kW is about £2,190 a year at 25p/kWh. A load that only runs at night and weekends, like a failed theatre setback, runs for about 5,700 hours a year.</p>
+{sources([S_NETB])}
 ''',
-  [('measure', 'How to measure it'), ('what', 'What makes it up'), ('reduce', 'How to reduce it'), ('solar', 'Base load and solar'), ('worth', 'Working out the saving')],
-  [('What is a typical base load?', 'It depends on the building. An acute hospital\'s base load is high because wards, theatres, imaging and ventilation run all the time; a health centre\'s is mostly IT, vaccine fridges and security. Compare each site with its own history, and with similar buildings in your estate.'),
-   ('Why is my base load higher at weekends than overnight on weekdays?', "It shouldn't be. If it is, something is switching on at weekends, such as frost protection on the heating, a scheduled process or a booking. Check the weekend pattern on the heatmap."),
-   ('How much does 1 kW of base load cost?', "It runs 8,760 hours a year, so it uses 8,760 kWh. At 25p/kWh that's about £2,190 a year. Multiply 8,760 by your own rate to check.")],
-  [('out-of-hours-electricity.html', 'Out-of-hours use', 'Use above the base load while the building is closed.'),
-   ('supply-capacity.html', 'Supply capacity', 'The other end of the scale: your busiest half hours.'),
-   ('example-office-analysis.html', 'Worked example', 'Base load in one office, with figures.')],
-  'What base load is, how to measure it from half-hourly data (5th percentile, not the minimum), what makes it up, how to reduce it; 1 kW all year is 8,760 kWh.'))
+  [('measure', 'How it is measured'), ('what', 'What makes it up'), ('theatres', 'Theatre ventilation'), ('reduce', 'How to cut it safely'), ('solar', 'Base load and solar'), ('worth', 'Working out the saving'), ('sources', 'Sources')],
+  [('What share of a hospital\'s electricity is base load?', 'It varies by site, so measure your own. On a 24-hour hospital it is commonly more than half. In our made-up community hospital it is 63%.'),
+   ('Why not use the lowest half hour as the base load?', 'Because one generator test, meter fault or power cut can set it. The analyser uses the 5th percentile, which those short events barely move.'),
+   ('How much does 1 kW of base load cost a year?', 'About 8,766 kWh, which is roughly £2,190 at 25p/kWh. Multiply 8,766 by your own unit rate.'),
+   ('Is theatre ventilation setback safe?', 'NHS England guidance supports it when theatres are unused, under conditions on pressure, temperature and time to return to full flow, and with the Ventilation Safety Group overseeing it.')],
+  [('out-of-hours-electricity.html', 'Out-of-hours use', 'For the buildings on your estate that do close.'),
+   ('hospital-energy-efficiency.html', 'Energy efficiency in hospitals', 'The measures that cut base load.'),
+   ('example-hospital-analysis.html', 'Worked example', 'How a base load jump showed up in one hospital.')],
+  'Base load on healthcare sites: measured as the 5th percentile, base load by month and the 01:00 to 05:00 window; what makes it up in hospitals; theatre ventilation setback (132 to 286 MWh per theatre a year, NHS England 2026); safe ways to cut it.'))
 
 # ── SUPPLY CAPACITY ─────────────────────────────────────────────────────
 PAGES.append(guide_page(
   'supply-capacity.html',
-  'Supply capacity and kVA: room for heat pumps and EVs',
-  'Supply capacity and kVA',
-  'Before adding heat pumps, EV chargers or other new equipment, check how close your busiest half hours already come to your agreed supply capacity.',
-  'Agreed supply capacity explained: kW to kVA, comparing half-hourly peaks with capacity, and room for heat pumps and EV charging.',
+  'Hospital supply capacity: kVA headroom for heat pumps',
+  'Supply capacity and headroom',
+  'Heat pumps, EV fleets and the end of gas CHP all add electrical load. Before any of them, check how close your busiest half hours already come to the agreed supply capacity.',
+  'How to check a hospital\'s agreed supply capacity against half-hourly peaks in kVA, test a heat pump or EV load, and plan for CHP removal before a DNO application.',
   '''
-<p class="answer">Your agreed supply capacity is the maximum demand your electricity connection is set up for, measured in kVA. To see how much room you have, convert your busiest half hours from kW to kVA (divide by the power factor) and compare them with the agreed capacity. The gap is your headroom for new equipment such as heat pumps and EV chargers.</p>
+<p class="answer">Agreed supply capacity is the most your connection is contracted to take, in kVA, and it's on your electricity bill. Convert your busiest half hours from kW to kVA (divide by the power factor), keep a safety margin, and the gap is your headroom. For heat pumps, test the heating months only: summer chiller peaks don't matter for a load that runs from October to April.</p>
 
-''' + photo('plant-outside', 'Two engineers with a tablet beside packaged plant, flues and pipework outside a large building', "New equipment such as heat pumps has to fit within the site's supply. Half-hourly data shows how close the busiest periods already come to it.") + '''
-<h2 id="what">What agreed supply capacity is</h2>
-<p>Larger electricity supplies have an agreed capacity, sometimes called authorised or available capacity. It's set in the connection agreement and usually shown on the bill in kVA. You normally pay a daily charge for it whether you use it or not. If you go over it you may face extra charges, and the network operator may ask you to increase it.</p>
+''' + photo('plant-outside', 'Two engineers with a tablet beside packaged plant, flues and pipework outside a large building', "Heat pumps replacing boilers or CHP land on the electrical supply. Check the headroom before the design gets too far.") + '''
+<h2 id="why">Why capacity decides decarbonisation plans</h2>
+<p>Most routes to net zero on a healthcare estate move heat from gas to electricity. A heat pump producing 300 kW of heat at a seasonal efficiency (COP) of 3 draws about 100 kW of electricity. Switching off a gas CHP engine that generated 400 kW means importing that 400 kW from the grid instead. Electric vehicle fleets, pool cars and patient transport add more. If the connection can't take it, the network operator (DNO) has to increase it, which can take years and cost far more than the plant. See <a href="hospital-electrical-capacity.html">electrical capacity on hospital sites</a> and <a href="moving-away-from-chp.html">moving away from CHP</a>.</p>
 
-<h2 id="kva">kW and kVA</h2>
-<p>Meters measure energy in kWh. Half-hourly data gives the average power in each half hour, in kW. Capacity is set in kVA, which also includes reactive power: power drawn by equipment such as motors that doesn't do useful work. The two are linked by the power factor:</p>
-<div class="note"><strong>kVA = kW ÷ power factor.</strong> At a power factor of 0.95, a 95 kW peak is 100 kVA. If your bill includes reactive power charges, your power factor is probably below 0.95.</div>
+<h2 id="kva">kW, kVA and power factor</h2>
+<p>Half-hourly data gives average demand in each half hour, in kW. Capacity is set in kVA, which also counts reactive power drawn by motors, fans and older lighting. The link is the power factor:</p>
+<div class="note"><strong>kVA = kW ÷ power factor.</strong> At 0.95, a 285 kW peak is 300 kVA. If your bill has reactive power charges, your power factor is lower than that, and your real headroom is smaller than a 0.95 assumption suggests.</div>
 
-<h2 id="headroom">Working out headroom</h2>
-<ol><li><strong>Find your busiest half hours</strong> over at least a year, so winter peaks are included.</li><li><strong>Convert them to kVA</strong> using your power factor.</li><li><strong>Keep a safety margin</strong>, for example 10%, below the agreed capacity.</li><li><strong>Your headroom</strong> is the largest constant extra load you could add without going over that margin in any half hour.</li></ol>
-<p>Half-hourly readings are averages, so they smooth out very short spikes. Treat this as an early check, and confirm with your network operator before relying on it.</p>
+<h2 id="headroom">Working out headroom from half-hourly data</h2>
+<ol>
+<li><strong>Use at least a full year</strong>, so you catch both winter heating peaks and summer chiller peaks.</li>
+<li><strong>Enter the agreed capacity</strong> from the bill and your power factor (0.95 if you don't know it).</li>
+<li><strong>Keep a margin</strong>, typically 10%, for growth and short spikes the half-hour average hides.</li>
+<li><strong>Read the firm headroom</strong>: the largest constant extra load that fits in every half hour of the year.</li>
+<li><strong>Test the real load.</strong> The analyser's headroom test takes a load in kW, the hours it runs and whether it runs all year or October to April only, and counts the half hours it would push over the limit.</li>
+</ol>
+<p>In our <a href="example-hospital-analysis.html#capacity">worked example</a>, a community hospital on a 400 kVA supply has only 53 kW of firm headroom across the year, because July chillers set the peak. Tested over the heating months, a 100 kW heat pump fits and a 150 kW one doesn't.</p>
 
-<h2 id="new-load">Heat pumps and EV charging</h2>
-<p>A heat pump uses much less electricity than the heat it produces. With a coefficient of performance (COP) of 3, a heat pump producing 150 kW of heat draws about 50 kW of electricity. It works hardest in winter, which is usually when a building's peaks are highest, so the two add together. EV charging is different: if it happens overnight, it falls when most sites are quietest, although on a 24-hour hospital nights are not quiet. Removing a gas CHP engine adds its full output to grid import; see <a href="moving-away-from-chp.html">moving away from CHP</a> and <a href="hospital-electrical-capacity.html">electrical capacity for electrification</a>. The analyser lets you test a new load at a chosen time of day and season against your actual half-hourly peaks.</p>
-<h2 id="solar">Solar panels and your connection</h2>
-<p>Solar can reduce the electricity you draw from the grid during the day, but any output you don't use is exported through the same connection. See our <a href="solar-planning-and-grid.html">guide to planning and grid connections</a>. The analyser's Solar tab estimates how much of a system's output your site would use itself. See <a href="solar.html">sizing solar from half-hourly data</a>.</p>
+<h2 id="hospital">What's different on a hospital</h2>
+<ul>
+<li><strong>Two supplies and generators.</strong> Many hospitals have more than one incoming supply and standby generators for essential services. Check which supply new plant will sit on, and whether it needs to be generator-backed, because that sizes the generators too.</li>
+<li><strong>CHP hides demand.</strong> While a CHP engine runs, the import meter shows only part of the site's load. The days the engine was off show the true import, so look at those before assuming you have headroom. The analyser's peaks list will often be CHP outage days.</li>
+<li><strong>Nights aren't quiet.</strong> On an office, overnight EV charging fits in the trough. On a 24-hour hospital the trough is shallower, so test it rather than assume it.</li>
+<li><strong>Several meters, one connection.</strong> Where a site has more than one meter behind one connection, add them up before comparing with capacity. The analyser can group meters into one site.</li>
+</ul>
+
+<h2 id="limits">What half-hourly data can't tell you</h2>
+<p>Half-hour averages smooth out spikes such as motor starts, so treat the result as an early screen, not a design. Network capacity upstream of your site, fault levels and the cost of an increase come from the DNO. Use the analyser to decide which option to take to them, and to show them your measured profile.</p>
+
+<h2 id="solar">Solar and your connection</h2>
+<p>Solar lowers daytime import but adds export capacity questions under G99. On a 24-hour hospital, most output is used on site, so export limits rarely cost much. See <a href="solar-planning-and-grid.html">solar planning and grid connection</a>.</p>
 ''',
-  [('what', 'What agreed supply capacity is'), ('kva', 'kW and kVA'), ('headroom', 'Working out headroom'), ('new-load', 'Heat pumps and EV charging'), ('solar', 'Solar and your connection')],
-  [('Where do I find my agreed supply capacity?', 'On your electricity bill or connection agreement, in kVA. Your supplier can confirm it.'),
-   ('What power factor should I use?', "If you don't know it, 0.95 is a reasonable starting assumption. It's probably lower if your bill shows reactive power charges."),
-   ('Is half-hourly data enough to plan a new connection?', "It's a good first check, but half-hour averages hide very short peaks. For a significant new load, speak to your network operator before committing.")],
-  [('base-load.html', 'Base load', 'The demand that never goes away.'),
-   ('example-office-analysis.html', 'Worked example', 'Peaks against capacity in one office.'),
-   ('how-it-works.html', 'How the analyser works', 'Including how headroom is worked out.')],
-  'Agreed supply capacity in kVA, kW to kVA via power factor, headroom from half-hourly peaks with a safety margin, and checking heat pumps and EV charging.'))
+  [('why', 'Why capacity matters'), ('kva', 'kW, kVA and power factor'), ('headroom', 'Working out headroom'), ('hospital', "What's different on a hospital"), ('limits', 'What the data cannot tell you'), ('solar', 'Solar and your connection')],
+  [('Where do I find our agreed supply capacity?', 'On the electricity bill, usually as agreed, authorised or available capacity in kVA. Your supplier or DNO can confirm it, and the connection agreement sets it.'),
+   ('Why test a heat pump over the heating months only?', 'Because it runs mainly from October to April. A summer chiller peak sets the all-year headroom figure, but it does not coincide with heat pump load.'),
+   ('What power factor should I use?', 'Use the figure from your bill or power quality data if you have it. If not, 0.95 is a reasonable starting point; it is probably lower if you pay reactive power charges.'),
+   ('Is this enough for a DNO application?', 'No. It is the evidence to decide what to ask for. The DNO studies the network and makes the formal offer.')],
+  [('hospital-electrical-capacity.html', 'Electrical capacity', 'The wider capacity question for electrifying heat.'),
+   ('moving-away-from-chp.html', 'Moving away from CHP', 'What happens to import when the engine stops.'),
+   ('example-hospital-analysis.html', 'Worked example', 'Summer peaks and heat pump headroom at one hospital.')],
+  'Agreed supply capacity for hospitals: kW to kVA, headroom from a year of HH peaks with a margin, testing heat pumps over the heating months, CHP hiding demand, generator-backed supplies, and what to take to the DNO.'))
 
 # ── READING A HEATMAP ───────────────────────────────────────────────────
 PAGES.append(guide_page(
   'reading-a-heatmap.html',
-  'How to read a half-hourly electricity heatmap',
+  'How to read a hospital electricity heatmap',
   'How to read a half-hourly heatmap',
-  'A heatmap shows every half hour of a year on one chart. Once you know what to look for, problems are easy to spot.',
-  'How to read a half-hourly electricity heatmap: what the axes and colours mean, what normal looks like, and the patterns that point to waste.',
+  'One chart, every half hour of the year. On a hospital it shows things no monthly bill can: a ventilation fault, a generator test, a CHP engine tripping.',
+  'How to read a half-hourly electricity heatmap for a hospital or health centre: what normal looks like on a 24-hour site, and the patterns that point to faults or waste.',
   '''
-<p class="answer">A half-hourly heatmap has one column for each day and one row for each half hour, with darker colours for higher demand. Normal use shows as a dark band during opening hours. Anything dark outside that band, such as at night, at weekends or in holidays, is worth checking.</p>
+<p class="answer">A heatmap has one column per day and one row per half hour, coloured by demand. On a 24-hour hospital you won't see pale weekends; instead, read the night rows (your base load), the weekday daytime band (outpatients, theatres and offices), summer afternoons (cooling), and any date where the pattern changes and stays changed.</p>
+
+<figure class="figure"><img src="images/heatmap-hospital.png" width="1548" height="560" alt="Heatmap of a made-up community hospital year: a dark weekday daytime band, darker summer afternoons, and nights that get darker from September" loading="lazy"><figcaption>Our made-up <a href="example-hospital-analysis.html">community hospital</a>. Weekday days are the dark band. Summer afternoons are darker from the chillers. The short white marks mid-morning once a month are the generator tests. From early September the nights and weekends get darker: the theatre ventilation has stopped setting back.</figcaption></figure>
 
 <h2 id="axes">What you're looking at</h2>
-<ul><li><strong>Across:</strong> days, from the start of the period to the end.</li><li><strong>Down:</strong> time of day, from midnight at the top to midnight at the bottom.</li><li><strong>Colour:</strong> demand in that half hour, from pale (low) to dark (high).</li></ul>
-<p>A year contains about 17,500 half hours. That's far too many numbers to read in a table, but the heatmap shows them all at once, which is why it's often the quickest way to understand a building.</p>
+<ul><li><strong>Across:</strong> days, from the start of the period to the end.</li><li><strong>Down:</strong> time of day, midnight at the top.</li><li><strong>Colour:</strong> demand in each half hour, pale for low and dark for high.</li></ul>
+<p>A year is about 17,500 half hours. A table can't show them; a heatmap shows them all, which is why it's the fastest way to understand a site you've never visited.</p>
 
-<figure class="figure"><img src="images/heatmap-office.png" width="2464" height="896" alt="Heatmap of an office year: a dark weekday band, pale nights, and weekends that are sometimes busy" loading="lazy"><figcaption>An office (made-up data). The weekday band is clear, and some Saturdays are as busy as weekdays.</figcaption></figure>
+<h2 id="hospital">What normal looks like on a hospital</h2>
+<ul>
+<li><strong>Nights are never pale.</strong> Wards, ventilation, imaging and fridges keep demand well above zero. How dark the night rows are is your base load.</li>
+<li><strong>A weekday daytime band</strong> from outpatients, theatres, diagnostics, kitchens and offices. Weekends and bank holidays are lighter, but not empty.</li>
+<li><strong>A morning ramp</strong> as plant starts and clinics open, and a smaller evening shoulder.</li>
+<li><strong>Seasonal shading.</strong> Darker summer afternoons on sites with chillers; slightly darker winters where electric heating, frost protection or heating pumps run.</li>
+</ul>
+<p>A separately metered health centre or office should look like an office: a dark weekday band and pale nights and weekends. If it doesn't, read <a href="out-of-hours-electricity.html">out-of-hours use</a>.</p>
 
-<h2 id="normal">What normal looks like</h2>
-<p>For a building used on weekdays, you'd expect a dark horizontal band during working hours, regular pale gaps at weekends, and pale nights. Winter is often slightly darker than summer. The edges of the band show when the building actually starts and stops using electricity each day, which isn't always when the doors open and close.</p>
+<h2 id="patterns">Patterns worth checking on healthcare sites</h2>
+<div class="table-wrap"><table><thead><tr><th>What you see</th><th>What it often means</th></tr></thead><tbody>
+<tr><td>Nights and weekends darker from a particular date</td><td>A setback or schedule has stopped working, often theatre or outpatient ventilation after a controls change</td></tr>
+<tr><td>A pale stripe at the same time once a month</td><td>The generator test: the site runs on its own generators and imports less from the grid</td></tr>
+<tr><td>Dark blocks of several days or weeks</td><td>The CHP engine was off for maintenance or a fault, so the grid supplied the whole site</td></tr>
+<tr><td>Darker afternoons only in hot spells</td><td>Chillers and split cooling; these days usually set the year's peak</td></tr>
+<tr><td>Weekday band starting well before clinics open</td><td>Optimum start or fixed timers set too early</td></tr>
+<tr><td>Bank holidays as dark as weekdays</td><td>Holiday dates missing from the BMS calendar, mainly in outpatients and offices</td></tr>
+<tr><td>A single dark or pale column</td><td>One unusual day: a major incident, an outage, works or a reading error</td></tr>
+<tr><td>Grey gaps</td><td>Missing readings, not zero use. The analyser never counts missing data as zero</td></tr>
+</tbody></table></div>
 
-<h2 id="patterns">Patterns worth checking</h2>
-<div class="table-wrap"><table><thead><tr><th>What you see</th><th>What it usually means</th></tr></thead><tbody>
-<tr><td>A pale block where it should be blank, such as a holiday week</td><td>Heating or ventilation running to the normal schedule with nobody in</td></tr>
-<tr><td>Thin stripes in the evening on the same weekdays</td><td>Regular evening use, such as lettings, classes or cleaning</td></tr>
-<tr><td>The dark band starting well before opening</td><td>Heating or ventilation set to start too early</td></tr>
-<tr><td>Nights that get darker from a certain date</td><td>New equipment, or something left on, has raised the base load</td></tr>
-<tr><td>A single dark column</td><td>One unusual day, such as an event, a fault or a reading error</td></tr>
-<tr><td>Grey or striped gaps</td><td>Missing data (not zero use)</td></tr></tbody></table></div>
-
-<h2 id="hospital">Reading a 24-hour site</h2>
-<p>A hospital's main supply has no closed hours, so there is no pale weekend gap. Look instead for the overall darkness of the night rows (the base load), any date after which nights get darker, wide summer bands from cooling, and bands of higher import when a CHP engine is off. Separately metered clinics and offices on the site should still show the weekday pattern.</p>
-
-<h2 id="next">Putting a cost on what you see</h2>
-<p>The heatmap shows you where to look, and the figures tell you how much it matters. In the analyser, click any day to compare its half hours with a typical day. Then use the out-of-hours and unusual-day findings to put a cost on what you've spotted.</p>
+<h2 id="next">From what you see to what it costs</h2>
+<p>The heatmap tells you where to look; the figures tell you whether it matters. In the analyser, click any day to compare it with a typical day of the same kind. Then check base load by month for lasting steps, the unusual days list for one-offs, and the headroom tab for the peak days.</p>
 ''',
-  [('axes', "What you're looking at"), ('normal', 'What normal looks like'), ('patterns', 'Patterns worth checking'), ('hospital', 'Reading a 24-hour site'), ('next', 'Putting a cost on what you see')],
-  [('What is a carpet plot?', 'Another name for the same chart: one column per day and one row per half hour, coloured by demand.'),
-   ('Why are some days grey?', "They have no valid readings. Missing data is shown as missing rather than as zero, so gaps don't look as if the building was switched off."),
-   ('Can I see one day in detail?', 'Yes. In the analyser, click any day on the heatmap to compare its half hours with a typical day of the same kind.')],
-  [('example-office-analysis.html', 'Worked example', 'An admin building, explained finding by finding.'),
+  [('axes', "What you're looking at"), ('hospital', 'Normal on a hospital'), ('patterns', 'Patterns worth checking'), ('next', 'From what you see to what it costs')],
+  [('What is a carpet plot?', 'Another name for the same chart: one column per day, one row per half hour, coloured by demand.'),
+   ('Why does our hospital have a pale line once a month?', 'Most likely the on-load generator test, when the site runs on its own generators for an hour or so. Check the dates against the test log.'),
+   ('Why are some days grey?', 'They have no valid readings. Missing data is shown as missing, so a gap never looks like the site was switched off.'),
+   ('Can I see one day in detail?', 'Yes. Click any day in the analyser to compare its half hours with a typical day of the same kind.')],
+  [('example-hospital-analysis.html', 'Worked example', 'The hospital in the heatmap, finding by finding.'),
    ('moving-away-from-chp.html', 'Moving away from CHP', 'Spotting engine outages in your import data.'),
-   ('glossary.html', 'Glossary', 'The terms used in these guides.')],
-  'How to read a half-hourly heatmap (days across, time of day down, colour for demand) and the patterns that point to waste.'))
+   ('base-load.html', 'Base load', 'What the night rows are telling you.')],
+  'Reading a half-hourly heatmap for hospitals and health centres: night rows as base load, the weekday band, summer cooling, and patterns such as failed ventilation setback, generator tests, CHP outages and missing data.'))
 
 # ── PROVING A SAVING ────────────────────────────────────────────────────
 PAGES.append(guide_page(
   'proving-savings.html',
-  'How to prove an energy saving worked, with half-hourly data',
+  'Proving NHS energy savings with half-hourly data',
   'Proving a saving worked',
-  "You've changed a setting or replaced some equipment. Half-hourly data can show whether it made a difference, as long as you compare like with like.",
-  'How to use half-hourly data to show whether a change saved energy: matched before-and-after periods, the right measure, and what can mislead.',
+  "Funders, boards and finance teams all want to see that a project delivered. Half-hourly data can show it, as long as you compare like with like on a site that never stops changing.",
+  'How estates teams can use half-hourly data to show an energy project worked: matched periods, the right measure for the change, weather, and when you need formal M&V.',
   '''
-<p class="answer">Compare a period before the change with a matching period after it. Use the same days of the week, the same types of day (open, closed, holiday) and enough weeks to even out day-to-day variation. Then look at the part of demand the change should affect, such as base load or out-of-hours use, rather than the total bill.</p>
+<p class="answer">Compare a period before the change with a matching period after it, using the same types of day and four to eight weeks either side. Measure the part of demand the change should affect, such as nights and weekends for a ventilation setback, rather than the total bill. On a hospital, total consumption moves with activity, weather and new equipment, so a real saving can easily get lost in it.</p>
 
-''' + photo('board-review', 'A team reviewing charts and printed reports around a meeting table, with solar panels and battery units outside the window', 'A saving is easier to sign off when the before-and-after comparison is fair.') + '''
+''' + photo('board-review', 'A team reviewing charts and printed reports around a meeting table', 'A saving is easier to sign off when the before-and-after comparison is fair and the method is written down.') + '''
+<h2 id="why">Why it matters on healthcare estates</h2>
+<p>Grant-funded projects usually have to report what they saved, energy performance contracts pay on measured savings, and trust boards want evidence before funding the next phase. Even when nobody asks, checking the data is how you find out a setback was overridden or a timer reset after maintenance. The same check run monthly keeps savings from quietly drifting away.</p>
+
 <h2 id="match">Compare like with like</h2>
-<ul><li><strong>Compare the same types of day.</strong> Compare weekdays with weekdays and holidays with holidays. A before period with several bank holidays in it will make the after period look better or worse than it really is.</li><li><strong>Use enough data.</strong> Four to eight weeks either side is usually enough to show a real change. A single week can be thrown off by one unusual day.</li><li><strong>Keep the periods close together.</strong> The closer they are, the less the weather and the seasons get in the way.</li><li><strong>Leave out the change itself.</strong> Skip the days when the work was being carried out.</li></ul>
+<ul>
+<li><strong>Same types of day.</strong> Weekdays with weekdays, weekends with weekends. Keep bank holidays and the Christmas period out of both sides unless the change is about them.</li>
+<li><strong>Enough data.</strong> Four to eight weeks either side usually shows a real change. One week can be thrown by a single unusual day.</li>
+<li><strong>Close together.</strong> The nearer the two periods, the less the weather and seasons get in the way.</li>
+<li><strong>Leave out the works.</strong> Skip the days when contractors were on site or plant was isolated.</li>
+<li><strong>Write down anything else that changed</strong>, such as a ward opening, new imaging equipment or a CHP outage, so you can explain the result.</li>
+</ul>
 
 <h2 id="measure">Measure the right thing</h2>
-<p>Choose the measure the change should affect:</p>
-<div class="table-wrap"><table><thead><tr><th>Change</th><th>Look at</th></tr></thead><tbody>
-<tr><td>Heating or ventilation schedules</td><td>Out-of-hours use, and demand around opening and closing</td></tr>
-<tr><td>Switching off equipment overnight</td><td>Base load</td></tr>
-<tr><td>LED lighting</td><td>Demand during opening hours</td></tr>
-<tr><td>Holiday settings in the building controls</td><td>Use during closures</td></tr></tbody></table></div>
-<p>Total consumption mixes the effect of your change with everything else that happened, such as changes in occupancy, the weather or new equipment. A genuine saving can get lost in it, and so can a change that didn't work.</p>
+<div class="table-wrap"><table><thead><tr><th>Change</th><th>What to compare</th></tr></thead><tbody>
+<tr><td>Theatre or outpatient ventilation setback</td><td>Demand at night and at weekends, and base load by month</td></tr>
+<tr><td>LED and sensors in 24-hour corridors and wards</td><td>The 01:00 to 05:00 low-activity window, plus daytime demand</td></tr>
+<tr><td>Variable speed drives on pumps and fans</td><td>Base load, and demand in the hours the plant runs</td></tr>
+<tr><td>BMS schedules in clinics and offices</td><td>Closed-hours excess, by type of day</td></tr>
+<tr><td>Solar</td><td>Daytime import on sunny days against the solar estimate (imports should fall)</td></tr>
+<tr><td>Heat pumps replacing gas boilers or CHP</td><td>Electricity rises, as expected. Measure the fall in gas alongside it, and check the new peak against capacity</td></tr>
+</tbody></table></div>
 
 <h2 id="weather">Weather and seasons</h2>
-<p>Electric heating and cooling depend on the weather. If the period before the change was colder than the period after, some of the drop is down to the weather. For heating changes, compare the same weeks a year apart as a cross-check, or adjust for weather using degree days if you have them.</p>
+<p>Chillers, electric heating and heat pumps follow the weather. If the before period was hotter or colder than the after period, some of the change is weather. For weather-sensitive changes, compare the same weeks a year apart as a cross-check, or adjust using degree days.</p>
 
 <h2 id="analyser">In the analyser</h2>
-<ul><li><strong>Did a change make a difference?</strong> on the Base load tab compares matched weeks either side of a date you choose.</li><li><strong>Compare periods</strong> on the Heatmap tab shows any two periods side by side.</li><li><strong>Persistent changes</strong> on the Unusual days tab flags lasting shifts automatically, so you can check whether a change shows up when you'd expect.</li></ul>
-<p>If you need a formal measurement and verification of savings, for example for a funded project or an energy performance contract, the International Performance Measurement and Verification Protocol (IPMVP) sets out recognised methods.</p>
+<ul>
+<li><strong>Did a change make a difference?</strong> on the Base load tab compares matched weeks either side of a date you choose.</li>
+<li><strong>Compare periods</strong> on the Heatmap tab puts any two periods side by side.</li>
+<li><strong>Persistent changes</strong> on the Unusual days tab flags lasting shifts, so you can check the change appears when you'd expect it to.</li>
+</ul>
+
+<h2 id="mv">When you need formal M&amp;V</h2>
+<p>For an energy performance contract or a funded project with savings targets, agree a measurement and verification plan before work starts. The International Performance Measurement and Verification Protocol (IPMVP) sets out recognised methods: the baseline period, what gets adjusted for (weather, occupancy, operating hours) and how savings are reported. The half-hourly checks above are a good way to watch progress between formal reports.</p>
 ''',
-  [('match', 'Compare like with like'), ('measure', 'Measure the right thing'), ('weather', 'Weather and seasons'), ('analyser', 'In the analyser')],
-  [('How long should I wait before checking?', 'Four to eight weeks of data after the change, compared with the same length of time before it, is usually enough to see a real change.'),
-   ('Why has our bill not gone down?', 'A saving in one place can be hidden by changes elsewhere, such as occupancy, weather, prices or new equipment. Compare the specific measure the change should affect.'),
-   ('Can this replace a formal M&amp;V report?', "It's a good check, but formal measurement and verification (for example under IPMVP) agrees the baseline, adjustments and reporting up front.")],
+  [('why', 'Why it matters'), ('match', 'Compare like with like'), ('measure', 'Measure the right thing'), ('weather', 'Weather and seasons'), ('analyser', 'In the analyser'), ('mv', 'Formal M&V')],
+  [('How long should we wait before checking?', 'Four to eight weeks after the change, compared with the same length of time before it, is usually enough to see a real change.'),
+   ('Why has the hospital bill not gone down after our project?', 'Activity, weather, prices and new equipment all move the total. Compare the specific part of demand the change should affect.'),
+   ('Our electricity went up after installing heat pumps. Did it fail?', 'Not necessarily. Heat pumps move heat from gas to electricity, so electricity rises. Judge them on total energy, cost and carbon, with gas included.'),
+   ('Can this replace a formal M&amp;V report?', 'No. It is a good check, but formal measurement and verification, for example under IPMVP, agrees the baseline and adjustments up front.')],
   [('base-load.html', 'Base load', 'The measure most switch-off changes affect.'),
-   ('out-of-hours-electricity.html', 'Out-of-hours use', 'The measure schedule changes affect.'),
-   ('hospital-energy-efficiency.html', 'Energy efficiency in hospitals', 'The changes worth proving.')],
-  'Proving a saving with half-hourly data: matched before-and-after periods, the right measure for the change, weather effects, and the analyser tools.'))
+   ('hospital-energy-efficiency.html', 'Energy efficiency in hospitals', 'The changes worth proving.'),
+   ('decarbonisation-funding.html', 'Funding', 'Where the projects being proved come from.')],
+  'Proving an energy saving on a healthcare estate with HH data: matched periods, the right measure per change (setback, LED, VSDs, BMS schedules, solar, heat pumps), weather, analyser tools and formal M&V under IPMVP.'))
 
 # ── MHHS ────────────────────────────────────────────────────────────────
 PAGES.append(guide_page(
@@ -500,7 +630,7 @@ GUIDE_GROUPS = [
   ]),
   ('Your half-hourly data', [
     ('get-your-data.html', 'Getting your half-hourly data', 'Who has it, what to ask for, a letter template, and the file formats the analyser reads.'),
-    ('example-office-analysis.html', 'Worked example: an admin building', 'What the analyser found in a year of data from one office building.'),
+    ('example-hospital-analysis.html', 'Worked example: a community hospital', 'What the analyser found in a year of data from one hospital.'),
     ('reading-a-heatmap.html', 'How to read a heatmap', 'Every half hour of a year on one chart, and the patterns to look for.'),
     ('base-load.html', 'Base load', 'What always runs, how to measure it and how to reduce it.'),
     ('out-of-hours-electricity.html', 'Out-of-hours electricity use', 'Clinics, offices and other buildings with set hours.'),

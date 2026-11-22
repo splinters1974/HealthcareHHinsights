@@ -632,6 +632,7 @@ button, input, select, textarea { font-family: inherit; }
 .finding-tag.high { background: #fbe9e9; color: #9b2c2c; }
 .finding-tag.medium { background: #fdf3e1; color: #8a5a10; }
 .finding-tag.low { background: #e9f3ea; color: #2f6b36; }
+.finding-tag.info { background: #e6f0fa; color: #0a4f8f; }
 .sample-steps { margin: 12px 0 8px 22px; }
 .sample-steps li { margin-bottom: 8px; line-height: 1.6; }
 .sample-cta { display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 18px; }

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solar calculator for hospitals and healthcare sites | Hospital Energy Insights</title>
-  <meta name="description" content="Free solar PV calculator for NHS trusts, health boards and private hospitals: draw your roofs and car parks on a map, add your half-hourly data, and see system size, savings, payback and carbon over 25 years, bought or on a PPA.">
+  <title>Hospital solar calculator: size, cost and payback</title>
+  <meta name="description" content="Free solar calculator for NHS and private hospitals: draw roofs and car parks, use your half-hourly data, and see size, savings and payback, bought or on a PPA.">
   <link rel="canonical" href="https://hospitalenergyinsights.co.uk/solar-calculator">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_GB">
   <meta property="og:url" content="https://hospitalenergyinsights.co.uk/solar-calculator">
-  <meta property="og:title" content="Solar calculator for hospitals and healthcare sites | Hospital Energy Insights">
-  <meta property="og:description" content="Free solar PV calculator for NHS trusts, health boards and private hospitals: draw your roofs and car parks on a map, add your half-hourly data, and see system size, savings, payback and carbon over 25 years, bought or on a PPA.">
+  <meta property="og:title" content="Hospital solar calculator: size, cost and payback">
+  <meta property="og:description" content="Free solar calculator for NHS and private hospitals: draw roofs and car parks, use your half-hourly data, and see size, savings and payback, bought or on a PPA.">
   <meta property="og:image" content="https://hospitalenergyinsights.co.uk/images/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -75,6 +75,59 @@
    ]
   },
   {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "How should a hospital use the calculator?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Start in the half-hourly analyser. On a site's Solar tab, choose Size solar for this site, and the calculator opens with the share of solar your site would use, measured from its own readings. Then draw the roofs and car parks on the map, check the postcode and enter your unit price."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What share of solar used on site should a hospital enter?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Measure it if you can. A 24-hour hospital often uses 90% or more of a well-sized system's output; clinics and offices closed at weekends are often 55 to 80%. The calculator starts at 80% if you have no data."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can it cost solar car park canopies?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Draw the car park as a carport area. Canopies are costed separately from roofs because the steel structure makes them dearer per kWp."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should an NHS trust buy the system or use a PPA?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Buying gives the most value over 25 years; a power purchase agreement needs no capital. The calculator shows both side by side. Check with your finance team how a PPA would be accounted for before choosing. See paying for solar."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do the figures include VAT?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. Costs are shown before VAT. How much VAT can be recovered differs between NHS bodies and private companies, so confirm it with your finance team."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How accurate are the results?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "They are a first estimate. Generation uses SAP 10.3 sunshine data for your postcode and a typical layout. Shading from plant, roof condition, structure and the DNO offer all come from a survey."
+     }
+    }
+   ]
+  },
+  {
    "@type": "WebApplication",
    "name": "Hospital Energy Insights solar calculator",
    "url": "https://hospitalenergyinsights.co.uk/solar-calculator",
@@ -86,7 +139,7 @@
     "price": "0",
     "priceCurrency": "GBP"
    },
-   "description": "Free solar PV calculator for NHS trusts, health boards and private hospitals: draw your roofs and car parks on a map, add your half-hourly data, and see system size, savings, payback and carbon over 25 years, bought or on a PPA.",
+   "description": "Free solar calculator for NHS and private hospitals: draw roofs and car parks, use your half-hourly data, and see size, savings and payback, bought or on a PPA.",
    "provider": {
     "@id": "https://www.kinetic-energy.co.uk/#organization"
    }
@@ -100,7 +153,7 @@
 @font-face { font-family: 'Schibsted Grotesk'; font-weight: 700; font-display: swap; src: url('fonts/schibsted-grotesk-latin-700-normal.woff2') format('woff2'); }
 @font-face { font-family: 'Schibsted Grotesk'; font-weight: 800 900; font-display: swap; src: url('fonts/schibsted-grotesk-latin-800-normal.woff2') format('woff2'); }
   </style>
-  <link rel="stylesheet" href="css/solar.css?v=63119adc">
+  <link rel="stylesheet" href="css/solar.css?v=5601e201">
   <style>
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .calc-page { max-width: 1248px; margin: 0 auto; padding: 32px 24px 88px; }
@@ -736,14 +789,14 @@
   </div>
 
   <section class="calc-faq" aria-labelledby="calcFaqH">
-    <h2 id="calcFaqH">Questions about the calculator</h2>
+    <h2 id="calcFaqH">Questions from estates teams</h2>
     <div class="faq">
-<details><summary>How do I use the calculator?</summary><div class="faq-a"><p>Find your site on the map and outline each roof or car park, or type in building dimensions. Add your postcode, the unit price you pay and how much of the solar you expect to use on site. Results update as you go, for buying outright or a Power Purchase Agreement.</p></div></details>
-<details><summary>How accurate are the results?</summary><div class="faq-a"><p>They are a well-grounded first estimate, not a design. Generation uses published SAP 10.3 sunshine data for your postcode and a typical layout, so a south-facing roof may do better and a shaded one worse. A site survey and your half-hourly meter data give a firm figure. See <a href="solar-calculator-method">how the calculator works</a>.</p></div></details>
-<details><summary>What does "solar used on site" mean?</summary><div class="faq-a"><p>It is the share of the electricity your panels generate that your site uses at the time, rather than exporting. Solar you use is worth your full unit price, while exported solar earns around 5p per kWh. The default is 80%.</p></div></details>
-<details><summary>What is the difference between buying outright and a PPA?</summary><div class="faq-a"><p>Buying gives the highest return over the system's life because you keep all the savings. With a Power Purchase Agreement a funder pays for, owns and maintains the system, and you buy its electricity at an agreed rate below your grid price. The calculator shows both. See our <a href="paying-for-solar">funding guide</a>.</p></div></details>
-<details><summary>Does the calculator include battery storage?</summary><div class="faq-a"><p>Yes, as an option. It sizes a battery from the solar you would otherwise export and shows the extra saving over a 10-year battery life. A battery adds most where a site exports a lot of its solar.</p></div></details>
-<details><summary>Do the figures include VAT?</summary><div class="faq-a"><p>No. All costs are before VAT. Commercial installations are charged at 20%, which VAT-registered organisations can usually reclaim.</p></div></details>
+<details><summary>How should a hospital use the calculator?</summary><div class="faq-a"><p>Start in the <a href="analyser/">half-hourly analyser</a>. On a site's Solar tab, choose Size solar for this site, and the calculator opens with the share of solar your site would use, measured from its own readings. Then draw the roofs and car parks on the map, check the postcode and enter your unit price.</p></div></details>
+<details><summary>What share of solar used on site should a hospital enter?</summary><div class="faq-a"><p>Measure it if you can. A 24-hour hospital often uses 90% or more of a well-sized system's output; clinics and offices closed at weekends are often 55 to 80%. The calculator starts at 80% if you have no data.</p></div></details>
+<details><summary>Can it cost solar car park canopies?</summary><div class="faq-a"><p>Yes. Draw the car park as a carport area. Canopies are costed separately from roofs because the steel structure makes them dearer per kWp.</p></div></details>
+<details><summary>Should an NHS trust buy the system or use a PPA?</summary><div class="faq-a"><p>Buying gives the most value over 25 years; a power purchase agreement needs no capital. The calculator shows both side by side. Check with your finance team how a PPA would be accounted for before choosing. See <a href="paying-for-solar">paying for solar</a>.</p></div></details>
+<details><summary>Do the figures include VAT?</summary><div class="faq-a"><p>No. Costs are shown before VAT. How much VAT can be recovered differs between NHS bodies and private companies, so confirm it with your finance team.</p></div></details>
+<details><summary>How accurate are the results?</summary><div class="faq-a"><p>They are a first estimate. Generation uses SAP 10.3 sunshine data for your postcode and a typical layout. Shading from plant, roof condition, structure and the DNO offer all come from a survey.</p></div></details>
 </div>
     <p class="help" style="margin-top:18px">More answers on the <a href="faq">FAQ page</a>.</p>
   </section>
