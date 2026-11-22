@@ -52,7 +52,7 @@ AUTHOR_PHOTO = 'images/people/paul-johnston.jpg'
 # tools can connect the site to the real company and person. Add only addresses
 # you have checked, for example 'https://www.linkedin.com/in/...'.
 AUTHOR_SAME_AS = []
-ORG_SAME_AS = []
+ORG_SAME_AS = ['https://www.linkedin.com/company/kinetic-energy-consulting/']  # confirmed by the owner, 22 Nov 2026
 
 # Pages kept here for the journey but written first for a sister site. Their
 # canonical points at the original so search engines rank one copy, and they
