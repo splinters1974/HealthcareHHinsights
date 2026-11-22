@@ -61,6 +61,6 @@ for name, m in META.items():
   </aside>
 </div>'''
             + cta('See the numbers for your site', 'Start with your half-hourly data, then size the system in the solar calculator.'))
-    PAGES.append(Page(file, f'{title} | Healthcare Energy Insights', m['description'], body, crumbs=crumbs,
+    PAGES.append(Page(file, f'{title} | Hospital Energy Insights', m['description'], body, crumbs=crumbs,
                       faqs=[(q, a) for q, a in m['faqs']], article=True, section='Guides',
                       summary=strip_tags(m['description'])))

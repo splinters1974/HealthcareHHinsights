@@ -44,7 +44,7 @@ def main():
             run.font.size = Pt(13)
             run.font.color.rgb = INK
     doc.core_properties.title = 'Request for half-hourly electricity consumption data'
-    doc.core_properties.author = 'Healthcare Energy Insights'
+    doc.core_properties.author = 'Hospital Energy Insights'
     OUT.parent.mkdir(parents=True, exist_ok=True)
     doc.save(OUT)
     print('wrote', OUT.name)

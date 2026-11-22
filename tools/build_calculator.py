@@ -24,7 +24,7 @@ SRC = HERE / 'vendor' / 'solar-calculator.source.html'
 CSS_SRC = HERE / 'vendor' / 'solar-shared.source.css'
 FILE = 'solar-calculator.html'
 
-TITLE = 'Solar calculator for hospitals and healthcare sites | Healthcare Energy Insights'
+TITLE = 'Solar calculator for hospitals and healthcare sites | Hospital Energy Insights'
 DESC = ('Free solar PV calculator for NHS trusts, health boards and private hospitals: draw your roofs and car parks on a map, '
         'add your half-hourly data, and see system size, savings, payback and carbon over 25 years, bought or on a PPA.')
 OLD_EMAIL = 'enquiries@uksolarcalculator.co.uk'
@@ -116,7 +116,7 @@ def build():
                 '<p>Best started from the <a href="analyser/">half-hourly analyser</a>, so the share of solar used on site comes from your own readings. Outline your roofs and car parks, add your postcode and unit price.')
     rest = must(rest, '<span>Calculator</span></nav>', '<span>Solar calculator</span></nav>')
     rest = must(rest, '<img src="images/brand/hhi-logo.png" width="370" height="132" alt="Half Hourly Insights">',
-                '<img src="images/brand/hei-logo.png" width="359" height="132" alt="Healthcare Energy Insights">')
+                '<img src="images/brand/hei-logo.png" width="456" height="132" alt="Hospital Energy Insights">')
     rest = must(rest, 'Your figures from Half Hourly Insights have arrived', 'Your figures from the half-hourly analyser have arrived')
     rest = must(rest, 'https://hhinsights.co.uk/analyser/" target="_blank" rel="noopener"', 'analyser/"', count=2)
     rest = must(rest, 'in Half Hourly Insights', 'in the analyser', count=2)
@@ -149,16 +149,15 @@ def build():
         rest = rest.replace(f'[{a}]', f'[{b}]').replace(f'({a})', f'({b})')
     out = kit.clean_links(head() + rest)
     for bad in ['uksolarcalculator.co.uk', 'UK Solar Calculator', 'hhinsights.co.uk/analyser']:
-        if bad in out.replace('healthcareenergyinsights.co.uk', ''):
+        if bad in out.replace('hospitalenergyinsights.co.uk', ''):
             raise SystemExit(f'build_calculator: {bad!r} is still in the calculator page')
     (SITE / FILE).write_text(out, encoding='utf-8')
 
     css = CSS_SRC.read_text(encoding='utf-8')
-    css += ('\n/* Healthcare Energy Insights: skip link, as on the rest of the site */\n'
+    css += ('\n/* Hospital Energy Insights: skip link, as on the rest of the site */\n'
             '.skip { position: absolute; left: -10000px; top: 8px; z-index: 2000; background: #fff; color: var(--ink); padding: 10px 16px; border-radius: 6px; font-weight: 600; }\n'
-            '.skip:focus { left: 16px; }\n'
-            '.nav-logo img { height: 62px; } .footer-logo img { height: 72px; }\n')
-    css = css.replace('UK Solar Calculator — Shared Styles', 'Healthcare Energy Insights: solar calculator styles (from the UK Solar Calculator, recoloured)')
+            '.skip:focus { left: 16px; }\n')
+    css = css.replace('UK Solar Calculator — Shared Styles', 'Hospital Energy Insights: solar calculator styles (from the UK Solar Calculator, recoloured)')
     for a, b in COLOURS.items():
         css = css.replace(a, b).replace(a.lower(), b)
     (SITE / 'css' / 'solar.css').write_text(css, encoding='utf-8')

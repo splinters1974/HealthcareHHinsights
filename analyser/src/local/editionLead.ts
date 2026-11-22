@@ -1,7 +1,7 @@
 /**
  * Who is creating a customer edition. Before the file is built, the person
  * gives their name, organisation and email; these (and nothing else: no meter
- * data, no site names, no figures) are emailed to the Healthcare Energy Insights
+ * data, no site names, no figures) are emailed to the Hospital Energy Insights
  * team through EmailJS, the same service the solar calculator uses. See the
  * privacy notice ("If you create a customer edition"), which says what is
  * collected, why, and that it is kept for 24 months from last contact.

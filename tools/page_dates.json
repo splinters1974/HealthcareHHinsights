@@ -1,13 +1,13 @@
 {
  "404.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "b6b3870a2c38a14b"
+  "modified": "2026-11-18",
+  "fingerprint": "56f951654d9b0055"
  },
  "about.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "03c61c0d02636e2f"
+  "modified": "2026-11-18",
+  "fingerprint": "6b15bf768da4adf7"
  },
  "acute-hospitals.html": {
   "published": "2026-11-18",
@@ -36,13 +36,13 @@
  },
  "contact.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "c3186ba6fd1c3bf7"
+  "modified": "2026-11-18",
+  "fingerprint": "9c0c8d288f58a204"
  },
  "decarbonisation-funding.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "68b0c4ed8fa012c2"
+  "modified": "2026-11-18",
+  "fingerprint": "2e7408c4bcec14e4"
  },
  "electricity-benchmarks.html": {
   "published": "2026-11-18",
@@ -66,8 +66,8 @@
  },
  "faq.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "d48cab14a77dbb4d"
+  "modified": "2026-11-18",
+  "fingerprint": "3a2d9860c93b502d"
  },
  "get-your-data.html": {
   "published": "2026-11-18",
@@ -86,28 +86,28 @@
  },
  "half-hourly-data-british-gas.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "a6728e1a323d1bf8"
+  "modified": "2026-11-18",
+  "fingerprint": "bb87d2c04299780a"
  },
  "half-hourly-data-edf.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "617eec8f90f34a71"
+  "modified": "2026-11-18",
+  "fingerprint": "51644594f6052813"
  },
  "half-hourly-data-eon-next.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "b561118d7b7d792f"
+  "modified": "2026-11-18",
+  "fingerprint": "777414665c24bc8d"
  },
  "half-hourly-data-npower-business-solutions.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "78fe94d3167ae63d"
+  "modified": "2026-11-18",
+  "fingerprint": "2b97f1534883eb4f"
  },
  "half-hourly-data-totalenergies.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "401610257694ff12"
+  "modified": "2026-11-18",
+  "fingerprint": "4e161d25396bd66b"
  },
  "half-hourly-settlement.html": {
   "published": "2026-11-18",
@@ -121,13 +121,13 @@
  },
  "healthcare-estates-decarbonisation.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "9597223f7b18fffa"
+  "modified": "2026-11-18",
+  "fingerprint": "0dab83f19ee70cee"
  },
  "heat-decarbonisation.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "6de40c6d98061b80"
+  "modified": "2026-11-18",
+  "fingerprint": "39c4cebf7429afde"
  },
  "hospital-electrical-capacity.html": {
   "published": "2026-11-18",
@@ -141,18 +141,18 @@
  },
  "how-it-works.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "5def36e65b04d707"
+  "modified": "2026-11-18",
+  "fingerprint": "32631a68b826a9f6"
  },
  "index.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "35515e8524ceda89"
+  "modified": "2026-11-18",
+  "fingerprint": "bbfe1f305e86a17a"
  },
  "moving-away-from-chp.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "049d59c79d9d11b2"
+  "modified": "2026-11-18",
+  "fingerprint": "cb599bcb72442e9b"
  },
  "mpan-profile-class.html": {
   "published": "2026-11-18",
@@ -161,8 +161,8 @@
  },
  "nhs-net-zero-targets.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "b973365c1f8bd856"
+  "modified": "2026-11-18",
+  "fingerprint": "4a57610b245173c4"
  },
  "non-energy-charges.html": {
   "published": "2026-11-18",
@@ -181,13 +181,13 @@
  },
  "paying-for-solar.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "337e4c17c991b4d5"
+  "modified": "2026-11-18",
+  "fingerprint": "f080a120d2d79d89"
  },
  "privacy.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "faf315ebc1a11704"
+  "modified": "2026-11-18",
+  "fingerprint": "e2b1de0ebe23830c"
  },
  "private-hospitals.html": {
   "published": "2026-11-18",
@@ -211,23 +211,23 @@
  },
  "sectors.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "2463a94a7b0bfdb4"
+  "modified": "2026-11-18",
+  "fingerprint": "abee3a5390bbae88"
  },
  "solar-calculator-method.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "2acbd5c1870baca9"
+  "modified": "2026-11-18",
+  "fingerprint": "b79480cbb89c8c76"
  },
  "solar-cost.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "c414fe281fbe52da"
+  "modified": "2026-11-18",
+  "fingerprint": "5ae7f4804745ec8e"
  },
  "solar-generation.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "8beec8c921cf4393"
+  "modified": "2026-11-18",
+  "fingerprint": "780c87a97e3f47e0"
  },
  "solar-on-healthcare-estates.html": {
   "published": "2026-11-18",
@@ -236,18 +236,18 @@
  },
  "solar-payback.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "57ac4cea12607b0f"
+  "modified": "2026-11-18",
+  "fingerprint": "e50db6edcb5b61d8"
  },
  "solar-planning-and-grid.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "ef1c97cf1b0edf06"
+  "modified": "2026-11-18",
+  "fingerprint": "2c01e256e119e17b"
  },
  "solar.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "359b0546ca2c11a2"
+  "modified": "2026-11-18",
+  "fingerprint": "968c6d4ba1d71ee5"
  },
  "supply-capacity.html": {
   "published": "2026-11-18",
@@ -256,12 +256,12 @@
  },
  "terms.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "e14b3a69ef522927"
+  "modified": "2026-11-18",
+  "fingerprint": "5c56bbdadcb975c8"
  },
  "thanks.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-22",
-  "fingerprint": "99963124bc781663"
+  "modified": "2026-11-18",
+  "fingerprint": "c327fad833248371"
  }
 }
