@@ -18,6 +18,12 @@
   status = 301
   force = true
 
+# Retired pages.
+[[redirects]]
+  from = "/example-office-analysis*"
+  to = "/example-hospital-analysis"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]

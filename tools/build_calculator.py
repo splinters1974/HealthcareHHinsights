@@ -24,9 +24,26 @@ SRC = HERE / 'vendor' / 'solar-calculator.source.html'
 CSS_SRC = HERE / 'vendor' / 'solar-shared.source.css'
 FILE = 'solar-calculator.html'
 
-TITLE = 'Solar calculator for hospitals and healthcare sites | Hospital Energy Insights'
-DESC = ('Free solar PV calculator for NHS trusts, health boards and private hospitals: draw your roofs and car parks on a map, '
-        'add your half-hourly data, and see system size, savings, payback and carbon over 25 years, bought or on a PPA.')
+TITLE = 'Hospital solar calculator: size, cost and payback'
+DESC = ('Free solar calculator for NHS and private hospitals: draw roofs and car parks, use your half-hourly data, '
+        'and see size, savings and payback, bought or on a PPA.')
+# Healthcare questions, shown on the page and marked up as FAQPage.
+FAQS = [
+    ('How should a hospital use the calculator?',
+     'Start in the <a href="analyser/">half-hourly analyser</a>. On a site\'s Solar tab, choose Size solar for this site, and the calculator opens with the share of '
+     'solar your site would use, measured from its own readings. Then draw the roofs and car parks on the map, check the postcode and enter your unit price.'),
+    ('What share of solar used on site should a hospital enter?',
+     'Measure it if you can. A 24-hour hospital often uses 90% or more of a well-sized system\'s output; clinics and offices closed at weekends are often 55 to 80%. '
+     'The calculator starts at 80% if you have no data.'),
+    ('Can it cost solar car park canopies?',
+     'Yes. Draw the car park as a carport area. Canopies are costed separately from roofs because the steel structure makes them dearer per kWp.'),
+    ('Should an NHS trust buy the system or use a PPA?',
+     'Buying gives the most value over 25 years; a power purchase agreement needs no capital. The calculator shows both side by side. Check with your finance team how a PPA would be accounted for before choosing. See <a href="paying-for-solar.html">paying for solar</a>.'),
+    ('Do the figures include VAT?',
+     'No. Costs are shown before VAT. How much VAT can be recovered differs between NHS bodies and private companies, so confirm it with your finance team.'),
+    ('How accurate are the results?',
+     'They are a first estimate. Generation uses SAP 10.3 sunshine data for your postcode and a typical layout. Shading from plant, roof condition, structure and the DNO offer all come from a survey.'),
+]
 OLD_EMAIL = 'enquiries@uksolarcalculator.co.uk'
 
 # Palette: the same swaps as site/css/site.css.
@@ -90,7 +107,7 @@ def head():
   <link rel="apple-touch-icon" sizes="180x180" href="images/brand/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#0B2E4F">
-{kit.jsonld(kit.Page(FILE, TITLE, DESC, '', crumbs=[('Home', 'index.html'), ('Solar calculator', FILE)],
+{kit.jsonld(kit.Page(FILE, TITLE, DESC, '', crumbs=[('Home', 'index.html'), ('Solar calculator', FILE)], faqs=FAQS,
                      schema=[{'@type': 'WebApplication', 'name': f'{kit.NAME} solar calculator', 'url': url,
                               'applicationCategory': 'BusinessApplication', 'operatingSystem': 'Any',
                               'isAccessibleForFree': True, 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'GBP'},
@@ -139,6 +156,12 @@ def build():
     # Leads go to the named contact only.
     rest = re.sub(r"(const LEAD_RECIPIENTS = \[\n)(.*?)(\n  \];)",
                   lambda m: m.group(1) + f"    {{ email: '{kit.LEAD_EMAIL}', name: '{kit.CONTACT_NAME.split()[0]}' }}," + m.group(3), rest, count=1, flags=re.S)
+    # Healthcare questions in place of the general ones.
+    faq_html = ''.join(f'<details><summary>{q}</summary><div class="faq-a"><p>{a}</p></div></details>\n' for q, a in FAQS)
+    rest = re.sub(r'(<h2 id="calcFaqH">)Questions about the calculator(</h2>\n    <div class="faq">\n).*?(</div>\n    <p class="help")',
+                  lambda m: m.group(1) + 'Questions from estates teams' + m.group(2) + faq_html + m.group(3), rest, count=1, flags=re.S)
+    if 'Questions from estates teams' not in rest:
+        raise SystemExit('build_calculator: FAQ block not found')
     # Healthcare guidance on the share used on site (the 80% default itself is unchanged).
     rest = rest.replace("80% suits most sites busy through the working week. Warehouses, farms and sites closed at weekends are often 40 to 70%. The rest is exported at 5p/kWh.",
                         "80% suits most sites busy through the working week. Hospitals open around the clock often use 90% or more; clinics and admin buildings closed at weekends are often 55 to 80%. Best of all, measure it from your half-hourly data. The rest is exported at 5p/kWh.")

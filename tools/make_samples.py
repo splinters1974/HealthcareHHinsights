@@ -73,7 +73,50 @@ def school():
     write('example-school', rows)
 
 
+def hospital():
+    """A made-up 60-bed community hospital with an outpatients wing and two day-surgery theatres.
+
+    Wards, kitchens, IT and ventilation run around the clock. Outpatients and theatres
+    run 08:00-18:00 on weekdays. Chillers add load on summer afternoons, with a hot spell
+    in mid-July. From 2 September the theatre ventilation stops setting back overnight and
+    at weekends after a controls change (the story the worked example finds). The standby
+    generators take the site off grid for an hour on load test on the first Tuesday of
+    each month, so import drops for two half hours."""
+    r = random.Random(23)
+    fault_from = dt.date(2024, 9, 2)
+    rows = []
+    for d in days('2024-04-01', 365):
+        doy = d.timetuple().tm_yday
+        winter = 1 + 0.08 * math.cos((doy - 15) / 365 * 2 * math.pi)
+        working = d.weekday() < 5 and d.isoformat() not in BH
+        hot = 1.0 if dt.date(2024, 7, 15) <= d <= dt.date(2024, 7, 19) else 0.0
+        summer = max(0.0, math.cos((doy - 200) / 365 * 2 * math.pi)) ** 3
+        gen_test = d.weekday() == 1 and d.day <= 7
+        v = []
+        for s in range(48):
+            h = s / 2
+            kw = 104 * winter
+            if 6 <= h < 8:
+                kw += (h - 6) / 2 * (70 if working else 30)
+            elif 8 <= h < 18:
+                kw += 92 if working else 34
+            elif 18 <= h < 22:
+                kw += 38 if working else 22
+            if 11.5 <= h < 13.5 or 16.5 <= h < 18:
+                kw += 12
+            if 12 <= h < 19:
+                kw += 26 * summer + 38 * hot
+            if d >= fault_from and (not working or h < 7 or h >= 19):
+                kw += 22
+            kw *= 1 + r.gauss(0, 0.035)
+            if gen_test and 10 <= h < 11:
+                kw *= 0.3
+            v.append(max(0, kw) * 0.5)
+        rows.append((d, v))
+    write('example-hospital', rows)
+
+
 if __name__ == '__main__':
     office()
-    school()
+    hospital()
     print('wrote', ', '.join(p.name for p in sorted(OUT.glob('*.csv'))))

@@ -15,7 +15,7 @@ if (!origin) err('SITE_URL is empty in tools/kit.py: canonical links and the sit
 
 // Approved images that must exist and be used: guide, settings and page cards,
 // the hospital estate illustration, the contact photo and the default share image.
-const cards = ['guides', 'get-your-data', 'example-office-analysis', 'reading-a-heatmap',
+const cards = ['guides', 'get-your-data', 'example-hospital-analysis', 'reading-a-heatmap',
   'out-of-hours-electricity', 'base-load', 'supply-capacity', 'proving-savings', 'half-hourly-settlement', 'glossary',
   'how-it-works', 'sectors', 'faq', 'contact', 'healthcare-estates-decarbonisation', 'nhs-net-zero-targets',
   'decarbonisation-funding', 'heat-decarbonisation', 'moving-away-from-chp', 'hospital-electrical-capacity',
@@ -23,6 +23,10 @@ const cards = ['guides', 'get-your-data', 'example-office-analysis', 'reading-a-
   'acute-hospitals', 'community-and-mental-health', 'health-centres-and-clinics', 'ambulance-stations-and-fleet'];
 const approved = [...cards.map((n) => `images/guides/${n}.jpg`),
   'images/photos/estate-hospital.jpg', 'images/photos/contact-photo.jpg', 'images/og-image.png'];
+
+// Sister sites whose originals some pages point to with their canonical link.
+const SISTER = /^https:\/\/(hhinsights\.co\.uk|uksolarcalculator\.co\.uk)\//;
+const elsewhere = [];
 
 const isPng = (b) => b.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
 const isJpg = (b) => b[0] === 0xff && b[1] === 0xd8;
@@ -57,6 +61,10 @@ for (const name of pages) {
   const ogImage = (html.match(/<meta property="og:image" content="([^"]+)">/) || [])[1];
   if (noindex) {
     if (canonical) err(`${name}: noindex page should not declare a canonical URL`);
+  } else if (canonical && SISTER.test(canonical)) {
+    // Kept for the journey, but the original lives on a sister site (kit.CANONICAL_ELSEWHERE).
+    elsewhere.push(name);
+    if (!/<meta property="og:url" content="https:\/\//.test(html)) err(`${name}: og:url missing or not absolute`);
   } else {
     indexable.push(name);
     const expected = name === 'index.html' ? `${origin}/` : `${origin}/${name.replace(/\.html$/, '')}`;
@@ -107,6 +115,9 @@ for (const name of indexable) {
   const u = name === 'index.html' ? `${origin}/` : `${origin}/${name.replace(/\.html$/, '')}`;
   if (!locs.includes(u)) err(`sitemap missing ${u}`);
 }
+for (const name of elsewhere) {
+  if (locs.includes(`${origin}/${name.replace(/\.html$/, '')}`)) err(`sitemap lists a page whose canonical is on a sister site: ${name}`);
+}
 for (const u of locs) {
   if (!u.startsWith(`${origin}/`)) err(`sitemap URL on the wrong host: ${u}`);
   if (/\/(thanks|404)(\.html)?$/.test(u)) err(`sitemap lists a noindex page: ${u}`);
@@ -132,6 +143,6 @@ const unused = fs.readdirSync(path.join(root, 'images/guides')).filter((f) => !f
   .map((f) => `images/guides/${f}`).filter((r) => !referenced.has(r));
 if (unused.length) warnings.push(`card images not referenced by any page: ${unused.join(', ')}`);
 
-console.log(JSON.stringify({ origin, pages: pages.length, indexable: indexable.length, sitemapUrls: locs.length,
+console.log(JSON.stringify({ origin, pages: pages.length, indexable: indexable.length, canonicalOnSisterSite: elsewhere.length, sitemapUrls: locs.length,
   approvedImages: approved.length, errors, warnings }, null, 2));
 process.exit(errors.length ? 1 : 0);

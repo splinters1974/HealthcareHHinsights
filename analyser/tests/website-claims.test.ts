@@ -141,3 +141,65 @@ test('a part year is analysed as it is, not scaled up to a year by default', () 
   assert.equal(m.annual, null);
   assert.ok(m.findings.every((f) => !f.cost || f.cost.annual == null), 'no annual £ on a 4-month file');
 });
+
+// --- The community hospital worked example (site/samples/example-hospital.csv) ---------------
+
+import { analyseHeadroom } from '../src/local/headroom';
+import { solarFit } from '../src/local/solarFit';
+
+const hospitalCsv = fs.readFileSync(new URL('../../site/samples/example-hospital.csv', import.meta.url), 'utf8');
+const hospitalFrame = parseHHFile(enc(hospitalCsv), 'example-hospital.csv').frame;
+const hospital = () => analyse(hospitalFrame, { ...defaultSettings('Community hospital'), capacityKva: 400 }, 25);
+
+test('hospital example: headline figures match the page', () => {
+  const m = hospital();
+  assert.equal(r(m.annual!.kwh), 1350066);
+  assert.equal(r(m.annual!.cost), 337517);
+  assert.equal(m.coverage.validDays, 363);
+  assert.equal(Math.round(m.baseAll.kw * 10) / 10, 96.3);
+  assert.equal(r(m.base.share * 100), 63);
+  assert.equal(r(m.base.annual!.cost / 1000), 211);
+  assert.equal(m.peak.kw, 288.6);
+  assert.equal(m.peak.when, '16 Jul 2024 at 16:30');
+  assert.equal(r(m.peak.kw / 0.95), 304);
+  assert.equal(m.hasClosed, false);
+  assert.equal(r(m.lowestKw * 10) / 10, 53.3);
+});
+
+test('hospital example: base load by month shows the September step', () => {
+  const by = Object.fromEntries(hospital().monthlyBase.map((x) => [x.key, Math.round(x.kw * 10) / 10]));
+  assert.deepEqual(by, {
+    '2024-04': 99.8, '2024-05': 96, '2024-06': 93.1, '2024-07': 91.9, '2024-08': 93.2, '2024-09': 117,
+    '2024-10': 121.3, '2024-11': 125.1, '2024-12': 128.1, '2025-01': 129.4, '2025-02': 128.2, '2025-03': 124.9,
+  });
+});
+
+test('hospital example: headroom and heat pump tests', () => {
+  const base = { capacityKva: 400, powerFactor: 0.95, marginPct: 10 };
+  const h = analyseHeadroom(hospitalFrame, base);
+  assert.equal(h.usableKva, 360);
+  assert.equal(r(h.firmHeadroomKw), 53);
+  const ok = analyseHeadroom(hospitalFrame, { ...base, test: { kw: 100, start: 0, end: 48, months: 'heating' } }).test!;
+  assert.equal(ok.fits, true);
+  assert.equal(r(ok.peakWithLoadKva), 354);
+  const no = analyseHeadroom(hospitalFrame, { ...base, test: { kw: 150, start: 0, end: 48, months: 'heating' } }).test!;
+  assert.equal(no.fits, false);
+  assert.equal(no.halfHoursOver, 2690);
+  assert.equal(no.daysOver, 154);
+  assert.equal(r(no.worstOverKva), 46);
+});
+
+test('hospital example: solar self-consumption at UK average output', () => {
+  const fit = solarFit(hospitalFrame, 905)!;
+  const at = (kwp: number) => fit.points.find((p) => p.kwp === kwp)!;
+  assert.equal(r(at(299.1).generated), 268374);
+  assert.equal(Math.round(at(299.1).selfConsumption * 1000) / 10, 99.8);
+  assert.equal(r(at(299.1).coverage * 100), 20);
+  assert.equal(r(at(448.6).selfConsumption * 100), 95);
+  assert.equal(r(at(448.6).coverage * 100), 29);
+  assert.equal(r(at(747.7).selfConsumption * 100), 76);
+  assert.equal(r(at(747.7).coverage * 100), 38);
+  assert.equal(r(at(1196.3).generated), 1073406);
+  assert.equal(r(at(1196.3).selfConsumption * 100), 54);
+  assert.equal(r(at(1196.3).coverage * 100), 44);
+});

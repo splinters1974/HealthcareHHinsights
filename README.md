@@ -46,6 +46,23 @@ To take a newer calculator from the UK Solar Calculator, copy its
 `calculator.html` and `css/shared.css` over the two files in `tools/vendor/`
 and rebuild. The build stops if a replacement no longer matches.
 
+### Search and duplicate content
+
+- **Search titles and descriptions** live in `tools/seo_meta.py` (titles up to
+  60 characters, descriptions 120 to 160). The build warns about any page
+  outside those limits.
+- **Pages copied from the sister sites** (supplier data guides, MPAN, prices,
+  non-energy charges, benchmarks, sample report, and the general solar cost,
+  generation and method guides) stay for the journey, but their canonical link
+  points at the original on Half Hourly Insights or the UK Solar Calculator, and
+  they're left out of the sitemap and llms.txt. The list is
+  `CANONICAL_ELSEWHERE` in `tools/kit.py`. Rewrite a page for healthcare before
+  taking it off that list.
+- **The worked example** uses the made-up `site/samples/example-hospital.csv`
+  (`python3 tools/make_samples.py`). Its figures are locked in
+  `analyser/tests/website-claims.test.ts`, so a change to the file or the engine
+  fails the tests instead of leaving the page out of date.
+
 ## Who runs it
 
 Run by Kinetic Energy Consulting, as with the UK Solar Calculator and Half

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Base load electricity: what it is and how to cut it</title>
-  <meta name="description" content="What base load electricity is, how to measure it from half-hourly data, what makes it up, and how to reduce it. Each kilowatt running all year is 8,760 kWh.">
+  <title>Hospital base load: what never switches off</title>
+  <meta name="description" content="What makes up base load in hospitals and health centres, how to measure it from half-hourly data, and safe ways to cut it.">
   <link rel="canonical" href="https://hospitalenergyinsights.co.uk/base-load">
   <meta property="og:url" content="https://hospitalenergyinsights.co.uk/base-load">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_GB">
-  <meta property="og:title" content="Base load electricity: what it is and how to cut it">
-  <meta property="og:description" content="What base load electricity is, how to measure it from half-hourly data, what makes it up, and how to reduce it. Each kilowatt running all year is 8,760 kWh.">
+  <meta property="og:title" content="Hospital base load: what never switches off">
+  <meta property="og:description" content="What makes up base load in hospitals and health centres, how to measure it from half-hourly data, and safe ways to cut it.">
   <meta property="og:image" content="https://hospitalenergyinsights.co.uk/images/guides/base-load.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -77,7 +77,7 @@
     {
      "@type": "ListItem",
      "position": 3,
-     "name": "Base load: what never switches off",
+     "name": "Base load on healthcare sites",
      "item": "https://hospitalenergyinsights.co.uk/base-load"
     }
    ]
@@ -95,12 +95,12 @@
   },
   {
    "@type": "Article",
-   "headline": "Base load electricity: what it is and how to cut it",
-   "description": "What base load electricity is, how to measure it from half-hourly data, what makes it up, and how to reduce it. Each kilowatt running all year is 8,760 kWh.",
+   "headline": "Hospital base load: what never switches off",
+   "description": "What makes up base load in hospitals and health centres, how to measure it from half-hourly data, and safe ways to cut it.",
    "image": "https://hospitalenergyinsights.co.uk/images/guides/base-load.jpg",
    "inLanguage": "en-GB",
    "datePublished": "2026-11-18",
-   "dateModified": "2026-11-18",
+   "dateModified": "2026-11-22",
    "author": {
     "@id": "https://hospitalenergyinsights.co.uk/about#paul-johnston"
    },
@@ -117,26 +117,34 @@
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "What is a typical base load?",
+     "name": "What share of a hospital's electricity is base load?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "It depends on the building. An acute hospital's base load is high because wards, theatres, imaging and ventilation run all the time; a health centre's is mostly IT, vaccine fridges and security. Compare each site with its own history, and with similar buildings in your estate."
+      "text": "It varies by site, so measure your own. On a 24-hour hospital it is commonly more than half. In our made-up community hospital it is 63%."
      }
     },
     {
      "@type": "Question",
-     "name": "Why is my base load higher at weekends than overnight on weekdays?",
+     "name": "Why not use the lowest half hour as the base load?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "It shouldn't be. If it is, something is switching on at weekends, such as frost protection on the heating, a scheduled process or a booking. Check the weekend pattern on the heatmap."
+      "text": "Because one generator test, meter fault or power cut can set it. The analyser uses the 5th percentile, which those short events barely move."
      }
     },
     {
      "@type": "Question",
-     "name": "How much does 1 kW of base load cost?",
+     "name": "How much does 1 kW of base load cost a year?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "It runs 8,760 hours a year, so it uses 8,760 kWh. At 25p/kWh that's about £2,190 a year. Multiply 8,760 by your own rate to check."
+      "text": "About 8,766 kWh, which is roughly £2,190 at 25p/kWh. Multiply 8,766 by your own unit rate."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is theatre ventilation setback safe?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "NHS England guidance supports it when theatres are unused, under conditions on pressure, temperature and time to return to full flow, and with the Ventilation Safety Group overseeing it."
      }
     }
    ]
@@ -165,37 +173,64 @@
 <section class="page-hero page-hero-photo">
   <div class="hero-media" aria-hidden="true"><picture><source type="image/webp" srcset="images/heroes/base-load-900.webp 900w, images/heroes/base-load.webp 1600w" sizes="100vw"><img src="images/heroes/base-load.jpg" srcset="images/heroes/base-load-900.jpg 900w, images/heroes/base-load.jpg 1600w" sizes="100vw" width="1600" height="800" alt="" fetchpriority="high"></picture></div>
   <div class="page-hero-inner">
-    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <a href="guides">Guides</a> <span aria-hidden="true">/</span> <span aria-current="page">Base load: what never switches off</span></nav>
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <a href="guides">Guides</a> <span aria-hidden="true">/</span> <span aria-current="page">Base load on healthcare sites</span></nav>
     <span class="page-hero-kicker">Guide</span>
-    <h1 class="page-hero-title">Base load: what never switches off</h1>
-    <p class="page-hero-lead">Every building has a level of electricity use it never drops below. Because that use continues every hour of the year, even small reductions add up.</p>
+    <h1 class="page-hero-title">Base load on healthcare sites</h1>
+    <p class="page-hero-lead">On a 24-hour hospital, the load that never switches off is usually the biggest part of the electricity bill. It's also the part most often left unexamined.</p>
   </div>
 </section><div class="guide">
   <article class="guide-main prose">
-<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-18">18 November 2026</time></p>
-<p class="answer">Base load is the minimum electricity a building uses at all times, overnight and at weekends as well as during the day. Each kilowatt of base load runs for 8,760 hours a year. That's 8,760 kWh, or about £2,190 at 25p/kWh. You can measure it from half-hourly data, find out what makes it up, and switch off anything that doesn't need to run.</p>
+<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-22">22 November 2026</time></p>
+<p class="answer">Base load is the level of electricity a site never drops below, day or night. On a hospital it covers wards, ventilation, imaging, fridges, IT and medical gas plant, and it is often the largest part of the bill. In our made-up <a href="example-hospital-analysis">community hospital</a>, it's 63%. Each kilowatt running all year is 8,766 kWh, or about £2,190 at 25p/kWh, so even small cuts add up.</p>
 
-<h2 id="measure">How to measure it</h2>
-<p>The analyser takes every valid half-hourly reading, converts it to kW (the kWh reading divided by half an hour) and finds the level that demand stays above 95% of the time. This is called the 5th percentile, and it's what the analyser uses as the base load.</p>
-<p>It doesn't use the single lowest reading, because one meter fault or power cut could set it and make the base load look lower than it really is. The analyser shows the lowest half hour alongside so you can compare.</p>
+<h2 id="measure">How the analyser measures it</h2>
+<p>The analyser converts every valid half-hourly reading to kW and takes the level demand stays above 95% of the time (the 5th percentile). It doesn't use the single lowest reading, because a generator test, a meter fault or a power cut can set that. On a hospital, the monthly generator test often sets the lowest half hour of the year, which is why the minimum is shown alongside the base load but not used for it.</p>
+<p>Two more views matter on a 24-hour site:</p>
+<ul>
+<li><strong>Base load by month.</strong> A step up that doesn't follow the weather means something started running and didn't stop. Check this chart on every hospital.</li>
+<li><strong>The low-activity window.</strong> The 24/7 preset uses 01:00 to 05:00, when wards are quiet and clinics, theatres and kitchens are shut. Demand in that window is as close to a hospital's "closed" state as you'll get.</li>
+</ul>
 
-<h2 id="what">What makes it up</h2>
-<ul><li>IT: servers, network equipment and phone systems</li><li>Clinical equipment on standby, imaging cooling and medical gas plant</li><li>Refrigeration: vaccine and pharmacy fridges, kitchen fridges, freezers, vending machines and water coolers</li><li>Pumps and fans that run continuously</li><li>Water heaters and boilers kept on standby</li><li>Security systems, fire alarms and emergency lighting</li><li>Equipment left on standby, or left running by mistake</li></ul>
+<h2 id="what">What makes up base load in healthcare</h2>
+<div class="table-wrap"><table><thead><tr><th>Load</th><th>Must it run all night?</th></tr></thead><tbody>
+<tr><td>Ward lighting, nurse call, bed-head services</td><td>Yes, though corridor and stair lighting can often be dimmed or put on sensors</td></tr>
+<tr><td>Theatre ventilation</td><td>Not when theatres are empty. Setback is an approved saving, see below</td></tr>
+<tr><td>General ventilation and air handling</td><td>Ward areas yes; offices, outpatients and restaurants usually not</td></tr>
+<tr><td>MRI cooling compressors and imaging standby</td><td>MRI cooling yes; other imaging can often go to a lower standby out of hours</td></tr>
+<tr><td>Pharmacy, pathology, blood and vaccine fridges</td><td>Yes</td></tr>
+<tr><td>Medical air and vacuum plant</td><td>Yes</td></tr>
+<tr><td>IT rooms, servers and their cooling</td><td>Yes, but consolidation and higher room set points cut it</td></tr>
+<tr><td>Heating and chilled water pumps</td><td>Often, but fixed-speed pumps at full flow rarely need to be</td></tr>
+<tr><td>Kitchen refrigeration, vending, water coolers</td><td>Fridges yes; vending lighting and coolers can go on timers</td></tr>
+<tr><td>External and car park lighting</td><td>At night, but on photocells and dimming, not timers stuck on</td></tr>
+</tbody></table></div>
 
-<h2 id="reduce">How to reduce it</h2>
-<ol><li><strong>Walk round the building at night or at a weekend</strong> and note everything that's switched on. It's often a surprise.</li><li><strong>Sort what you find</strong> into must run, could run less, and shouldn't be on.</li><li><strong>Fix the easy ones first</strong>, such as timers on water heaters and vending machines, switch-off routines and combining servers.</li><li><strong>Check the base load every month.</strong> A step up usually means new equipment has been installed or something has been left on. The analyser flags lasting changes like this.</li></ol>
+<h2 id="theatres">Theatre ventilation: the biggest single base load saving</h2>
+<p>HTM 03-01 describes switching off or setting back theatre ventilation when it isn't needed as the most energy-efficient policy. NHS England's July 2026 estates technical bulletin estimates the saving at 132 to 286 MWh per theatre each year, across about 3,300 theatres in England.<sup><a href="#sources">1</a></sup> The bulletin makes the trust's Ventilation Safety Group the starting point, and sets conditions: pressure cascades checked, temperatures kept between 16°C and 25°C while set back, and enough time to return to full flow before use (25 to 30 minutes after a long shutdown).<sup><a href="#sources">1</a></sup></p>
+<p>In half-hourly data, a working setback shows as lower nights and weekends on the theatre block's meter, or on the main meter if theatres are a large share of the site. When a setback stops working, base load steps up and stays up, as it does in our <a href="example-hospital-analysis#base">worked example</a>.</p>
+
+<h2 id="reduce">How to cut it safely</h2>
+<ol>
+<li><strong>Walk the site between 01:00 and 05:00</strong> with the night site manager or porters. Note what's on in empty offices, outpatients, restaurants and plant rooms.</li>
+<li><strong>Sort it into three lists:</strong> must run (clinical, safety, fridges, medical gas), could run less (pumps, fans, lighting, IT cooling), and shouldn't be on.</li>
+<li><strong>Fix the "shouldn't be on" list first.</strong> BMS schedules, timers and plant left in hand cost almost nothing to put right.</li>
+<li><strong>Then the "could run less" list:</strong> theatre setback, variable speed drives on pumps and fans, LED and sensors in 24-hour corridors.</li>
+<li><strong>Check base load by month afterwards.</strong> It should step down and stay down.</li>
+</ol>
+<p>Never switch off clinical equipment, fridges, medical gas plant, fire and security systems or water safety controls to save energy.</p>
 
 <h2 id="solar">Base load and solar</h2>
-<p>Base load runs through the day as well as the night, so it is the part of your demand that solar panels can supply most reliably. The analyser's Solar tab estimates how much of a solar system's output your site would use itself at different sizes, from your own half-hourly readings, and can pass that figure to the <a href="solar-calculator">solar calculator</a> on this site, to work out costs and payback. The <a href="solar">solar page</a> explains how.</p>
+<p>A hospital's base load runs through every sunny afternoon, including weekends, so it soaks up solar output. That's why 24-hour sites usually use nearly all of what a well-sized system generates. The analyser's Solar tab estimates the share from your own readings and passes it to the <a href="solar-calculator">solar calculator</a>. See <a href="solar">sizing solar from half-hourly data</a>.</p>
 
 <h2 id="worth">Working out the saving</h2>
-<p>Because base load runs every hour of the year, savings are easy to estimate: multiply the kilowatts you remove by 8,760 hours and by your unit rate. At 25p/kWh, 1 kW is worth about £2,190 a year, and switching off a 0.5 kW water heater that was left on all the time saves about £1,100.</p>
+<p>Multiply the kilowatts you remove by the hours they would have run and by your unit rate. A load running all year is 8,766 hours (the average year, allowing for leap years), so 1 kW is about £2,190 a year at 25p/kWh. A load that only runs at night and weekends, like a failed theatre setback, runs for about 5,700 hours a year.</p>
+<div class="sources"><h2 id="sources">Sources</h2><ol><li><a href="https://www.england.nhs.uk/wp-content/uploads/2026/07/PRN02301-netb-2026-1-energy-savings-in-theatres-v1.1.pdf">NHS England: NHS Estates Technical Bulletin 2026/1, generating energy efficiency savings through controlling theatre ventilation (July 2026)</a></li></ol></div>
 <h2 id="questions">Questions people ask</h2>
-<div class="faq"><details><summary>What is a typical base load?</summary><div class="faq-a"><p>It depends on the building. An acute hospital's base load is high because wards, theatres, imaging and ventilation run all the time; a health centre's is mostly IT, vaccine fridges and security. Compare each site with its own history, and with similar buildings in your estate.</p></div></details><details><summary>Why is my base load higher at weekends than overnight on weekdays?</summary><div class="faq-a"><p>It shouldn't be. If it is, something is switching on at weekends, such as frost protection on the heating, a scheduled process or a booking. Check the weekend pattern on the heatmap.</p></div></details><details><summary>How much does 1 kW of base load cost?</summary><div class="faq-a"><p>It runs 8,760 hours a year, so it uses 8,760 kWh. At 25p/kWh that's about £2,190 a year. Multiply 8,760 by your own rate to check.</p></div></details></div><h2 id="next">Read next</h2>
-<div class="link-grid"><a class="link-card has-thumb" href="out-of-hours-electricity"><div class="card-thumb"><img src="images/guides/out-of-hours-electricity.jpg" srcset="images/guides/out-of-hours-electricity-600.jpg 600w, images/guides/out-of-hours-electricity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Out-of-hours use</h3><p>Use above the base load while the building is closed.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="supply-capacity"><div class="card-thumb"><img src="images/guides/supply-capacity.jpg" srcset="images/guides/supply-capacity-600.jpg 600w, images/guides/supply-capacity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Supply capacity</h3><p>The other end of the scale: your busiest half hours.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="example-office-analysis"><div class="card-thumb"><img src="images/guides/example-office-analysis.jpg" srcset="images/guides/example-office-analysis-600.jpg 600w, images/guides/example-office-analysis.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Worked example</h3><p>Base load in one office, with figures.</p><span class="more">Read the guide</span></a></div>
+<div class="faq"><details><summary>What share of a hospital's electricity is base load?</summary><div class="faq-a"><p>It varies by site, so measure your own. On a 24-hour hospital it is commonly more than half. In our made-up community hospital it is 63%.</p></div></details><details><summary>Why not use the lowest half hour as the base load?</summary><div class="faq-a"><p>Because one generator test, meter fault or power cut can set it. The analyser uses the 5th percentile, which those short events barely move.</p></div></details><details><summary>How much does 1 kW of base load cost a year?</summary><div class="faq-a"><p>About 8,766 kWh, which is roughly £2,190 at 25p/kWh. Multiply 8,766 by your own unit rate.</p></div></details><details><summary>Is theatre ventilation setback safe?</summary><div class="faq-a"><p>NHS England guidance supports it when theatres are unused, under conditions on pressure, temperature and time to return to full flow, and with the Ventilation Safety Group overseeing it.</p></div></details></div><h2 id="next">Read next</h2>
+<div class="link-grid"><a class="link-card has-thumb" href="out-of-hours-electricity"><div class="card-thumb"><img src="images/guides/out-of-hours-electricity.jpg" srcset="images/guides/out-of-hours-electricity-600.jpg 600w, images/guides/out-of-hours-electricity.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Out-of-hours use</h3><p>For the buildings on your estate that do close.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="hospital-energy-efficiency"><div class="card-thumb"><img src="images/guides/hospital-energy-efficiency.jpg" srcset="images/guides/hospital-energy-efficiency-600.jpg 600w, images/guides/hospital-energy-efficiency.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Energy efficiency in hospitals</h3><p>The measures that cut base load.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="example-hospital-analysis"><div class="card-thumb"><img src="images/guides/example-hospital-analysis.jpg" srcset="images/guides/example-hospital-analysis-600.jpg 600w, images/guides/example-hospital-analysis.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Worked example</h3><p>How a base load jump showed up in one hospital.</p><span class="more">Read the guide</span></a></div>
   </article>
   <aside class="guide-side">
-    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#measure">How to measure it</a></li><li><a href="#what">What makes it up</a></li><li><a href="#reduce">How to reduce it</a></li><li><a href="#solar">Base load and solar</a></li><li><a href="#worth">Working out the saving</a></li><li><a href="#questions">Questions people ask</a></li></ol></nav>
+    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#measure">How it is measured</a></li><li><a href="#what">What makes it up</a></li><li><a href="#theatres">Theatre ventilation</a></li><li><a href="#reduce">How to cut it safely</a></li><li><a href="#solar">Base load and solar</a></li><li><a href="#worth">Working out the saving</a></li><li><a href="#sources">Sources</a></li><li><a href="#questions">Questions people ask</a></li></ol></nav>
     <div class="side-cta"><strong>Try it on your own data</strong><p>It's free, there's no sign-up, and your file stays on your computer.</p><a href="analyser/" class="btn">Open the analyser</a></div>
   </aside>
 </div><section class="cta-strip">

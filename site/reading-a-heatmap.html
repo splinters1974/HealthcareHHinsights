@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to read a half-hourly electricity heatmap</title>
-  <meta name="description" content="How to read a half-hourly electricity heatmap: what the axes and colours mean, what normal looks like, and the patterns that point to waste.">
+  <title>How to read a hospital electricity heatmap</title>
+  <meta name="description" content="Reading a half-hourly heatmap for a hospital or clinic: what normal looks like on a 24-hour site and the patterns that point to faults.">
   <link rel="canonical" href="https://hospitalenergyinsights.co.uk/reading-a-heatmap">
   <meta property="og:url" content="https://hospitalenergyinsights.co.uk/reading-a-heatmap">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="en_GB">
-  <meta property="og:title" content="How to read a half-hourly electricity heatmap">
-  <meta property="og:description" content="How to read a half-hourly electricity heatmap: what the axes and colours mean, what normal looks like, and the patterns that point to waste.">
+  <meta property="og:title" content="How to read a hospital electricity heatmap">
+  <meta property="og:description" content="Reading a half-hourly heatmap for a hospital or clinic: what normal looks like on a 24-hour site and the patterns that point to faults.">
   <meta property="og:image" content="https://hospitalenergyinsights.co.uk/images/guides/reading-a-heatmap.jpg">
   <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="256">
@@ -95,12 +95,12 @@
   },
   {
    "@type": "Article",
-   "headline": "How to read a half-hourly electricity heatmap",
-   "description": "How to read a half-hourly electricity heatmap: what the axes and colours mean, what normal looks like, and the patterns that point to waste.",
+   "headline": "How to read a hospital electricity heatmap",
+   "description": "Reading a half-hourly heatmap for a hospital or clinic: what normal looks like on a 24-hour site and the patterns that point to faults.",
    "image": "https://hospitalenergyinsights.co.uk/images/guides/reading-a-heatmap.jpg",
    "inLanguage": "en-GB",
    "datePublished": "2026-11-18",
-   "dateModified": "2026-11-18",
+   "dateModified": "2026-11-22",
    "author": {
     "@id": "https://hospitalenergyinsights.co.uk/about#paul-johnston"
    },
@@ -120,7 +120,15 @@
      "name": "What is a carpet plot?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Another name for the same chart: one column per day and one row per half hour, coloured by demand."
+      "text": "Another name for the same chart: one column per day, one row per half hour, coloured by demand."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Why does our hospital have a pale line once a month?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Most likely the on-load generator test, when the site runs on its own generators for an hour or so. Check the dates against the test log."
      }
     },
     {
@@ -128,7 +136,7 @@
      "name": "Why are some days grey?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "They have no valid readings. Missing data is shown as missing rather than as zero, so gaps don't look as if the building was switched off."
+      "text": "They have no valid readings. Missing data is shown as missing, so a gap never looks like the site was switched off."
      }
     },
     {
@@ -136,7 +144,7 @@
      "name": "Can I see one day in detail?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Yes. In the analyser, click any day on the heatmap to compare its half hours with a typical day of the same kind."
+      "text": "Yes. Click any day in the analyser to compare its half hours with a typical day of the same kind."
      }
     }
    ]
@@ -168,42 +176,48 @@
     <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a> <span aria-hidden="true">/</span> <a href="guides">Guides</a> <span aria-hidden="true">/</span> <span aria-current="page">How to read a half-hourly heatmap</span></nav>
     <span class="page-hero-kicker">Guide</span>
     <h1 class="page-hero-title">How to read a half-hourly heatmap</h1>
-    <p class="page-hero-lead">A heatmap shows every half hour of a year on one chart. Once you know what to look for, problems are easy to spot.</p>
+    <p class="page-hero-lead">One chart, every half hour of the year. On a hospital it shows things no monthly bill can: a ventilation fault, a generator test, a CHP engine tripping.</p>
   </div>
 </section><div class="guide">
   <article class="guide-main prose">
-<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-18">18 November 2026</time></p>
-<p class="answer">A half-hourly heatmap has one column for each day and one row for each half hour, with darker colours for higher demand. Normal use shows as a dark band during opening hours. Anything dark outside that band, such as at night, at weekends or in holidays, is worth checking.</p>
+<p class="byline">By <a href="about">Paul Johnston</a>, Managing Director, Kinetic Energy Consulting <span aria-hidden="true">·</span> Last updated <time datetime="2026-11-22">22 November 2026</time></p>
+<p class="answer">A heatmap has one column per day and one row per half hour, coloured by demand. On a 24-hour hospital you won't see pale weekends; instead, read the night rows (your base load), the weekday daytime band (outpatients, theatres and offices), summer afternoons (cooling), and any date where the pattern changes and stays changed.</p>
+
+<figure class="figure"><img src="images/heatmap-hospital.png" width="1548" height="560" alt="Heatmap of a made-up community hospital year: a dark weekday daytime band, darker summer afternoons, and nights that get darker from September" loading="lazy"><figcaption>Our made-up <a href="example-hospital-analysis">community hospital</a>. Weekday days are the dark band. Summer afternoons are darker from the chillers. The short white marks mid-morning once a month are the generator tests. From early September the nights and weekends get darker: the theatre ventilation has stopped setting back.</figcaption></figure>
 
 <h2 id="axes">What you're looking at</h2>
-<ul><li><strong>Across:</strong> days, from the start of the period to the end.</li><li><strong>Down:</strong> time of day, from midnight at the top to midnight at the bottom.</li><li><strong>Colour:</strong> demand in that half hour, from pale (low) to dark (high).</li></ul>
-<p>A year contains about 17,500 half hours. That's far too many numbers to read in a table, but the heatmap shows them all at once, which is why it's often the quickest way to understand a building.</p>
+<ul><li><strong>Across:</strong> days, from the start of the period to the end.</li><li><strong>Down:</strong> time of day, midnight at the top.</li><li><strong>Colour:</strong> demand in each half hour, pale for low and dark for high.</li></ul>
+<p>A year is about 17,500 half hours. A table can't show them; a heatmap shows them all, which is why it's the fastest way to understand a site you've never visited.</p>
 
-<figure class="figure"><img src="images/heatmap-office.png" width="2464" height="896" alt="Heatmap of an office year: a dark weekday band, pale nights, and weekends that are sometimes busy" loading="lazy"><figcaption>An office (made-up data). The weekday band is clear, and some Saturdays are as busy as weekdays.</figcaption></figure>
+<h2 id="hospital">What normal looks like on a hospital</h2>
+<ul>
+<li><strong>Nights are never pale.</strong> Wards, ventilation, imaging and fridges keep demand well above zero. How dark the night rows are is your base load.</li>
+<li><strong>A weekday daytime band</strong> from outpatients, theatres, diagnostics, kitchens and offices. Weekends and bank holidays are lighter, but not empty.</li>
+<li><strong>A morning ramp</strong> as plant starts and clinics open, and a smaller evening shoulder.</li>
+<li><strong>Seasonal shading.</strong> Darker summer afternoons on sites with chillers; slightly darker winters where electric heating, frost protection or heating pumps run.</li>
+</ul>
+<p>A separately metered health centre or office should look like an office: a dark weekday band and pale nights and weekends. If it doesn't, read <a href="out-of-hours-electricity">out-of-hours use</a>.</p>
 
-<h2 id="normal">What normal looks like</h2>
-<p>For a building used on weekdays, you'd expect a dark horizontal band during working hours, regular pale gaps at weekends, and pale nights. Winter is often slightly darker than summer. The edges of the band show when the building actually starts and stops using electricity each day, which isn't always when the doors open and close.</p>
+<h2 id="patterns">Patterns worth checking on healthcare sites</h2>
+<div class="table-wrap"><table><thead><tr><th>What you see</th><th>What it often means</th></tr></thead><tbody>
+<tr><td>Nights and weekends darker from a particular date</td><td>A setback or schedule has stopped working, often theatre or outpatient ventilation after a controls change</td></tr>
+<tr><td>A pale stripe at the same time once a month</td><td>The generator test: the site runs on its own generators and imports less from the grid</td></tr>
+<tr><td>Dark blocks of several days or weeks</td><td>The CHP engine was off for maintenance or a fault, so the grid supplied the whole site</td></tr>
+<tr><td>Darker afternoons only in hot spells</td><td>Chillers and split cooling; these days usually set the year's peak</td></tr>
+<tr><td>Weekday band starting well before clinics open</td><td>Optimum start or fixed timers set too early</td></tr>
+<tr><td>Bank holidays as dark as weekdays</td><td>Holiday dates missing from the BMS calendar, mainly in outpatients and offices</td></tr>
+<tr><td>A single dark or pale column</td><td>One unusual day: a major incident, an outage, works or a reading error</td></tr>
+<tr><td>Grey gaps</td><td>Missing readings, not zero use. The analyser never counts missing data as zero</td></tr>
+</tbody></table></div>
 
-<h2 id="patterns">Patterns worth checking</h2>
-<div class="table-wrap"><table><thead><tr><th>What you see</th><th>What it usually means</th></tr></thead><tbody>
-<tr><td>A pale block where it should be blank, such as a holiday week</td><td>Heating or ventilation running to the normal schedule with nobody in</td></tr>
-<tr><td>Thin stripes in the evening on the same weekdays</td><td>Regular evening use, such as lettings, classes or cleaning</td></tr>
-<tr><td>The dark band starting well before opening</td><td>Heating or ventilation set to start too early</td></tr>
-<tr><td>Nights that get darker from a certain date</td><td>New equipment, or something left on, has raised the base load</td></tr>
-<tr><td>A single dark column</td><td>One unusual day, such as an event, a fault or a reading error</td></tr>
-<tr><td>Grey or striped gaps</td><td>Missing data (not zero use)</td></tr></tbody></table></div>
-
-<h2 id="hospital">Reading a 24-hour site</h2>
-<p>A hospital's main supply has no closed hours, so there is no pale weekend gap. Look instead for the overall darkness of the night rows (the base load), any date after which nights get darker, wide summer bands from cooling, and bands of higher import when a CHP engine is off. Separately metered clinics and offices on the site should still show the weekday pattern.</p>
-
-<h2 id="next">Putting a cost on what you see</h2>
-<p>The heatmap shows you where to look, and the figures tell you how much it matters. In the analyser, click any day to compare its half hours with a typical day. Then use the out-of-hours and unusual-day findings to put a cost on what you've spotted.</p>
+<h2 id="next">From what you see to what it costs</h2>
+<p>The heatmap tells you where to look; the figures tell you whether it matters. In the analyser, click any day to compare it with a typical day of the same kind. Then check base load by month for lasting steps, the unusual days list for one-offs, and the headroom tab for the peak days.</p>
 <h2 id="questions">Questions people ask</h2>
-<div class="faq"><details><summary>What is a carpet plot?</summary><div class="faq-a"><p>Another name for the same chart: one column per day and one row per half hour, coloured by demand.</p></div></details><details><summary>Why are some days grey?</summary><div class="faq-a"><p>They have no valid readings. Missing data is shown as missing rather than as zero, so gaps don't look as if the building was switched off.</p></div></details><details><summary>Can I see one day in detail?</summary><div class="faq-a"><p>Yes. In the analyser, click any day on the heatmap to compare its half hours with a typical day of the same kind.</p></div></details></div><h2 id="next">Read next</h2>
-<div class="link-grid"><a class="link-card has-thumb" href="example-office-analysis"><div class="card-thumb"><img src="images/guides/example-office-analysis.jpg" srcset="images/guides/example-office-analysis-600.jpg 600w, images/guides/example-office-analysis.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Worked example</h3><p>An admin building, explained finding by finding.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="moving-away-from-chp"><div class="card-thumb"><img src="images/guides/moving-away-from-chp.jpg" srcset="images/guides/moving-away-from-chp-600.jpg 600w, images/guides/moving-away-from-chp.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Moving away from CHP</h3><p>Spotting engine outages in your import data.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="glossary"><div class="card-thumb"><img src="images/guides/glossary.jpg" srcset="images/guides/glossary-600.jpg 600w, images/guides/glossary.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Glossary</h3><p>The terms used in these guides.</p><span class="more">Read the guide</span></a></div>
+<div class="faq"><details><summary>What is a carpet plot?</summary><div class="faq-a"><p>Another name for the same chart: one column per day, one row per half hour, coloured by demand.</p></div></details><details><summary>Why does our hospital have a pale line once a month?</summary><div class="faq-a"><p>Most likely the on-load generator test, when the site runs on its own generators for an hour or so. Check the dates against the test log.</p></div></details><details><summary>Why are some days grey?</summary><div class="faq-a"><p>They have no valid readings. Missing data is shown as missing, so a gap never looks like the site was switched off.</p></div></details><details><summary>Can I see one day in detail?</summary><div class="faq-a"><p>Yes. Click any day in the analyser to compare its half hours with a typical day of the same kind.</p></div></details></div><h2 id="next">Read next</h2>
+<div class="link-grid"><a class="link-card has-thumb" href="example-hospital-analysis"><div class="card-thumb"><img src="images/guides/example-hospital-analysis.jpg" srcset="images/guides/example-hospital-analysis-600.jpg 600w, images/guides/example-hospital-analysis.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Worked example</h3><p>The hospital in the heatmap, finding by finding.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="moving-away-from-chp"><div class="card-thumb"><img src="images/guides/moving-away-from-chp.jpg" srcset="images/guides/moving-away-from-chp-600.jpg 600w, images/guides/moving-away-from-chp.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Moving away from CHP</h3><p>Spotting engine outages in your import data.</p><span class="more">Read the guide</span></a><a class="link-card has-thumb" href="base-load"><div class="card-thumb"><img src="images/guides/base-load.jpg" srcset="images/guides/base-load-600.jpg 600w, images/guides/base-load.jpg 1200w" sizes="(max-width: 700px) 100vw, 400px" width="1200" height="630" alt="" loading="lazy"></div><h3>Base load</h3><p>What the night rows are telling you.</p><span class="more">Read the guide</span></a></div>
   </article>
   <aside class="guide-side">
-    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#axes">What you're looking at</a></li><li><a href="#normal">What normal looks like</a></li><li><a href="#patterns">Patterns worth checking</a></li><li><a href="#hospital">Reading a 24-hour site</a></li><li><a href="#next">Putting a cost on what you see</a></li><li><a href="#questions">Questions people ask</a></li></ol></nav>
+    <nav class="toc" aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#axes">What you're looking at</a></li><li><a href="#hospital">Normal on a hospital</a></li><li><a href="#patterns">Patterns worth checking</a></li><li><a href="#next">From what you see to what it costs</a></li><li><a href="#questions">Questions people ask</a></li></ol></nav>
     <div class="side-cta"><strong>Try it on your own data</strong><p>It's free, there's no sign-up, and your file stays on your computer.</p><a href="analyser/" class="btn">Open the analyser</a></div>
   </aside>
 </div><section class="cta-strip">
