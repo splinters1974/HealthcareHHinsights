@@ -431,7 +431,7 @@ PAGES['terms.html'] = ('Terms of use | Hospital Energy Insights',
 <p class="answer">You can use Hospital Energy Insights free of charge to analyse your own organisation's electricity data. If you use it to produce reports, dashboards or advice for other organisations, as part of paid work or to win it, you need a licence from us.</p>
 
 <h2 id="who">Who we are</h2>
-<p>Hospital Energy Insights (hospitalenergyinsights.co.uk) is run by {OPERATOR}. See <a href="about.html">about us</a>. These terms apply to the website, the analyser and everything you download from it.</p>
+<p>Hospital Energy Insights (hospitalenergy.co.uk) is run by {OPERATOR}. See <a href="about.html">about us</a>. These terms apply to the website, the analyser and everything you download from it.</p>
 
 <h2 id="free">Free use</h2>
 <p>Any organisation can use the analyser, the guides and the downloads free for its own sites and buildings. That includes energy and estates managers, finance teams and facilities staff analysing their own organisation's data, and sharing the reports, spreadsheets and customer editions within their organisation and with its own board, landlord or auditors.</p>

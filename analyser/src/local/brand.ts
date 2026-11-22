@@ -31,6 +31,6 @@ export const LOGO_ASPECT = HHI_LOGO_ASPECT;
  * and customer dashboards. Free use is for the user's own organisation;
  * producing work for clients needs a licence (see /terms on the website).
  */
-export const SITE_URL_SHORT = 'hospitalenergyinsights.co.uk';
-export const ATTRIBUTION = 'Made with Hospital Energy Insights · hospitalenergyinsights.co.uk';
-export const LICENCE_NOTE = 'Free to use for your own organisation. Producing work for clients needs a licence: hospitalenergyinsights.co.uk/terms';
+export const SITE_URL_SHORT = 'hospitalenergy.co.uk';
+export const ATTRIBUTION = 'Made with Hospital Energy Insights · hospitalenergy.co.uk';
+export const LICENCE_NOTE = 'Free to use for your own organisation. Producing work for clients needs a licence: hospitalenergy.co.uk/terms';
