@@ -1,5 +1,5 @@
 """
-Builds the Hospital Energy Insights site in site/: every page from one layout,
+Builds the Healthcare Energy Insights site in site/: every page from one layout,
 plus robots.txt, llms.txt and (once the domain is set) sitemap.xml.
 
     python3 tools/build_pages.py
@@ -35,7 +35,7 @@ AI_TRAINING = ['GPTBot', 'Applebot-Extended', 'CCBot', 'Meta-ExternalAgent']
 
 
 def robots():
-    lines = ['# Hospital Energy Insights. Everything here is public and intended to be found, indexed and cited.', '',
+    lines = ['# Healthcare Energy Insights. Everything here is public and intended to be found, indexed and cited.', '',
              'User-agent: *', 'Allow: /', '', '# Search engines', 'User-agent: Googlebot', 'Allow: /', '',
              'User-agent: Bingbot', 'Allow: /', '', '# AI answer engines that cite their sources']
     for bot in AI_SEARCH:

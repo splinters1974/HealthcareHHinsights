@@ -1,5 +1,5 @@
 /* ================================================================
-   Hospital Energy Insights: solar calculator styles (from the UK Solar Calculator, recoloured)
+   Healthcare Energy Insights: solar calculator styles (from the UK Solar Calculator, recoloured)
    Clean ledger look: white ground, dark-blue type, one blue action
    colour, green for money saved. Schibsted Grotesk throughout.
    ================================================================ */
@@ -485,6 +485,7 @@ button, input, select, textarea { font-family: inherit; }
 .sister-go { font-weight: 600; color: var(--blue); }
 .sister-card:hover .sister-go { text-decoration: underline; }
 
-/* Hospital Energy Insights: skip link, as on the rest of the site */
+/* Healthcare Energy Insights: skip link, as on the rest of the site */
 .skip { position: absolute; left: -10000px; top: 8px; z-index: 2000; background: #fff; color: var(--ink); padding: 10px 16px; border-radius: 6px; font-weight: 600; }
 .skip:focus { left: 16px; }
+.nav-logo img { height: 62px; } .footer-logo img { height: 72px; }

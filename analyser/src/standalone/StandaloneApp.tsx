@@ -216,7 +216,7 @@ export default function StandaloneApp({ mode = 'internal', customer = '' }: {
         <div className="max-w-7xl mx-auto flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-4">
             {IS_HHI && !isCustomer && /^https?:/.test(location.protocol)
-              ? <a href="../" title="Hospital Energy Insights home"><img src={LOGO} alt={COMPANY_FULL} className="h-12 w-auto" /></a>
+              ? <a href="../" title="Healthcare Energy Insights home"><img src={LOGO} alt={COMPANY_FULL} className="h-12 w-auto" /></a>
               : <img src={LOGO} alt={COMPANY_FULL} className={IS_HHI ? 'h-12 w-auto' : 'h-10 w-auto'} />}
             <span className="h-9 w-px bg-slate-300" aria-hidden />
             <div>
@@ -547,7 +547,7 @@ export default function StandaloneApp({ mode = 'internal', customer = '' }: {
                 )}
                 <p className="text-xs text-slate-500">
                   {isCustomer
-                    ? `${PREPARED[0].toUpperCase()}${PREPARED.slice(1)} (hospitalenergyinsights.co.uk). Costs are estimated energy cost at the rates shown, associated with patterns of use, not guaranteed savings. Figures change with any settings you adjust.`
+                    ? `${PREPARED[0].toUpperCase()}${PREPARED.slice(1)} (healthcareenergyinsights.co.uk). Costs are estimated energy cost at the rates shown, associated with patterns of use, not guaranteed savings. Figures change with any settings you adjust.`
                     : 'Every site starts as Office / commercial with unconfirmed preset hours. Check each calendar (or set them all at once above) before relying on closed-hours figures.'}
                 </p>
               </>

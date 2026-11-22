@@ -77,7 +77,7 @@ try {
 
       if (route === 'analyser/') {
         await page.waitForSelector('input[type=file]', { state: 'attached', timeout: 20000 });
-        check(/Hospital Energy Insights/.test(await page.title()), `${tag}: analyser title`);
+        check(/Healthcare Energy Insights/.test(await page.title()), `${tag}: analyser title`);
         check(await page.locator('input[type=file]').count() > 0, `${tag}: upload control present`);
       } else {
         const imgs = await imageReport(page);

@@ -119,7 +119,7 @@ export default function EditionDialog({ initialCustomer, siteCount, onClose }: {
             </div>
             <label className="flex items-start gap-2 text-sm text-slate-700">
               <input type="checkbox" className="mt-0.5" checked={me.marketing} onChange={(e) => setMe({ ...me, marketing: e.target.checked })} />
-              <span>Tell me about licences and updates to Hospital Energy Insights (optional)</span>
+              <span>Tell me about licences and updates to Healthcare Energy Insights (optional)</span>
             </label>
           </fieldset>
         )}

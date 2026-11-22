@@ -1,4 +1,4 @@
-# Hospital Energy Insights
+# Healthcare Energy Insights
 
 Free half-hourly electricity analysis, solar sizing and decarbonisation guides
 for NHS and independent healthcare estates in England, Scotland and Wales.
@@ -54,7 +54,7 @@ by the NHS. These are set at the top of `tools/kit.py`.
 
 ## Before going live
 
-- **Domain:** `SITE_URL` in `tools/kit.py` is set to `https://hospitalenergyinsights.co.uk`. Buy it (or change it) and rebuild, then submit the sitemap in Google Search Console and Bing Webmaster Tools.
+- **Domain:** `SITE_URL` in `tools/kit.py` is set to `https://healthcareenergyinsights.co.uk`. Buy it (or change it) and rebuild, then submit the sitemap in Google Search Console and Bing Webmaster Tools.
 - **Netlify:** create a site from this repo (publish directory `site`), attach the domain, then merge the redirects in `netlify.toml`.
 - **Google Maps key:** the calculator's map mode uses the UK Solar Calculator's Maps API key. Add the new domain to that key's allowed referrers in Google Cloud, or the map will not load.
 - **Email shown:** `enquiries@hospitalenergy.co.uk` (`CONTACT_EMAIL` in `tools/kit.py`). Buy hospitalenergy.co.uk and set up the mailbox or a forward before launch.

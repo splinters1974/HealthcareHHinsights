@@ -76,14 +76,14 @@ function checkPdf(d, label) {
   const head = d.bytes.subarray(0, 5).toString();
   const pages = (d.bytes.toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length;
   check(head === '%PDF-' && d.bytes.length > 20000 && pages >= 1, `${label}: valid PDF (${d.name}, ${Math.round(d.bytes.length / 1024)} KB, ${pages} pages)`);
-  check(/hhinsights\.co\.uk\/terms/.test(d.bytes.toString('latin1')), `${label}: carries the Hospital Energy Insights attribution and licence note`);
+  check(/hhinsights\.co\.uk\/terms/.test(d.bytes.toString('latin1')), `${label}: carries the Healthcare Energy Insights attribution and licence note`);
 }
 function checkXlsx(d, label, mustContain) {
   let wb;
   try { wb = XLSX.read(d.bytes, { type: 'buffer' }); } catch (e) { check(false, `${label}: Excel file opens (${e.message})`); return; }
   const all = wb.SheetNames.map((n) => XLSX.utils.sheet_to_csv(wb.Sheets[n])).join('\n');
   check(wb.SheetNames.length > 0, `${label}: Excel file opens (${d.name}; sheets: ${wb.SheetNames.join(', ')})`);
-  check(wb.SheetNames.every((n) => /^Made with Hospital Energy Insights/.test(String(wb.Sheets[n].A1?.v ?? ''))), `${label}: every sheet starts with the Hospital Energy Insights attribution`);
+  check(wb.SheetNames.every((n) => /^Made with Healthcare Energy Insights/.test(String(wb.Sheets[n].A1?.v ?? ''))), `${label}: every sheet starts with the Healthcare Energy Insights attribution`);
   for (const [what, re] of mustContain) check(re.test(all), `${label}: Excel contains ${what}`);
 }
 
@@ -168,7 +168,7 @@ try {
     check(/Test Consultant/.test(msg) && /Test Energy Ltd/.test(msg) && /Sites in the edition: 1/.test(msg)
       && !/example-office|79,?191|2,?776|Test Customer/.test(JSON.stringify(sent)),
       'customer edition: sends only your name, organisation, email and site count (no site names, customer name or figures)');
-    check(/made with Hospital Energy Insights/i.test(html), 'customer edition file carries the Hospital Energy Insights attribution');
+    check(/made with Healthcare Energy Insights/i.test(html), 'customer edition file carries the Healthcare Energy Insights attribution');
     external.splice(0, external.length, ...external.filter((u) => !u.startsWith('https://api.emailjs.com/')));
     await context.close();
   }

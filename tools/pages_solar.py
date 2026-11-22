@@ -184,7 +184,7 @@ END = f'''<section class="cta-strip">
 
 
 PAGES = [Page(
-    FILE, 'Solar sizing from half-hourly data | Hospital Energy Insights',
+    FILE, 'Solar sizing from half-hourly data | Healthcare Energy Insights',
     'Use your half-hourly electricity data to see how much solar a hospital or healthcare site would use, then size the system and payback in the solar calculator.',
     page_hero('Solar', 'Size solar from how your site really uses electricity',
               "Your half-hourly data shows how much of a solar system's output you'd use yourself. That's the number that decides whether solar pays.",

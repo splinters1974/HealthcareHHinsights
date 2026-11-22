@@ -1,4 +1,4 @@
-# Hospital Energy Insights. Everything here is public and intended to be found, indexed and cited.
+# Healthcare Energy Insights. Everything here is public and intended to be found, indexed and cited.
 
 User-agent: *
 Allow: /
@@ -42,4 +42,4 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-Sitemap: https://hospitalenergyinsights.co.uk/sitemap.xml
+Sitemap: https://healthcareenergyinsights.co.uk/sitemap.xml

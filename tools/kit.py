@@ -7,7 +7,7 @@ import json
 from dataclasses import dataclass, field
 from html import escape
 
-NAME = 'Hospital Energy Insights'
+NAME = 'Healthcare Energy Insights'
 YEAR = 2026
 # Each page's own dates (first published, last changed) live in
 # tools/page_dates.json. build_pages.py keeps them current: a page whose
@@ -29,9 +29,9 @@ def long_date(iso):
     return f'{d.day} {d:%B %Y}'
 # The site's public address, no trailing slash. Every page's canonical and
 # share links, robots.txt and sitemap.xml are built from it, so moving to a
-# custom domain (for example https://hospitalenergyinsights.co.uk) is this one change plus
+# custom domain (for example https://healthcareenergyinsights.co.uk) is this one change plus
 # a rebuild. Empty disables canonical links and the sitemap.
-SITE_URL = 'https://hospitalenergyinsights.co.uk'  # Available on GoDaddy, 18 Nov 2026: buy .co.uk and .uk before launch
+SITE_URL = 'https://healthcareenergyinsights.co.uk'  # Available 22 Nov 2026 (Porkbun £5.66/yr): buy .co.uk and .uk before launch
 
 # Run by Kinetic Energy Consulting, as with the UK Solar Calculator and Half Hourly Insights.
 OPERATOR = 'Kinetic Energy Consulting'
@@ -376,7 +376,7 @@ def layout(page):
 <nav class="site-nav" id="siteNav" aria-label="Main">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="{NAME} home">
-      <picture><source type="image/webp" srcset="images/brand/hei-logo.webp"><img src="images/brand/hei-logo.png" width="456" height="132" alt=""></picture>
+      <picture><source type="image/webp" srcset="images/brand/hei-logo.webp"><img src="images/brand/hei-logo.png" width="359" height="132" alt=""></picture>
     </a>
     <ul class="nav-links" id="navLinks">
       {links}
@@ -394,7 +394,7 @@ def layout(page):
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hei-logo-white.webp"><img src="images/brand/hei-logo-white.png" width="456" height="132" alt="{NAME}" loading="lazy"></picture></div>
+        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hei-logo-white.webp"><img src="images/brand/hei-logo-white.png" width="359" height="132" alt="{NAME}" loading="lazy"></picture></div>
         <p class="footer-desc">Free half-hourly electricity analysis, solar sizing and decarbonisation guides for NHS and independent healthcare estates across England, Scotland and Wales, run by {OPERATOR}. The analysis runs in your browser, so your meter data never leaves your computer.</p>
         <div class="footer-contact-item">Email: <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></div>
       </div>

@@ -34,7 +34,7 @@ function inlineIcon(): Plugin {
     name: 'inline-icon',
     transformIndexHtml: (html) => html
       .replace(/<link rel="icon" type="image\/png" sizes="32x32"[^>]*>/, `<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,${png}" />`)
-      .replace(/<title>[^<]*<\/title>/, '<title>Half-hourly electricity analyser for hospitals and healthcare sites | Hospital Energy Insights</title>'),
+      .replace(/<title>[^<]*<\/title>/, '<title>Half-hourly electricity analyser for hospitals and healthcare sites | Healthcare Energy Insights</title>'),
   }
 }
 
