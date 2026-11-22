@@ -10,7 +10,7 @@ const EMAILJS_URL = 'https://api.emailjs.com/api/v1.0/email/send';
 const SERVICE_ID = 'default_service';
 const TEMPLATE_ID = 'template_qvzha1q';
 const PUBLIC_KEY = 'W-UuC4rxMLukeKUJJ';
-const RECIPIENT = { email: 'pjohnston663@gmail.com', name: 'Paul' };
+const RECIPIENT = { email: 'enquiries@hospitalenergy.co.uk', name: 'Hospital Energy Insights' };
 
 export interface EditionLead {
   name: string;

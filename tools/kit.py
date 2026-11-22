@@ -29,17 +29,17 @@ def long_date(iso):
     return f'{d.day} {d:%B %Y}'
 # The site's public address, no trailing slash. Every page's canonical and
 # share links, robots.txt and sitemap.xml are built from it, so moving to a
-# custom domain (for example https://hospitalenergyinsights.co.uk) is this one change plus
+# custom domain (for example https://hospitalenergy.co.uk) is this one change plus
 # a rebuild. Empty disables canonical links and the sitemap.
-SITE_URL = 'https://hospitalenergyinsights.co.uk'  # Available on GoDaddy, 18 Nov 2026: buy .co.uk and .uk before launch
+SITE_URL = 'https://hospitalenergy.co.uk'  # bought at Porkbun, 22 Nov 2026
 
 # Run by Kinetic Energy Consulting, as with the UK Solar Calculator and Half Hourly Insights.
 OPERATOR = 'Kinetic Energy Consulting'
 OPERATOR_URL = 'https://www.kinetic-energy.co.uk'
 CONTACT_NAME = 'Paul Johnston'
 # Where calculator and customer-edition leads are emailed (EmailJS). Shown in the page code, so a named person's own address, not anyone else's.
-LEAD_EMAIL = 'pjohnston663@gmail.com'
-CONTACT_EMAIL = 'enquiries@hospitalenergy.co.uk'  # needs hospitalenergy.co.uk bought and a mailbox or forward set up
+LEAD_EMAIL = 'enquiries@hospitalenergy.co.uk'  # Porkbun forward; leads from the analyser and calculator
+CONTACT_EMAIL = 'enquiries@hospitalenergy.co.uk'  # forwarded by Porkbun
 # The solar calculator is part of this site (solar-calculator.html), fed by the analyser.
 SOLAR_URL = 'solar-calculator.html'
 SOLAR_SITE = 'https://uksolarcalculator.co.uk/'

@@ -155,7 +155,7 @@ def build():
         rest = re.sub(r'href="' + re.escape(a) + r'(#[^"]*)?"', lambda m, b=b: f'href="{b}{m.group(1) or ""}"', rest)
     # Leads go to the named contact only.
     rest = re.sub(r"(const LEAD_RECIPIENTS = \[\n)(.*?)(\n  \];)",
-                  lambda m: m.group(1) + f"    {{ email: '{kit.LEAD_EMAIL}', name: '{kit.CONTACT_NAME.split()[0]}' }}," + m.group(3), rest, count=1, flags=re.S)
+                  lambda m: m.group(1) + f"    {{ email: '{kit.LEAD_EMAIL}', name: 'Hospital Energy Insights' }}," + m.group(3), rest, count=1, flags=re.S)
     # Healthcare questions in place of the general ones.
     faq_html = ''.join(f'<details><summary>{q}</summary><div class="faq-a"><p>{a}</p></div></details>\n' for q, a in FAQS)
     rest = re.sub(r'(<h2 id="calcFaqH">)Questions about the calculator(</h2>\n    <div class="faq">\n).*?(</div>\n    <p class="help")',
@@ -172,7 +172,7 @@ def build():
         rest = rest.replace(f'[{a}]', f'[{b}]').replace(f'({a})', f'({b})')
     out = kit.clean_links(head() + rest)
     for bad in ['uksolarcalculator.co.uk', 'UK Solar Calculator', 'hhinsights.co.uk/analyser']:
-        if bad in out.replace('hospitalenergyinsights.co.uk', ''):
+        if bad in out.replace('hospitalenergy.co.uk', ''):
             raise SystemExit(f'build_calculator: {bad!r} is still in the calculator page')
     (SITE / FILE).write_text(out, encoding='utf-8')
 

@@ -56,7 +56,7 @@ function withNotice(rows: (string | number)[][]): (string | number)[][] {
 
 function brandWorkbook(wb: XLSX.WorkBook, title: string) {
   if (!IS_HHI) return;
-  wb.Props = { Title: title, Author: 'Hospital Energy Insights', Company: 'Hospital Energy Insights (hospitalenergyinsights.co.uk)', Comments: `${ATTRIBUTION}. ${LICENCE_NOTE}` };
+  wb.Props = { Title: title, Author: 'Hospital Energy Insights', Company: 'Hospital Energy Insights (hospitalenergy.co.uk)', Comments: `${ATTRIBUTION}. ${LICENCE_NOTE}` };
 }
 
 function addSheet(wb: XLSX.WorkBook, used: Set<string>, name: string, rows: (string | number)[][], widths?: number[]) {

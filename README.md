@@ -79,10 +79,10 @@ by the NHS. These are set at the top of `tools/kit.py`.
 
 ## Before going live
 
-- **Domain:** `SITE_URL` in `tools/kit.py` is set to `https://hospitalenergyinsights.co.uk`. Buy it (or change it) and rebuild, then submit the sitemap in Google Search Console and Bing Webmaster Tools.
-- **Netlify:** create a site from this repo (publish directory `site`), attach the domain, then merge the redirects in `netlify.toml`.
+- **Domain:** hospitalenergy.co.uk, registered at Porkbun (22 Nov 2026) and set as `SITE_URL` in `tools/kit.py`. DNS at Porkbun: `ALIAS` at the apex to `apex-loadbalancer.netlify.com`, `CNAME www` to `healthcarehhinsights.netlify.app`. Then submit the sitemap in Google Search Console and Bing Webmaster Tools.
+- **Netlify:** the `healthcarehhinsights` project deploys `main` (publish directory `site`). Add hospitalenergy.co.uk as the primary domain and www as an alias under Domain management, so Netlify issues the HTTPS certificate.
 - **Google Maps key:** the calculator's map mode uses the UK Solar Calculator's Maps API key. Add the new domain to that key's allowed referrers in Google Cloud, or the map will not load.
-- **Email shown:** `enquiries@hospitalenergy.co.uk` (`CONTACT_EMAIL` in `tools/kit.py`). Buy hospitalenergy.co.uk and set up the mailbox or a forward before launch.
+- **Email shown:** `enquiries@hospitalenergy.co.uk` (`CONTACT_EMAIL` in `tools/kit.py`), a Porkbun email forward to the owner's inbox.
 - **Enquiry form:** posts to a Formspree form (`FORM_ENDPOINT` in `tools/pages_core.py`), currently the Half Hourly Insights one. Create a Formspree form for this site that delivers to the owner's inbox, and put its ID in `FORM_ENDPOINT`. The delivery address lives in Formspree, so it never appears in the page code.
-- **Leads:** calculator report requests and customer-edition details are emailed through EmailJS to `LEAD_EMAIL` in `tools/kit.py` (and `analyser/src/local/editionLead.ts`).
+- **Leads:** calculator report requests and customer-edition details are emailed through EmailJS to `LEAD_EMAIL` in `tools/kit.py` (and `analyser/src/local/editionLead.ts`), now `enquiries@hospitalenergy.co.uk`.
 - **Images:** add photos to `site/images/heroes/` and `site/images/photos/` (see `tools/make_heroes.py`). Keep NHS logos out of every image.

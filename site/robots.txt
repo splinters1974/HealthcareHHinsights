@@ -42,4 +42,4 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-Sitemap: https://hospitalenergyinsights.co.uk/sitemap.xml
+Sitemap: https://hospitalenergy.co.uk/sitemap.xml

@@ -3,18 +3,18 @@
 [build]
   publish = "site"
 
-# One address for the site: hospitalenergyinsights.co.uk (to confirm). The www
-# address sends visitors and search engines there with a permanent redirect.
-# Merge only once the domain loads over https, or the site goes dark.
+# One address for the site: hospitalenergy.co.uk. The www address sends
+# visitors and search engines there with a permanent redirect. Netlify sends the
+# .netlify.app address there itself once hospitalenergy.co.uk is the primary domain.
 [[redirects]]
-  from = "https://www.hospitalenergyinsights.co.uk/*"
-  to = "https://hospitalenergyinsights.co.uk/:splat"
+  from = "https://www.hospitalenergy.co.uk/*"
+  to = "https://hospitalenergy.co.uk/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://www.hospitalenergyinsights.co.uk/*"
-  to = "https://hospitalenergyinsights.co.uk/:splat"
+  from = "http://www.hospitalenergy.co.uk/*"
+  to = "https://hospitalenergy.co.uk/:splat"
   status = 301
   force = true
 
