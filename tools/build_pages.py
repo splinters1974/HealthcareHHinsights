@@ -26,6 +26,7 @@ from pages_solarguides import PAGES as SOLAR_GUIDE_PAGES
 from pages_solarhealth import PAGES as SOLAR_HEALTH_PAGES
 import build_calculator
 import seo_meta
+import review_due
 
 SITE = Path(__file__).resolve().parent.parent / 'site'
 DATES_FILE = Path(__file__).resolve().parent / 'page_dates.json'
@@ -121,6 +122,8 @@ def main():
     (SITE / 'llms.txt').write_text(llms(pages), encoding='utf-8')
     if SITE_URL:
         (SITE / 'sitemap.xml').write_text(sitemap(pages), encoding='utf-8')
+    for when, f in review_due.due(within_days=0):
+        print(f'  content review overdue since {when}: {f} (see tools/review_due.py)')
     print(f'wrote {len(pages)} pages, robots.txt, llms.txt' + (', sitemap.xml' if SITE_URL else ' (sitemap waits for SITE_URL)'))
 
 

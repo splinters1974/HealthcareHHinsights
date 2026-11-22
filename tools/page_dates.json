@@ -6,8 +6,8 @@
  },
  "about.html": {
   "published": "2026-11-18",
-  "modified": "2026-11-18",
-  "fingerprint": "6b15bf768da4adf7"
+  "modified": "2026-11-22",
+  "fingerprint": "8c1f0354fd545b6e"
  },
  "acute-hospitals.html": {
   "published": "2026-11-18",
@@ -67,7 +67,7 @@
  "faq.html": {
   "published": "2026-11-18",
   "modified": "2026-11-22",
-  "fingerprint": "6d54a14f461a00e5"
+  "fingerprint": "955e34aca6ebd575"
  },
  "get-your-data.html": {
   "published": "2026-11-18",
@@ -77,12 +77,12 @@
  "glossary.html": {
   "published": "2026-11-18",
   "modified": "2026-11-22",
-  "fingerprint": "df6bc437eb97800e"
+  "fingerprint": "aace88f6c809d568"
  },
  "guides.html": {
   "published": "2026-11-18",
   "modified": "2026-11-22",
-  "fingerprint": "88178bcf060ed40e"
+  "fingerprint": "f90308547c303707"
  },
  "half-hourly-data-british-gas.html": {
   "published": "2026-11-18",
@@ -122,7 +122,7 @@
  "healthcare-estates-decarbonisation.html": {
   "published": "2026-11-18",
   "modified": "2026-11-22",
-  "fingerprint": "e2dea681418efb6d"
+  "fingerprint": "261dc5cef68f3eb9"
  },
  "heat-decarbonisation.html": {
   "published": "2026-11-18",
@@ -147,7 +147,7 @@
  "index.html": {
   "published": "2026-11-18",
   "modified": "2026-11-22",
-  "fingerprint": "410313c3659b931f"
+  "fingerprint": "c13569bdcfa92629"
  },
  "moving-away-from-chp.html": {
   "published": "2026-11-18",
@@ -158,6 +158,11 @@
   "published": "2026-11-18",
   "modified": "2026-11-18",
   "fingerprint": "f913ff501618c4b8"
+ },
+ "nhs-estates-energy-facts.html": {
+  "published": "2026-11-22",
+  "modified": "2026-11-22",
+  "fingerprint": "7c5cd6e29726e7c5"
  },
  "nhs-net-zero-targets.html": {
   "published": "2026-11-18",

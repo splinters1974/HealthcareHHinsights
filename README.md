@@ -63,6 +63,14 @@ and rebuild. The build stops if a replacement no longer matches.
   `analyser/tests/website-claims.test.ts`, so a change to the file or the engine
   fails the tests instead of leaving the page out of date.
 
+### Keeping pages current
+
+Funding, policy and price pages are reviewed every six months, other guides
+every year. `python3 tools/review_due.py` lists what's due; the build also
+warns about anything overdue. After checking a page's figures against their
+sources, update its date in `tools/review.json`. Change a figure on a guide and
+the same figure on `nhs-estates-energy-facts.html` in the same commit.
+
 ## Who runs it
 
 Run by Kinetic Energy Consulting, as with the UK Solar Calculator and Half
