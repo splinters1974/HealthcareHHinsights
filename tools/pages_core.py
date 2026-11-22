@@ -570,6 +570,8 @@ PAGES['about.html'] = ('About Hospital Energy Insights and Paul Johnston',
 <li><strong>Corrections.</strong> If something is wrong or out of date, <a href="contact.html">tell us</a> and we'll fix it and update the date.</li>
 </ul>
 
+<p>Follow {OPERATOR} on <a href="https://www.linkedin.com/company/kinetic-energy-consulting/" rel="noopener">LinkedIn</a>.</p>
+
 <h2 id="family">Related sites</h2>
 <p>The analyser started as <a href="{kit.HHI_SITE}">Half Hourly Insights</a>, a general-purpose version for any business, and the calculator as the <a href="{kit.SOLAR_SITE}">UK Solar Calculator</a> for commercial solar. This site brings both together for healthcare, with settings and guides written for estates teams.</p>
 </div></section>''' + cta('See what your data shows', "It's free, there's no sign-up, and your file stays on your computer."))
