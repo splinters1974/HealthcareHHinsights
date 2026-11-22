@@ -347,6 +347,7 @@ def guide(main, side=''):
 
 # Fingerprint of the stylesheet, added to its link so browsers fetch a new copy after every change.
 import hashlib
+JS_VERSION = hashlib.sha1(open(os.path.join(os.path.dirname(__file__), '..', 'site', 'js', 'motion.js'), 'rb').read()).hexdigest()[:8]
 CSS_VERSION = hashlib.sha1(open(os.path.join(os.path.dirname(__file__), '..', 'site', 'css', 'site.css'), 'rb').read()).hexdigest()[:8]
 
 
@@ -391,6 +392,8 @@ def layout(page):
   <meta name="theme-color" content="#0B2E4F">
   <link rel="preload" href="fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/site.css?v={CSS_VERSION}">
+  <script>if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion')</script>
+  <script src="js/motion.js?v={JS_VERSION}" defer></script>
 {jsonld(page)}{page.extra_head}</head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
