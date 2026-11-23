@@ -402,7 +402,7 @@ def layout(page):
 <nav class="site-nav" id="siteNav" aria-label="Main">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo" aria-label="{NAME} home">
-      <picture><source type="image/webp" srcset="images/brand/hei-logo.webp?v={LOGO_VERSION}"><img src="images/brand/hei-logo.png?v={LOGO_VERSION}" width="367" height="132" alt=""></picture>
+      <picture><source type="image/webp" srcset="images/brand/hei-logo.webp?v={LOGO_VERSION}"><img src="images/brand/hei-logo.png?v={LOGO_VERSION}" width="313" height="132" alt=""></picture>
     </a>
     <ul class="nav-links" id="navLinks">
       {links}
@@ -420,7 +420,7 @@ def layout(page):
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hei-logo-white.webp?v={LOGO_VERSION}"><img src="images/brand/hei-logo-white.png?v={LOGO_VERSION}" width="367" height="132" alt="{NAME}" loading="lazy"></picture></div>
+        <div class="footer-logo"><picture><source type="image/webp" srcset="images/brand/hei-logo-white.webp?v={LOGO_VERSION}"><img src="images/brand/hei-logo-white.png?v={LOGO_VERSION}" width="303" height="132" alt="{NAME}" loading="lazy"></picture></div>
         <p class="footer-desc">Free half-hourly electricity analysis, solar sizing and decarbonisation guides for NHS and independent healthcare estates across England, Scotland and Wales, run by {OPERATOR}. The analysis runs in your browser, so your meter data never leaves your computer.</p>
         <div class="footer-contact-item">Email: <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a></div>
       </div>
