@@ -1,21 +1,26 @@
-"""Build every logo asset from the designer's dark-background PNG.
+"""Build every logo asset from the two supplied Hospital Energy Insights PNGs.
 
-Source: tools/brand/hei-logo-source-dark.png (white wordmark, transparent
-background). From it this makes:
-  - hei-logo-white.png/.webp   footer and other dark backgrounds
-  - hei-logo.png/.webp         header and light backgrounds (navy wordmark)
+Sources (transparent, 900 x 300, used as supplied, no recolouring):
+  tools/brand/hei-logo-light.png   dark wordmark, for white and light backgrounds
+  tools/brand/hei-logo-dark.png    white wordmark, for the navy footer and share card
+
+From them this makes:
+  - hei-logo.png/.webp         header and light backgrounds (from light)
+  - hei-logo-white.png/.webp   footer and other dark backgrounds (from dark)
   - hei-pdf-logo.png           calculator PDF header, 800x200 on white
   - favicons, apple-touch-icon, favicon.ico (the round mark only)
   - analyser/src/local/hhiLogo.ts   JPEG on white for the app and its PDFs
   - tools/guide/img/hhi-logo.png    user guide
   - site/images/og-image.png        share card (logo region repainted)
 
-Clean-up applied to the source: near-invisible haze (alpha < 12) removed,
-solid pixels made fully opaque, and the dark descenders on the "g" and "y"
-of "Energy" recoloured to match the rest of the wordmark. On the
-dark-background versions the navy cross is drawn white so it stays visible.
+The only clean-up is trimming the empty margin and dropping near-invisible
+haze (alpha < 12), so edges stay crisp on coloured backgrounds.
 
-Run: python3 tools/make_brand.py
+To change the logo: replace the two source files and run
+    python3 tools/make_brand.py && python3 tools/build_pages.py
+then rebuild the analyser (cd analyser && npm run build) and the user guide
+(python3 tools/build_guide.py). Header and footer markup sizes are printed
+below; update LOGO_W / LOGO_WHITE_W in tools/kit.py if they change.
 """
 import base64, io, os
 import numpy as np
@@ -23,47 +28,20 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, '..')
-SRC = os.path.join(HERE, 'brand', 'hei-logo-source-dark.png')
+SRC_LIGHT = os.path.join(HERE, 'brand', 'hei-logo-light.png')
+SRC_DARK = os.path.join(HERE, 'brand', 'hei-logo-dark.png')
 BRAND = os.path.join(ROOT, 'site', 'images', 'brand')
-WHITE = (247, 251, 255)
-INK = (11, 46, 79)          # --ink in site.css
-TEXT_X = 560                # wordmark starts right of the divider
+MARK_RIGHT = 364            # the round mark ends before the divider line (source px)
 
 
-def clean():
-    a = np.array(Image.open(SRC).convert('RGBA')).astype(int)
-    al = a[..., 3]
-    al[al < 12] = 0
-    al[al >= 244] = 255
-    r, g, b = a[..., 0], a[..., 1], a[..., 2]
-    yy, xx = np.mgrid[:a.shape[0], :a.shape[1]]
-    desc = (xx > TEXT_X) & (yy >= 315) & (yy <= 343) & (b > g + 4) & (r < 200) & (al > 0)
-    a[desc, :3] = WHITE
-    a[..., 3] = al
-    im = Image.fromarray(a.astype(np.uint8))
+def load(path, right=None):
+    im = Image.open(path).convert('RGBA')
+    if right:
+        im = im.crop((0, 0, right, im.height))
+    a = np.array(im)
+    a[a[..., 3] < 12] = 0
+    im = Image.fromarray(a)
     return im.crop(im.getbbox())
-
-
-def white_cross(im):
-    """The navy cross vanishes on dark backgrounds, so draw it white there."""
-    a = np.array(im).astype(int)
-    r, g, b = a[..., 0], a[..., 1], a[..., 2]
-    yy, xx = np.mgrid[:a.shape[0], :a.shape[1]]
-    # source coordinates less the 35px bbox crop
-    box = (xx >= 87) & (xx <= 235) & (yy >= 101) & (yy <= 249)
-    m = box & (r < 90) & (b > r + 30) & (g < 125) & (a[..., 3] > 0)
-    a[m, :3] = WHITE
-    return Image.fromarray(a.astype(np.uint8))
-
-
-def light(im):
-    """Navy wordmark for light backgrounds; the teal 'Insights' stays."""
-    a = np.array(im).astype(int)
-    xx = np.mgrid[:a.shape[0], :a.shape[1]][1]
-    x0 = TEXT_X - 35  # source was cropped by its bbox (left edge 35)
-    w = (xx > x0) & (a[..., 0] > 200) & (a[..., 1] > 200) & (a[..., 2] > 200)
-    a[w, :3] = INK
-    return Image.fromarray(a.astype(np.uint8))
 
 
 def fit_h(im, h):
@@ -78,33 +56,27 @@ def on(bg, im, size=None, pad=0):
     return canvas.convert('RGB')
 
 
-def mark(im):
-    """The round icon on its own, square, transparent."""
-    a = np.array(im)
-    xx = np.mgrid[:a.shape[0], :a.shape[1]][1]
-    sub = im.crop((0, 0, TEXT_X - 70, im.height))
-    sub = sub.crop(sub.getbbox())
-    s = max(sub.size)
+def square(im):
+    s = max(im.size)
     sq = Image.new('RGBA', (s, s), (0, 0, 0, 0))
-    sq.alpha_composite(sub, ((s - sub.width) // 2, (s - sub.height) // 2))
+    sq.alpha_composite(im, ((s - im.width) // 2, (s - im.height) // 2))
     return sq
 
 
 def main():
-    dark = clean()
-    lite = light(dark)
-    dark = white_cross(dark)
+    lite = load(SRC_LIGHT)
+    dark = load(SRC_DARK)
     H = 264  # 2x the 132px the markup reserves
-    for name, im in (('hei-logo-white', dark), ('hei-logo', lite)):
+    for name, im in (('hei-logo', lite), ('hei-logo-white', dark)):
         out = fit_h(im, H)
         out.save(os.path.join(BRAND, name + '.png'), optimize=True)
         out.save(os.path.join(BRAND, name + '.webp'), quality=90, method=6)
-        print(name, out.size)
+        print(f'{name}: {out.size}, markup width at 132px high = {round(out.width / 2)}')
 
     pdf = fit_h(lite, 176)
     on((255, 255, 255), pdf, (800, 200), pad=12).save(os.path.join(BRAND, 'hei-pdf-logo.png'), optimize=True)
 
-    m = mark(lite)
+    m = square(load(SRC_LIGHT, right=MARK_RIGHT))
     for s in (16, 32, 48, 192):
         m.resize((s, s), Image.LANCZOS).save(os.path.join(BRAND, f'favicon-{s}.png'), optimize=True)
     for s, name in ((512, 'favicon-512.png'), (180, 'apple-touch-icon.png')):
@@ -124,7 +96,7 @@ def main():
                 ' * tools/make_brand.py.\n */\n'
                 f'export const HHI_LOGO_ASPECT = {app.width}/{app.height};\n\n'
                 f"export const HHI_LOGO = 'data:image/jpeg;base64,{b64}';\n")
-    on((255, 255, 255), fit_h(lite, 264)).save(os.path.join(HERE, 'guide', 'img', 'hhi-logo.png'), optimize=True)
+    app.save(os.path.join(HERE, 'guide', 'img', 'hhi-logo.png'), optimize=True)
 
     og_card(dark)
 
