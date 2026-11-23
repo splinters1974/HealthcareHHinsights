@@ -25,7 +25,7 @@ export const DEFAULT_ASSUMPTIONS: EconomicAssumptions = {
   discount_rate: 0.035,
   system_life_years: 25,
   degradation_rate: 0.005,
-  carbon_factor: 0.196,
+  carbon_factor: 0.131,
 };
 
 const inputClass =

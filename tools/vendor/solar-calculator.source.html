@@ -865,7 +865,7 @@
   const DEG_ONGOING = 0.004;
   function degFactor(y) { return (1 - DEG_YEAR1) * Math.pow(1 - DEG_ONGOING, y - 1); }
   const PRICE_INFLATION = 0.03;
-  const CARBON_FACTOR = 0.196;
+  const CARBON_FACTOR = 0.131;  // DESNZ GHG conversion factors 2026, UK electricity (Scope 2, generation)
   const SYSTEM_LIFETIME = 25;        // modelled term; well-kept systems last longer
   const ROOF_COVERAGE = 0.80;
   const SELF_CONSUMPTION_DEFAULT = 0.80;
@@ -1817,7 +1817,7 @@
       `Generation: ${fmt(inp.yieldKwp || REGIONAL_YIELD[inp.region])} kWh/kWp a year for ${inp.regionLabel || 'this region'}, from SAP 10.3 sunshine data for an east-west layout at 10° tilt, net of losses. South-facing or ground-mounted arrays often do better. Degradation 1% in year 1, then 0.4% a year.`,
       'Electricity price inflation: 3% per year.',
       'Panel spec: 510W, 2.27m × 1.13m (2.57m²). Installation cost is all-inclusive (panels, inverters, mounting, electrical, commissioning).',
-      'Carbon factor: 0.196 kg CO₂/kWh (UK grid 2026).',
+      'Carbon factor: 0.131 kg CO₂e/kWh (UK Government 2026 conversion factor).',
       'Figures run for 25 years to keep the view prudent. A well looked-after solar system will keep generating well beyond 25 years.',
       'Does not include costs for scaffolding, surveys such as structural and also any grid associated costs or upgrades.',
     ].filter(Boolean);
@@ -1837,7 +1837,7 @@
       `Generation: ${fmt(inp.yieldKwp || REGIONAL_YIELD[inp.region])} kWh/kWp a year for ${inp.regionLabel || 'this region'}, from SAP 10.3 sunshine data for an east-west layout at 10° tilt, net of losses. Degradation 1% in year 1, then 0.4% a year.`,
       'Electricity price inflation: 3% per year. PPA rate escalator: 2.5% per year.',
       'Panel spec: 510W, 2.27m × 1.13m (2.57m²).',
-      'Carbon factor: 0.196 kg CO₂/kWh (UK grid 2026).',
+      'Carbon factor: 0.131 kg CO₂e/kWh (UK Government 2026 conversion factor).',
       'Figures run for 25 years to keep the view prudent. A well looked-after solar system will keep generating well beyond 25 years.',
       'The PPA rate is indicative and depends on region, system size, mount type and contract length. Does not include costs for scaffolding, structural surveys, or grid connection upgrades.',
     ];
@@ -3584,7 +3584,7 @@
       '*Export: ' + (inp.batteryOn ? 'what the battery does not capture in years 1-10, and all export from year 11,' : 'the remaining ' + (100 - Math.round((inp.selfConsumption || SELF_CONSUMPTION) * 100)) + '% of generation') + ' is valued at 5p/kWh (£' + fmt(r.totalExportRevenue) + ' over 25 years) and included in savings. Export rates are not guaranteed.',
       inp.batteryOn ? `Battery storage: ${fmt(r.batteryKwh)} kWh, sized from your daily solar export, with its cost included in the system cost. Savings apply to years 1-10 only, reflecting a 10-year commercial lifespan under daily cycling. Solar reverts to standard self-consumption from year 11. Capacity degradation not modelled.` : null,
       'Generation: ' + fmt(inp.yieldKwp || REGIONAL_YIELD[inp.region]) + ' kWh/kWp a year (SAP 10.3 regional sunshine data, east-west at 10 degrees, net of losses). Degradation 1% in year 1, then 0.4% a year. Electricity price inflation: 3% per year.',
-      'Panel specification: 510W, 2.27m x 1.13m. Carbon factor: 0.196 kg CO2 per kWh (UK grid 2026).',
+      'Panel specification: 510W, 2.27m x 1.13m. Carbon factor: 0.131 kg CO2e per kWh (UK Government 2026 conversion factor).',
       'Figures run for 25 years to keep the view prudent. A well looked-after solar system will keep generating well beyond 25 years.',
       'Does not include costs for scaffolding, structural surveys, or any grid connection costs or upgrades.',
     ].filter(Boolean);
@@ -3753,7 +3753,7 @@
       'PPA escalator: 2.5% per year. Grid price escalator: 3% per year.',
       'Savings use the ' + Math.round((inp.selfConsumption || SELF_CONSUMPTION) * 100) + '% of generation used on site (as self-funded). The funder keeps export income in contract.',
       ppa.contractYears < SYSTEM_LIFETIME ? 'Post-contract (after year ' + ppa.contractYears + '): system transfers to the customer. Self-consumed energy is valued at the full grid price and export at 5p/kWh' + (ppa.contractYears < INVERTER_YEAR ? '; the customer pays the year-' + INVERTER_YEAR + ' inverter allowance.' : '.') : null,
-      'Generation: ' + fmt(inp.yieldKwp || REGIONAL_YIELD[inp.region]) + ' kWh/kWp a year (SAP 10.3, net of losses). Degradation 1% in year 1, then 0.4% a year. Carbon factor: 0.196 kg CO2/kWh.',
+      'Generation: ' + fmt(inp.yieldKwp || REGIONAL_YIELD[inp.region]) + ' kWh/kWp a year (SAP 10.3, net of losses). Degradation 1% in year 1, then 0.4% a year. Carbon factor: 0.131 kg CO2e/kWh (UK Government 2026 conversion factor).',
       'Figures run for 25 years to stay prudent. A well looked-after system will keep generating well beyond that.',
       'PPA: no upfront cost, no maintenance liability. Funder owns, operates and maintains the system.',
       'Does not include costs for scaffolding, structural surveys, or any grid connection upgrades.',
