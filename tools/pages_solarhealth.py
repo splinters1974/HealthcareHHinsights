@@ -133,6 +133,7 @@ PAGES.append(guide_page(
   [('Do we need planning permission for solar on a hospital roof?', 'In England, usually not, because rooftop solar on non-domestic buildings is permitted development. Listed buildings, sites with an Article 4 direction and some protected areas are exceptions, and the rules differ in Scotland and Wales.'),
    ('Do solar car park canopies need planning permission?', 'In England they can be permitted development, within limits on height and distance from homes, but you need the council\'s prior approval before starting.'),
    ('How long does a DNO connection take?', 'Allow around 12 weeks for a typical rooftop application to reach an offer, and longer where the network is constrained or reinforcement is needed.'),
+   ('Will installing solar disrupt clinical services?', 'Usually very little, because most of the work happens on the roof. The final connection needs a short, planned shutdown of the supply it connects to. On a hospital, agree the timing with the clinical teams and estates, and keep essential services on their standby supply while the work is done.'),
    ('What happens to the solar when the hospital is on generators?', 'G99 protection disconnects the inverters when the grid supply is lost. How the array behaves on a generator-backed switchboard is a design question to settle with your electrical engineer.')],
   [('solar-on-healthcare-estates.html', 'Solar on healthcare estates', 'The wider case and what to plan for.'),
    ('supply-capacity.html', 'Supply capacity', 'Headroom on your connection.'),
@@ -182,6 +183,16 @@ PAGES.append(guide_page(
 </ul>
 <p>Measuring the share used on site from half-hourly data matters for a PPA too: you only pay for what you use, so the funder's offer depends on it.</p>
 
+<h2 id="stall">Why PPAs stall in healthcare, and how to unblock them</h2>
+<p>A PPA needs no capital, yet many offers to NHS trusts and independent hospitals never get signed. The reasons are usually the same, and most can be dealt with early:</p>
+<ul>
+<li><strong>A long commitment the estate strategy can't support.</strong> A 20-year term on a block due for rebuilding in ten years won't get approved. Choose roofs and car parks that the estate strategy keeps, and agree what happens if a building is disposed of.</li>
+<li><strong>Nobody owns the decision.</strong> Estates, finance, procurement and the board all have a say, and the offer sits between them. Name one sponsor, agree the procurement route first and set a date for the board paper.</li>
+<li><strong>Doubts about the contract.</strong> Rate, escalator, termination, roof access and end-of-term options are unfamiliar to many teams. Ask for a plain-English summary of each, and compare the rate over the full term with a realistic grid price, not today's.</li>
+<li><strong>"It only covers a fraction of our electricity."</strong> True, and it's still worth doing. A PPA fixes the price of part of your demand for a long period, which works as a hedge against grid prices as well as a carbon cut. On a 24-hour site, almost all of it is used.</li>
+<li><strong>The accounting answer comes late.</strong> If finance only looks at lease treatment once the contract is drafted, the project stops. Ask the question at the start.</li>
+</ul>
+
 <h2 id="tax">Tax, VAT and business rates</h2>
 <ul>
 <li><strong>Business rates.</strong> In England, on-site renewable generation, and batteries used with it, is exempt from business rates from April 2022.{ref(4)}</li>
@@ -198,10 +209,11 @@ PAGES.append(guide_page(
 </ul>
 <p>The <a href="solar-calculator.html">solar calculator</a> shows buying and a PPA side by side for your site.</p>
 ''' + sources(SRC),
-  [('routes', 'The main routes'), ('funding', 'Grant funding'), ('ppa', 'Power purchase agreements'), ('tax', 'Tax, VAT and rates'), ('choose', 'Which route suits you'), ('sources', 'Sources')],
+  [('routes', 'The main routes'), ('funding', 'Grant funding'), ('ppa', 'Power purchase agreements'), ('stall', 'Why PPAs stall'), ('tax', 'Tax, VAT and rates'), ('choose', 'Which route suits you'), ('sources', 'Sources')],
   [('Is there grant funding for solar on NHS sites?', 'There has been: in March 2025 NHS England announced £100 million from Great British Energy for NHS trust solar and batteries. Funding rounds change often, so check the current position before planning around a grant.'),
    ('Does a PPA count against an NHS trust\'s capital limit?', 'It can, if it is treated as a lease for accounting purposes. Ask your finance team to review the contract terms before you sign.'),
    ('Can NHS trusts claim capital allowances on solar?', 'No, because NHS bodies do not pay corporation tax. Private hospital companies usually can, through the 50% first-year allowance or the Annual Investment Allowance.'),
+   ('Can we put solar on a health centre we lease?', 'Yes, with the landlord\'s consent, which for many health centres means NHS Property Services, Community Health Partnerships or a private landlord. Your lease should run longer than the payback period or PPA term, and you should agree who owns the system at the end.'),
    ('Will solar raise our business rates?', 'Not in England, where on-site renewable generation and associated batteries are exempt from business rates from April 2022.')],
   [('decarbonisation-funding.html', 'Funding', 'Current routes in England, Scotland and Wales.'),
    ('solar-payback.html', 'Solar payback', 'What decides it on a hospital.'),
