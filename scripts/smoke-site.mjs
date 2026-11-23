@@ -93,7 +93,7 @@ try {
       check(external.length === 0, `${tag}: no requests to other sites${external.length ? ': ' + external.join(', ') : ''}`);
 
       if (route === '') {
-        check(/business/i.test(await page.locator('h1').innerText()), `${tag}: headline names the business audience`);
+        check(/estate/i.test(await page.locator('h1').innerText()), `${tag}: headline names the estates audience`);
         check(await page.locator('.hero-audience').isVisible(), `${tag}: audience label visible`);
         check(await page.locator('a[href="sample-report"]').count() > 0, `${tag}: links to the sample report`);
         if (view.mobile) {
@@ -106,7 +106,7 @@ try {
       if (route === 'sample-report') {
         const text = await page.locator('main').innerText();
         check(/Made-up example/.test(text), `${tag}: labelled as made-up`);
-        check(/not a promised saving/.test(text) && /Already included in the £2,776/.test(text), `${tag}: separates cost from saving and avoids double counting`);
+        check(/not a promised saving/.test(text) && /base load itself is separate from these/.test(text), `${tag}: separates cost from saving and avoids double counting`);
       }
       if (route === 'contact') {
         check(await page.locator('form#enquiry[action^="https://formspree.io/f/"]').count() === 1, `${tag}: enquiry form posts to Formspree`);
