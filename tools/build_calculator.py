@@ -133,7 +133,7 @@ def build():
                 '<p>Best started from the <a href="analyser/">half-hourly analyser</a>, so the share of solar used on site comes from your own readings. Outline your roofs and car parks, add your postcode and unit price.')
     rest = must(rest, '<span>Calculator</span></nav>', '<span>Solar calculator</span></nav>')
     rest = must(rest, '<img src="images/brand/hhi-logo.png" width="370" height="132" alt="Half Hourly Insights">',
-                '<img src="images/brand/hei-logo.png" width="456" height="132" alt="Hospital Energy Insights">')
+                '<img src="images/brand/hei-logo.png" width="367" height="132" alt="Hospital Energy Insights">')
     rest = must(rest, 'Your figures from Half Hourly Insights have arrived', 'Your figures from the half-hourly analyser have arrived')
     rest = must(rest, 'https://hhinsights.co.uk/analyser/" target="_blank" rel="noopener"', 'analyser/"', count=2)
     rest = must(rest, 'in Half Hourly Insights', 'in the analyser', count=2)
