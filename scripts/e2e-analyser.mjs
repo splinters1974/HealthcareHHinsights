@@ -27,9 +27,9 @@ const errors = [];
 const passed = [];
 const check = (ok, msg) => (ok ? passed.push(msg) : errors.push(msg));
 
-// Test files: the published examples, an Excel copy of the office file and a junk file.
+// Test files: the published office and hospital examples, an Excel copy of the office file and a junk file.
 const officeCsv = 'site/samples/example-office.csv';
-const schoolCsv = 'site/samples/example-school.csv';
+const hospitalCsv = 'site/samples/example-hospital.csv';
 const officeXlsx = path.join(tmp, 'example-office-copy.xlsx');
 {
   const rows = fs.readFileSync(officeCsv, 'utf8').trim().split(/\r?\n/).map((l) => l.split(','));
@@ -62,6 +62,20 @@ async function newPage(browser, opts = {}) {
 }
 const upload = (page, files) => page.locator('input[type=file][multiple]').setInputFiles(files);
 const text = (page) => page.locator('body').innerText();
+// Every site starts as a 24-hour hospital site with no closed hours, so the
+// office sample shows its closed-hours figures (the £2,776 the sample report
+// quotes) only once it is set to the office preset, as a user would.
+async function setAllToOffice(page) {
+  await page.getByRole('button', { name: 'Set building type and hours for all sites' }).click();
+  await page.locator('select', { has: page.locator('option', { hasText: 'Admin, offices and HQ' }) }).selectOption('office');
+  await page.getByRole('button', { name: /^Apply to all \d+ sites?$/ }).click();
+  await page.getByRole('button', { name: 'Close', exact: true }).click();
+}
+async function uploadOffice(page, files) {
+  await upload(page, files);
+  await page.getByText(/^example-office/).first().waitFor({ timeout: 30000 });
+  await setAllToOffice(page);
+}
 
 async function download(page, buttonName, label) {
   const [dl] = await Promise.all([
@@ -76,7 +90,7 @@ function checkPdf(d, label) {
   const head = d.bytes.subarray(0, 5).toString();
   const pages = (d.bytes.toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length;
   check(head === '%PDF-' && d.bytes.length > 20000 && pages >= 1, `${label}: valid PDF (${d.name}, ${Math.round(d.bytes.length / 1024)} KB, ${pages} pages)`);
-  check(/hhinsights\.co\.uk\/terms/.test(d.bytes.toString('latin1')), `${label}: carries the Hospital Energy Insights attribution and licence note`);
+  check(/hospitalenergy\.co\.uk\/terms/.test(d.bytes.toString('latin1')), `${label}: carries the Hospital Energy Insights attribution and licence note`);
 }
 function checkXlsx(d, label, mustContain) {
   let wb;
@@ -95,7 +109,7 @@ try {
   // 1. Office CSV: figures match the sample report, every export downloads.
   {
     const { context, page } = await newPage(browser);
-    await upload(page, officeCsv);
+    await uploadOffice(page, officeCsv);
     await page.getByText('£2,776').first().waitFor({ timeout: 30000 });
     const t = await text(page);
     check(/£2,776/.test(t) && /£19,798/.test(t) && /79,191/.test(t) && /33%/.test(t), 'office CSV: portfolio shows £2,776, £19,798, 79,191 kWh and 33%, as the sample report says');
@@ -119,13 +133,13 @@ try {
     await page.getByText('Clock changes').first().waitFor({ timeout: 10000 });
     check(/2 clock-change days \(2024-10-27, 2025-03-30\)/.test(await text(page)), 'office CSV: both clock-change days held back and shown on the data review tab');
     checkXlsx(await download(page, 'Export to Excel', 'site'), 'site Excel', [['annual kWh 79,191', /79,?191/]]);
-    // Solar: the Solar tab estimates self-consumption and links to the calculator with a summary after the #.
+    // Solar: the Solar tab estimates self-consumption and links to this site's solar calculator with a summary after the #.
     await page.locator('button', { hasText: /^Overview/ }).first().click();
     check(/Solar:.*kWp system would supply about/.test(await text(page)), 'site overview shows a one-line solar estimate pointing to the Solar tab');
     await page.getByRole('button', { name: 'See the Solar tab →' }).click();
     await page.getByText('Solar: how much would you use?').waitFor({ timeout: 10000 });
     const solarHref = await page.getByRole('link', { name: /Size solar for this site/ }).getAttribute('href');
-    check(/^https:\/\/uksolarcalculator\.co\.uk\/calculator\.html#hhi=1&y=905&use=\d+&sc=[\d.:,]+$/.test(solarHref || '') && solarHref.length < 300,
+    check(/^\.\.\/solar-calculator\.html#hhi=1&y=905&use=\d+&sc=[\d.:,]+$/.test(solarHref || '') && solarHref.length < 300,
       `solar hand-off link carries only a short summary after the # (${(solarHref || '').slice(0, 70)}...)`);
     await page.getByLabel('Site postcode').fill('ex1 1aa');
     await page.getByLabel('Site postcode').press('Enter');
@@ -139,7 +153,7 @@ try {
   // 1b. The All sites page points to solar, and its button opens the Solar tab.
   {
     const { context, page } = await newPage(browser);
-    await upload(page, officeCsv);
+    await uploadOffice(page, officeCsv);
     await page.getByText('£2,776').first().waitFor({ timeout: 30000 });
     check(/Thinking about solar\?/.test(await text(page)), 'All sites page has a solar pointer');
     await page.getByRole('button', { name: 'Open the Solar tab →' }).click();
@@ -153,7 +167,7 @@ try {
     const { context, page } = await newPage(browser);
     let sent = null;
     await page.route('https://api.emailjs.com/**', (r) => { sent = r.request().postDataJSON(); return r.fulfill({ status: 200, body: 'OK' }); });
-    await upload(page, officeCsv);
+    await uploadOffice(page, officeCsv);
     await page.getByText('£2,776').first().waitFor({ timeout: 30000 });
     await page.getByRole('button', { name: 'Customer edition…' }).click();
     const create = page.getByRole('button', { name: 'Create file' });
@@ -176,24 +190,24 @@ try {
   // 2. The same readings as Excel give the same answer; a second meter adds to the estate.
   {
     const { context, page } = await newPage(browser);
-    await upload(page, [officeXlsx, schoolCsv]);
+    await uploadOffice(page, [officeXlsx, hospitalCsv]);
     await page.getByText('example-office-copy', { exact: true }).first().waitFor({ timeout: 30000 });
     await page.getByText(/2 meters/).first().waitFor({ timeout: 30000 }).catch(() => {});
     const t = await text(page);
     check(/example-office-copy/.test(t) && /£2,776/.test(t) && /79,191/.test(t), 'Excel copy of the office file: same £2,776 and 79,191 kWh as the CSV');
-    check(/example-school/.test(t) && /2 meters/.test(t), 'school CSV loads alongside as a second meter');
-    check(await page.getByRole('button', { name: 'Solar for example-school →' }).count() === 1
+    check(/example-hospital/.test(t) && /2 meters/.test(t), 'hospital CSV loads alongside as a second meter');
+    check(await page.getByRole('button', { name: 'Solar for example-hospital →' }).count() === 1
       && await page.getByRole('button', { name: 'Solar for example-office-copy →' }).count() === 1, 'solar pointer offers every site');
-    await page.getByRole('button', { name: 'Solar for example-school →' }).click();
+    await page.getByRole('button', { name: 'Solar for example-hospital →' }).click();
     await page.getByText('Solar: how much would you use?').waitFor({ timeout: 10000 });
-    check(/example-school/.test(await page.locator('h1').first().innerText()), "a site's solar button opens that site's Solar tab");
+    check(/example-hospital/.test(await page.locator('h1').first().innerText()), "a site's solar button opens that site's Solar tab");
     await context.close();
   }
 
   // 3. The same file twice is refused, so totals cannot double.
   {
     const { context, page } = await newPage(browser);
-    await upload(page, officeCsv);
+    await uploadOffice(page, officeCsv);
     await page.getByText('£2,776').first().waitFor({ timeout: 30000 });
     await upload(page, officeCsv);
     await delay(2500);
@@ -230,7 +244,7 @@ try {
   // 5. Phone width: loads a file and fits the screen.
   {
     const { context, page } = await newPage(browser, { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
-    await upload(page, officeCsv);
+    await uploadOffice(page, officeCsv);
     await page.getByText('£2,776').first().waitFor({ timeout: 30000 });
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     check(overflow <= 1, `phone: results fit the screen width (overflow ${overflow}px)`);
