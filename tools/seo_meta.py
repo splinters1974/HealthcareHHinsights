@@ -53,7 +53,7 @@ SEO = {
                              'How estates teams show an energy project worked with half-hourly data: matched periods, the right measure, weather and formal M&V.'),
     'reading-a-heatmap.html': ('How to read a hospital electricity heatmap',
                                'Reading a half-hourly heatmap for a hospital or clinic: what normal looks like on a 24-hour site and the patterns that point to faults.'),
-    'sectors.html': ('Healthcare settings: what to look for in HH data',
+    'sectors.html': ('Healthcare site types: what to look for in HH data',
                      'What half-hourly electricity shows in acute hospitals, community and mental health sites, health centres, ambulance stations and more.'),
     'solar-on-healthcare-estates.html': ('Solar for NHS trusts, health boards and private hospitals',
                                          'Solar PV on healthcare estates: why 24/7 sites use most of it, roofs, car park canopies, helipads, grid connection and funding.'),

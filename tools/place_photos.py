@@ -25,15 +25,43 @@ PHOTOS = {  # drive number -> photo name
 # page -> (photo, horizontal focus 0..1 for the wide crops)
 PAGES = {
     'acute-hospitals': ('01', 0.5), 'sectors': ('01', 0.5), 'nhs-net-zero-targets': ('01', 0.35),
-    'private-hospitals': ('02', 0.6), 'solar': ('02', 0.5),
-    'heat-decarbonisation': ('03', 0.6), 'moving-away-from-chp': ('03', 0.85),
+    'private-hospitals': ('02', 0.6),
+    'heat-decarbonisation': ('03', 0.6),
     'hospital-energy-efficiency': ('04', 0.5), 'community-and-mental-health': ('04', 0.35),
-    'how-it-works': ('05', 0.5), 'estates-returns-and-benchmarking': ('05', 0.4),
-    'solar-on-healthcare-estates': ('06', 0.5), 'solar-planning-and-grid': ('06', 0.7),
+    'how-it-works': ('05', 0.5),
+    'solar-on-healthcare-estates': ('06', 0.5),
     'hospital-electrical-capacity': ('07', 0.4), 'ambulance-stations-and-fleet': ('07', 0.75),
     'healthcare-estates-decarbonisation': ('08', 0.5), 'decarbonisation-funding': ('10', 0.55), 'guides': ('06', 0.5),
-    'health-centres-and-clinics': ('09', 0.6), 'example-hospital-analysis': ('05', 0.62), 'nhs-estates-energy-facts': ('08', 0.3),
+    'health-centres-and-clinics': ('09', 0.6), 'example-hospital-analysis': ('05', 0.62),
 }
+
+
+# Pages that use one of the site's other photos (site/images/photos), so no two
+# guide cards share a picture. Same output as PAGES.
+OTHER_PHOTOS = {
+    'moving-away-from-chp': ('solar-site-team.jpg', 0.5),
+    'estates-returns-and-benchmarking': ('contact-photo.jpg', 0.5),
+    'solar': ('solar-canopy-hospital.jpg', 0.55),
+    'solar-planning-and-grid': ('site-plans-substation.jpg', 0.5),
+    'solar-payback': ('carport-1200.jpg', 0.5),
+    'paying-for-solar': ('solar-ground-campus.jpg', 0.5),
+    'nhs-estates-energy-facts': ('board-review.jpg', 0.5),
+}
+
+
+def write_page_images(page, im, fx):
+    for width, suffix in [(im.width, ''), (900, '-900')]:
+        hero = crop(im, width, round(width * 0.42), fx)
+        hero.save(os.path.join(ROOT, 'heroes', f'{page}{suffix}.jpg'), quality=80, optimize=True, progressive=True)
+        hero.save(os.path.join(ROOT, 'heroes', f'{page}{suffix}.webp'), quality=78, method=6)
+    card = crop(im, 1200, 630, fx)
+    card.save(os.path.join(ROOT, 'guides', f'{page}.jpg'), quality=82, optimize=True, progressive=True)
+    card.resize((600, 315), Image.LANCZOS).save(os.path.join(ROOT, 'guides', f'{page}-600.jpg'), quality=80, optimize=True, progressive=True)
+
+
+def other_photos():
+    for page, (name, fx) in OTHER_PHOTOS.items():
+        write_page_images(page, Image.open(os.path.join(ROOT, 'photos', name)).convert('RGB'), fx)
 
 
 def crop(im, w, h, fx):
@@ -69,3 +97,4 @@ def main(src):
 
 if __name__ == '__main__':
     main(sys.argv[1])
+    other_photos()

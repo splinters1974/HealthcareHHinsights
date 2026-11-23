@@ -780,3 +780,11 @@ button, input, select, textarea { font-family: inherit; }
   .link-card:hover, .photo-card:hover, a.card:hover, .btn:hover { transform: none; }
   .link-card:hover .card-thumb img, .photo-card:hover img, .link-card:hover .more { transform: none; }
 }
+
+/* Guides page: general reference pages listed as plain links under the cards. */
+.ref-list { margin-top: 20px; border-top: 1px solid var(--rule); padding-top: 16px; }
+.ref-list h3 { font-size: 15px; font-weight: 700; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+.ref-list ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px 32px; }
+.ref-list li { display: flex; flex-direction: column; gap: 2px; }
+.ref-list a { color: var(--blue); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.ref-list span { font-size: 15px; color: var(--text-2); }

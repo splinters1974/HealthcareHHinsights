@@ -20,7 +20,7 @@ from kit import (NAV_PARENT, SOLAR_URL, Page, cta, link_card, faq_section, guide
 
 HOME = ('Home', 'index.html')
 GUIDES = ('Guides', 'guides.html')
-SECTORS = ('Healthcare settings', 'sectors.html')
+SECTORS = ('Site types', 'sectors.html')
 SOLAR = f'<a href="{SOLAR_URL}">solar calculator</a>'
 S_NETB = ('NHS England: NHS Estates Technical Bulletin 2026/1, generating energy efficiency savings through controlling theatre ventilation (July 2026)',
           'https://www.england.nhs.uk/wp-content/uploads/2026/07/PRN02301-netb-2026-1-energy-savings-in-theatres-v1.1.pdf')
@@ -618,7 +618,7 @@ for file, short, h1, lead, normal, checks, calendar_tip, decarb, faqs in SECTOR_
       faqs,
       [('hospital-electrical-capacity.html', 'Electrical capacity', 'Room for heat pumps and EV charging.'),
        ('base-load.html', 'Base load', 'What always runs.'),
-       ('sectors.html', 'Other settings', 'Acute, community, clinics, ambulance and private.')],
+       ('sectors.html', 'Other site types', 'Acute, community, clinics, ambulance and private.')],
       f'{short}: what normal half-hourly demand looks like, what to check first, how to set the hours, and the capacity and solar questions.',
       crumbs=[HOME, SECTORS, (short, file)]))
 
@@ -627,16 +627,16 @@ SETTINGS_CARDS = [(f, s, lead) for f, s, _, lead, *_ in SECTOR_DATA] + [
 ]
 
 PAGES.append(Page(
-  'sectors.html', 'Healthcare settings: what to look for in your data | Hospital Energy Insights',
+  'sectors.html', 'Healthcare site types: what to look for in HH data',
   'What half-hourly electricity data shows in acute hospitals, community and mental health sites, health centres and clinics, ambulance stations and private hospitals.',
-  page_hero('Healthcare settings', 'What to look for in your setting', 'Each part of a healthcare estate uses electricity differently. Choose yours to see what normal looks like, what to check first and how to set it up in the analyser.',
+  page_hero('Site types', 'What normal looks like for your type of site', 'An acute hospital, a health centre and an ambulance station use electricity very differently. Choose your type of site to see what normal looks like, what to check first and how to set it up in the analyser.',
             crumbs=[HOME, SECTORS], image='sectors') +
   '<section class="section"><div class="section-inner">' +
   photo('estate-hospital', 'Illustration of a hospital estate with clinical buildings, solar on roofs and car park canopies, plant compounds and a substation', cls='figure figure-wide', lazy=False) +
   '<div class="link-grid">' +
   ''.join(link_card(f, s, lead, 'Read more') for f, s, lead in SETTINGS_CARDS) +
   '</div></div></section>' + cta('Check your whole estate', 'Load every meter at once and the analyser ranks the sites, so you know which to look at first.'),
-  crumbs=[HOME, SECTORS], section='Sectors', summary='Index of healthcare settings pages.'))
+  crumbs=[HOME, SECTORS], section='Sectors', summary='Index of healthcare site types: acute hospitals, community and mental health, health centres and clinics, ambulance stations, private hospitals.'))
 
 GUIDE_GROUPS = [
   ('Decarbonising the estate', [
@@ -672,16 +672,31 @@ GUIDE_GROUPS = [
     ('half-hourly-settlement.html', 'Half-hourly settlement (MHHS)', 'What the move to half-hourly settlement means.'),
     ('mpan-profile-class.html', 'Reading your MPAN', 'Profile class, network region and meter type.'),
     ('electricity-benchmarks.html', 'Electricity benchmarks', 'Typical kWh per m² by building type.'),
+    ('glossary.html', 'Glossary', 'kW, kVA, ERIC, HTM, PSDS, CHP and other terms.'),
   ]),
   ('Prices and bills', [
     ('business-electricity-price.html', "What's in a non-domestic electricity price", 'Wholesale, network, policy, tax and supplier costs.'),
     ('non-energy-charges.html', 'Non-energy charges explained', 'TNUoS, DUoS, BSUoS, levies and taxes.'),
     ('electricity-prices-ten-years.html', 'Ten years of electricity prices', 'What organisations paid from 2015 to 2026, and why.'),
     ('non-energy-costs-outlook.html', 'Where non-energy costs are heading', 'Published forecasts and decisions for 2027 and beyond.'),
-    ('glossary.html', 'Glossary', 'kW, kVA, ERIC, HTM, PSDS, CHP and other terms.'),
   ]),
 ]
 GUIDE_LIST = [g for _, items in GUIDE_GROUPS for g in items]
+
+
+def guide_group(title, items):
+    """One group on the guides page: our own guides as picture cards, then any
+    general pages whose original lives on a sister site as a plain list, so
+    the page isn't a wall of near-identical cards."""
+    own = [i for i in items if i[0] not in kit.CANONICAL_ELSEWHERE]
+    ref = [i for i in items if i[0] in kit.CANONICAL_ELSEWHERE]
+    out = f'<h2 class="section-title" style="margin-top:40px">{title}</h2>'
+    if own:
+        out += '<div class="link-grid">' + ''.join(link_card(f, t, d) for f, t, d in own) + '</div>'
+    if ref:
+        out += ('<div class="ref-list"><h3>' + ('General reference' if own else 'Reference guides') + '</h3><ul>'
+                + ''.join(f'<li><a href="{f}">{t}</a><span>{d}</span></li>' for f, t, d in ref) + '</ul></div>')
+    return out
 NAV_PARENT['get-your-data.html'] = 'guides.html'
 PAGES.append(Page(
   'guides.html', 'Guides for healthcare estates: decarbonisation, solar and half-hourly data',
@@ -689,8 +704,7 @@ PAGES.append(Page(
   page_hero('Guides', 'Guides for healthcare estates', 'Clear answers to the questions estates, facilities and energy teams ask about decarbonisation, solar and half-hourly data.',
             crumbs=[HOME, GUIDES], image='guides') +
   '<section class="section"><div class="section-inner">' +
-  ''.join(f'<h2 class="section-title" style="margin-top:40px">{g}</h2><div class="link-grid">' + ''.join(link_card(f, t, d) for f, t, d in items) + '</div>'
-          for g, items in GUIDE_GROUPS) +
-  '<p class="note" style="margin-top:32px">Looking for your setting? See <a href="sectors.html" style="color:var(--blue);text-decoration:underline">what to look for by healthcare setting</a>.</p></div></section>'
+  ''.join(guide_group(g, items) for g, items in GUIDE_GROUPS) +
+  '<p class="note" style="margin-top:32px">Looking for your type of site? See <a href="sectors.html" style="color:var(--blue);text-decoration:underline">what to look for by site type</a>.</p></div></section>'
   + cta('Ready to look at your own data?', "It's free, there's no sign-up, and nothing is uploaded."),
   crumbs=[HOME, GUIDES], section='Guides', summary='Index of guides.'))
