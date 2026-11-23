@@ -677,7 +677,7 @@ PAGES.append(guide_page(
 <h2 id="funding">Funding</h2>
 {_table('Funding for NHS decarbonisation', [
   _row('2027/28', 'Public Sector Decarbonisation Scheme: no new rounds beyond this; Phase 4 projects run to 31 March 2028', 'psds'),
-  _row('£510', 'PSDS Phase 4 cap on grant per tonne of CO₂e saved over a project\'s life', 'psds4'),
+  _row('£510', "PSDS Phase 4 cap on grant per tonne of CO₂e saved over a project's life", 'psds4'),
   _row('£100m', 'Great British Energy funding for NHS trust solar and batteries (March 2025): 132 projects at 78 trusts', 'gbe100'),
   _row('162', 'NHS sites in England with completed solar through the programme by May 2026, with £25m more for up to 40 sites', 'gbe1'),
   _row('£74m', 'Clean energy and efficiency upgrades shared by 82 NHS trusts, eight military sites and a prison (February 2026)', 'clean'),
