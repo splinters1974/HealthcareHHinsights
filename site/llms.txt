@@ -57,7 +57,7 @@ Method in brief: base load is the 5th percentile of valid half-hourly demand; ou
 - [Community and mental health sites: energy and HH data](https://hospitalenergy.co.uk/community-and-mental-health): Community and mental health sites: what normal half-hourly demand looks like, what to check first, how to set the hours, and the capacity and solar questions.
 - [Health centres and clinics: electricity use and HH data](https://hospitalenergy.co.uk/health-centres-and-clinics): Health centres, clinics and GP premises: what normal half-hourly demand looks like, what to check first, how to set the hours, and the capacity and solar questions.
 - [Ambulance stations: electricity, EV charging and solar](https://hospitalenergy.co.uk/ambulance-stations-and-fleet): Ambulance stations and fleet depots: what normal half-hourly demand looks like, what to check first, how to set the hours, and the capacity and solar questions.
-- [Healthcare settings: what to look for in HH data](https://hospitalenergy.co.uk/sectors): Index of healthcare settings pages.
+- [Healthcare site types: what to look for in HH data](https://hospitalenergy.co.uk/sectors): Index of healthcare site types: acute hospitals, community and mental health, health centres and clinics, ambulance stations, private hospitals.
 
 ## Related
 

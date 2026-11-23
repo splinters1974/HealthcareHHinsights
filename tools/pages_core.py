@@ -129,7 +129,7 @@ PAGES['index.html'] = ('Half-hourly electricity analysis and solar for healthcar
         <li><strong>Ambulance stations</strong>: capacity for fleet charging</li>
         <li><strong>Private hospitals</strong>: ESOS, SECR and NHS supplier carbon plans</li>
       </ul>
-      <p style="margin-top:24px"><a href="sectors.html" class="btn btn-outline">What to look for in your setting</a></p>
+      <p style="margin-top:24px"><a href="sectors.html" class="btn btn-outline">Find your site type</a></p>
     </div>
     <div>{photo('hc-strategy-meeting', 'An estates, finance and clinical team reviewing a hospital decarbonisation roadmap and site plans')}</div>
   </div>

@@ -80,7 +80,7 @@ NAV = [
     ('healthcare-estates-decarbonisation.html', 'Decarbonisation'),
     ('solar-calculator.html', 'Solar calculator'),
     ('guides.html', 'Guides'),
-    ('sectors.html', 'Settings'),
+    ('sectors.html', 'Site types'),
     ('contact.html', 'Contact'),
 ]
 # Pages that belong under a nav item, so it stays highlighted on them.
