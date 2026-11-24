@@ -67,7 +67,11 @@ try {
     const external = [];
     page.on('pageerror', (e) => pageErrors.push(String(e)));
     page.on('console', (m) => { if (m.type() === 'error') pageErrors.push(m.text()); });
-    page.on('request', (r) => { if (!r.url().startsWith(base) && !r.url().startsWith('data:') && !r.url().startsWith('blob:')) external.push(r.url()); });
+    // Cloudflare Web Analytics is the one outside service the site pages use (never the analyser).
+    // It is served a stand-in here, so the test never depends on Cloudflare being reachable.
+    const analytics = /^https:\/\/(static\.)?cloudflareinsights\.com\//;
+    await context.route(analytics, (r) => r.fulfill({ status: 200, contentType: 'text/javascript', body: '' }));
+    page.on('request', (r) => { if (!r.url().startsWith(base) && !r.url().startsWith('data:') && !r.url().startsWith('blob:') && !analytics.test(r.url())) external.push(r.url()); });
 
     for (const route of pages) {
       const tag = `${view.label} /${route}`;

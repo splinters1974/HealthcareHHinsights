@@ -174,6 +174,8 @@ def build():
     for bad in ['uksolarcalculator.co.uk', 'UK Solar Calculator', 'hhinsights.co.uk/analyser']:
         if bad in out.replace('hospitalenergy.co.uk', ''):
             raise SystemExit(f'build_calculator: {bad!r} is still in the calculator page')
+    assert out.count('</body>') == 1, 'build_calculator: expected one </body>'
+    out = out.replace('</body>', kit.ANALYTICS + '\n</body>')
     (SITE / FILE).write_text(out, encoding='utf-8')
 
     css = CSS_SRC.read_text(encoding='utf-8')
