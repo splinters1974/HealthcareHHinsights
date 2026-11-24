@@ -18,6 +18,14 @@ PAGE_DATES = {}   # file -> {'published': 'YYYY-MM-DD', 'modified': 'YYYY-MM-DD'
 UPDATED_MARK = '<!--last-updated-->'
 
 
+# Cloudflare Web Analytics: counts page views with no cookies and no personal
+# data. On every page built from the template and the solar calculator, but
+# deliberately NOT the analyser, so the analyser makes no outside requests.
+ANALYTICS = ("<!-- Cloudflare Web Analytics --><script type='module' "
+             "src='https://static.cloudflareinsights.com/beacon.min.js' "
+             "data-cf-beacon='{\"token\": \"3882f52f6bbf4acdb6a2487a568d2dd3\"}'></script>"
+             "<!-- End Cloudflare Web Analytics -->")
+
 def page_dates(file):
     d = PAGE_DATES.get(file, {})
     return d.get('published', UPDATED), d.get('modified', UPDATED)
@@ -450,6 +458,7 @@ def layout(page):
     e.currentTarget.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   }});
 </script>
+{ANALYTICS}
 </body>
 </html>
 ''')
